@@ -1,41 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using cs4227.Restaurant;
 
 namespace cs4227.Meal
 {
     class Memento
     {
-        private int id;
-        private int userId;
-        private bool cancelled;
-        private List<FoodItem> foodItems;
+        public readonly int id;
+        public readonly int userId;
+        public readonly bool cancelled;
+        public readonly List<FoodItem> foodItems;
 
-        public Memento() { }
-
-        public Memento(int _id, int _userId, bool _cancelled, List<FoodItem> _foodItems)
+        public Memento(int id, int userId, bool cancelled, List<FoodItem> foodItems)
         {
-            this.id = _id;
-            this.userId = _userId;
-            this.cancelled = _cancelled;
-            this.foodItems = _foodItems;
-            Console.Write("Memento added: Order ID: {0}, User ID: {1}, Cancelled: {2}, Items: ", id, userId, cancelled );
-            for (int i = 0; i < this.foodItems.Count; i++)
+            this.id = id;
+            this.userId = userId;
+            this.cancelled = cancelled;
+            this.foodItems = new List<FoodItem>(foodItems);
+
+            Console.Write("Memento added: ");
+            for (int i = 0; i < foodItems.Count; i++)
                 Console.Write("{0}, ", foodItems[i].getName());
-            Console.WriteLine("\n");
+            Console.WriteLine();
         }
-
-
-        /*public void setMementoState(int _id, int _userId, bool _cancelled, List<FoodItem> _foodItems)
-        {
-            this.id = _id;
-            this.userId = _userId;
-            this.cancelled = _cancelled;
-            this.foodItems = _foodItems;
-        }
-         */
     }
 }

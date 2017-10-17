@@ -34,11 +34,11 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO [dbo].[Orders] VALUES (" + order.getUserId() + ", ";
+            command.CommandText = "INSERT INTO [dbo].[Orders] VALUES (" + order.GetUserId() + ", ";
             for (int index = 0; index < 8; index++)
             {
-                if (index < order.getItems().Count)
-                    command.CommandText += order.getItems()[index].getId() + ", ";
+                if (index < order.GetItems().Count)
+                    command.CommandText += order.GetItems()[index].getId() + ", ";
                 else
                     command.CommandText += "NULL, ";
             }
@@ -53,15 +53,15 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "UPDATE [dbo].[Orders] SET [User] = "+order.getUserId()+", ";
+            command.CommandText = "UPDATE [dbo].[Orders] SET [User] = "+order.GetUserId()+", ";
             for (int index = 0; index < 8; index++)
             {
-                if (index < order.getItems().Count)
-                    command.CommandText += "[Item"+index+"] = "+order.getItems()[index].getId() + ", ";
+                if (index < order.GetItems().Count)
+                    command.CommandText += "[Item"+index+"] = "+order.GetItems()[index].getId() + ", ";
                 else
                     command.CommandText += "[Item" + index + "] = NULL, ";
             }
-            command.CommandText += "[Cancelled] = "+(order.getCancelled() ? 1 : 0)+" WHERE Id = "+order.getId();
+            command.CommandText += "[Cancelled] = "+(order.GetCancelled() ? 1 : 0)+" WHERE Id = "+order.GetId();
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -78,9 +78,9 @@ namespace cs4227.Database
             Order order = new Order();
             while (reader.Read())
             {
-                order.setId((int)reader["Id"]);
-                order.setUserId((int)reader["User"]);
-                order.setCancelled((bool)reader["Cancelled"]);
+                order.SetId((int)reader["Id"]);
+                order.SetUserId((int)reader["User"]);
+                order.SetCancelled((bool)reader["Cancelled"]);
                 order.Add(GetFoodItem((int)reader["Id"]));
             }
             connection.Close();

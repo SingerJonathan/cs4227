@@ -15,7 +15,7 @@ namespace cs4227.Meal
         void Command.Execute()
         {
             Database.DatabaseHandler.InsertOrder(order);
-            Console.WriteLine("Order "+order.getId()+" placed");
+            Console.WriteLine("Order "+order.GetId()+" placed");
             Console.ReadKey();
         }
     }

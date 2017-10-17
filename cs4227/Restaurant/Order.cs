@@ -33,45 +33,52 @@ namespace cs4227.Restaurant
             foodItems.Remove(foodItem);
         }
 
-        public void setUserId(int userId)
+        public void SetUserId(int userId)
         {
             this.userId = userId;
         }
 
-        public int getUserId()
+        public int GetUserId()
         {
             return userId;
         }
 
-        public void setId(int id)
+        public void SetId(int id)
         {
             this.id = id;
         }
 
-        public int getId()
+        public int GetId()
         {
             return id;
         }
 
-        public void setCancelled(bool cancelled)
+        public void SetCancelled(bool cancelled)
         {
             this.cancelled = cancelled;
         }
 
-        public bool getCancelled()
+        public bool GetCancelled()
         {
             return cancelled;
         }
 
-        public List<FoodItem> getItems()
+        public List<FoodItem> GetItems()
         {
             return foodItems;
         }
 
-        public Memento saveToMemento()
+        public Memento CreateMemento()
         {
-            Memento newMemento = new Memento(this.id, this.userId, this.cancelled,this.foodItems);
-            return newMemento;
+            return new Memento(id, userId, cancelled, foodItems);
+        }
+
+        public void SetMemento(Memento memento)
+        {
+            id = memento.id;
+            userId = memento.userId;
+            cancelled = memento.cancelled;
+            foodItems = new List<FoodItem>(memento.foodItems);
         }
     }
 }
