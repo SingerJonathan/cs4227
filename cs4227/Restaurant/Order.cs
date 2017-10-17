@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using cs4227.Meal;
 
 namespace cs4227.Restaurant
 {
@@ -65,6 +66,12 @@ namespace cs4227.Restaurant
         public List<FoodItem> getItems()
         {
             return foodItems;
+        }
+
+        public Memento saveToMemento()
+        {
+            Memento newMemento = new Memento(this.id, this.userId, this.cancelled,this.foodItems);
+            return newMemento;
         }
     }
 }
