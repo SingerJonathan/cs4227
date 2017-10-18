@@ -14,9 +14,9 @@ namespace cs4227.Meal
 
         void Command.Execute()
         {
-            order.SetCancelled(true);
+            order.Cancelled = true;
             Database.DatabaseHandler.UpdateOrder(order);
-            Console.WriteLine("Order " + order.GetId() + " cancelled");
+            Console.WriteLine("Order " + order.Id + " cancelled");
             Console.ReadKey();
         }
     }

@@ -20,7 +20,7 @@ namespace cs4227.Meal
 
             Console.Write("Memento added: ");
             for (int i = 0; i < foodItems.Count; i++)
-                Console.Write("{0}, ", foodItems[i].getName());
+                Console.Write("{0}, ", foodItems[i].Name);
             Console.WriteLine();
         }
     }

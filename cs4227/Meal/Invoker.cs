@@ -4,11 +4,11 @@ namespace cs4227.Meal
 {
     class Invoker
     {
-        Command command;
+        private Command command;
 
-        public void setCommand(Command command)
+        public Command Command
         {
-            this.command = command;
+            set { command = value; }
         }
 
         public void Invoke()

@@ -17,8 +17,8 @@ namespace cs4227.Meal
 
             // Create order and create a memento each time an item is added
             Order order = new Order();
-            order.SetId(newestId + 1);
-            order.SetUserId(8);
+            order.Id = newestId + 1;
+            order.UserId = 8;
             order.Add(DatabaseHandler.GetFoodItem(1));
             mementos.Add(order.CreateMemento());
             order.Add(DatabaseHandler.GetFoodItem(2));
@@ -40,7 +40,7 @@ namespace cs4227.Meal
 
                 Console.Write("Order set to Memento {0}: ", mementos.Count-i);
                 for (int j = 0; j < currentMemento.foodItems.Count; j++)
-                    Console.Write("{0}, ", currentMemento.foodItems[j].getName());
+                    Console.Write("{0}, ", currentMemento.foodItems[j].Name);
                 Console.WriteLine();
             }
 
@@ -49,9 +49,9 @@ namespace cs4227.Meal
             CancelOrderCommand cancelOrderCommand = new CancelOrderCommand(order);
 
             // Place and cancel the order using the command design pattern
-            invoker.setCommand(placeOrderCommand);
+            invoker.Command = placeOrderCommand;
             invoker.Invoke();
-            invoker.setCommand(cancelOrderCommand);
+            invoker.Command = cancelOrderCommand;
             invoker.Invoke();
         }
     }

@@ -11,6 +11,26 @@ namespace cs4227.Restaurant
         private bool cancelled;
         private List<FoodItem> foodItems;
 
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        public int UserId
+        {
+            get { return userId; }
+            set { userId = value; }
+        }
+        public bool Cancelled
+        {
+            get { return cancelled; }
+            set { cancelled = value; }
+        }
+        public List<FoodItem> FoodItems
+        {
+            get { return foodItems; }
+        }
+
         public Order()
         {
             cancelled = false;
@@ -20,7 +40,7 @@ namespace cs4227.Restaurant
         public Order(List<FoodItem> foodItems)
         {
             cancelled = false;
-            this.foodItems = foodItems;
+            this.foodItems = new List<FoodItem>(foodItems);
         }
 
         public void Add(FoodItem foodItem)
@@ -31,41 +51,6 @@ namespace cs4227.Restaurant
         public void Remove(FoodItem foodItem)
         {
             foodItems.Remove(foodItem);
-        }
-
-        public void SetUserId(int userId)
-        {
-            this.userId = userId;
-        }
-
-        public int GetUserId()
-        {
-            return userId;
-        }
-
-        public void SetId(int id)
-        {
-            this.id = id;
-        }
-
-        public int GetId()
-        {
-            return id;
-        }
-
-        public void SetCancelled(bool cancelled)
-        {
-            this.cancelled = cancelled;
-        }
-
-        public bool GetCancelled()
-        {
-            return cancelled;
-        }
-
-        public List<FoodItem> GetItems()
-        {
-            return foodItems;
         }
 
         public Memento CreateMemento()

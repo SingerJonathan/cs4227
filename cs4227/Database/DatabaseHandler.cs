@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
@@ -34,11 +33,11 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO [dbo].[Orders] VALUES (" + order.GetUserId() + ", ";
+            command.CommandText = "INSERT INTO [dbo].[Orders] VALUES (" + order.UserId + ", ";
             for (int index = 0; index < 8; index++)
             {
-                if (index < order.GetItems().Count)
-                    command.CommandText += order.GetItems()[index].getId() + ", ";
+                if (index < order.FoodItems.Count)
+                    command.CommandText += order.FoodItems[index].Id + ", ";
                 else
                     command.CommandText += "NULL, ";
             }
@@ -53,38 +52,19 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "UPDATE [dbo].[Orders] SET [User] = "+order.GetUserId()+", ";
+            command.CommandText = "UPDATE [dbo].[Orders] SET [User] = "+order.UserId+", ";
             for (int index = 0; index < 8; index++)
             {
-                if (index < order.GetItems().Count)
-                    command.CommandText += "[Item"+index+"] = "+order.GetItems()[index].getId() + ", ";
+                if (index < order.FoodItems.Count)
+                    command.CommandText += "[Item"+index+"] = "+order.FoodItems[index].Id + ", ";
                 else
                     command.CommandText += "[Item" + index + "] = NULL, ";
             }
-            command.CommandText += "[Cancelled] = "+(order.GetCancelled() ? 1 : 0)+" WHERE Id = "+order.GetId();
+            command.CommandText += "[Cancelled] = "+(order.Cancelled ? 1 : 0)+" WHERE Id = "+order.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
             Console.WriteLine("(" + result + " row(s) affected)");
-        }
-
-        public static Order GetOrder(int id)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Id] = " + id;
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            Order order = new Order();
-            while (reader.Read())
-            {
-                order.SetId((int)reader["Id"]);
-                order.SetUserId((int)reader["User"]);
-                order.SetCancelled((bool)reader["Cancelled"]);
-                order.Add(GetFoodItem((int)reader["Id"]));
-            }
-            connection.Close();
-            return order;
         }
 
         public static int GetNewestOrderId()
@@ -99,6 +79,25 @@ namespace cs4227.Database
                 result = reader.GetInt32(0);
             connection.Close();
             return result;
+        }
+
+        public static Order GetOrder(int id)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Id] = " + id;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            Order order = new Order();
+            while (reader.Read())
+            {
+                order.Id = (int)reader["Id"];
+                order.UserId = (int)reader["User"];
+                order.Cancelled = (bool)reader["Cancelled"];
+                order.Add(GetFoodItem((int)reader["Id"]));
+            }
+            connection.Close();
+            return order;
         }
 
         public static FoodItem GetFoodItem(int id)
