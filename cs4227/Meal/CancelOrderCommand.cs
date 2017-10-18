@@ -5,7 +5,7 @@ namespace cs4227.Meal
 {
     class CancelOrderCommand : Command
     {
-        Order order;
+        private Order order;
 
         public CancelOrderCommand(Order order)
         {

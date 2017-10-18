@@ -5,7 +5,7 @@ namespace cs4227.Meal
 {
     class PlaceOrderCommand : Command
     {
-        Order order;
+        private Order order;
 
         public PlaceOrderCommand(Order order)
         {
