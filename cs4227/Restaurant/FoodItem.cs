@@ -10,6 +10,32 @@ namespace cs4227.Restaurant
         private int restaurantId;
         private bool deleted;
 
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public double Cost
+        {
+            get { return cost; }
+            set { cost = value; }
+        }
+        public int RestaurantId
+        {
+            get { return restaurantId; }
+            set { restaurantId = value; }
+        }
+        public bool Deleted
+        {
+            get { return deleted; }
+            set { deleted = value; }
+        }
+
         public FoodItem()
         {
             name = "Food Item";
@@ -23,31 +49,6 @@ namespace cs4227.Restaurant
             this.cost = cost;
             this.restaurantId = restaurantId;
             this.deleted = deleted;
-        }
-
-        public string getName()
-        {
-            return name;
-        }
-
-        public double getCost()
-        {
-            return cost;
-        }
-
-        public int getId()
-        {
-            return id;
-        }
-
-        public int getRestaurantId()
-        {
-            return restaurantId;
-        }
-
-        public bool getDeleted()
-        {
-            return deleted;
         }
     }
 }

@@ -5,7 +5,7 @@ namespace cs4227.Meal
 {
     class PlaceOrderCommand : Command
     {
-        Order order;
+        private Order order;
 
         public PlaceOrderCommand(Order order)
         {
@@ -15,7 +15,7 @@ namespace cs4227.Meal
         void Command.Execute()
         {
             Database.DatabaseHandler.InsertOrder(order);
-            Console.WriteLine("Order "+order.getId()+" placed");
+            Console.WriteLine("Order "+order.Id+" placed");
             Console.ReadKey();
         }
     }

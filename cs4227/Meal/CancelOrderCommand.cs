@@ -5,7 +5,7 @@ namespace cs4227.Meal
 {
     class CancelOrderCommand : Command
     {
-        Order order;
+        private Order order;
 
         public CancelOrderCommand(Order order)
         {
@@ -14,9 +14,9 @@ namespace cs4227.Meal
 
         void Command.Execute()
         {
-            order.setCancelled(true);
+            order.Cancelled = true;
             Database.DatabaseHandler.UpdateOrder(order);
-            Console.WriteLine("Order " + order.getId() + " cancelled");
+            Console.WriteLine("Order " + order.Id + " cancelled");
             Console.ReadKey();
         }
     }

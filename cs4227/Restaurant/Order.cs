@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using cs4227.Meal;
 
 namespace cs4227.Restaurant
 {
@@ -10,6 +11,26 @@ namespace cs4227.Restaurant
         private bool cancelled;
         private List<FoodItem> foodItems;
 
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        public int UserId
+        {
+            get { return userId; }
+            set { userId = value; }
+        }
+        public bool Cancelled
+        {
+            get { return cancelled; }
+            set { cancelled = value; }
+        }
+        public List<FoodItem> FoodItems
+        {
+            get { return foodItems; }
+        }
+
         public Order()
         {
             cancelled = false;
@@ -19,7 +40,7 @@ namespace cs4227.Restaurant
         public Order(List<FoodItem> foodItems)
         {
             cancelled = false;
-            this.foodItems = foodItems;
+            this.foodItems = new List<FoodItem>(foodItems);
         }
 
         public void Add(FoodItem foodItem)
@@ -32,39 +53,17 @@ namespace cs4227.Restaurant
             foodItems.Remove(foodItem);
         }
 
-        public void setUserId(int userId)
+        public Memento CreateMemento()
         {
-            this.userId = userId;
+            return new Memento(id, userId, cancelled, foodItems);
         }
 
-        public int getUserId()
+        public void SetMemento(Memento memento)
         {
-            return userId;
-        }
-
-        public void setId(int id)
-        {
-            this.id = id;
-        }
-
-        public int getId()
-        {
-            return id;
-        }
-
-        public void setCancelled(bool cancelled)
-        {
-            this.cancelled = cancelled;
-        }
-
-        public bool getCancelled()
-        {
-            return cancelled;
-        }
-
-        public List<FoodItem> getItems()
-        {
-            return foodItems;
+            id = memento.id;
+            userId = memento.userId;
+            cancelled = memento.cancelled;
+            foodItems = new List<FoodItem>(memento.foodItems);
         }
     }
 }
