@@ -128,7 +128,7 @@
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Name = "UserOrderMenu";
-            this.Text = "Form12";
+            this.Text = "User Menu: Select Order";
             this.ResumeLayout(false);
             this.PerformLayout();
 

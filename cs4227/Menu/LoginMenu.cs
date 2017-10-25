@@ -40,21 +40,21 @@ namespace cs4227.Menu
         private void UserLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbstractUser user = new UserFactory().getUser("michaeluserman96", "Michael Userman", "#Badpassword1", "User");
+            AbstractUser user = new UserFactory().getUser("michaeluserman96", "Michael", "Userman", "#Badpassword1", "michaeluserman96@gmail.com", "User");
             user.login();
         }
 
         private void SysAdminLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbstractUser sysAdmin = new UserFactory().getUser("geoffsysman96", "Geoff Sysman", "#Badpassword1", "SysAdmin");
+            AbstractUser sysAdmin = new UserFactory().getUser("geoffsysman96", "Geoff", "Sysman", "#Badpassword1", "geoffsysman96@gmail.com", "SysAdmin");
             sysAdmin.login();
         }
 
         private void AdminLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbstractUser restAdmin = new UserFactory().getUser("larryrestman96", "Larry Restman", "#Badpassword1", "RestAdmin");
+            AbstractUser restAdmin = new UserFactory().getUser("larryrestman96", "Larry", "Restman", "#Badpassword1", "larryrestman96@gmail.com", "RestAdmin");
             restAdmin.login();
         }
 
