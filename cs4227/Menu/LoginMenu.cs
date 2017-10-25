@@ -14,6 +14,7 @@ namespace cs4227.Menu
     public partial class LoginMenu : Form
     {
         Timer t = new Timer();
+        private string RestaurantName = "";
 
         public LoginMenu()
         {
