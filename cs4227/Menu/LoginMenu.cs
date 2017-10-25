@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cs4227.User;
 
 namespace cs4227.Menu
 {
@@ -39,22 +40,22 @@ namespace cs4227.Menu
         private void UserLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserMenu f7 = new UserMenu();
-            f7.ShowDialog();
+            AbstractUser user = new User.User("michaeluserman96", "Michael Userman", "badpassword", new RegularUser());
+            user.login();
         }
 
         private void SysAdminLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysAdminMenu SAM = new SysAdminMenu();
-            SAM.ShowDialog();
+            AbstractUser sysAdmin = new User.User("geoffsysman96", "Geoff Sysman", "badpassword", new SysAdmin());
+            sysAdmin.login();
         }
 
         private void AdminLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ResMenu RM = new ResMenu();
-            RM.ShowDialog();
+            AbstractUser restAdmin = new User.User("larryrestman96", "Larry Restman", "badpassword", new RestAdmin());
+            restAdmin.login();
         }
 
         public static void Main()
