@@ -4,7 +4,7 @@ namespace cs4227.User
 {
     class UserFactory
     {
-        public AbstractUser getUser(string username, string firstName, string lastName, string password, string email, string userType,
+        public AbstractUser getUser(int id, string username, string firstName, string lastName, string password, string email, string userType,
             int restaurantAdmin = 0, bool systemAdmin = false, bool deleted = false)
         {
             if (userType == null)
@@ -16,7 +16,7 @@ namespace cs4227.User
             else if (userType.Equals("RestAdmin"))
                 loginAPI = new RestAdmin();
 
-            return new User(username, firstName, lastName, password, email, loginAPI, restaurantAdmin, systemAdmin, deleted);
+            return new User(id, username, firstName, lastName, password, email, loginAPI, restaurantAdmin, systemAdmin, deleted);
         }
     }
 }

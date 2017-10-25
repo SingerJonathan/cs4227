@@ -33,21 +33,24 @@ namespace cs4227.Menu
         private void UserLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbstractUser user = new UserFactory().getUser("michaeluserman96", "Michael", "Userman", "#Badpassword1", "michaeluserman96@gmail.com", "User");
+            // HARD CODED VALUES, REPLACE WHEN LOGIN IS IMPLEMENTED
+            AbstractUser user = new UserFactory().getUser(9, "michaeluserman96", "Michael", "Userman", "#Badpassword1", "michaeluserman96@gmail.com", "User");
             user.login();
         }
 
         private void SysAdminLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbstractUser sysAdmin = new UserFactory().getUser("geoffsysman96", "Geoff", "Sysman", "#Badpassword1", "geoffsysman96@gmail.com", "SysAdmin");
+            // HARD CODED VALUES, REPLACE WHEN LOGIN IS IMPLEMENTED
+            AbstractUser sysAdmin = new UserFactory().getUser(1, "geoffsysman96", "Geoff", "Sysman", "#Badpassword1", "geoffsysman96@gmail.com", "SysAdmin", 0, true);
             sysAdmin.login();
         }
 
         private void AdminLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbstractUser restAdmin = new UserFactory().getUser("larryrestman96", "Larry", "Restman", "#Badpassword1", "larryrestman96@gmail.com", "RestAdmin");
+            // HARD CODED VALUES, REPLACE WHEN LOGIN IS IMPLEMENTED
+            AbstractUser restAdmin = new UserFactory().getUser(8, "larryrestman96", "Larry", "Restman", "#Badpassword1", "larryrestman96@gmail.com", "RestAdmin", 1);
             restAdmin.login();
         }
 
