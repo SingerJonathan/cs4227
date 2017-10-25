@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using cs4227.User;
 
@@ -14,7 +7,6 @@ namespace cs4227.Menu
     public partial class LoginMenu : Form
     {
         Timer t = new Timer();
-        private string RestaurantName = "";
 
         public LoginMenu()
         {
