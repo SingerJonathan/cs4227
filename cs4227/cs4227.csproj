@@ -76,128 +76,126 @@
     <Compile Include="Restaurant\FoodItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restaurant\Order.cs" />
-    <Compile Include="source\Menus\EditAdminMenu.cs">
+    <Compile Include="Menu\EditAdminMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\EditAdminMenu.Designer.cs">
+    <Compile Include="Menu\EditAdminMenu.Designer.cs">
       <DependentUpon>EditAdminMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\EditRestaurantMenu.cs">
+    <Compile Include="Menu\EditRestaurantMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\EditRestaurantMenu.Designer.cs">
+    <Compile Include="Menu\EditRestaurantMenu.Designer.cs">
       <DependentUpon>EditRestaurantMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\LoginMenu.cs">
+    <Compile Include="Menu\LoginMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\LoginMenu.Designer.cs">
+    <Compile Include="Menu\LoginMenu.Designer.cs">
       <DependentUpon>LoginMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\RestMenu.cs">
+    <Compile Include="Menu\RestMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\RestMenu.Designer.cs">
+    <Compile Include="Menu\RestMenu.Designer.cs">
       <DependentUpon>RestMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\SysAdminAdmins.cs">
+    <Compile Include="Menu\SysAdminAdmins.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\SysAdminAdmins.Designer.cs">
+    <Compile Include="Menu\SysAdminAdmins.Designer.cs">
       <DependentUpon>SysAdminAdmins.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\SysAdminMenu.cs">
+    <Compile Include="Menu\SysAdminMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\SysAdminMenu.Designer.cs">
+    <Compile Include="Menu\SysAdminMenu.Designer.cs">
       <DependentUpon>SysAdminMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\SysAdminRestaurants.cs">
+    <Compile Include="Menu\SysAdminRestaurants.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\SysAdminRestaurants.Designer.cs">
+    <Compile Include="Menu\SysAdminRestaurants.Designer.cs">
       <DependentUpon>SysAdminRestaurants.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\SysItemView.cs">
+    <Compile Include="Menu\SysItemView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\SysItemView.Designer.cs">
+    <Compile Include="Menu\SysItemView.Designer.cs">
       <DependentUpon>SysItemView.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\SysMenuView.cs">
+    <Compile Include="Menu\SysMenuView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\SysMenuView.Designer.cs">
+    <Compile Include="Menu\SysMenuView.Designer.cs">
       <DependentUpon>SysMenuView.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\SysOrderView.cs">
+    <Compile Include="Menu\SysOrderView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\SysOrderView.Designer.cs">
+    <Compile Include="Menu\SysOrderView.Designer.cs">
       <DependentUpon>SysOrderView.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\SysRestMenuAdd.cs">
+    <Compile Include="Menu\SysRestMenuAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\SysRestMenuAdd.Designer.cs">
+    <Compile Include="Menu\SysRestMenuAdd.Designer.cs">
       <DependentUpon>SysRestMenuAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\SysRestMenuEdit.cs">
+    <Compile Include="Menu\SysRestMenuEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\SysRestMenuEdit.Designer.cs">
+    <Compile Include="Menu\SysRestMenuEdit.Designer.cs">
       <DependentUpon>SysRestMenuEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\SysRestView.cs">
+    <Compile Include="Menu\SysRestView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\SysRestView.Designer.cs">
+    <Compile Include="Menu\SysRestView.Designer.cs">
       <DependentUpon>SysRestView.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\UserCheckout.cs">
+    <Compile Include="Menu\UserCheckout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\UserCheckout.Designer.cs">
+    <Compile Include="Menu\UserCheckout.Designer.cs">
       <DependentUpon>UserCheckout.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\UserEditDetails.cs">
+    <Compile Include="Menu\UserEditDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\UserEditDetails.Designer.cs">
+    <Compile Include="Menu\UserEditDetails.Designer.cs">
       <DependentUpon>UserEditDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\UserFavourites.cs">
+    <Compile Include="Menu\UserFavourites.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\UserFavourites.Designer.cs">
+    <Compile Include="Menu\UserFavourites.Designer.cs">
       <DependentUpon>UserFavourites.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\UserMainMenu.cs">
+    <Compile Include="Menu\UserMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\UserMainMenu.Designer.cs">
+    <Compile Include="Menu\UserMainMenu.Designer.cs">
       <DependentUpon>UserMainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\UserOrderHistory.cs">
+    <Compile Include="Menu\UserOrderHistory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\UserOrderHistory.Designer.cs">
+    <Compile Include="Menu\UserOrderHistory.Designer.cs">
       <DependentUpon>UserOrderHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\UserRestSearch.cs">
+    <Compile Include="Menu\UserRestSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="source\Menus\UserRestSearch.Designer.cs">
+    <Compile Include="Menu\UserRestSearch.Designer.cs">
       <DependentUpon>UserRestSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Menus\UserSelectOrder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="source\Menus\UserSelectOrder.Designer.cs">
+    <Compile Include="Menu\UserSelectOrder.cs" />
+    <Compile Include="Menu\UserSelectOrder.Designer.cs">
       <DependentUpon>UserSelectOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Users\Admin.cs" />
-    <Compile Include="source\Users\Users.cs" />
+    <Compile Include="User\Admin.cs" />
+    <Compile Include="User\Users.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -207,8 +205,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="source\.vs\slnx.sqlite" />
-    <None Include="source\.vs\VSWorkspaceState.json" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\VSWorkspaceState.json" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -237,71 +235,71 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="source\Menus\EditAdminMenu.resx">
+    <EmbeddedResource Include="Menu\EditAdminMenu.resx">
       <DependentUpon>EditAdminMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\EditRestaurantMenu.resx">
+    <EmbeddedResource Include="Menu\EditRestaurantMenu.resx">
       <DependentUpon>EditRestaurantMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\LoginMenu.resx">
+    <EmbeddedResource Include="Menu\LoginMenu.resx">
       <DependentUpon>LoginMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\RestMenu.resx">
+    <EmbeddedResource Include="Menu\RestMenu.resx">
       <DependentUpon>RestMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\SysAdminAdmins.resx">
+    <EmbeddedResource Include="Menu\SysAdminAdmins.resx">
       <DependentUpon>SysAdminAdmins.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\SysAdminMenu.resx">
+    <EmbeddedResource Include="Menu\SysAdminMenu.resx">
       <DependentUpon>SysAdminMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\SysAdminRestaurants.resx">
+    <EmbeddedResource Include="Menu\SysAdminRestaurants.resx">
       <DependentUpon>SysAdminRestaurants.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\SysItemView.resx">
+    <EmbeddedResource Include="Menu\SysItemView.resx">
       <DependentUpon>SysItemView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\SysMenuView.resx">
+    <EmbeddedResource Include="Menu\SysMenuView.resx">
       <DependentUpon>SysMenuView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\SysOrderView.resx">
+    <EmbeddedResource Include="Menu\SysOrderView.resx">
       <DependentUpon>SysOrderView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\SysRestMenuAdd.resx">
+    <EmbeddedResource Include="Menu\SysRestMenuAdd.resx">
       <DependentUpon>SysRestMenuAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\SysRestMenuEdit.resx">
+    <EmbeddedResource Include="Menu\SysRestMenuEdit.resx">
       <DependentUpon>SysRestMenuEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\SysRestView.resx">
+    <EmbeddedResource Include="Menu\SysRestView.resx">
       <DependentUpon>SysRestView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\UserCheckout.resx">
+    <EmbeddedResource Include="Menu\UserCheckout.resx">
       <DependentUpon>UserCheckout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\UserEditDetails.resx">
+    <EmbeddedResource Include="Menu\UserEditDetails.resx">
       <DependentUpon>UserEditDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\UserFavourites.resx">
+    <EmbeddedResource Include="Menu\UserFavourites.resx">
       <DependentUpon>UserFavourites.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\UserMainMenu.resx">
+    <EmbeddedResource Include="Menu\UserMainMenu.resx">
       <DependentUpon>UserMainMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\UserOrderHistory.resx">
+    <EmbeddedResource Include="Menu\UserOrderHistory.resx">
       <DependentUpon>UserOrderHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\UserRestSearch.resx">
+    <EmbeddedResource Include="Menu\UserRestSearch.resx">
       <DependentUpon>UserRestSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Menus\UserSelectOrder.resx">
+    <EmbeddedResource Include="Menu\UserSelectOrder.resx">
       <DependentUpon>UserSelectOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".vs\v15\" />
     <Folder Include="bin\Debug\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="source\.vs\source\v15\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
