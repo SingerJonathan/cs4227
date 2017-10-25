@@ -35,17 +35,27 @@ namespace cs4227.Menu
         private Boolean CorrectTypeFormat = false;
         private Boolean CorrectDeliveryChargeFormat = false;
         private Boolean newRestaurant = false;
+        private Boolean sysAdmin = false;
 
-        public EditRestaurantMenu(string RestaurantName, Boolean newRestaurant)
+        public EditRestaurantMenu(string RestaurantName, Boolean newRestaurant, Boolean sysAdmin)
         {
             this.RestaurantName = RestaurantName;
             this.newRestaurant = newRestaurant;
+            this.sysAdmin = sysAdmin;
             InitializeComponent();
         }
 
         private void EditRestaurantMenu_Load(object sender, EventArgs e)
         {
             RestaurantNameTextbox.Text = RestaurantName;
+            if (sysAdmin)
+            {
+                this.Text = "SysAdmin Menu: Edit Restaurant";
+            }
+            else
+            {
+                this.Text = "Admin Menu: Edit Restaurant";
+            }
         }
 
         private void RestaurantNameTextbox_TextChanged(object sender, EventArgs e)
@@ -467,11 +477,21 @@ namespace cs4227.Menu
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
             if(CorrectNameFormat && CorrectAddressFormat && CorrectOwnerFormat && CorrectPhoneNumberFormat && CorrectEmailFormat && CorrectOpeningHoursFormat && CorrectClosingHoursFormat && CorrectDaysOpenFormat && CorrectTypeFormat && CorrectDeliveryChargeFormat)
-            { 
+            {
                 //Add code to save restaurant 
-                this.Hide();
-                SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantName);
-                SVR.ShowDialog();
+
+                if (sysAdmin)
+                {
+                    this.Hide();
+                    SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantName);
+                    SVR.ShowDialog();
+                }
+                else
+                {
+                    this.Hide();
+                    RestMenu RM = new RestMenu(RestaurantName);
+                    RM.ShowDialog();
+                }
             }
             else
             {
@@ -482,17 +502,26 @@ namespace cs4227.Menu
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            if(newRestaurant)
+            if (sysAdmin)
             {
-                this.Hide();
-                SysAdminRestaurantsMenu SRM = new SysAdminRestaurantsMenu();
-                SRM.ShowDialog();
+                if (newRestaurant)
+                {
+                    this.Hide();
+                    SysAdminRestaurantsMenu SRM = new SysAdminRestaurantsMenu();
+                    SRM.ShowDialog();
+                }
+                else
+                {
+                    this.Hide();
+                    SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantName);
+                    SVR.ShowDialog();
+                }
             }
             else
             {
                 this.Hide();
-                SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantName);
-                SVR.ShowDialog();
+                RestMenu RM = new RestMenu(RestaurantName);
+                RM.ShowDialog();
             }
         }
     }

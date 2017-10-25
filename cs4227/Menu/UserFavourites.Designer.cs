@@ -98,7 +98,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
             this.Name = "UserFavouriteOrders";
-            this.Text = "Form10";
+            this.Text = "User Menu: Favourites";
             this.ResumeLayout(false);
             this.PerformLayout();
 

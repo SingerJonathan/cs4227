@@ -113,7 +113,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "UserMenu";
-            this.Text = "Form7";
+            this.Text = "User Menu: Main Menu";
             this.Load += new System.EventHandler(this.Form7_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

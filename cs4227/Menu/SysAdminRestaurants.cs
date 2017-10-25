@@ -91,7 +91,7 @@ namespace cs4227.Menu
                 ListOfRestaurants.Items.Add(Restaurant);
                 ListOfRestaurants.Update();
                 this.Hide();
-                EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantName, true);
+                EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantName, true, true);
                 ERM.ShowDialog();
             }
         }
