@@ -190,7 +190,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "UserManageAccount";
-            this.Text = "Form11";
+            this.Text = "User Menu: Edit User Details";
             this.ResumeLayout(false);
             this.PerformLayout();
 

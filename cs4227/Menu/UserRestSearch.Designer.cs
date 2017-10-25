@@ -106,7 +106,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listView1);
             this.Name = "UserResterauntSearch";
-            this.Text = "Form8";
+            this.Text = "User Menu: Search for Restaurant";
             this.Load += new System.EventHandler(this.Form8_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

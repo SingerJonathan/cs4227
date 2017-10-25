@@ -54,7 +54,7 @@ namespace cs4227.Menu
         private void EditRestaurantButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantName, false);
+            EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantName, false, true);
             ERM.ShowDialog();
         }
 

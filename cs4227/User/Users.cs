@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cs4227.User
 {
-    public class Users            //Composite Design Pattern
+    public class Users           
     {
         Admin SystemAdmin = new Admin("wbutler", "William", "Password", true);
 

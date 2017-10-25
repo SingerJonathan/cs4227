@@ -13,6 +13,7 @@ namespace cs4227.Menu
     public partial class LoginMenu : Form
     {
         Timer t = new Timer();
+        private string RestaurantName = "";
 
         public LoginMenu()
         {
@@ -53,7 +54,7 @@ namespace cs4227.Menu
         private void AdminLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ResMenu RM = new ResMenu();
+            RestMenu RM = new RestMenu(RestaurantName);
             RM.ShowDialog();
         }
 

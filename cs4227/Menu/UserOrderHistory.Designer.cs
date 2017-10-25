@@ -97,7 +97,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
             this.Name = "UserOrderHistory";
-            this.Text = "Form9";
+            this.Text = "User Menu: Order History";
             this.ResumeLayout(false);
             this.PerformLayout();
 

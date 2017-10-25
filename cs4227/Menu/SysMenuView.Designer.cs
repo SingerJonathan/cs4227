@@ -74,7 +74,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "SysViewMenu";
-            this.Text = "Form3";
+            this.Text = "SysAdminViewMenu";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

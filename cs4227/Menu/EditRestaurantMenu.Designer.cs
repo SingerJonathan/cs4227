@@ -308,7 +308,7 @@
             this.Controls.Add(this.RestaurantNameTextbox);
             this.Controls.Add(this.RestaurantNameLabel);
             this.Name = "EditRestaurantMenu";
-            this.Text = "SysAdmin Menu: Edit Restaurant";
+            this.Text = "Edit Restaurant";
             this.Load += new System.EventHandler(this.EditRestaurantMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

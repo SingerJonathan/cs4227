@@ -73,7 +73,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "SysViewMenuItems";
-            this.Text = "Form4";
+            this.Text = "SysAdmin Menu: View Menu Items";
             this.ResumeLayout(false);
             this.PerformLayout();
 
