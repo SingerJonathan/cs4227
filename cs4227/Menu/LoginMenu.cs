@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cs4227.User;
 
 namespace cs4227.Menu
 {
     public partial class LoginMenu : Form
     {
         Timer t = new Timer();
-        private string RestaurantName = "";
 
         public LoginMenu()
         {
@@ -40,22 +40,22 @@ namespace cs4227.Menu
         private void UserLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserMenu f7 = new UserMenu();
-            f7.ShowDialog();
+            AbstractUser user = new UserFactory().getUser("michaeluserman96", "Michael Userman", "#Badpassword1", "User");
+            user.login();
         }
 
         private void SysAdminLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysAdminMenu SAM = new SysAdminMenu();
-            SAM.ShowDialog();
+            AbstractUser sysAdmin = new UserFactory().getUser("geoffsysman96", "Geoff Sysman", "#Badpassword1", "SysAdmin");
+            sysAdmin.login();
         }
 
         private void AdminLoginButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            RestMenu RM = new RestMenu(RestaurantName);
-            RM.ShowDialog();
+            AbstractUser restAdmin = new UserFactory().getUser("larryrestman96", "Larry Restman", "#Badpassword1", "RestAdmin");
+            restAdmin.login();
         }
 
         public static void Main()
