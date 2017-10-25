@@ -199,6 +199,7 @@
     <Compile Include="User\RestAdmin.cs" />
     <Compile Include="User\SysAdmin.cs" />
     <Compile Include="User\AbstractUser.cs" />
+    <Compile Include="User\UserFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
