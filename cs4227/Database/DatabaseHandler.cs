@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 using cs4227.Restaurant;
+using cs4227.User;
 
 namespace cs4227.Database
 {
@@ -29,6 +30,9 @@ namespace cs4227.Database
             }
         }
 
+        // ----------------------------------------
+        // INSERT
+        // ----------------------------------------
         public static void InsertOrder(Order order)
         {
             SqlConnection connection = GetLocalDBConnection();
@@ -48,6 +52,32 @@ namespace cs4227.Database
             Console.WriteLine("(" + result + " row(s) affected)");
         }
 
+        public static void InsertFoodItem(FoodItem item)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "INSERT INTO [dbo].[Items] VALUES (" + item.Id + ", '" + item.Name + "', " + item.Cost + ", " + item.RestaurantId + ", " + item.Deleted;
+            command.Connection = connection;
+            int result = command.ExecuteNonQuery();
+            connection.Close();
+            Console.WriteLine("(" + result + " row(s) affected)");
+        }
+
+        public static void InsertUser(AbstractUser user)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "INSERT INTO [dbo].[Users] VALUES (" + user.Id + ", '" + user.Username + "', '" + user.Password + "', '" + user.FirstName +
+                "', '" + user.LastName + "', '" + user.Email + "', " + user.RestaurantAdmin + ", " + user.SystemAdmin + ", " + user.Deleted;
+            command.Connection = connection;
+            int result = command.ExecuteNonQuery();
+            connection.Close();
+            Console.WriteLine("(" + result + " row(s) affected)");
+        }
+
+        // ----------------------------------------
+        // UPDATE
+        // ----------------------------------------
         public static void UpdateOrder(Order order)
         {
             SqlConnection connection = GetLocalDBConnection();
@@ -60,27 +90,41 @@ namespace cs4227.Database
                 else
                     command.CommandText += "[Item" + index + "] = NULL, ";
             }
-            command.CommandText += "[Cancelled] = "+(order.Cancelled ? 1 : 0)+" WHERE Id = "+order.Id;
+            command.CommandText += "[Cancelled] = "+(order.Cancelled ? 1 : 0)+", [Address] = "+order.Address+", [Cost] = "+order.Cost + " WHERE Id = " + order.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
             Console.WriteLine("(" + result + " row(s) affected)");
         }
 
-        public static int GetNewestOrderId()
+        public static void UpdateFoodItem(FoodItem item)
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT Max([Id]) FROM [dbo].[Orders]";
+            command.CommandText = "UPDATE [dbo].[Items] SET [Id] = " + item.Id + ", [Name] = '" + item.Name +
+                "', [Cost] = " + item.Cost +", [Restaurant] = " + item.RestaurantId + ", [Deleted] = " + item.Deleted;
             command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            int result = 0;
-            if (reader.Read())
-                result = reader.GetInt32(0);
+            int result = command.ExecuteNonQuery();
             connection.Close();
-            return result;
+            Console.WriteLine("(" + result + " row(s) affected)");
         }
 
+        public static void UpdateUser(AbstractUser user)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "UPDATE [dbo].[Users] SET [Id] = " + user.Id + ", [Username] = '" + user.Username + "', [Password] = '" + user.Password +
+                "', [FirstName] = '" + user.FirstName + "', [LastName] = '" + user.LastName + "', [Email] = '" + user.Email + "', [RestaurantAdmin] = " +user.RestaurantAdmin +
+                ", [SystemAdmin] = " + user.SystemAdmin + ", [Deleted] = " + user.Deleted;
+            command.Connection = connection;
+            int result = command.ExecuteNonQuery();
+            connection.Close();
+            Console.WriteLine("(" + result + " row(s) affected)");
+        }
+
+        // ----------------------------------------
+        // SELECT / GET
+        // ----------------------------------------
         public static Order GetOrder(int id)
         {
             SqlConnection connection = GetLocalDBConnection();
@@ -93,6 +137,8 @@ namespace cs4227.Database
             {
                 order.Id = (int)reader["Id"];
                 order.UserId = (int)reader["User"];
+                order.Address = (string)reader["Address"];
+                order.Cost = Convert.ToDouble(reader["Cost"]);
                 order.Cancelled = (bool)reader["Cancelled"];
                 order.Add(GetFoodItem((int)reader["Id"]));
             }
@@ -112,6 +158,35 @@ namespace cs4227.Database
                 foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), reader.GetBoolean(4));
             connection.Close();
             return foodItem;
+        }
+
+        public static AbstractUser GetUser(int id)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [Id] = " + id;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            AbstractUser user = new User.User();
+            if (reader.Read())
+                user = new UserFactory().getUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), reader.GetString(6), reader.GetInt32(7), reader.GetBoolean(8), reader.GetBoolean(9));
+            connection.Close();
+            return user;
+        }
+
+        public static int GetNewestOrderId()
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT Max([Id]) FROM [dbo].[Orders]";
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            int result = 0;
+            if (reader.Read())
+                result = reader.GetInt32(0);
+            connection.Close();
+            return result;
         }
     }
 }

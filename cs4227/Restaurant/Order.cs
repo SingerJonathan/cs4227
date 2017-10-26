@@ -8,6 +8,8 @@ namespace cs4227.Restaurant
     {
         private int id;
         private int userId;
+        private double cost;
+        private string address;
         private bool cancelled;
         private List<FoodItem> foodItems;
 
@@ -20,6 +22,16 @@ namespace cs4227.Restaurant
         {
             get { return userId; }
             set { userId = value; }
+        }
+        public double Cost
+        {
+            get { return cost; }
+            set { cost = value; }
+        }
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
         }
         public bool Cancelled
         {
@@ -37,10 +49,14 @@ namespace cs4227.Restaurant
             foodItems = new List<FoodItem>();
         }
 
-        public Order(List<FoodItem> foodItems)
+        public Order(int id, int userId, List<FoodItem> foodItems, string address, double cost, bool cancelled = false)
         {
-            cancelled = false;
+            this.id = id;
+            this.userId = userId;
+            this.cancelled = cancelled;
             this.foodItems = new List<FoodItem>(foodItems);
+            this.address = address;
+            this.cost = cost;
         }
 
         public void Add(FoodItem foodItem)
