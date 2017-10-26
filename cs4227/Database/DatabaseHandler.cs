@@ -67,8 +67,11 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
+            string restaurantAdmin = "NULL";
+            if (user.RestaurantAdmin != 0)
+                restaurantAdmin = ""+user.RestaurantAdmin;
             command.CommandText = "INSERT INTO [dbo].[Users] VALUES (" + user.Id + ", '" + user.Username + "', '" + user.Password + "', '" + user.FirstName +
-                "', '" + user.LastName + "', '" + user.Email + "', " + user.RestaurantAdmin + ", " + user.SystemAdmin + ", " + user.Deleted;
+                "', '" + user.LastName + "', '" + user.Email + "', " + restaurantAdmin + ", " + user.SystemAdmin + ", " + user.Deleted;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -101,8 +104,8 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "UPDATE [dbo].[Items] SET [Id] = " + item.Id + ", [Name] = '" + item.Name +
-                "', [Cost] = " + item.Cost +", [Restaurant] = " + item.RestaurantId + ", [Deleted] = " + item.Deleted;
+            command.CommandText = "UPDATE [dbo].[Items] SET [Name] = '" + item.Name + "', [Cost] = " + item.Cost +
+                ", [Restaurant] = " + item.RestaurantId + ", [Deleted] = " + item.Deleted + " WHERE [Id] = " + item.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -113,9 +116,12 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "UPDATE [dbo].[Users] SET [Id] = " + user.Id + ", [Username] = '" + user.Username + "', [Password] = '" + user.Password +
-                "', [FirstName] = '" + user.FirstName + "', [LastName] = '" + user.LastName + "', [Email] = '" + user.Email + "', [RestaurantAdmin] = " +user.RestaurantAdmin +
-                ", [SystemAdmin] = " + user.SystemAdmin + ", [Deleted] = " + user.Deleted;
+            string restaurantAdmin = "NULL";
+            if (user.RestaurantAdmin != 0)
+                restaurantAdmin = "" + user.RestaurantAdmin;
+            command.CommandText = "UPDATE [dbo].[Users] SET [Username] = '" + user.Username + "', [Password] = '" + user.Password + "', [FirstName] = '" + user.FirstName +
+                "', [LastName] = '" + user.LastName + "', [Email] = '" + user.Email + "', [RestaurantAdmin] = " +restaurantAdmin +
+                ", [SystemAdmin] = " + user.SystemAdmin + ", [Deleted] = " + user.Deleted + " WHERE [Id] = " + user.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -169,8 +175,18 @@ namespace cs4227.Database
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
             if (reader.Read())
-                user = new UserFactory().getUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetInt32(7), reader.GetBoolean(8), reader.GetBoolean(9));
+            {
+                string userType = "User";
+                if (reader.GetBoolean(7))
+                    userType = "SysAdmin";
+                else if (!reader.IsDBNull(6) && reader.GetInt32(6) > 0)
+                    userType = "RestAdmin";
+                int restaurantAdmin = 0;
+                if (!reader.IsDBNull(6))
+                    restaurantAdmin = reader.GetInt32(6);
+                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), userType, restaurantAdmin, reader.GetBoolean(7), reader.GetBoolean(8));
+            }
             connection.Close();
             return user;
         }

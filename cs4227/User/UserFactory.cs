@@ -4,7 +4,7 @@ namespace cs4227.User
 {
     class UserFactory
     {
-        public AbstractUser getUser(int id, string username, string firstName, string lastName, string password, string email, string userType,
+        public AbstractUser GetUser(int id, string username, string firstName, string lastName, string password, string email, string userType,
             int restaurantAdmin = 0, bool systemAdmin = false, bool deleted = false)
         {
             if (userType == null)
