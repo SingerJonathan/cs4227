@@ -217,6 +217,7 @@
     <Compile Include="Menu\UserSelectOrder.Designer.cs">
       <DependentUpon>UserSelectOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Restaurant\Restaurant.cs" />
     <Compile Include="User\RegularUser.cs" />
     <Compile Include="User\User.cs" />
     <Compile Include="User\LoginAPI.cs" />
