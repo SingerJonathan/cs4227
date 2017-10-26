@@ -52,6 +52,18 @@ namespace cs4227.Database
             Console.WriteLine("(" + result + " row(s) affected)");
         }
 
+        public static void InsertRestaurant(Restaurant.Restaurant restaurant)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = String.Format("INSERT INTO [dbo].[Restaurants] VALUES ({0}, '{1}', '{2}', {3}, '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', {10}, {11})",
+                restaurant.Id, restaurant.Name, restaurant.Address, restaurant.OwnerId, restaurant.Phone, restaurant.Email, restaurant.OpeningHours, restaurant.ClosingHours, restaurant.Days, restaurant.Type, restaurant.Delivery, restaurant.Deleted);
+            command.Connection = connection;
+            int result = command.ExecuteNonQuery();
+            connection.Close();
+            Console.WriteLine("(" + result + " row(s) affected)");
+        }
+
         public static void InsertFoodItem(FoodItem item)
         {
             SqlConnection connection = GetLocalDBConnection();
@@ -93,7 +105,19 @@ namespace cs4227.Database
                 else
                     command.CommandText += "[Item" + index + "] = NULL, ";
             }
-            command.CommandText += "[Cancelled] = "+(order.Cancelled ? 1 : 0)+", [Address] = "+order.Address+", [Cost] = "+order.Cost + " WHERE Id = " + order.Id;
+            command.CommandText += "[Cancelled] = "+(order.Cancelled ? 1 : 0)+", [Address] = "+order.Address+", [Cost] = "+order.Cost + " WHERE [Id] = " + order.Id;
+            command.Connection = connection;
+            int result = command.ExecuteNonQuery();
+            connection.Close();
+            Console.WriteLine("(" + result + " row(s) affected)");
+        }
+
+        public static void UpdateRestaurant(Restaurant.Restaurant restaurant)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = String.Format("UPDATE [dbo].[Restaurants] SET [Name] = '{1}', [Address] = '{2}', [OwnerId] = {3}, [Phone] = '{4}', [Email] = '{5}', [OpeningHours] = '{6}', [ClosingHours] = '{7}', [Days] = '{8}', [Type] = '{9}', [Delivery] = {10}, [Deleted] = {11} WHERE [Id] = {0}",
+                restaurant.Id, restaurant.Name, restaurant.Address, restaurant.OwnerId, restaurant.Phone, restaurant.Email, restaurant.OpeningHours, restaurant.ClosingHours, restaurant.Days, restaurant.Type, restaurant.Delivery, restaurant.Deleted);
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -150,6 +174,21 @@ namespace cs4227.Database
             }
             connection.Close();
             return order;
+        }
+
+        public static Restaurant.Restaurant GetRestaurant(int id)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Id] = " + id;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            Restaurant.Restaurant restaurant = new Restaurant.Restaurant();
+            if (reader.Read())
+                restaurant = new Restaurant.Restaurant(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetString(4),
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), Convert.ToDouble(reader[10]), reader.GetBoolean(11));
+            connection.Close();
+            return restaurant;
         }
 
         public static FoodItem GetFoodItem(int id)

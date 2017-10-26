@@ -6,6 +6,7 @@ namespace cs4227.Restaurant
     {
         private int id;
         private string name;
+        private string address;
         private int ownerId;
         private string phone;
         private string email;
@@ -26,7 +27,12 @@ namespace cs4227.Restaurant
             get { return name; }
             set { name = value; }
         }
-        public int WwnerId
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
+        public int OwnerId
         {
             get { return ownerId; }
             set { ownerId = value; }
@@ -79,10 +85,11 @@ namespace cs4227.Restaurant
             deleted = false;
         }
 
-        public Restaurant(int id, string name, int ownerId, string phone, string email, string openingHours, string closingHours, string days, string type, double delivery, bool deleted)
+        public Restaurant(int id, string name, string address, int ownerId, string phone, string email, string openingHours, string closingHours, string days, string type, double delivery, bool deleted)
         {
             this.id = id;
             this.name = name;
+            this.address = address;
             this.ownerId = ownerId;
             this.phone = phone;
             this.email = email;
