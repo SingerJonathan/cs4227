@@ -20,15 +20,15 @@ namespace cs4227.Menu
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserMenu f7 = new UserMenu();
-            f7.ShowDialog();
+            UserMainMenu UMM = new UserMainMenu();
+            UMM.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserOrderMenu f12 = new UserOrderMenu();
-            f12.ShowDialog();
+            UserOrderMenu UOM = new UserOrderMenu();
+            UOM.ShowDialog();
         }
     }
 }

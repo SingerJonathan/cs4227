@@ -8,7 +8,7 @@ namespace cs4227.User
         public void login(string username, string password)
         {
             Console.WriteLine("User " + username + " logged in.");
-            UserMenu UM = new UserMenu();
+            UserMainMenu UM = new UserMainMenu();
             UM.ShowDialog();
         }
     }

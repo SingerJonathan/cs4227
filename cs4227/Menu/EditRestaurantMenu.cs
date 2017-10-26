@@ -13,11 +13,13 @@ namespace cs4227.Menu
 {
     public partial class EditRestaurantMenu : Form
     {
+        private int RestaurantId = 0;
         private string RestaurantName = "";
         private string RestaurantAddress = "";
         private string RestaurantOwner = "";
         private string RestaurantPhoneNumber = "";
         private string RestaurantEmail = "";
+        private string AdminEmail = "";
         private string RestaurantOpeningHours = "";
         private string RestaurantClosingHours = "";
         private string RestaurantDaysOpen = "";
@@ -37,9 +39,9 @@ namespace cs4227.Menu
         private Boolean newRestaurant = false;
         private Boolean sysAdmin = false;
 
-        public EditRestaurantMenu(string RestaurantName, Boolean newRestaurant, Boolean sysAdmin)
+        public EditRestaurantMenu(int RestaurantId, Boolean newRestaurant, Boolean sysAdmin)
         {
-            this.RestaurantName = RestaurantName;
+            this.RestaurantId = RestaurantId;
             this.newRestaurant = newRestaurant;
             this.sysAdmin = sysAdmin;
             InitializeComponent();
@@ -483,13 +485,13 @@ namespace cs4227.Menu
                 if (sysAdmin)
                 {
                     this.Hide();
-                    SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantName);
+                    SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantId);
                     SVR.ShowDialog();
                 }
                 else
                 {
                     this.Hide();
-                    RestMenu RM = new RestMenu(RestaurantName);
+                    RestAdminMenu RM = new RestAdminMenu(RestaurantId);
                     RM.ShowDialog();
                 }
             }
@@ -513,14 +515,14 @@ namespace cs4227.Menu
                 else
                 {
                     this.Hide();
-                    SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantName);
+                    SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantId);
                     SVR.ShowDialog();
                 }
             }
             else
             {
                 this.Hide();
-                RestMenu RM = new RestMenu(RestaurantName);
+                RestAdminMenu RM = new RestAdminMenu(RestaurantId);
                 RM.ShowDialog();
             }
         }

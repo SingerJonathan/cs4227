@@ -12,6 +12,7 @@ namespace cs4227.Menu
 {
     public partial class SysAdminRestaurantsMenu : Form
     {
+        private int RestaurantId = 0;
         private string RestaurantName = "";
         private string ErrorMessage = "";
         private Boolean CorrectNameFormat = false;
@@ -25,7 +26,7 @@ namespace cs4227.Menu
         {
             RestaurantName = ListOfRestaurants.SelectedItems[0].Text.ToString();
             this.Hide();
-            SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantName);
+            SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantId);
             SVR.ShowDialog();
 
         }
@@ -86,12 +87,10 @@ namespace cs4227.Menu
         {
             if (CorrectNameFormat)
             {
-                ListViewItem Restaurant = new ListViewItem();
-                Restaurant.Text = RestaurantName;
-                ListOfRestaurants.Items.Add(Restaurant);
-                ListOfRestaurants.Update();
+                //add code to add correct Restaurantid ---list.length()+1 etc...
+                
                 this.Hide();
-                EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantName, true, true);
+                EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantId, true, true);
                 ERM.ShowDialog();
             }
         }

@@ -32,23 +32,26 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.FavouritesLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(90, 79);
+            this.listBox1.ItemHeight = 25;
+            this.listBox1.Location = new System.Drawing.Point(16, 40);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(252, 420);
+            this.listBox1.Size = new System.Drawing.Size(541, 604);
             this.listBox1.TabIndex = 0;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Silver;
-            this.button1.Location = new System.Drawing.Point(440, 180);
+            this.button1.Location = new System.Drawing.Point(653, 382);
+            this.button1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(194, 59);
+            this.button1.Size = new System.Drawing.Size(300, 80);
             this.button1.TabIndex = 1;
             this.button1.Text = "Checkout";
             this.button1.UseVisualStyleBackColor = false;
@@ -57,9 +60,10 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Silver;
-            this.button2.Location = new System.Drawing.Point(440, 245);
+            this.button2.Location = new System.Drawing.Point(653, 474);
+            this.button2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(193, 59);
+            this.button2.Size = new System.Drawing.Size(300, 80);
             this.button2.TabIndex = 2;
             this.button2.Text = "Delete Favourite";
             this.button2.UseVisualStyleBackColor = false;
@@ -68,35 +72,39 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.Silver;
-            this.button3.Location = new System.Drawing.Point(440, 310);
+            this.button3.Location = new System.Drawing.Point(653, 566);
+            this.button3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(194, 59);
+            this.button3.Size = new System.Drawing.Size(300, 80);
             this.button3.TabIndex = 3;
             this.button3.Text = "Back";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // label1
+            // FavouritesLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(440, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 31);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Favourites";
+            this.FavouritesLabel.AutoSize = true;
+            this.FavouritesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FavouritesLabel.Location = new System.Drawing.Point(10, 3);
+            this.FavouritesLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.FavouritesLabel.Name = "FavouritesLabel";
+            this.FavouritesLabel.Size = new System.Drawing.Size(480, 31);
+            this.FavouritesLabel.TabIndex = 4;
+            this.FavouritesLabel.Text = "Select Favourite Order From Below:";
             // 
             // UserFavouriteOrders
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(774, 575);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.FavouritesLabel);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "UserFavouriteOrders";
             this.Text = "User Menu: Favourites";
             this.ResumeLayout(false);
@@ -110,6 +118,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label FavouritesLabel;
     }
 }

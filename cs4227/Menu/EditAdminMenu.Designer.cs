@@ -41,6 +41,7 @@
             this.AdminRestaurantLabel = new System.Windows.Forms.Label();
             this.AdminRestaurantTextbox = new System.Windows.Forms.TextBox();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
+            this.DeleteAdminButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // AdminNameLabel
@@ -160,12 +161,24 @@
             this.ErrorMessageLabel.Text = "Error Message:";
             this.ErrorMessageLabel.Visible = false;
             // 
+            // DeleteAdminButton
+            // 
+            this.DeleteAdminButton.BackColor = System.Drawing.Color.Silver;
+            this.DeleteAdminButton.Location = new System.Drawing.Point(349, 465);
+            this.DeleteAdminButton.Name = "DeleteAdminButton";
+            this.DeleteAdminButton.Size = new System.Drawing.Size(300, 185);
+            this.DeleteAdminButton.TabIndex = 13;
+            this.DeleteAdminButton.Text = "Delete Admin";
+            this.DeleteAdminButton.UseVisualStyleBackColor = false;
+            this.DeleteAdminButton.Click += new System.EventHandler(this.DeleteAdminButton_Click);
+            // 
             // EditAdminMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 662);
+            this.Controls.Add(this.DeleteAdminButton);
             this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.AdminRestaurantTextbox);
             this.Controls.Add(this.AdminRestaurantLabel);
@@ -204,5 +217,6 @@
         private System.Windows.Forms.Label AdminRestaurantLabel;
         private System.Windows.Forms.TextBox AdminRestaurantTextbox;
         private System.Windows.Forms.Label ErrorMessageLabel;
+        private System.Windows.Forms.Button DeleteAdminButton;
     }
 }

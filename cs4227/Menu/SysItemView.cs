@@ -12,19 +12,19 @@ namespace cs4227.Menu
 {
     public partial class SysViewMenuItems : Form
     {
-        private string RestaurantName = "";
+        private int RestaurantId = 0;
 
-        public SysViewMenuItems(string RestaurantName)
+        public SysViewMenuItems(int RestaurantId)
         {
-            this.RestaurantName = RestaurantName;
+            this.RestaurantId = RestaurantId;
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysViewRestaraunt f1 = new SysViewRestaraunt(RestaurantName);
-            f1.ShowDialog();
+            SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantId);
+            SVR.ShowDialog();
         }
     }
 }

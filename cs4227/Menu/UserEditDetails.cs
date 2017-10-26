@@ -12,26 +12,59 @@ namespace cs4227.Menu
 {
     public partial class UserManageAccount : Form
     {
+        private string Username = "";
+        private string Password = "";
+        private string Email = "";
+        private string RestName = "";
+
         public UserManageAccount()
         {
             InitializeComponent();
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void UserPasswordTextbox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void UserEmailTextbox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void UserNameTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UserUsernameTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveChangesButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteAccountButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserMenu f7 = new UserMenu();
-            f7.ShowDialog();
+            UserMainMenu UMM = new UserMainMenu();
+            UMM.ShowDialog();
+        }
+
+        private void UserManageAccount_Load(object sender, EventArgs e)
+        {
+            UserEmailTextbox.Text = Email;
+            UserNameTextbox.Text = RestName;
+            UserPasswordTextbox.Text = Password;
+            UserUsernameTextbox.Text = Username;
         }
     }
 }

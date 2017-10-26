@@ -14,6 +14,8 @@ namespace cs4227.Menu
     public partial class SysAdminAdminsMenu : Form
     {
         private string AdminEmail = "";
+        private string AdminRestaurant = "";
+        private int RestaurantId = 0;
         private string ErrorMessage = "";
         private Boolean CorrectEmailFormat = false;
 
@@ -24,9 +26,10 @@ namespace cs4227.Menu
 
         private void AdminsList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Add code to pass in details from database or just leave blank and process on next menu
             AdminEmail = AdminsList.SelectedItems[0].Text.ToString();
             this.Hide();
-            EditAdminMenu EAM = new EditAdminMenu(AdminEmail);
+            EditAdminMenu EAM = new EditAdminMenu(AdminEmail, RestaurantId, true);
             EAM.ShowDialog();
             AdminEmail = "";
         }
@@ -88,8 +91,9 @@ namespace cs4227.Menu
         {
             if (CorrectEmailFormat)
             {
+                //AdminRestaurant will be blank here.... Add it in the next menu
                 this.Hide();
-                EditAdminMenu EAM = new EditAdminMenu(AdminEmail);
+                EditAdminMenu EAM = new EditAdminMenu(AdminEmail, RestaurantId, true);
                 EAM.ShowDialog();
             }
             else

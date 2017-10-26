@@ -12,33 +12,33 @@ namespace cs4227.Menu
 {
     public partial class SysViewRestaraunt : Form
     {
-        private string RestaurantName = "";
+        private int RestaurantId = 0;
 
-        public SysViewRestaraunt(string RestaurantName)
+        public SysViewRestaraunt(int RestaurantId)
         {
-            this.RestaurantName = RestaurantName;
+            this.RestaurantId = RestaurantId;
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysViewOrder f2 = new SysViewOrder(RestaurantName);
-            f2.ShowDialog();
+            SysViewOrder SVO = new SysViewOrder(RestaurantId);
+            SVO.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysViewMenu f3 = new SysViewMenu(RestaurantName);
-            f3.ShowDialog();
+            SysViewMenu SVM = new SysViewMenu(RestaurantId);
+            SVM.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysViewMenuItems f4 = new SysViewMenuItems(RestaurantName);
-            f4.ShowDialog();
+            SysViewMenuItems SVMI = new SysViewMenuItems(RestaurantId);
+            SVMI.ShowDialog();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace cs4227.Menu
         private void EditRestaurantButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantName, false, true);
+            EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantId, false, true);
             ERM.ShowDialog();
         }
 

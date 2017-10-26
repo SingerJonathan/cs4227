@@ -13,6 +13,7 @@ namespace cs4227.Menu
 {
     public partial class EditAdminMenu : Form
     {
+        private int RestaurantId = 0;
         private string AdminEmail = "";
         private string AdminName = "";
         private string AdminUsername = "";
@@ -24,18 +25,34 @@ namespace cs4227.Menu
         private Boolean CorrectUsernameFormat = false;
         private Boolean CorrectPasswordFormat = false;
         private Boolean CorrectRestaurantFormat = false;
+        private Boolean sysAdmin = false;
 
-        public EditAdminMenu(string AdminEmail)
+        public EditAdminMenu(string AdminEmail, int RestaurantId, Boolean sysAdmin)
         {
             this.AdminEmail = AdminEmail;
+            this.RestaurantId = RestaurantId; 
+            this.sysAdmin = sysAdmin;
             InitializeComponent();
         }
 
         private void EditAdminMenu_Load(object sender, EventArgs e)
         {
             AdminEmailTextbox.Text = AdminEmail;
+            AdminRestaurantTextbox.Text = AdminRestaurant;
             CorrectEmailFormat = true;
             ErrorMessageLabel.Visible = false;
+            if (sysAdmin)
+            {
+                this.Text = "SysAdmin Menu: Edit Admin";
+                DeleteAdminButton.Show();
+                DeleteAdminButton.Enabled = true;
+            }
+            else
+            {
+                this.Text = "RestAdmin Menu: Edit Admin";
+                DeleteAdminButton.Hide();
+                DeleteAdminButton.Enabled = false;
+            }
 
             //Add code to display currently existing Admin details etc..
         }
@@ -303,10 +320,18 @@ namespace cs4227.Menu
                 //add code to save for an existing admin
 
                 //Enter Code to handle saving new Admin
-
-                this.Hide();
-                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
-                SAAM.ShowDialog(); 
+                if (sysAdmin)
+                {
+                    this.Hide();
+                    SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                    SAAM.ShowDialog();
+                }
+                else
+                {
+                    this.Hide();
+                    RestAdminMenu RAM = new RestAdminMenu(RestaurantId);
+                    RAM.ShowDialog();
+                }
             }
             else
             {
@@ -317,9 +342,29 @@ namespace cs4227.Menu
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
-            SAAM.ShowDialog();
+            if (sysAdmin)
+            {
+                this.Hide();
+                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                SAAM.ShowDialog();
+            }
+            else
+            {
+                this.Hide();
+                RestAdminMenu RAM = new RestAdminMenu(RestaurantId);
+                RAM.ShowDialog();
+            }
+        }
+
+        private void DeleteAdminButton_Click(object sender, EventArgs e)
+        {
+            if(sysAdmin)
+            {
+                //add code to delete admin
+                this.Hide();
+                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                SAAM.ShowDialog();
+            }
         }
     }
 }

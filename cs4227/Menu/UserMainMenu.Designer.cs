@@ -1,6 +1,6 @@
 ﻿namespace cs4227.Menu
 {
-    partial class UserMenu
+    partial class UserMainMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -39,9 +39,10 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Silver;
-            this.button1.Location = new System.Drawing.Point(96, 160);
+            this.button1.Location = new System.Drawing.Point(388, 213);
+            this.button1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(591, 47);
+            this.button1.Size = new System.Drawing.Size(300, 80);
             this.button1.TabIndex = 0;
             this.button1.Text = "Browse Restaraunt";
             this.button1.UseVisualStyleBackColor = false;
@@ -50,9 +51,10 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Silver;
-            this.button2.Location = new System.Drawing.Point(96, 213);
+            this.button2.Location = new System.Drawing.Point(388, 305);
+            this.button2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(591, 47);
+            this.button2.Size = new System.Drawing.Size(300, 80);
             this.button2.TabIndex = 1;
             this.button2.Text = "View Orders";
             this.button2.UseVisualStyleBackColor = false;
@@ -61,9 +63,10 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.Silver;
-            this.button3.Location = new System.Drawing.Point(96, 266);
+            this.button3.Location = new System.Drawing.Point(388, 397);
+            this.button3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(591, 47);
+            this.button3.Size = new System.Drawing.Size(300, 80);
             this.button3.TabIndex = 2;
             this.button3.Text = "View Favourites";
             this.button3.UseVisualStyleBackColor = false;
@@ -72,9 +75,10 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.Silver;
-            this.button4.Location = new System.Drawing.Point(96, 319);
+            this.button4.Location = new System.Drawing.Point(388, 121);
+            this.button4.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(591, 47);
+            this.button4.Size = new System.Drawing.Size(300, 80);
             this.button4.TabIndex = 3;
             this.button4.Text = "Manage Account";
             this.button4.UseVisualStyleBackColor = false;
@@ -83,18 +87,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(346, 66);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(276, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.Size = new System.Drawing.Size(515, 73);
             this.label1.TabIndex = 4;
             this.label1.Text = "User Main Menu";
             // 
             // LogOutButton
             // 
             this.LogOutButton.BackColor = System.Drawing.Color.Silver;
-            this.LogOutButton.Location = new System.Drawing.Point(96, 373);
+            this.LogOutButton.Location = new System.Drawing.Point(388, 489);
+            this.LogOutButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.LogOutButton.Name = "LogOutButton";
-            this.LogOutButton.Size = new System.Drawing.Size(591, 47);
+            this.LogOutButton.Size = new System.Drawing.Size(300, 80);
             this.LogOutButton.TabIndex = 5;
             this.LogOutButton.Text = "Log Out";
             this.LogOutButton.UseVisualStyleBackColor = false;
@@ -102,16 +109,18 @@
             // 
             // UserMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(774, 575);
+            this.ClientSize = new System.Drawing.Size(984, 661);
             this.Controls.Add(this.LogOutButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "UserMenu";
             this.Text = "User Menu: Main Menu";
             this.Load += new System.EventHandler(this.Form7_Load);

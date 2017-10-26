@@ -65,6 +65,30 @@
     <Compile Include="Meal\PlaceOrderCommand.cs" />
     <Compile Include="Meal\Invoker.cs" />
     <Compile Include="Meal\TestHarness.cs" />
+    <Compile Include="Menu\RestAdminIgnoreListMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\RestAdminIgnoreListMenu.Designer.cs">
+      <DependentUpon>RestAdminIgnoreListMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\RestAdminManageOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\RestAdminManageOrders.Designer.cs">
+      <DependentUpon>RestAdminManageOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\RestAdminMenuItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\RestAdminMenuItem.Designer.cs">
+      <DependentUpon>RestAdminMenuItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\RestAdminViewOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\RestAdminViewOrders.Designer.cs">
+      <DependentUpon>RestAdminViewOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -91,11 +115,11 @@
     <Compile Include="Menu\LoginMenu.Designer.cs">
       <DependentUpon>LoginMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\RestMenu.cs">
+    <Compile Include="Menu\RestAdminMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu\RestMenu.Designer.cs">
-      <DependentUpon>RestMenu.cs</DependentUpon>
+    <Compile Include="Menu\RestAdminMenu.Designer.cs">
+      <DependentUpon>RestAdminMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu\SysAdminAdmins.cs">
       <SubType>Form</SubType>
@@ -244,8 +268,20 @@
     <EmbeddedResource Include="Menu\LoginMenu.resx">
       <DependentUpon>LoginMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu\RestMenu.resx">
-      <DependentUpon>RestMenu.cs</DependentUpon>
+    <EmbeddedResource Include="Menu\RestAdminIgnoreListMenu.resx">
+      <DependentUpon>RestAdminIgnoreListMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\RestAdminManageOrders.resx">
+      <DependentUpon>RestAdminManageOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\RestAdminMenu.resx">
+      <DependentUpon>RestAdminMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\RestAdminMenuItem.resx">
+      <DependentUpon>RestAdminMenuItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\RestAdminViewOrders.resx">
+      <DependentUpon>RestAdminViewOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\SysAdminAdmins.resx">
       <DependentUpon>SysAdminAdmins.cs</DependentUpon>

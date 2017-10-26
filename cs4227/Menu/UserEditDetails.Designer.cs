@@ -28,169 +28,142 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BackButton = new System.Windows.Forms.Button();
+            this.SaveChangesButton = new System.Windows.Forms.Button();
+            this.DeleteAccountButton = new System.Windows.Forms.Button();
+            this.UserEmailTextbox = new System.Windows.Forms.TextBox();
+            this.UserEmailLabel = new System.Windows.Forms.Label();
+            this.UserPasswordTextbox = new System.Windows.Forms.TextBox();
+            this.UserPasswordLabel = new System.Windows.Forms.Label();
+            this.UserUsernameTextbox = new System.Windows.Forms.TextBox();
+            this.UserUsernameLabel = new System.Windows.Forms.Label();
+            this.UserNameTextbox = new System.Windows.Forms.TextBox();
+            this.UserNameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // BackButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 94);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Name";
+            this.BackButton.BackColor = System.Drawing.Color.Silver;
+            this.BackButton.Location = new System.Drawing.Point(672, 569);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(300, 80);
+            this.BackButton.TabIndex = 0;
+            this.BackButton.Text = "Back";
+            this.BackButton.UseVisualStyleBackColor = false;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
-            // label2
+            // SaveChangesButton
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(78, 107);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
+            this.SaveChangesButton.BackColor = System.Drawing.Color.Silver;
+            this.SaveChangesButton.Location = new System.Drawing.Point(12, 569);
+            this.SaveChangesButton.Name = "SaveChangesButton";
+            this.SaveChangesButton.Size = new System.Drawing.Size(300, 80);
+            this.SaveChangesButton.TabIndex = 1;
+            this.SaveChangesButton.Text = "Save Changes";
+            this.SaveChangesButton.UseVisualStyleBackColor = false;
+            this.SaveChangesButton.Click += new System.EventHandler(this.SaveChangesButton_Click);
             // 
-            // label3
+            // DeleteAccountButton
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(78, 184);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Address";
+            this.DeleteAccountButton.BackColor = System.Drawing.Color.Silver;
+            this.DeleteAccountButton.Location = new System.Drawing.Point(340, 569);
+            this.DeleteAccountButton.Name = "DeleteAccountButton";
+            this.DeleteAccountButton.Size = new System.Drawing.Size(300, 80);
+            this.DeleteAccountButton.TabIndex = 2;
+            this.DeleteAccountButton.Text = "Delete Account";
+            this.DeleteAccountButton.UseVisualStyleBackColor = false;
+            this.DeleteAccountButton.Click += new System.EventHandler(this.DeleteAccountButton_Click);
             // 
-            // label4
+            // UserEmailTextbox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(78, 197);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "label4";
+            this.UserEmailTextbox.Location = new System.Drawing.Point(340, 372);
+            this.UserEmailTextbox.Name = "UserEmailTextbox";
+            this.UserEmailTextbox.Size = new System.Drawing.Size(300, 31);
+            this.UserEmailTextbox.TabIndex = 3;
+            this.UserEmailTextbox.TextChanged += new System.EventHandler(this.UserEmailTextbox_TextChanged);
             // 
-            // label5
+            // UserEmailLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(78, 251);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "label5";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.UserEmailLabel.AutoSize = true;
+            this.UserEmailLabel.Location = new System.Drawing.Point(335, 335);
+            this.UserEmailLabel.Name = "UserEmailLabel";
+            this.UserEmailLabel.Size = new System.Drawing.Size(77, 25);
+            this.UserEmailLabel.TabIndex = 4;
+            this.UserEmailLabel.Text = "Email:";
             // 
-            // label6
+            // UserPasswordTextbox
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(78, 264);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "label6";
+            this.UserPasswordTextbox.Location = new System.Drawing.Point(340, 301);
+            this.UserPasswordTextbox.Name = "UserPasswordTextbox";
+            this.UserPasswordTextbox.Size = new System.Drawing.Size(300, 31);
+            this.UserPasswordTextbox.TabIndex = 5;
+            this.UserPasswordTextbox.TextChanged += new System.EventHandler(this.UserPasswordTextbox_TextChanged);
             // 
-            // textBox1
+            // UserPasswordLabel
             // 
-            this.textBox1.Location = new System.Drawing.Point(477, 270);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
+            this.UserPasswordLabel.AutoSize = true;
+            this.UserPasswordLabel.Location = new System.Drawing.Point(335, 263);
+            this.UserPasswordLabel.Name = "UserPasswordLabel";
+            this.UserPasswordLabel.Size = new System.Drawing.Size(121, 25);
+            this.UserPasswordLabel.TabIndex = 6;
+            this.UserPasswordLabel.Text = "Password:";
             // 
-            // textBox2
+            // UserUsernameTextbox
             // 
-            this.textBox2.Location = new System.Drawing.Point(477, 197);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 7;
+            this.UserUsernameTextbox.Location = new System.Drawing.Point(340, 229);
+            this.UserUsernameTextbox.Name = "UserUsernameTextbox";
+            this.UserUsernameTextbox.Size = new System.Drawing.Size(300, 31);
+            this.UserUsernameTextbox.TabIndex = 7;
+            this.UserUsernameTextbox.TextChanged += new System.EventHandler(this.UserUsernameTextbox_TextChanged);
             // 
-            // textBox3
+            // UserUsernameLabel
             // 
-            this.textBox3.Location = new System.Drawing.Point(477, 107);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 8;
+            this.UserUsernameLabel.AutoSize = true;
+            this.UserUsernameLabel.Location = new System.Drawing.Point(335, 191);
+            this.UserUsernameLabel.Name = "UserUsernameLabel";
+            this.UserUsernameLabel.Size = new System.Drawing.Size(125, 25);
+            this.UserUsernameLabel.TabIndex = 8;
+            this.UserUsernameLabel.Text = "Username:";
             // 
-            // label7
+            // UserNameTextbox
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(477, 88);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "label7";
+            this.UserNameTextbox.Location = new System.Drawing.Point(340, 157);
+            this.UserNameTextbox.Name = "UserNameTextbox";
+            this.UserNameTextbox.Size = new System.Drawing.Size(300, 31);
+            this.UserNameTextbox.TabIndex = 9;
+            this.UserNameTextbox.TextChanged += new System.EventHandler(this.UserNameTextbox_TextChanged);
             // 
-            // label8
+            // UserNameLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(477, 178);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "label8";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(477, 251);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "label9";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Silver;
-            this.button1.Location = new System.Drawing.Point(81, 451);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Back";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Silver;
-            this.button2.Location = new System.Drawing.Point(480, 451);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Change";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.UserNameLabel.AutoSize = true;
+            this.UserNameLabel.Location = new System.Drawing.Point(335, 119);
+            this.UserNameLabel.Name = "UserNameLabel";
+            this.UserNameLabel.Size = new System.Drawing.Size(79, 25);
+            this.UserNameLabel.TabIndex = 10;
+            this.UserNameLabel.Text = "Name:";
             // 
             // UserManageAccount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(774, 575);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.UserNameLabel);
+            this.Controls.Add(this.UserNameTextbox);
+            this.Controls.Add(this.UserUsernameLabel);
+            this.Controls.Add(this.UserUsernameTextbox);
+            this.Controls.Add(this.UserPasswordLabel);
+            this.Controls.Add(this.UserPasswordTextbox);
+            this.Controls.Add(this.UserEmailLabel);
+            this.Controls.Add(this.UserEmailTextbox);
+            this.Controls.Add(this.DeleteAccountButton);
+            this.Controls.Add(this.SaveChangesButton);
+            this.Controls.Add(this.BackButton);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "UserManageAccount";
             this.Text = "User Menu: Edit User Details";
+            this.Load += new System.EventHandler(this.UserManageAccount_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,19 +171,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BackButton;
+        private System.Windows.Forms.Button SaveChangesButton;
+        private System.Windows.Forms.Button DeleteAccountButton;
+        private System.Windows.Forms.TextBox UserEmailTextbox;
+        private System.Windows.Forms.Label UserEmailLabel;
+        private System.Windows.Forms.TextBox UserPasswordTextbox;
+        private System.Windows.Forms.Label UserPasswordLabel;
+        private System.Windows.Forms.TextBox UserUsernameTextbox;
+        private System.Windows.Forms.Label UserUsernameLabel;
+        private System.Windows.Forms.TextBox UserNameTextbox;
+        private System.Windows.Forms.Label UserNameLabel;
     }
 }
