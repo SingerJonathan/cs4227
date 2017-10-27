@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
@@ -29,10 +30,9 @@ namespace cs4227.Database
                 throw;
             }
         }
+        
+        #region INSERT
 
-        // ----------------------------------------
-        // INSERT
-        // ----------------------------------------
         public static void InsertOrder(Order order)
         {
             SqlConnection connection = GetLocalDBConnection();
@@ -90,9 +90,9 @@ namespace cs4227.Database
             Console.WriteLine("(" + result + " row(s) affected)");
         }
 
-        // ----------------------------------------
-        // UPDATE
-        // ----------------------------------------
+        #endregion
+        #region UPDATE
+
         public static void UpdateOrder(Order order)
         {
             SqlConnection connection = GetLocalDBConnection();
@@ -152,9 +152,9 @@ namespace cs4227.Database
             Console.WriteLine("(" + result + " row(s) affected)");
         }
 
-        // ----------------------------------------
-        // SELECT / GET
-        // ----------------------------------------
+        #endregion
+        #region SELECT / GET
+
         public static Order GetOrder(int id)
         {
             SqlConnection connection = GetLocalDBConnection();
@@ -180,7 +180,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Id] = " + id;
+            command.CommandText = "SELECT * FROM [dbo].[Restaurants] WHERE [Id] = " + id;
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             Restaurant.Restaurant restaurant = new Restaurant.Restaurant();
@@ -243,5 +243,95 @@ namespace cs4227.Database
             connection.Close();
             return result;
         }
+
+        #endregion
+        #region SELECT / GET ALL
+
+        public static List<Order> GetOrders()
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Orders]";
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            List<Order> orders = new List<Order>();
+            while (reader.Read())
+            {
+                Order order = new Order();
+                order.Id = (int)reader["Id"];
+                order.UserId = (int)reader["User"];
+                order.Address = (string)reader["Address"];
+                order.Cost = Convert.ToDouble(reader["Cost"]);
+                order.Cancelled = (bool)reader["Cancelled"];
+                order.Add(GetFoodItem((int)reader["Id"]));
+                orders.Add(order);
+            }
+            connection.Close();
+            return orders;
+        }
+
+        public static List<Restaurant.Restaurant> GetRestaurants()
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Items]";
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            List<Restaurant.Restaurant> restaurants = new List<Restaurant.Restaurant>();
+            while (reader.Read())
+            {
+                Restaurant.Restaurant restaurant = new Restaurant.Restaurant(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetString(4),
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), Convert.ToDouble(reader[10]), reader.GetBoolean(11));
+                restaurants.Add(restaurant);
+            }
+            connection.Close();
+            return restaurants;
+        }
+
+        public static List<FoodItem> GetFoodItems()
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Items]";
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            List<FoodItem> foodItems = new List<FoodItem>();
+            while (reader.Read())
+            {
+                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), reader.GetBoolean(4));
+                foodItems.Add(foodItem);
+            }
+            connection.Close();
+            return foodItems;
+        }
+
+        public static List<AbstractUser> GetUsers()
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Users]";
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            List<AbstractUser> users = new List<AbstractUser>();
+            while (reader.Read())
+            {
+                AbstractUser user = new User.User();
+                string userType = "User";
+                if (reader.GetBoolean(7))
+                    userType = "SysAdmin";
+                else if (!reader.IsDBNull(6) && reader.GetInt32(6) > 0)
+                    userType = "RestAdmin";
+                int restaurantAdmin = 0;
+                if (!reader.IsDBNull(6))
+                    restaurantAdmin = reader.GetInt32(6);
+                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), userType, restaurantAdmin, reader.GetBoolean(7), reader.GetBoolean(8));
+                users.Add(user);
+            }
+            connection.Close();
+            return users;
+        }
+
+        #endregion
     }
 }
