@@ -31,6 +31,7 @@ namespace cs4227.Menu
         private Boolean CorrectOwnerFormat = false;
         private Boolean CorrectPhoneNumberFormat = false;
         private Boolean CorrectEmailFormat = false;
+        private Boolean CorrectAdminEmailFormat = false;
         private Boolean CorrectOpeningHoursFormat = false;
         private Boolean CorrectClosingHoursFormat = false;
         private Boolean CorrectDaysOpenFormat = false;
@@ -478,7 +479,7 @@ namespace cs4227.Menu
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            if(CorrectNameFormat && CorrectAddressFormat && CorrectOwnerFormat && CorrectPhoneNumberFormat && CorrectEmailFormat && CorrectOpeningHoursFormat && CorrectClosingHoursFormat && CorrectDaysOpenFormat && CorrectTypeFormat && CorrectDeliveryChargeFormat)
+            if(CorrectNameFormat && CorrectAddressFormat && CorrectOwnerFormat && CorrectPhoneNumberFormat && CorrectEmailFormat && CorrectOpeningHoursFormat && CorrectClosingHoursFormat && CorrectDaysOpenFormat && CorrectTypeFormat && CorrectDeliveryChargeFormat && CorrectAdminEmailFormat)
             {
                 //Add code to save restaurant 
 
@@ -524,6 +525,61 @@ namespace cs4227.Menu
                 this.Hide();
                 RestAdminMenu RM = new RestAdminMenu(RestaurantId);
                 RM.ShowDialog();
+            }
+        }
+
+        private void AdminEmailTextbox_TextChanged(object sender, EventArgs e)
+        {
+            AdminEmail = AdminEmailTextbox.Text.ToString();
+
+            if (AdminEmail.Length > 0)
+            {
+                try
+                {
+                    MailAddress m = new MailAddress(AdminEmail);
+                    CorrectEmailFormat = true;
+                }
+                catch (FormatException)
+                {
+
+                }
+                if (!CorrectEmailFormat)
+                {
+                    ErrorMessage = "Incorrect Email Format. Try Again!";
+                    CorrectAdminEmailFormat = false;
+                }
+            }
+            else
+            {
+                CorrectAdminEmailFormat = false;
+                ErrorMessage = "Can't have a blank Email. Try again!";
+            }
+
+            if (!CorrectAdminEmailFormat)
+            {
+                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Visible = true;
+                AdminEmailLabel.Text = "Email: ERROR";
+            }
+            else
+            {
+                Boolean AdminEmailExists = false;
+                //Add code to check if email already exists
+
+                if (!AdminEmailExists)
+                {
+                    ErrorMessage = "";
+                    ErrorMessageLabel.Visible = false;
+                    AdminEmailLabel.Text = "Admin Email:";
+                    CorrectAdminEmailFormat = true;
+                }
+                else
+                {
+                    ErrorMessageLabel.Text = "Error Message: Email already exists. Try Again!";
+                    ErrorMessageLabel.Visible = true;
+                    AdminEmailLabel.Text = "Admin Email: ERROR";
+                    CorrectAdminEmailFormat = false;
+                }
             }
         }
     }

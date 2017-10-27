@@ -12,22 +12,25 @@ namespace cs4227.Menu
 {
     public partial class UserOrderHistory : Form
     {
-        public UserOrderHistory()
+        private int UserId = 0;
+
+        public UserOrderHistory(int UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserMainMenu UMM = new UserMainMenu();
+            UserMainMenu UMM = new UserMainMenu(UserId);
             UMM.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserOrderMenu UOM = new UserOrderMenu();
+            UserOrderMenu UOM = new UserOrderMenu(UserId);
             UOM.ShowDialog();
         }
     }

@@ -5,10 +5,14 @@ namespace cs4227.User
 {
     public class RegularUser : LoginAPI
     {
+        private int UserId = 0;
+
         public void login(string username, string password)
         {
             Console.WriteLine("User " + username + " logged in.");
-            UserMainMenu UM = new UserMainMenu();
+            //add code to get userid
+
+            UserMainMenu UM = new UserMainMenu(UserId);
             UM.ShowDialog();
         }
     }

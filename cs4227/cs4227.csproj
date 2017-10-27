@@ -65,6 +65,12 @@
     <Compile Include="Meal\PlaceOrderCommand.cs" />
     <Compile Include="Meal\Invoker.cs" />
     <Compile Include="Meal\TestHarness.cs" />
+    <Compile Include="Menu\LoginMenuV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\LoginMenuV2.Designer.cs">
+      <DependentUpon>LoginMenuV2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu\RestAdminIgnoreListMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,12 @@
     </Compile>
     <Compile Include="Menu\RestAdminViewOrders.Designer.cs">
       <DependentUpon>RestAdminViewOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\UserPlaceOrderMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\UserPlaceOrderMenu.Designer.cs">
+      <DependentUpon>UserPlaceOrderMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -181,11 +193,11 @@
     <Compile Include="Menu\UserCheckout.Designer.cs">
       <DependentUpon>UserCheckout.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\UserEditDetails.cs">
+    <Compile Include="Menu\UserManageAccount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu\UserEditDetails.Designer.cs">
-      <DependentUpon>UserEditDetails.cs</DependentUpon>
+    <Compile Include="Menu\UserManageAccount.Designer.cs">
+      <DependentUpon>UserManageAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu\UserFavourites.cs">
       <SubType>Form</SubType>
@@ -265,6 +277,9 @@
     <EmbeddedResource Include="Menu\EditRestaurantMenu.resx">
       <DependentUpon>EditRestaurantMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menu\LoginMenuV2.resx">
+      <DependentUpon>LoginMenuV2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu\LoginMenu.resx">
       <DependentUpon>LoginMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -313,8 +328,8 @@
     <EmbeddedResource Include="Menu\UserCheckout.resx">
       <DependentUpon>UserCheckout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu\UserEditDetails.resx">
-      <DependentUpon>UserEditDetails.cs</DependentUpon>
+    <EmbeddedResource Include="Menu\UserManageAccount.resx">
+      <DependentUpon>UserManageAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\UserFavourites.resx">
       <DependentUpon>UserFavourites.cs</DependentUpon>
@@ -324,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\UserOrderHistory.resx">
       <DependentUpon>UserOrderHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\UserPlaceOrderMenu.resx">
+      <DependentUpon>UserPlaceOrderMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\UserRestSearch.resx">
       <DependentUpon>UserRestSearch.cs</DependentUpon>

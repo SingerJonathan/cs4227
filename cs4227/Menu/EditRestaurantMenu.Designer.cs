@@ -51,6 +51,8 @@
             this.RestaurantDeliveryChargeLabel = new System.Windows.Forms.Label();
             this.RestaurantDeliveryChargeTextbox = new System.Windows.Forms.TextBox();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
+            this.AdminEmailLabel = new System.Windows.Forms.Label();
+            this.AdminEmailTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // RestaurantNameLabel
@@ -133,7 +135,7 @@
             // 
             this.RestaurantEmailLabel.AutoSize = true;
             this.RestaurantEmailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantEmailLabel.Location = new System.Drawing.Point(7, 298);
+            this.RestaurantEmailLabel.Location = new System.Drawing.Point(336, 9);
             this.RestaurantEmailLabel.Name = "RestaurantEmailLabel";
             this.RestaurantEmailLabel.Size = new System.Drawing.Size(77, 25);
             this.RestaurantEmailLabel.TabIndex = 8;
@@ -142,7 +144,7 @@
             // RestaurantEmailTextbox
             // 
             this.RestaurantEmailTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantEmailTextbox.Location = new System.Drawing.Point(12, 335);
+            this.RestaurantEmailTextbox.Location = new System.Drawing.Point(341, 51);
             this.RestaurantEmailTextbox.Name = "RestaurantEmailTextbox";
             this.RestaurantEmailTextbox.Size = new System.Drawing.Size(300, 31);
             this.RestaurantEmailTextbox.TabIndex = 9;
@@ -214,7 +216,7 @@
             // 
             this.RestaurantDaysOpenLabel.AutoSize = true;
             this.RestaurantDaysOpenLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantDaysOpenLabel.Location = new System.Drawing.Point(672, 167);
+            this.RestaurantDaysOpenLabel.Location = new System.Drawing.Point(667, 156);
             this.RestaurantDaysOpenLabel.Name = "RestaurantDaysOpenLabel";
             this.RestaurantDaysOpenLabel.Size = new System.Drawing.Size(135, 25);
             this.RestaurantDaysOpenLabel.TabIndex = 16;
@@ -223,7 +225,7 @@
             // RestaurantDaysOpenTextbox
             // 
             this.RestaurantDaysOpenTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantDaysOpenTextbox.Location = new System.Drawing.Point(672, 203);
+            this.RestaurantDaysOpenTextbox.Location = new System.Drawing.Point(672, 193);
             this.RestaurantDaysOpenTextbox.Name = "RestaurantDaysOpenTextbox";
             this.RestaurantDaysOpenTextbox.Size = new System.Drawing.Size(300, 31);
             this.RestaurantDaysOpenTextbox.TabIndex = 17;
@@ -233,7 +235,7 @@
             // 
             this.RestaurantTypeLabel.AutoSize = true;
             this.RestaurantTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantTypeLabel.Location = new System.Drawing.Point(672, 241);
+            this.RestaurantTypeLabel.Location = new System.Drawing.Point(336, 156);
             this.RestaurantTypeLabel.Name = "RestaurantTypeLabel";
             this.RestaurantTypeLabel.Size = new System.Drawing.Size(71, 25);
             this.RestaurantTypeLabel.TabIndex = 18;
@@ -242,9 +244,9 @@
             // RestaurantTypeTextbox
             // 
             this.RestaurantTypeTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantTypeTextbox.Location = new System.Drawing.Point(677, 274);
+            this.RestaurantTypeTextbox.Location = new System.Drawing.Point(341, 193);
             this.RestaurantTypeTextbox.Name = "RestaurantTypeTextbox";
-            this.RestaurantTypeTextbox.Size = new System.Drawing.Size(295, 31);
+            this.RestaurantTypeTextbox.Size = new System.Drawing.Size(300, 31);
             this.RestaurantTypeTextbox.TabIndex = 19;
             this.RestaurantTypeTextbox.TextChanged += new System.EventHandler(this.RestaurantTypeTextbox_TextChanged);
             // 
@@ -252,7 +254,7 @@
             // 
             this.RestaurantDeliveryChargeLabel.AutoSize = true;
             this.RestaurantDeliveryChargeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantDeliveryChargeLabel.Location = new System.Drawing.Point(677, 312);
+            this.RestaurantDeliveryChargeLabel.Location = new System.Drawing.Point(336, 85);
             this.RestaurantDeliveryChargeLabel.Name = "RestaurantDeliveryChargeLabel";
             this.RestaurantDeliveryChargeLabel.Size = new System.Drawing.Size(180, 25);
             this.RestaurantDeliveryChargeLabel.TabIndex = 20;
@@ -261,9 +263,9 @@
             // RestaurantDeliveryChargeTextbox
             // 
             this.RestaurantDeliveryChargeTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantDeliveryChargeTextbox.Location = new System.Drawing.Point(677, 346);
+            this.RestaurantDeliveryChargeTextbox.Location = new System.Drawing.Point(341, 122);
             this.RestaurantDeliveryChargeTextbox.Name = "RestaurantDeliveryChargeTextbox";
-            this.RestaurantDeliveryChargeTextbox.Size = new System.Drawing.Size(295, 31);
+            this.RestaurantDeliveryChargeTextbox.Size = new System.Drawing.Size(300, 31);
             this.RestaurantDeliveryChargeTextbox.TabIndex = 21;
             this.RestaurantDeliveryChargeTextbox.TextChanged += new System.EventHandler(this.RestaurantDeliveryChargeTextbox_TextChanged);
             // 
@@ -271,12 +273,31 @@
             // 
             this.ErrorMessageLabel.AutoSize = true;
             this.ErrorMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrorMessageLabel.Location = new System.Drawing.Point(139, 397);
+            this.ErrorMessageLabel.Location = new System.Drawing.Point(12, 364);
             this.ErrorMessageLabel.Name = "ErrorMessageLabel";
             this.ErrorMessageLabel.Size = new System.Drawing.Size(173, 25);
             this.ErrorMessageLabel.TabIndex = 22;
             this.ErrorMessageLabel.Text = "Error Message:";
             this.ErrorMessageLabel.Visible = false;
+            // 
+            // AdminEmailLabel
+            // 
+            this.AdminEmailLabel.AutoSize = true;
+            this.AdminEmailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdminEmailLabel.Location = new System.Drawing.Point(336, 227);
+            this.AdminEmailLabel.Name = "AdminEmailLabel";
+            this.AdminEmailLabel.Size = new System.Drawing.Size(149, 25);
+            this.AdminEmailLabel.TabIndex = 23;
+            this.AdminEmailLabel.Text = "Admin Email:";
+            // 
+            // AdminEmailTextbox
+            // 
+            this.AdminEmailTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdminEmailTextbox.Location = new System.Drawing.Point(341, 264);
+            this.AdminEmailTextbox.Name = "AdminEmailTextbox";
+            this.AdminEmailTextbox.Size = new System.Drawing.Size(300, 31);
+            this.AdminEmailTextbox.TabIndex = 24;
+            this.AdminEmailTextbox.TextChanged += new System.EventHandler(this.AdminEmailTextbox_TextChanged);
             // 
             // EditRestaurantMenu
             // 
@@ -284,6 +305,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 662);
+            this.Controls.Add(this.AdminEmailTextbox);
+            this.Controls.Add(this.AdminEmailLabel);
             this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.RestaurantDeliveryChargeTextbox);
             this.Controls.Add(this.RestaurantDeliveryChargeLabel);
@@ -340,5 +363,7 @@
         private System.Windows.Forms.Label RestaurantDeliveryChargeLabel;
         private System.Windows.Forms.TextBox RestaurantDeliveryChargeTextbox;
         private System.Windows.Forms.Label ErrorMessageLabel;
+        private System.Windows.Forms.Label AdminEmailLabel;
+        private System.Windows.Forms.TextBox AdminEmailTextbox;
     }
 }

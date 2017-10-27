@@ -36,6 +36,8 @@
             this.NameTextbox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
             this.RestaurantMenuList = new System.Windows.Forms.ListView();
+            this.ErrorMessageLabel = new System.Windows.Forms.Label();
+            this.RemoveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SelectMenuItemLabel
@@ -61,7 +63,7 @@
             // AddItemButton
             // 
             this.AddItemButton.BackColor = System.Drawing.Color.Silver;
-            this.AddItemButton.Location = new System.Drawing.Point(624, 460);
+            this.AddItemButton.Location = new System.Drawing.Point(624, 391);
             this.AddItemButton.Name = "AddItemButton";
             this.AddItemButton.Size = new System.Drawing.Size(300, 86);
             this.AddItemButton.TabIndex = 3;
@@ -71,7 +73,7 @@
             // 
             // PriceTextbox
             // 
-            this.PriceTextbox.Location = new System.Drawing.Point(624, 373);
+            this.PriceTextbox.Location = new System.Drawing.Point(624, 313);
             this.PriceTextbox.Name = "PriceTextbox";
             this.PriceTextbox.Size = new System.Drawing.Size(300, 31);
             this.PriceTextbox.TabIndex = 4;
@@ -80,7 +82,7 @@
             // PriceLabel
             // 
             this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Location = new System.Drawing.Point(619, 332);
+            this.PriceLabel.Location = new System.Drawing.Point(619, 276);
             this.PriceLabel.Name = "PriceLabel";
             this.PriceLabel.Size = new System.Drawing.Size(73, 25);
             this.PriceLabel.TabIndex = 5;
@@ -88,7 +90,7 @@
             // 
             // NameTextbox
             // 
-            this.NameTextbox.Location = new System.Drawing.Point(624, 287);
+            this.NameTextbox.Location = new System.Drawing.Point(624, 242);
             this.NameTextbox.Name = "NameTextbox";
             this.NameTextbox.Size = new System.Drawing.Size(300, 31);
             this.NameTextbox.TabIndex = 6;
@@ -97,7 +99,7 @@
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(619, 247);
+            this.NameLabel.Location = new System.Drawing.Point(619, 202);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(79, 25);
             this.NameLabel.TabIndex = 7;
@@ -112,12 +114,34 @@
             this.RestaurantMenuList.UseCompatibleStateImageBehavior = false;
             this.RestaurantMenuList.SelectedIndexChanged += new System.EventHandler(this.RestaurantMenuList_SelectedIndexChanged);
             // 
+            // ErrorMessageLabel
+            // 
+            this.ErrorMessageLabel.AutoSize = true;
+            this.ErrorMessageLabel.Location = new System.Drawing.Point(544, 81);
+            this.ErrorMessageLabel.Name = "ErrorMessageLabel";
+            this.ErrorMessageLabel.Size = new System.Drawing.Size(173, 25);
+            this.ErrorMessageLabel.TabIndex = 9;
+            this.ErrorMessageLabel.Text = "Error Message:";
+            // 
+            // RemoveButton
+            // 
+            this.RemoveButton.BackColor = System.Drawing.Color.Silver;
+            this.RemoveButton.Location = new System.Drawing.Point(624, 483);
+            this.RemoveButton.Name = "RemoveButton";
+            this.RemoveButton.Size = new System.Drawing.Size(300, 80);
+            this.RemoveButton.TabIndex = 10;
+            this.RemoveButton.Text = "Remove";
+            this.RemoveButton.UseVisualStyleBackColor = false;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
+            // 
             // RestAdminMenuItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.RemoveButton);
+            this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.RestaurantMenuList);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.NameTextbox);
@@ -144,5 +168,7 @@
         private System.Windows.Forms.TextBox NameTextbox;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.ListView RestaurantMenuList;
+        private System.Windows.Forms.Label ErrorMessageLabel;
+        private System.Windows.Forms.Button RemoveButton;
     }
 }

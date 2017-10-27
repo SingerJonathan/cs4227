@@ -12,13 +12,15 @@ namespace cs4227.Menu
 {
     public partial class UserManageAccount : Form
     {
+        private int UserId = 0;
         private string Username = "";
         private string Password = "";
         private string Email = "";
         private string RestName = "";
 
-        public UserManageAccount()
+        public UserManageAccount(int UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
         }
 
@@ -55,7 +57,7 @@ namespace cs4227.Menu
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserMainMenu UMM = new UserMainMenu();
+            UserMainMenu UMM = new UserMainMenu(UserId);
             UMM.ShowDialog();
         }
 

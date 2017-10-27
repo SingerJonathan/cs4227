@@ -12,8 +12,11 @@ namespace cs4227.Menu
 {
     public partial class UserResterauntSearch : Form
     {
-        public UserResterauntSearch()
+        private int UserId = 0;
+
+        public UserResterauntSearch(int UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
         }
 
@@ -32,17 +35,17 @@ namespace cs4227.Menu
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //back
         {
             this.Hide();
-            UserMainMenu UMM = new UserMainMenu();
+            UserMainMenu UMM = new UserMainMenu(UserId);
             UMM.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Menu
         {
             this.Hide();
-            UserOrderMenu UOM = new UserOrderMenu();
+            UserOrderMenu UOM = new UserOrderMenu(UserId);
             UOM.ShowDialog();
         }
     }

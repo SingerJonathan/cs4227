@@ -12,22 +12,25 @@ namespace cs4227.Menu
 {
     public partial class UserMainMenu : Form
     {
-        public UserMainMenu()
+        private int UserId = 0;
+
+        public UserMainMenu(int UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserResterauntSearch f8 = new UserResterauntSearch();
+            UserResterauntSearch f8 = new UserResterauntSearch(UserId);
             f8.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserOrderHistory f9 = new UserOrderHistory();
+            UserOrderHistory f9 = new UserOrderHistory(UserId);
             f9.ShowDialog();
         }
 
@@ -39,14 +42,14 @@ namespace cs4227.Menu
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserFavouriteOrders f10 = new UserFavouriteOrders();
+            UserFavouriteOrders f10 = new UserFavouriteOrders(UserId);
             f10.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserManageAccount f11 = new UserManageAccount();
+            UserManageAccount f11 = new UserManageAccount(UserId);
             f11.ShowDialog();
         }
 

@@ -12,28 +12,38 @@ namespace cs4227.Menu
 {
     public partial class UserFavouriteOrders : Form
     {
-        public UserFavouriteOrders()
+        private int UserId = 0;
+
+        public UserFavouriteOrders(int UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+  
+        private void FavouriteOrders_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //checkout
         {
             this.Hide();
-            UserMainMenu UMM = new UserMainMenu();
+            UserCheckout UC = new UserCheckout(UserId);
+            UC.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e) //delete
+        {
+            //add code to delete from list
+        }
+
+        private void button3_Click(object sender, EventArgs e) //back
+        {
+            this.Hide();
+            UserMainMenu UMM = new UserMainMenu(UserId);
             UMM.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            UserCheckout UC = new UserCheckout();
-            UC.ShowDialog();
-        }
     }
 }
