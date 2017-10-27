@@ -40,6 +40,7 @@ namespace cs4227.Restaurant
         {
             name = "Food Item";
             cost = 0.0f;
+            deleted = false;
         }
 
         public FoodItem(int id, string name, double cost, int restaurantId, bool deleted = false)
