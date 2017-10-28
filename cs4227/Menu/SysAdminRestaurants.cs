@@ -93,7 +93,7 @@ namespace cs4227.Menu
                 //add code to add correct Restaurantid ---list.length()+1 etc...
                 
                 this.Hide();
-                EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantId, true, true);
+                EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantId, true, true, RestaurantNameTextbox.Text);
                 ERM.ShowDialog();
             }
         }
