@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cs4227.Database;
+using cs4227.Restaurant;
 
 namespace cs4227.Menu
 {
@@ -29,7 +31,18 @@ namespace cs4227.Menu
 
         private void Form3_Load(object sender, EventArgs e)
         {
-
+            List<FoodItem> items = DatabaseHandler.GetFoodItems();
+            foreach (FoodItem item in items)
+            {
+                if (item.RestaurantId == RestaurantId)
+                {
+                    ListViewItem row = new ListViewItem("" + item.Id);
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetFoodItem(item.Id).Name));
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + item.Cost));
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (item.Deleted ? "Yes" : "No")));
+                    listView.Items.Add(row);
+                }
+            }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
