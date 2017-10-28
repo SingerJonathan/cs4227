@@ -37,7 +37,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO [dbo].[Orders] VALUES (" + order.UserId + ", ";
+            command.CommandText = "INSERT INTO [dbo].[Orders] VALUES (" + order.UserId + ", " + order.RestaurantId + ", ";
             for (int index = 0; index < 8; index++)
             {
                 if (index < order.FoodItems.Count)
@@ -97,7 +97,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "UPDATE [dbo].[Orders] SET [User] = "+order.UserId+", ";
+            command.CommandText = "UPDATE [dbo].[Orders] SET [User] = "+order.UserId+", "+order.RestaurantId+", ";
             for (int index = 0; index < 8; index++)
             {
                 if (index < order.FoodItems.Count)
@@ -167,10 +167,15 @@ namespace cs4227.Database
             {
                 order.Id = (int)reader["Id"];
                 order.UserId = (int)reader["User"];
+                order.RestaurantId = (int)reader["Restaurant"];
                 order.Address = (string)reader["Address"];
                 order.Cost = Convert.ToDouble(reader["Cost"]);
                 order.Cancelled = (bool)reader["Cancelled"];
-                order.Add(GetFoodItem((int)reader["Id"]));
+                for (int i = 0; i < 8; i++)
+                {
+                    if (!reader.IsDBNull(3 + i))
+                        order.Add(GetFoodItem((int)reader["Item" + i]));
+                }
             }
             connection.Close();
             return order;
@@ -375,10 +380,15 @@ namespace cs4227.Database
                 Order order = new Order();
                 order.Id = (int)reader["Id"];
                 order.UserId = (int)reader["User"];
+                order.RestaurantId = (int)reader["Restaurant"];
                 order.Address = (string)reader["Address"];
                 order.Cost = Convert.ToDouble(reader["Cost"]);
                 order.Cancelled = (bool)reader["Cancelled"];
-                order.Add(GetFoodItem((int)reader["Id"]));
+                for (int i = 0; i < 8; i++)
+                {
+                    if (!reader.IsDBNull(3+i))
+                    order.Add(GetFoodItem((int)reader["Item" + i]));
+                }
                 orders.Add(order);
             }
             connection.Close();

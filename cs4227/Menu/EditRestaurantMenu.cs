@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Mail;
+using cs4227.Database;
+using cs4227.Restaurant;
+using cs4227.User;
 
 namespace cs4227.Menu
 {
@@ -19,7 +22,7 @@ namespace cs4227.Menu
         private string RestaurantOwner = "";
         private string RestaurantPhoneNumber = "";
         private string RestaurantEmail = "";
-        private string AdminEmail = "";
+        private string RestaurantOwnerUsername = "";
         private string RestaurantOpeningHours = "";
         private string RestaurantClosingHours = "";
         private string RestaurantDaysOpen = "";
@@ -31,7 +34,7 @@ namespace cs4227.Menu
         private Boolean CorrectOwnerFormat = false;
         private Boolean CorrectPhoneNumberFormat = false;
         private Boolean CorrectEmailFormat = false;
-        private Boolean CorrectAdminEmailFormat = false;
+        private Boolean CorrectOwnerUsernameFormat = false;
         private Boolean CorrectOpeningHoursFormat = false;
         private Boolean CorrectClosingHoursFormat = false;
         private Boolean CorrectDaysOpenFormat = false;
@@ -43,6 +46,22 @@ namespace cs4227.Menu
         public EditRestaurantMenu(int RestaurantId, Boolean newRestaurant, Boolean sysAdmin)
         {
             this.RestaurantId = RestaurantId;
+
+            Restaurant.Restaurant restaurant = DatabaseHandler.GetRestaurant(RestaurantId);
+            AbstractUser owner = DatabaseHandler.GetUser(restaurant.OwnerId);
+
+            RestaurantName = restaurant.Name;
+            RestaurantAddress = restaurant.Address;
+            RestaurantOwnerUsername = owner.Username;
+            RestaurantOwner = owner.FirstName + " " + owner.LastName;
+            RestaurantPhoneNumber = restaurant.Phone;
+            RestaurantEmail = restaurant.Email;
+            RestaurantOpeningHours = restaurant.OpeningHours;
+            RestaurantClosingHours = restaurant.ClosingHours;
+            RestaurantDaysOpen = restaurant.Days;
+            RestaurantType = restaurant.Type;
+            RestaurantDeliveryCharge = "" + restaurant.Delivery;
+
             this.newRestaurant = newRestaurant;
             this.sysAdmin = sysAdmin;
             InitializeComponent();
@@ -51,6 +70,17 @@ namespace cs4227.Menu
         private void EditRestaurantMenu_Load(object sender, EventArgs e)
         {
             RestaurantNameTextbox.Text = RestaurantName;
+            RestaurantAddressTextbox.Text = RestaurantAddress;
+            RestaurantOwnerUsernameTextbox.Text = RestaurantOwnerUsername;
+            RestaurantOwnerTextbox.Text = RestaurantOwner;
+            RestaurantPhoneNumberTextbox.Text = RestaurantPhoneNumber;
+            RestaurantEmailTextbox.Text = RestaurantEmail;
+            RestaurantDeliveryChargeTextbox.Text = RestaurantDeliveryCharge;
+            RestaurantTypeTextbox.Text = RestaurantType;
+            RestaurantOpeningHoursTextbox.Text = RestaurantOpeningHours;
+            RestaurantClosingHoursTextbox.Text = RestaurantClosingHours;
+            RestaurantDaysOpenTextbox.Text = RestaurantDaysOpen;
+
             if (sysAdmin)
             {
                 this.Text = "SysAdmin Menu: Edit Restaurant";
@@ -487,7 +517,7 @@ namespace cs4227.Menu
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            if(CorrectNameFormat && CorrectAddressFormat && CorrectOwnerFormat && CorrectPhoneNumberFormat && CorrectEmailFormat && CorrectOpeningHoursFormat && CorrectClosingHoursFormat && CorrectDaysOpenFormat && CorrectTypeFormat && CorrectDeliveryChargeFormat && CorrectAdminEmailFormat)
+            if(CorrectNameFormat && CorrectAddressFormat && CorrectOwnerFormat && CorrectPhoneNumberFormat && CorrectEmailFormat && CorrectOpeningHoursFormat && CorrectClosingHoursFormat && CorrectDaysOpenFormat && CorrectTypeFormat && CorrectDeliveryChargeFormat && CorrectOwnerUsernameFormat)
             {
                 //Add code to save restaurant 
 
@@ -536,38 +566,25 @@ namespace cs4227.Menu
             }
         }
 
-        private void AdminEmailTextbox_TextChanged(object sender, EventArgs e)
+        private void OwnerUsernameTextbox_TextChanged(object sender, EventArgs e)
         {
-            AdminEmail = AdminEmailTextbox.Text.ToString();
+            RestaurantOwnerUsername = RestaurantOwnerUsernameTextbox.Text.ToString();
 
-            if (AdminEmail.Length > 0)
+            if (RestaurantOwnerUsername.Length > 0)
             {
-                try
-                {
-                    MailAddress m = new MailAddress(AdminEmail);
-                    CorrectEmailFormat = true;
-                }
-                catch (FormatException)
-                {
-
-                }
-                if (!CorrectEmailFormat)
-                {
-                    ErrorMessage = "Incorrect Email Format. Try Again!";
-                    CorrectAdminEmailFormat = false;
-                }
+                // VALIDATION
             }
             else
             {
-                CorrectAdminEmailFormat = false;
-                ErrorMessage = "Can't have a blank Email. Try again!";
+                CorrectOwnerUsernameFormat = false;
+                ErrorMessage = "Can't have a blank username. Try again!";
             }
 
-            if (!CorrectAdminEmailFormat)
+            if (!CorrectOwnerUsernameFormat)
             {
                 ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                AdminEmailLabel.Text = "Email: ERROR";
+                OwnerUsernameLabel.Text = "Owner Username: ERROR";
             }
             else
             {
@@ -578,15 +595,15 @@ namespace cs4227.Menu
                 {
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
-                    AdminEmailLabel.Text = "Admin Email:";
-                    CorrectAdminEmailFormat = true;
+                    OwnerUsernameLabel.Text = "Owner Username:";
+                    CorrectOwnerUsernameFormat = true;
                 }
                 else
                 {
-                    ErrorMessageLabel.Text = "Error Message: Email already exists. Try Again!";
+                    ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
                     ErrorMessageLabel.Visible = true;
-                    AdminEmailLabel.Text = "Admin Email: ERROR";
-                    CorrectAdminEmailFormat = false;
+                    OwnerUsernameLabel.Text = "Owner Username: ERROR";
+                    CorrectOwnerUsernameFormat = false;
                 }
             }
         }

@@ -8,6 +8,7 @@ namespace cs4227.Restaurant
     {
         private int id;
         private int userId;
+        private int restaurantId;
         private double cost;
         private string address;
         private bool cancelled;
@@ -22,6 +23,11 @@ namespace cs4227.Restaurant
         {
             get { return userId; }
             set { userId = value; }
+        }
+        public int RestaurantId
+        {
+            get { return restaurantId; }
+            set { restaurantId = value; }
         }
         public double Cost
         {
@@ -49,10 +55,11 @@ namespace cs4227.Restaurant
             foodItems = new List<FoodItem>();
         }
 
-        public Order(int id, int userId, List<FoodItem> foodItems, string address, double cost, bool cancelled = false)
+        public Order(int id, int userId, int restaurantId, List<FoodItem> foodItems, string address, double cost, bool cancelled = false)
         {
             this.id = id;
             this.userId = userId;
+            this.restaurantId = restaurantId;
             this.cancelled = cancelled;
             this.foodItems = new List<FoodItem>(foodItems);
             this.address = address;
