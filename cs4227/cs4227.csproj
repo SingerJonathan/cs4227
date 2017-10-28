@@ -151,12 +151,6 @@
     <Compile Include="Menu\SysAdminRestaurants.Designer.cs">
       <DependentUpon>SysAdminRestaurants.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\SysItemView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu\SysItemView.Designer.cs">
-      <DependentUpon>SysItemView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menu\SysMenuView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,9 +301,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\SysAdminRestaurants.resx">
       <DependentUpon>SysAdminRestaurants.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menu\SysItemView.resx">
-      <DependentUpon>SysItemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\SysMenuView.resx">
       <DependentUpon>SysMenuView.cs</DependentUpon>

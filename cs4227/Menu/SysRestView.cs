@@ -34,13 +34,6 @@ namespace cs4227.Menu
             SVM.ShowDialog();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            SysViewMenuItems SVMI = new SysViewMenuItems(RestaurantId);
-            SVMI.ShowDialog();
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
