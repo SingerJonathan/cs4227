@@ -43,14 +43,17 @@ namespace cs4227.Menu
         private Boolean newRestaurant = false;
         private Boolean sysAdmin = false;
 
-        public EditRestaurantMenu(int RestaurantId, Boolean newRestaurant, Boolean sysAdmin)
+        public EditRestaurantMenu(int RestaurantId, Boolean newRestaurant, Boolean sysAdmin, string restaurantName = "")
         {
             this.RestaurantId = RestaurantId;
 
             Restaurant.Restaurant restaurant = DatabaseHandler.GetRestaurant(RestaurantId);
             AbstractUser owner = DatabaseHandler.GetUser(restaurant.OwnerId);
 
-            RestaurantName = restaurant.Name;
+            if (newRestaurant)
+                RestaurantName = restaurantName;
+            else
+                RestaurantName = restaurant.Name;
             RestaurantAddress = restaurant.Address;
             RestaurantOwnerUsername = owner.Username;
             RestaurantOwner = owner.FirstName + " " + owner.LastName;
@@ -572,7 +575,26 @@ namespace cs4227.Menu
 
             if (RestaurantOwnerUsername.Length > 0)
             {
-                // VALIDATION
+                Boolean OwnerUsernameExists = false;
+                List<AbstractUser> users = DatabaseHandler.GetUsers();
+                foreach (AbstractUser user in users)
+                    if (user.Username == RestaurantOwnerUsername)
+                        OwnerUsernameExists = true;
+
+                if (OwnerUsernameExists)
+                {
+                    ErrorMessage = "";
+                    ErrorMessageLabel.Visible = false;
+                    OwnerUsernameLabel.Text = "Owner Username:";
+                    CorrectOwnerUsernameFormat = true;
+                }
+                else
+                {
+                    ErrorMessage = "Username doesn't exist. Try Again!";
+                    ErrorMessageLabel.Visible = true;
+                    OwnerUsernameLabel.Text = "Owner Username: ERROR";
+                    CorrectOwnerUsernameFormat = false;
+                }
             }
             else
             {
@@ -585,26 +607,6 @@ namespace cs4227.Menu
                 ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
                 OwnerUsernameLabel.Text = "Owner Username: ERROR";
-            }
-            else
-            {
-                Boolean AdminEmailExists = false;
-                //Add code to check if email already exists
-
-                if (!AdminEmailExists)
-                {
-                    ErrorMessage = "";
-                    ErrorMessageLabel.Visible = false;
-                    OwnerUsernameLabel.Text = "Owner Username:";
-                    CorrectOwnerUsernameFormat = true;
-                }
-                else
-                {
-                    ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
-                    ErrorMessageLabel.Visible = true;
-                    OwnerUsernameLabel.Text = "Owner Username: ERROR";
-                    CorrectOwnerUsernameFormat = false;
-                }
             }
         }
     }
