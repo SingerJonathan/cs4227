@@ -63,7 +63,15 @@ namespace cs4227.Menu
 
         private void RestaurantNameTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantName = RestaurantNameTextbox.Text.ToString();
+            if (sysAdmin)
+            {
+                RestaurantName = RestaurantNameTextbox.Text.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Error: Can't Change Restaurant Name");
+                RestaurantNameTextbox.Text = RestaurantName;
+            }
 
             if (RestaurantName.Length > 0)
             {

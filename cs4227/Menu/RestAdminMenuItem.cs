@@ -100,15 +100,23 @@ namespace cs4227.Menu
             if (CorrectNameFormat && CorrectPriceFormat)
             {
                 //check if item exists already
+                ErrorMessageLabel.Visible = false;
                 Boolean Exists = false;
                 if (!Exists)
                 {
                     //add to db
+                    MessageBox.Show("Item:" + MenuItemName + " Added");
                 }
                 else
                 {
+                    ErrorMessage = "Item Already Exists";
                     CorrectNameFormat = false;
                 }
+            }
+            else
+            {
+                ErrorMessageLabel.Visible = true;
+                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
             }
         }
 
@@ -121,12 +129,13 @@ namespace cs4227.Menu
 
         private void RestaurantMenuList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //get item id and get item name
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             //remove item from db
+            MessageBox.Show("Item: " + MenuItemName + " Removed");
         }
     }
 }

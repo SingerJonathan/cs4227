@@ -23,15 +23,15 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserResterauntSearch f8 = new UserResterauntSearch(UserId);
-            f8.ShowDialog();
+            UserResterauntSearch URS = new UserResterauntSearch(UserId);
+            URS.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserOrderHistory f9 = new UserOrderHistory(UserId);
-            f9.ShowDialog();
+            UserOrderHistory UOH = new UserOrderHistory(UserId);
+            UOH.ShowDialog();
         }
 
         private void Form7_Load(object sender, EventArgs e)
@@ -42,15 +42,15 @@ namespace cs4227.Menu
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserFavouriteOrders f10 = new UserFavouriteOrders(UserId);
-            f10.ShowDialog();
+            UserFavouriteOrders UFO = new UserFavouriteOrders(UserId);
+            UFO.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserManageAccount f11 = new UserManageAccount(UserId);
-            f11.ShowDialog();
+            UserManageAccount UMA = new UserManageAccount(UserId, false);
+            UMA.ShowDialog();
         }
 
         private void LogOutButton_Click(object sender, EventArgs e)
