@@ -19,7 +19,7 @@ namespace cs4227.User
         {
         }
 
-        public AbstractUser(int id, string username, string firstName, string lastName, string password, string email, LoginAPI loginAPI,
+        public AbstractUser(int id, string username, string password, string firstName, string lastName, string email, LoginAPI loginAPI,
             int restaurantAdmin = 0, bool systemAdmin = false, bool deleted = false)
         {
             this.id = id;

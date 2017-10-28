@@ -27,6 +27,7 @@ namespace cs4227.Menu
         private void ListOfRestaurants_SelectedIndexChanged(object sender, EventArgs e)
         {
             RestaurantName = ListOfRestaurants.SelectedItems[0].Text.ToString();
+            RestaurantId = Int32.Parse(ListOfRestaurants.SelectedItems[0].SubItems[1].Text);
             this.Hide();
             SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantId);
             SVR.ShowDialog();
@@ -108,7 +109,11 @@ namespace cs4227.Menu
         {
             List<Restaurant.Restaurant> restaurants = DatabaseHandler.GetRestaurants();
             foreach (Restaurant.Restaurant restaurant in restaurants)
-                ListOfRestaurants.Items.Add(new ListViewItem(restaurant.Name));
+            {
+                ListViewItem restaurantItem = new ListViewItem(restaurant.Name);
+                restaurantItem.SubItems.Add(new ListViewItem.ListViewSubItem(restaurantItem, "" + restaurant.Id));
+                ListOfRestaurants.Items.Add(restaurantItem);
+            }
         }
     }
 }

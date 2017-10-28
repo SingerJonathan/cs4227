@@ -51,8 +51,8 @@
             this.RestaurantDeliveryChargeLabel = new System.Windows.Forms.Label();
             this.RestaurantDeliveryChargeTextbox = new System.Windows.Forms.TextBox();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
-            this.AdminEmailLabel = new System.Windows.Forms.Label();
-            this.AdminEmailTextbox = new System.Windows.Forms.TextBox();
+            this.OwnerUsernameLabel = new System.Windows.Forms.Label();
+            this.RestaurantOwnerUsernameTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // RestaurantNameLabel
@@ -280,24 +280,24 @@
             this.ErrorMessageLabel.Text = "Error Message:";
             this.ErrorMessageLabel.Visible = false;
             // 
-            // AdminEmailLabel
+            // OwnerUsernameLabel
             // 
-            this.AdminEmailLabel.AutoSize = true;
-            this.AdminEmailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdminEmailLabel.Location = new System.Drawing.Point(336, 227);
-            this.AdminEmailLabel.Name = "AdminEmailLabel";
-            this.AdminEmailLabel.Size = new System.Drawing.Size(149, 25);
-            this.AdminEmailLabel.TabIndex = 23;
-            this.AdminEmailLabel.Text = "Admin Email:";
+            this.OwnerUsernameLabel.AutoSize = true;
+            this.OwnerUsernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OwnerUsernameLabel.Location = new System.Drawing.Point(336, 227);
+            this.OwnerUsernameLabel.Name = "OwnerUsernameLabel";
+            this.OwnerUsernameLabel.Size = new System.Drawing.Size(199, 25);
+            this.OwnerUsernameLabel.TabIndex = 23;
+            this.OwnerUsernameLabel.Text = "Owner Username:";
             // 
-            // AdminEmailTextbox
+            // OwnerUsernameTextbox
             // 
-            this.AdminEmailTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdminEmailTextbox.Location = new System.Drawing.Point(341, 264);
-            this.AdminEmailTextbox.Name = "AdminEmailTextbox";
-            this.AdminEmailTextbox.Size = new System.Drawing.Size(300, 31);
-            this.AdminEmailTextbox.TabIndex = 24;
-            this.AdminEmailTextbox.TextChanged += new System.EventHandler(this.AdminEmailTextbox_TextChanged);
+            this.RestaurantOwnerUsernameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RestaurantOwnerUsernameTextbox.Location = new System.Drawing.Point(341, 264);
+            this.RestaurantOwnerUsernameTextbox.Name = "OwnerUsernameTextbox";
+            this.RestaurantOwnerUsernameTextbox.Size = new System.Drawing.Size(300, 31);
+            this.RestaurantOwnerUsernameTextbox.TabIndex = 24;
+            this.RestaurantOwnerUsernameTextbox.TextChanged += new System.EventHandler(this.OwnerUsernameTextbox_TextChanged);
             // 
             // EditRestaurantMenu
             // 
@@ -305,8 +305,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 662);
-            this.Controls.Add(this.AdminEmailTextbox);
-            this.Controls.Add(this.AdminEmailLabel);
+            this.Controls.Add(this.RestaurantOwnerUsernameTextbox);
+            this.Controls.Add(this.OwnerUsernameLabel);
             this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.RestaurantDeliveryChargeTextbox);
             this.Controls.Add(this.RestaurantDeliveryChargeLabel);
@@ -363,7 +363,7 @@
         private System.Windows.Forms.Label RestaurantDeliveryChargeLabel;
         private System.Windows.Forms.TextBox RestaurantDeliveryChargeTextbox;
         private System.Windows.Forms.Label ErrorMessageLabel;
-        private System.Windows.Forms.Label AdminEmailLabel;
-        private System.Windows.Forms.TextBox AdminEmailTextbox;
+        private System.Windows.Forms.Label OwnerUsernameLabel;
+        private System.Windows.Forms.TextBox RestaurantOwnerUsernameTextbox;
     }
 }
