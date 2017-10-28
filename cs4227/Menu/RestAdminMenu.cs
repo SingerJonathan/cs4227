@@ -66,7 +66,7 @@ namespace cs4227.Menu
         private void EditAdminDetailsButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            EditAdminMenu EAM = new EditAdminMenu(RestaurantAdmin, RestaurantId, false);
+            EditAdminMenu EAM = new EditAdminMenu(RestaurantAdmin, RestaurantId, false, false);
             EAM.ShowDialog();
         }
     }

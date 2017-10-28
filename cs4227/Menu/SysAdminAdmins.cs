@@ -7,17 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net.Mail;
+using cs4227.Database;
+using cs4227.User;
 
 namespace cs4227.Menu
 {
     public partial class SysAdminAdminsMenu : Form
     {
-        private string AdminEmail = "";
-        private string AdminRestaurant = "";
+        private string AdminUsername = "";
         private int RestaurantId = 0;
         private string ErrorMessage = "";
-        private Boolean CorrectEmailFormat = false;
+        private Boolean CorrectNameFormat = false;
 
         public SysAdminAdminsMenu()
         {
@@ -26,75 +26,76 @@ namespace cs4227.Menu
 
         private void AdminsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Add code to pass in details from database or just leave blank and process on next menu
-            AdminEmail = AdminsList.SelectedItems[0].Text.ToString();
+            AdminUsername = AdminsList.SelectedItems[0].Text.ToString();
+            RestaurantId = Int32.Parse(AdminsList.SelectedItems[0].SubItems[1].Text);
             this.Hide();
-            EditAdminMenu EAM = new EditAdminMenu(AdminEmail, RestaurantId, true);
+            EditAdminMenu EAM = new EditAdminMenu(AdminUsername, RestaurantId, true, false);
             EAM.ShowDialog();
-            AdminEmail = "";
         }
 
-        private void AdminEmailTextbox_TextChanged(object sender, EventArgs e)
+        private void AdminUsernameTextbox_TextChanged(object sender, EventArgs e)
         {
-            AdminEmail = AdminEmailTextbox.Text.ToString();
+            AdminUsername = AdminUsernameTextbox.Text.ToString();
 
-            if (AdminEmail.Length > 0)
+            if (AdminUsername.Length > 0)
             {
-                try
+                if (AdminUsername.Any(char.IsPunctuation) || AdminUsername.Any(char.IsWhiteSpace))
                 {
-                    MailAddress m = new MailAddress(AdminEmail);
-                    CorrectEmailFormat = true;
-                }
-                catch (FormatException)
-                {
-
-                }
-                if (!CorrectEmailFormat)
-                {
-                    ErrorMessage = "Incorrect Email Format. Try Again!";
-                    CorrectEmailFormat = false;
-                }
-            }
-            else
-            {
-                CorrectEmailFormat = false;
-                ErrorMessage = "Can't have a blank Email. Try again!";
-            }
-
-            if (!CorrectEmailFormat)
-            {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
-                ErrorMessageLabel.Visible = true;
-                AdminEmailLabel.Text = "Email: ERROR";
-            }
-            else
-            {
-                Boolean EmailExists = false;
-                if (!EmailExists)
-                {
-                    ErrorMessage = "";
-                    ErrorMessageLabel.Visible = false;
-                    AdminEmailLabel.Text = "Email:";
-                    CorrectEmailFormat = true;
+                    CorrectNameFormat = false;
+                    ErrorMessage = "Can't Use Spaces or Punctuation for an Username";
                 }
                 else
                 {
-                    ErrorMessageLabel.Text = "Error Message: Email already exists. Try Again!";
-                    ErrorMessageLabel.Visible = true;
-                    AdminEmailLabel.Text = "Email: ERROR";
-                    CorrectEmailFormat = false;
+                    CorrectNameFormat = true;
                 }
+            }
+            else
+            {
+                CorrectNameFormat = false;
+                ErrorMessage = "Can't have a blank Username. Try Again!";
+            }
+
+            if (!CorrectNameFormat)
+            {
+                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Visible = true;
+                AdminUsernameLabel.Text = "Username: ERROR";
             }
         }
 
         private void AddAdminButton_Click(object sender, EventArgs e)
         {
-            if (CorrectEmailFormat)
+            if (CorrectNameFormat)
             {
-                //AdminRestaurant will be blank here.... Add it in the next menu
-                this.Hide();
-                EditAdminMenu EAM = new EditAdminMenu(AdminEmail, RestaurantId, true);
-                EAM.ShowDialog();
+                Boolean UsernameExists = false;
+                AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
+
+                if (Admin == null)
+                {
+                    UsernameExists = false;
+                }
+                else
+                {
+                    UsernameExists = true;
+                }
+
+
+                if (!UsernameExists)
+                {
+                    AdminUsernameLabel.Text = "Username:";
+                    ErrorMessage = "";
+                    ErrorMessageLabel.Visible = false;
+                    this.Hide();
+                    EditAdminMenu EAM = new EditAdminMenu(AdminUsername, RestaurantId, true, true);
+                    EAM.ShowDialog();
+                }
+                else
+                {
+                    ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
+                    ErrorMessageLabel.Visible = true;
+                    AdminUsernameLabel.Text = "Username: ERROR";
+                    CorrectNameFormat = false;
+                }
             }
             else
             {
@@ -110,5 +111,16 @@ namespace cs4227.Menu
             SAM.ShowDialog();
         }
 
+        private void SysAdminAdminsMenu_Load(object sender, EventArgs e)
+        {
+            ErrorMessageLabel.Visible = false;
+            List<AbstractUser> Admins = DatabaseHandler.GetAdmins();
+            foreach (AbstractUser Admin in Admins)
+            {
+                ListViewItem AdminItem = new ListViewItem(Admin.Username);
+                AdminItem.SubItems.Add(new ListViewItem.ListViewSubItem(AdminItem, "" + Admin.Id));
+                AdminsList.Items.Add(AdminItem);
+            }
+        }
     }
 }

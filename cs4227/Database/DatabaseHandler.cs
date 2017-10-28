@@ -191,6 +191,21 @@ namespace cs4227.Database
             return restaurant;
         }
 
+        public static Restaurant.Restaurant GetRestaurant(string name)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Restaurants] WHERE [Name] = " + name;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            Restaurant.Restaurant restaurant = new Restaurant.Restaurant();
+            if (reader.Read())
+                restaurant = new Restaurant.Restaurant(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetString(4),
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), Convert.ToDouble(reader[10]), reader.GetBoolean(11));
+            connection.Close();
+            return restaurant;
+        }
+
         public static FoodItem GetFoodItem(int id)
         {
             SqlConnection connection = GetLocalDBConnection();
@@ -210,6 +225,106 @@ namespace cs4227.Database
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [Id] = " + id;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            AbstractUser user = new User.User();
+            if (reader.Read())
+            {
+                string userType = "User";
+                if (reader.GetBoolean(7))
+                    userType = "SysAdmin";
+                else if (!reader.IsDBNull(6) && reader.GetInt32(6) > 0)
+                    userType = "RestAdmin";
+                int restaurantAdmin = 0;
+                if (!reader.IsDBNull(6))
+                    restaurantAdmin = reader.GetInt32(6);
+                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), userType, restaurantAdmin, reader.GetBoolean(7), reader.GetBoolean(8));
+            }
+            connection.Close();
+            return user;
+        }
+
+        public static AbstractUser GetUser(string username)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [Username] = " + username;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            AbstractUser user = new User.User();
+            if (reader.Read())
+            {
+                string userType = "User";
+                if (reader.GetBoolean(7))
+                    userType = "SysAdmin";
+                else if (!reader.IsDBNull(6) && reader.GetInt32(6) > 0)
+                    userType = "RestAdmin";
+                int restaurantAdmin = 0;
+                if (!reader.IsDBNull(6))
+                    restaurantAdmin = reader.GetInt32(6);
+                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), userType, restaurantAdmin, reader.GetBoolean(7), reader.GetBoolean(8));
+            }
+            connection.Close();
+            return user;
+        }
+
+        public static AbstractUser GetUserEmail(string email)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [Email] = " + email;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            AbstractUser user = new User.User();
+            if (reader.Read())
+            {
+                string userType = "User";
+                if (reader.GetBoolean(7))
+                    userType = "SysAdmin";
+                else if (!reader.IsDBNull(6) && reader.GetInt32(6) > 0)
+                    userType = "RestAdmin";
+                int restaurantAdmin = 0;
+                if (!reader.IsDBNull(6))
+                    restaurantAdmin = reader.GetInt32(6);
+                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), userType, restaurantAdmin, reader.GetBoolean(7), reader.GetBoolean(8));
+            }
+            connection.Close();
+            return user;
+        }
+
+        public static AbstractUser CheckAdminExists(string restaurantname)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[Id] = [dbo].[Restaurants].[Id] WHERE [dbo].[Restaurants].[Name] = " + restaurantname;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            AbstractUser user = new User.User();
+            if (reader.Read())
+            {
+                string userType = "User";
+                if (reader.GetBoolean(7))
+                    userType = "SysAdmin";
+                else if (!reader.IsDBNull(6) && reader.GetInt32(6) > 0)
+                    userType = "RestAdmin";
+                int restaurantAdmin = 0;
+                if (!reader.IsDBNull(6))
+                    restaurantAdmin = reader.GetInt32(6);
+                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), userType, restaurantAdmin, reader.GetBoolean(7), reader.GetBoolean(8));
+            }
+            connection.Close();
+            return user;
+        }
+
+        public static AbstractUser CheckIfAdmin(string username)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[Id] = [dbo].[Restaurants].[Id] WHERE [dbo].[Users].[Username] = " + username;
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -286,6 +401,33 @@ namespace cs4227.Database
             }
             connection.Close();
             return restaurants;
+        }
+
+        public static List<AbstractUser> GetAdmins()
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [RestaurantAdmin] IS NOT NULL";
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            List<AbstractUser> users = new List<AbstractUser>();
+            while (reader.Read())
+            {
+                AbstractUser user = new User.User();
+                string userType = "User";
+                if (reader.GetBoolean(7))
+                    userType = "SysAdmin";
+                else if (!reader.IsDBNull(6) && reader.GetInt32(6) > 0)
+                    userType = "RestAdmin";
+                int restaurantAdmin = 0;
+                if (!reader.IsDBNull(6))
+                    restaurantAdmin = reader.GetInt32(6);
+                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), userType, restaurantAdmin, reader.GetBoolean(7), reader.GetBoolean(8));
+                users.Add(user);
+            }
+            connection.Close();
+            return users;
         }
 
         public static List<FoodItem> GetFoodItems()

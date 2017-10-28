@@ -44,7 +44,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(300, 80);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Browse Restaraunt";
+            this.button1.Text = "Browse Restaraunts";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -107,7 +107,7 @@
             this.LogOutButton.UseVisualStyleBackColor = false;
             this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);
             // 
-            // UserMenu
+            // UserMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -121,7 +121,7 @@
             this.Controls.Add(this.button1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.Name = "UserMenu";
+            this.Name = "UserMainMenu";
             this.Text = "User Menu: Main Menu";
             this.Load += new System.EventHandler(this.Form7_Load);
             this.ResumeLayout(false);

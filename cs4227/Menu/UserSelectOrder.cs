@@ -13,9 +13,11 @@ namespace cs4227.Menu
     public partial class UserOrderMenu : Form
     {
         private int UserId = 0;
+        private int RestaurantId = 0;
 
-        public UserOrderMenu(int UserId)
+        public UserOrderMenu(int UserId, int RestaurantId)
         {
+            this.RestaurantId = RestaurantId;
             this.UserId = UserId;
             InitializeComponent();
         }
@@ -45,7 +47,7 @@ namespace cs4227.Menu
         private void button2_Click(object sender, EventArgs e) //checkout
         {
             this.Hide();
-            UserCheckout UC = new UserCheckout(UserId);
+            UserCheckout UC = new UserCheckout(UserId, RestaurantId);
             UC.ShowDialog();
         }
     }

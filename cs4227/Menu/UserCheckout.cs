@@ -16,11 +16,13 @@ namespace cs4227.Menu
         private int OrderId = 0;
         private string Address = "";
         private string ErrorMessage = "";
+        private int RestaurantId = 0;
         private Boolean CorrectAddressFormat = false;
 
-        public UserCheckout(int UserId)
+        public UserCheckout(int UserId, int RestaurantId)
         {
             this.UserId = UserId;
+            this.RestaurantId = RestaurantId;
             InitializeComponent();
         }
 
@@ -63,7 +65,7 @@ namespace cs4227.Menu
         private void button2_Click(object sender, EventArgs e)  //change order
         {
             this.Hide();
-            UserOrderMenu UOM = new UserOrderMenu(UserId);
+            UserOrderMenu UOM = new UserOrderMenu(UserId, RestaurantId);
             UOM.ShowDialog();
         }
 

@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Mail;
+using cs4227.Database;
+using cs4227.User;
+using cs4227.Restaurant;
 
 namespace cs4227.Menu
 {
@@ -25,36 +28,40 @@ namespace cs4227.Menu
         private Boolean CorrectUsernameFormat = false;
         private Boolean CorrectPasswordFormat = false;
         private Boolean CorrectRestaurantFormat = false;
+        private Boolean newAdmin = false;
         private Boolean sysAdmin = false;
 
-        public EditAdminMenu(string AdminEmail, int RestaurantId, Boolean sysAdmin)
+        public EditAdminMenu(string AdminUsername, int RestaurantId, Boolean sysAdmin, Boolean newAdmin)
         {
-            this.AdminEmail = AdminEmail;
+            this.AdminUsername = AdminUsername;
             this.RestaurantId = RestaurantId; 
             this.sysAdmin = sysAdmin;
+            this.newAdmin = newAdmin;
             InitializeComponent();
         }
 
         private void EditAdminMenu_Load(object sender, EventArgs e)
         {
-            AdminEmailTextbox.Text = AdminEmail;
-            AdminRestaurantTextbox.Text = AdminRestaurant;
-            CorrectEmailFormat = true;
+            AdminUsernameTextbox.Text = AdminUsername;
+            CorrectUsernameFormat = true;
             ErrorMessageLabel.Visible = false;
-            if (sysAdmin)
+            if (sysAdmin && !newAdmin)
             {
                 this.Text = "SysAdmin Menu: Edit Admin";
                 DeleteAdminButton.Show();
                 DeleteAdminButton.Enabled = true;
             }
-            else
+            if(!sysAdmin && !newAdmin)
             {
                 this.Text = "RestAdmin Menu: Edit Admin";
                 DeleteAdminButton.Hide();
                 DeleteAdminButton.Enabled = false;
             }
 
-            //Add code to display currently existing Admin details etc..
+            if (!newAdmin)
+            {
+
+            }
         }
 
         private void AdminNameTextbox_TextChanged(object sender, EventArgs e)
@@ -153,7 +160,14 @@ namespace cs4227.Menu
 
         private void AdminUsernameTextbox_TextChanged(object sender, EventArgs e)
         {
-            AdminUsername = AdminUsernameTextbox.Text.ToString();
+            if (!newAdmin)
+            {
+                AdminUsername = AdminUsernameTextbox.Text.ToString();
+            }
+            else
+            {
+                AdminUsernameTextbox.Text = AdminUsername;
+            }
 
             if (AdminUsername.Length > 0)
             {
@@ -181,22 +195,10 @@ namespace cs4227.Menu
             }
             else
             {
-                Boolean UsernameExists = false;
-                //Add code to check if username exists already
-
-                if (!UsernameExists)
-                {
-                    AdminUsernameLabel.Text = "Username:";
-                    ErrorMessage = "";
-                    ErrorMessageLabel.Visible = false;
-                }
-                else
-                {
-                    ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
-                    ErrorMessageLabel.Visible = true;
-                    AdminUsernameLabel.Text = "Username: ERROR";
-                    CorrectUsernameFormat = false;
-                }
+                ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
+                ErrorMessageLabel.Visible = true;
+                AdminUsernameLabel.Text = "Username: ERROR";
+                CorrectUsernameFormat = false;
             }
         }
 
@@ -290,34 +292,10 @@ namespace cs4227.Menu
             }
             else
             {
-                Boolean RestaurantExists = true;
-                Boolean AdminExists = false;
-
-                //Add code to check if the restaurant exists
-
-                //Add code to check if admin already exists for that restaurant
-
-                if (!RestaurantExists)
-                {
-                    ErrorMessageLabel.Text = "Error Message: Restaurant does not exist";
-                    ErrorMessageLabel.Visible = true;
-                    AdminRestaurantLabel.Text = "Restaurant: ERROR";
-                    CorrectRestaurantFormat = false;
-                }
-                else if (AdminExists)
-                {
-                    ErrorMessageLabel.Text = "Error Message: An Admin already exists for this restaurant";
-                    ErrorMessageLabel.Visible = true;
-                    AdminRestaurantLabel.Text = "Restaurant: ERROR";
-                    CorrectRestaurantFormat = false;
-                }
-                else
-                {
-                    AdminRestaurantLabel.Text = "Restaurant:";
-                    ErrorMessage = "";
-                    ErrorMessageLabel.Visible = false;
-                    CorrectRestaurantFormat = true;
-                }
+                AdminRestaurantLabel.Text = "Restaurant:";
+                ErrorMessage = "";
+                ErrorMessageLabel.Visible = false;
+                CorrectRestaurantFormat = true;
             }
         }
 
@@ -325,20 +303,107 @@ namespace cs4227.Menu
         {
             if (CorrectEmailFormat && CorrectNameFormat && CorrectUsernameFormat && CorrectPasswordFormat && CorrectRestaurantFormat)
             {
-                //add code to save for an existing admin
+                Boolean UsernameExists = false;
+                Boolean EmailExists = false;
+                Boolean RestaurantExists = false;
+                AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
+                AbstractUser Admin2 = DatabaseHandler.GetUserEmail(AdminEmail);
+                Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(AdminRestaurant);
 
-                //Enter Code to handle saving new Admin
-                if (sysAdmin)
+                if (Admin == null)
                 {
-                    this.Hide();
-                    SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
-                    SAAM.ShowDialog();
+                    UsernameExists = false;
                 }
                 else
                 {
-                    this.Hide();
-                    RestAdminMenu RAM = new RestAdminMenu(RestaurantId);
-                    RAM.ShowDialog();
+                    UsernameExists = true;
+                    ErrorMessage = "Error: Username Already Exists.";
+                }
+                if (Admin2 == null)
+                {
+                    EmailExists = false;
+                }
+                else
+                {
+                    EmailExists = true;
+                    ErrorMessage = "Error: Email Already Exists.";
+                }
+                if (Rest == null)
+                {
+                    RestaurantExists = false;
+                    ErrorMessage = "Restaurant Doesn't Exist";
+                }
+                else
+                {
+                    RestaurantExists = true;
+                }
+
+                if (!UsernameExists && !EmailExists && RestaurantExists)
+                {
+                    //check if admin already exists
+                    AbstractUser RestaurantAdminExists = DatabaseHandler.CheckAdminExists(AdminRestaurant);
+                    AbstractUser IsCurrentAdmin = DatabaseHandler.CheckIfAdmin(AdminUsername);
+                    if (RestaurantAdminExists == null)
+                    {
+                        if (newAdmin)
+                        {
+                            //insert new admin to db
+                            MessageBox.Show("New Admin Created");
+                            this.Hide();
+                            SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                            SAAM.ShowDialog();
+                        }
+                        else
+                        {
+                            //update
+                            MessageBox.Show("Admin Details Updated");
+
+                            if (sysAdmin)
+                            {
+                                this.Hide();
+                                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                                SAAM.ShowDialog();
+                            }
+                            else
+                            {
+                                this.Hide();
+                                RestAdminMenu RAM = new RestAdminMenu(RestaurantId);
+                                RAM.ShowDialog();
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (IsCurrentAdmin != null) //admin of that restaurant
+                        {
+                            //update
+                            MessageBox.Show("Admin Details Updated");
+
+                            if (sysAdmin)
+                            {
+                                this.Hide();
+                                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                                SAAM.ShowDialog();
+                            }
+                            else
+                            {
+                                this.Hide();
+                                RestAdminMenu RAM = new RestAdminMenu(RestaurantId);
+                                RAM.ShowDialog();
+                            }
+                        }
+                        else
+                        {
+                            UsernameExists = true;
+                            MessageBox.Show("Error: An Admin Already exists for that restaurant");
+                        }
+                    }
+                }
+                else
+                {
+                    ErrorMessageLabel.Visible = true;
+                    ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
                 }
             }
             else

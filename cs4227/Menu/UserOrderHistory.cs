@@ -13,6 +13,7 @@ namespace cs4227.Menu
     public partial class UserOrderHistory : Form
     {
         private int UserId = 0;
+        private int RestaurantId = 0;
 
         public UserOrderHistory(int UserId)
         {
@@ -30,7 +31,7 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserOrderMenu UOM = new UserOrderMenu(UserId);
+            UserOrderMenu UOM = new UserOrderMenu(UserId, RestaurantId);
             UOM.ShowDialog();
         }
     }

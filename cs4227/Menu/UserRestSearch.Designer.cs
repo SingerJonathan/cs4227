@@ -28,30 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ListOfRestaurants = new System.Windows.Forms.ListView();
+            this.SearchTextbox = new System.Windows.Forms.TextBox();
             this.EnterRestaurantName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.ErrorMessageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listView1
+            // ListOfRestaurants
             // 
-            this.listView1.Location = new System.Drawing.Point(16, 46);
-            this.listView1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(500, 600);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.ListOfRestaurants.Location = new System.Drawing.Point(16, 46);
+            this.ListOfRestaurants.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.ListOfRestaurants.Name = "ListOfRestaurants";
+            this.ListOfRestaurants.Size = new System.Drawing.Size(500, 600);
+            this.ListOfRestaurants.TabIndex = 0;
+            this.ListOfRestaurants.UseCompatibleStateImageBehavior = false;
+            this.ListOfRestaurants.View = System.Windows.Forms.View.List;
+            this.ListOfRestaurants.SelectedIndexChanged += new System.EventHandler(this.ListOfRestaurants_SelectedIndexChanged);
             // 
-            // textBox1
+            // SearchTextbox
             // 
-            this.textBox1.Location = new System.Drawing.Point(618, 323);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(300, 31);
-            this.textBox1.TabIndex = 1;
+            this.SearchTextbox.Location = new System.Drawing.Point(618, 323);
+            this.SearchTextbox.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.SearchTextbox.Name = "SearchTextbox";
+            this.SearchTextbox.Size = new System.Drawing.Size(300, 31);
+            this.SearchTextbox.TabIndex = 1;
+            this.SearchTextbox.TextChanged += new System.EventHandler(this.SearchTextbox_TextChanged);
             // 
             // EnterRestaurantName
             // 
@@ -62,7 +66,6 @@
             this.EnterRestaurantName.Size = new System.Drawing.Size(264, 25);
             this.EnterRestaurantName.TabIndex = 2;
             this.EnterRestaurantName.Text = "Enter Restaurant Name:";
-            this.EnterRestaurantName.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -73,7 +76,6 @@
             this.label2.Size = new System.Drawing.Size(797, 25);
             this.label2.TabIndex = 3;
             this.label2.Text = "Select a Restaurant from the List below or Enter the name of a Restaurant:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button1
             // 
@@ -99,23 +101,33 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // ErrorMessageLabel
+            // 
+            this.ErrorMessageLabel.AutoSize = true;
+            this.ErrorMessageLabel.Location = new System.Drawing.Point(527, 385);
+            this.ErrorMessageLabel.Name = "ErrorMessageLabel";
+            this.ErrorMessageLabel.Size = new System.Drawing.Size(173, 25);
+            this.ErrorMessageLabel.TabIndex = 6;
+            this.ErrorMessageLabel.Text = "Error Message:";
+            // 
             // UserResterauntSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.EnterRestaurantName);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.SearchTextbox);
+            this.Controls.Add(this.ListOfRestaurants);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "UserResterauntSearch";
             this.Text = "User Menu: Search for Restaurant";
-            this.Load += new System.EventHandler(this.Form8_Load);
+            this.Load += new System.EventHandler(this.UserResterauntSearch_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,11 +135,12 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ListView ListOfRestaurants;
+        private System.Windows.Forms.TextBox SearchTextbox;
         private System.Windows.Forms.Label EnterRestaurantName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label ErrorMessageLabel;
     }
 }

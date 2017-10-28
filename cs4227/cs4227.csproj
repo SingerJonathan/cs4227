@@ -95,11 +95,11 @@
     <Compile Include="Menu\RestAdminViewOrders.Designer.cs">
       <DependentUpon>RestAdminViewOrders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\UserPlaceOrderMenu.cs">
+    <Compile Include="Menu\UserPlacedOrderMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu\UserPlaceOrderMenu.Designer.cs">
-      <DependentUpon>UserPlaceOrderMenu.cs</DependentUpon>
+    <Compile Include="Menu\UserPlacedOrderMenu.Designer.cs">
+      <DependentUpon>UserPlacedOrderMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -341,8 +341,8 @@
     <EmbeddedResource Include="Menu\UserOrderHistory.resx">
       <DependentUpon>UserOrderHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu\UserPlaceOrderMenu.resx">
-      <DependentUpon>UserPlaceOrderMenu.cs</DependentUpon>
+    <EmbeddedResource Include="Menu\UserPlacedOrderMenu.resx">
+      <DependentUpon>UserPlacedOrderMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\UserRestSearch.resx">
       <DependentUpon>UserRestSearch.cs</DependentUpon>

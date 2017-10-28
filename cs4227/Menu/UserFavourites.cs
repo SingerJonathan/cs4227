@@ -13,6 +13,7 @@ namespace cs4227.Menu
     public partial class UserFavouriteOrders : Form
     {
         private int UserId = 0;
+        private int RestaurantId = 0;
 
         public UserFavouriteOrders(int UserId)
         {
@@ -29,7 +30,7 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e) //checkout
         {
             this.Hide();
-            UserCheckout UC = new UserCheckout(UserId);
+            UserCheckout UC = new UserCheckout(UserId, RestaurantId);
             UC.ShowDialog();
         }
 
