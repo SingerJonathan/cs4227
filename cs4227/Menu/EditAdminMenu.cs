@@ -253,7 +253,15 @@ namespace cs4227.Menu
 
         private void AdminRestaurantTextbox_TextChanged(object sender, EventArgs e)
         {
-            AdminRestaurant = AdminRestaurantTextbox.Text.ToString();
+            if (sysAdmin)
+            {
+                AdminRestaurant = AdminRestaurantTextbox.Text.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Error: Can't Change Restaurant");
+                AdminRestaurantTextbox.Text = AdminRestaurant;
+            }
 
             if (AdminRestaurant.Length > 0)
             {

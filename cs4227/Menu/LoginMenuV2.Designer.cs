@@ -33,11 +33,12 @@
             this.DisplayDateLabel = new System.Windows.Forms.Label();
             this.DisplayTimeLabel = new System.Windows.Forms.Label();
             this.LoginButton = new System.Windows.Forms.Button();
-            this.PaaswordTextbox = new System.Windows.Forms.TextBox();
+            this.PasswordTextbox = new System.Windows.Forms.TextBox();
             this.UsernameTextbox = new System.Windows.Forms.TextBox();
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
+            this.SignUpButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // WelcomeMessageLabel
@@ -84,7 +85,7 @@
             // 
             this.LoginButton.BackColor = System.Drawing.Color.Silver;
             this.LoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginButton.Location = new System.Drawing.Point(339, 569);
+            this.LoginButton.Location = new System.Drawing.Point(339, 483);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(300, 80);
             this.LoginButton.TabIndex = 4;
@@ -94,17 +95,17 @@
             // 
             // PaaswordTextbox
             // 
-            this.PaaswordTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PaaswordTextbox.Location = new System.Drawing.Point(339, 424);
-            this.PaaswordTextbox.Name = "PaaswordTextbox";
-            this.PaaswordTextbox.Size = new System.Drawing.Size(300, 31);
-            this.PaaswordTextbox.TabIndex = 5;
-            this.PaaswordTextbox.TextChanged += new System.EventHandler(this.PaaswordTextbox_TextChanged);
+            this.PasswordTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordTextbox.Location = new System.Drawing.Point(339, 345);
+            this.PasswordTextbox.Name = "PasswordTextbox";
+            this.PasswordTextbox.Size = new System.Drawing.Size(300, 31);
+            this.PasswordTextbox.TabIndex = 5;
+            this.PasswordTextbox.TextChanged += new System.EventHandler(this.PasswordTextbox_TextChanged);
             // 
             // UsernameTextbox
             // 
             this.UsernameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTextbox.Location = new System.Drawing.Point(339, 304);
+            this.UsernameTextbox.Location = new System.Drawing.Point(339, 259);
             this.UsernameTextbox.Name = "UsernameTextbox";
             this.UsernameTextbox.Size = new System.Drawing.Size(300, 31);
             this.UsernameTextbox.TabIndex = 6;
@@ -114,7 +115,7 @@
             // 
             this.PasswordLabel.AutoSize = true;
             this.PasswordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLabel.Location = new System.Drawing.Point(334, 370);
+            this.PasswordLabel.Location = new System.Drawing.Point(334, 307);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(121, 25);
             this.PasswordLabel.TabIndex = 7;
@@ -124,7 +125,7 @@
             // 
             this.UsernameLabel.AutoSize = true;
             this.UsernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(334, 251);
+            this.UsernameLabel.Location = new System.Drawing.Point(334, 219);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(125, 25);
             this.UsernameLabel.TabIndex = 8;
@@ -134,11 +135,23 @@
             // 
             this.ErrorMessageLabel.AutoSize = true;
             this.ErrorMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrorMessageLabel.Location = new System.Drawing.Point(101, 505);
+            this.ErrorMessageLabel.Location = new System.Drawing.Point(101, 403);
             this.ErrorMessageLabel.Name = "ErrorMessageLabel";
             this.ErrorMessageLabel.Size = new System.Drawing.Size(173, 25);
             this.ErrorMessageLabel.TabIndex = 9;
             this.ErrorMessageLabel.Text = "Error Message:";
+            // 
+            // SignUpButton
+            // 
+            this.SignUpButton.BackColor = System.Drawing.Color.Silver;
+            this.SignUpButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SignUpButton.Location = new System.Drawing.Point(339, 569);
+            this.SignUpButton.Name = "SignUpButton";
+            this.SignUpButton.Size = new System.Drawing.Size(300, 80);
+            this.SignUpButton.TabIndex = 10;
+            this.SignUpButton.Text = "Sign Up";
+            this.SignUpButton.UseVisualStyleBackColor = false;
+            this.SignUpButton.Click += new System.EventHandler(this.SignUpButton_Click);
             // 
             // LoginMenuV2
             // 
@@ -146,11 +159,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.SignUpButton);
             this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.UsernameTextbox);
-            this.Controls.Add(this.PaaswordTextbox);
+            this.Controls.Add(this.PasswordTextbox);
             this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.DisplayTimeLabel);
             this.Controls.Add(this.DisplayDateLabel);
@@ -171,10 +185,11 @@
         private System.Windows.Forms.Label DisplayDateLabel;
         private System.Windows.Forms.Label DisplayTimeLabel;
         private System.Windows.Forms.Button LoginButton;
-        private System.Windows.Forms.TextBox PaaswordTextbox;
+        private System.Windows.Forms.TextBox PasswordTextbox;
         private System.Windows.Forms.TextBox UsernameTextbox;
         private System.Windows.Forms.Label PasswordLabel;
         private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.Label ErrorMessageLabel;
+        private System.Windows.Forms.Button SignUpButton;
     }
 }

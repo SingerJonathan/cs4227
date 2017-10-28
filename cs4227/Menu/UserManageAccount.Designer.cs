@@ -39,6 +39,7 @@
             this.UserUsernameLabel = new System.Windows.Forms.Label();
             this.UserNameTextbox = new System.Windows.Forms.TextBox();
             this.UserNameLabel = new System.Windows.Forms.Label();
+            this.ErrorMessageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BackButton
@@ -142,12 +143,22 @@
             this.UserNameLabel.TabIndex = 10;
             this.UserNameLabel.Text = "Name:";
             // 
+            // ErrorMessageLabel
+            // 
+            this.ErrorMessageLabel.AutoSize = true;
+            this.ErrorMessageLabel.Location = new System.Drawing.Point(12, 471);
+            this.ErrorMessageLabel.Name = "ErrorMessageLabel";
+            this.ErrorMessageLabel.Size = new System.Drawing.Size(173, 25);
+            this.ErrorMessageLabel.TabIndex = 11;
+            this.ErrorMessageLabel.Text = "Error Message:";
+            // 
             // UserManageAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.UserNameLabel);
             this.Controls.Add(this.UserNameTextbox);
             this.Controls.Add(this.UserUsernameLabel);
@@ -182,5 +193,6 @@
         private System.Windows.Forms.Label UserUsernameLabel;
         private System.Windows.Forms.TextBox UserNameTextbox;
         private System.Windows.Forms.Label UserNameLabel;
+        private System.Windows.Forms.Label ErrorMessageLabel;
     }
 }

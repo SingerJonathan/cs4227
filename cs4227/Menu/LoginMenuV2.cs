@@ -44,9 +44,9 @@ namespace cs4227.Menu
             Username = UsernameTextbox.Text.ToString();
         }
 
-        private void PaaswordTextbox_TextChanged(object sender, EventArgs e)
+        private void PasswordTextbox_TextChanged(object sender, EventArgs e)
         {
-            Password = PaaswordTextbox.Text.ToString();
+            Password = PasswordTextbox.Text.ToString();
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -84,9 +84,17 @@ namespace cs4227.Menu
             }
             else
             {
+                MessageBox.Show("Login Falied");
                 ErrorMessageLabel.Text = "Error Message: Incorrect Username or Password";
                 ErrorMessageLabel.Visible = true;
             }
+        }
+
+        private void SignUpButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            UserManageAccount UMA = new UserManageAccount(0, true);
+            UMA.ShowDialog();
         }
 
         /*public static void Main()
