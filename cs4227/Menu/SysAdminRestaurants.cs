@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cs4227.Restaurant;
+using cs4227.Database;
 
 namespace cs4227.Menu
 {
@@ -100,6 +102,13 @@ namespace cs4227.Menu
             this.Hide();
             SysAdminMenu SAM = new SysAdminMenu();
             SAM.ShowDialog();
+        }
+
+        private void SysAdminRestaurantsMenu_Load(object sender, EventArgs e)
+        {
+            List<Restaurant.Restaurant> restaurants = DatabaseHandler.GetRestaurants();
+            foreach (Restaurant.Restaurant restaurant in restaurants)
+                ListOfRestaurants.Items.Add(new ListViewItem(restaurant.Name));
         }
     }
 }

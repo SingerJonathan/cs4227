@@ -274,7 +274,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Items]";
+            command.CommandText = "SELECT * FROM [dbo].[Restaurants]";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             List<Restaurant.Restaurant> restaurants = new List<Restaurant.Restaurant>();
