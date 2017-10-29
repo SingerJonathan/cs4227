@@ -279,8 +279,8 @@ namespace cs4227.Menu
             }
             else
             {
-                MessageBox.Show("Error: Can't Change Restaurant");
                 AdminRestaurantTextbox.Text = AdminRestaurant;
+                ErrorMessage = "Can't Change Restaurant Name";
             }
 
             if (AdminRestaurant.Length > 0)

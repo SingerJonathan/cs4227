@@ -49,23 +49,23 @@ namespace cs4227.Menu
             this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
 
-            Restaurant.Restaurant restaurant = DatabaseHandler.GetRestaurant(RestaurantId);
-            AbstractUser owner = DatabaseHandler.GetUser(restaurant.OwnerId);
+            Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(RestaurantId);
+            AbstractUser owner = DatabaseHandler.GetUser(Rest.OwnerId);
 
             if (newRestaurant)
-                RestaurantName = restaurantName;
+                RestaurantName = "";
             else
-                RestaurantName = restaurant.Name;
-            RestaurantAddress = restaurant.Address;
+                RestaurantName = Rest.Name;
+            RestaurantAddress = Rest.Address;
             RestaurantOwnerUsername = owner.Username;
             RestaurantOwner = owner.FirstName + " " + owner.LastName;
-            RestaurantPhoneNumber = restaurant.Phone;
-            RestaurantEmail = restaurant.Email;
-            RestaurantOpeningHours = restaurant.OpeningHours;
-            RestaurantClosingHours = restaurant.ClosingHours;
-            RestaurantDaysOpen = restaurant.Days;
-            RestaurantType = restaurant.Type;
-            RestaurantDeliveryCharge = "" + restaurant.Delivery;
+            RestaurantPhoneNumber = Rest.Phone;
+            RestaurantEmail = Rest.Email;
+            RestaurantOpeningHours = Rest.OpeningHours;
+            RestaurantClosingHours = Rest.ClosingHours;
+            RestaurantDaysOpen = Rest.Days;
+            RestaurantType = Rest.Type;
+            RestaurantDeliveryCharge = "" + Rest.Delivery;
 
             this.newRestaurant = newRestaurant;
             this.sysAdmin = sysAdmin;
@@ -104,8 +104,9 @@ namespace cs4227.Menu
             }
             else
             {
-                MessageBox.Show("Error: Can't Change Restaurant Name");
                 RestaurantNameTextbox.Text = RestaurantName;
+                RestaurantNameLabel.Text = "Name: Error";
+                ErrorMessage = "Can't Change Restaurant Name";
             }
 
             if (RestaurantName.Length > 0)
