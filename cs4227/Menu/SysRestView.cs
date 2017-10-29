@@ -13,9 +13,11 @@ namespace cs4227.Menu
     public partial class SysViewRestaraunt : Form
     {
         private int RestaurantId = 0;
+        private int AdminId = 0;
 
-        public SysViewRestaraunt(int RestaurantId)
+        public SysViewRestaraunt(int AdminId, int RestaurantId)
         {
+            this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
             InitializeComponent();
         }
@@ -23,14 +25,14 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysViewOrder SVO = new SysViewOrder(RestaurantId);
+            SysViewOrder SVO = new SysViewOrder(AdminId, RestaurantId);
             SVO.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysViewMenu SVM = new SysViewMenu(RestaurantId);
+            SysViewMenu SVM = new SysViewMenu(AdminId, RestaurantId);
             SVM.ShowDialog();
         }
 
@@ -47,14 +49,14 @@ namespace cs4227.Menu
         private void EditRestaurantButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantId, false, true);
+            EditRestaurantMenu ERM = new EditRestaurantMenu(AdminId, RestaurantId, false, true);
             ERM.ShowDialog();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysAdminRestaurantsMenu SRM = new SysAdminRestaurantsMenu();
+            SysAdminRestaurantsMenu SRM = new SysAdminRestaurantsMenu(AdminId);
             SRM.ShowDialog();
         }
     }

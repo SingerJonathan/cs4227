@@ -16,11 +16,13 @@ namespace cs4227.Menu
     {
         private string AdminUsername = "";
         private int RestaurantId = 0;
+        private int UserId = 0;
         private string ErrorMessage = "";
         private Boolean CorrectNameFormat = false;
 
-        public SysAdminAdminsMenu()
+        public SysAdminAdminsMenu(int UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
         }
 
@@ -29,7 +31,7 @@ namespace cs4227.Menu
             AdminUsername = AdminsList.SelectedItems[0].Text.ToString();
             RestaurantId = Int32.Parse(AdminsList.SelectedItems[0].SubItems[1].Text);
             this.Hide();
-            EditAdminMenu EAM = new EditAdminMenu(AdminUsername, RestaurantId, true, false);
+            EditAdminMenu EAM = new EditAdminMenu(UserId, AdminUsername, RestaurantId, true, false);
             EAM.ShowDialog();
         }
 
@@ -86,7 +88,7 @@ namespace cs4227.Menu
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
                     this.Hide();
-                    EditAdminMenu EAM = new EditAdminMenu(AdminUsername, RestaurantId, true, true);
+                    EditAdminMenu EAM = new EditAdminMenu(UserId, AdminUsername, RestaurantId, true, true);
                     EAM.ShowDialog();
                 }
                 else
@@ -107,7 +109,7 @@ namespace cs4227.Menu
         private void BackToMainMenuButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysAdminMenu SAM = new SysAdminMenu();
+            SysAdminMenu SAM = new SysAdminMenu(UserId);
             SAM.ShowDialog();
         }
 

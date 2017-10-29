@@ -28,22 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.OrderHistoryLabel = new System.Windows.Forms.Label();
+            this.Orders = new System.Windows.Forms.ListView();
+            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Restaurant = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 25;
-            this.listBox1.Location = new System.Drawing.Point(16, 67);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(500, 579);
-            this.listBox1.TabIndex = 0;
             // 
             // button1
             // 
@@ -91,17 +84,45 @@
             this.OrderHistoryLabel.TabIndex = 4;
             this.OrderHistoryLabel.Text = "Select an Order from Your History";
             // 
+            // Orders
+            // 
+            this.Orders.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Id,
+            this.Restaurant,
+            this.Cost});
+            this.Orders.Location = new System.Drawing.Point(12, 43);
+            this.Orders.Name = "Orders";
+            this.Orders.Size = new System.Drawing.Size(609, 606);
+            this.Orders.TabIndex = 5;
+            this.Orders.UseCompatibleStateImageBehavior = false;
+            this.Orders.View = System.Windows.Forms.View.Details;
+            // 
+            // Id
+            // 
+            this.Id.Text = "Id";
+            this.Id.Width = 80;
+            // 
+            // Restaurant
+            // 
+            this.Restaurant.Text = "Restaurant";
+            this.Restaurant.Width = 300;
+            // 
+            // Cost
+            // 
+            this.Cost.Text = "Cost";
+            this.Cost.Width = 100;
+            // 
             // UserOrderHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.Orders);
             this.Controls.Add(this.OrderHistoryLabel);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "UserOrderHistory";
@@ -112,11 +133,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label OrderHistoryLabel;
+        private System.Windows.Forms.ListView Orders;
+        private System.Windows.Forms.ColumnHeader Id;
+        private System.Windows.Forms.ColumnHeader Restaurant;
+        private System.Windows.Forms.ColumnHeader Cost;
     }
 }

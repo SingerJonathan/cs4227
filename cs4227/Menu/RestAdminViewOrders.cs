@@ -12,6 +12,7 @@ namespace cs4227.Menu
 {
     public partial class RestAdminViewOrders : Form
     {
+        private int AdminId = 0;
         private int RestaurantId = 0;
         private int OrderNo = 0;
         private string Username = "";
@@ -31,8 +32,9 @@ namespace cs4227.Menu
         
 
 
-        public RestAdminViewOrders(int RestaurantId, int OrderNo)
+        public RestAdminViewOrders(int AdminId, int RestaurantId, int OrderNo)
         {
+            this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
             this.OrderNo = OrderNo;
             InitializeComponent();
@@ -65,7 +67,7 @@ namespace cs4227.Menu
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            RestAdminManageOrders RAMO = new RestAdminManageOrders(RestaurantId);
+            RestAdminManageOrders RAMO = new RestAdminManageOrders(AdminId, RestaurantId);
             RAMO.ShowDialog();
         }
     }

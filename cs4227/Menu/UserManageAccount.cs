@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Mail;
+using cs4227.Database;
+using cs4227.User;
 
 namespace cs4227.Menu
 {
@@ -30,6 +32,30 @@ namespace cs4227.Menu
             this.newAccount = newAccount;
             this.UserId = UserId;
             InitializeComponent();
+        }
+
+        private void UserManageAccount_Load(object sender, EventArgs e)
+        {
+            if (!newAccount)
+            {
+                AbstractUser User = DatabaseHandler.GetUser(UserId);
+                Email = User.Email;
+                FullName = User.FirstName + " " + User.LastName;
+                Password = User.Password;
+                Username = User.Username;
+                UserEmailTextbox.Text = Email;
+                UserNameTextbox.Text = FullName;
+                UserPasswordTextbox.Text = Password;
+                UserUsernameTextbox.Text = Username;
+            }
+            else
+            {
+                DeleteAccountButton.Enabled = false;
+                DeleteAccountButton.Hide();
+                this.Text = "User Menu: Create Account";
+                SaveChangesButton.Text = "Create Account";
+                BackButton.Text = "Cancel";
+            }
         }
 
         private void UserPasswordTextbox_TextChanged(object sender, EventArgs e)
@@ -268,25 +294,6 @@ namespace cs4227.Menu
                 this.Hide();
                 UserMainMenu UMM = new UserMainMenu(UserId);
                 UMM.ShowDialog();
-            }
-        }
-
-        private void UserManageAccount_Load(object sender, EventArgs e)
-        {
-            if (!newAccount)
-            {
-                UserEmailTextbox.Text = Email;
-                UserNameTextbox.Text = FullName;
-                UserPasswordTextbox.Text = Password;
-                UserUsernameTextbox.Text = Username;
-            }
-            else
-            {
-                DeleteAccountButton.Enabled = false;
-                DeleteAccountButton.Hide();
-                this.Text = "User Menu: Create Account";
-                SaveChangesButton.Text = "Create Account";
-                BackButton.Text = "Cancel";
             }
         }
     }

@@ -15,12 +15,14 @@ namespace cs4227.Menu
     public partial class SysAdminRestaurantsMenu : Form
     {
         private int RestaurantId = 0;
+        private int UserId = 0;
         private string RestaurantName = "";
         private string ErrorMessage = "";
         private Boolean CorrectNameFormat = false;
 
-        public SysAdminRestaurantsMenu()
+        public SysAdminRestaurantsMenu(int UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
         }
 
@@ -29,7 +31,7 @@ namespace cs4227.Menu
             RestaurantName = ListOfRestaurants.SelectedItems[0].Text.ToString();
             RestaurantId = Int32.Parse(ListOfRestaurants.SelectedItems[0].SubItems[1].Text);
             this.Hide();
-            SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantId);
+            SysViewRestaraunt SVR = new SysViewRestaraunt(UserId, RestaurantId);
             SVR.ShowDialog();
 
         }
@@ -93,7 +95,7 @@ namespace cs4227.Menu
                 //add code to add correct Restaurantid ---list.length()+1 etc...
                 
                 this.Hide();
-                EditRestaurantMenu ERM = new EditRestaurantMenu(RestaurantId, true, true, RestaurantNameTextbox.Text);
+                EditRestaurantMenu ERM = new EditRestaurantMenu(UserId, RestaurantId, true, true, RestaurantNameTextbox.Text);
                 ERM.ShowDialog();
             }
         }
@@ -101,7 +103,7 @@ namespace cs4227.Menu
         private void BackToMainMenuButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysAdminMenu SAM = new SysAdminMenu();
+            SysAdminMenu SAM = new SysAdminMenu(UserId);
             SAM.ShowDialog();
         }
 

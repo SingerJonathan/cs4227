@@ -250,11 +250,36 @@ namespace cs4227.Database
             return user;
         }
 
+        public static AbstractUser GetAdmin(int RestaurantId)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Restaurants].[Id] = [dbo].[Users].[RestaurantAdmin] WHERE [dbo].[Restaurants].[Id] = " + RestaurantId;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            AbstractUser user = new User.User();
+            if (reader.Read())
+            {
+                string userType = "User";
+                if (reader.GetBoolean(7))
+                    userType = "SysAdmin";
+                else if (!reader.IsDBNull(6) && reader.GetInt32(6) > 0)
+                    userType = "RestAdmin";
+                int restaurantAdmin = 0;
+                if (!reader.IsDBNull(6))
+                    restaurantAdmin = reader.GetInt32(6);
+                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), userType, restaurantAdmin, reader.GetBoolean(7), reader.GetBoolean(8));
+            }
+            connection.Close();
+            return user;
+        }
+
         public static AbstractUser GetUser(string username)
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [Username] = " + username;
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [dbo].[Users].[Username] = " + username;
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -304,7 +329,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[Id] = [dbo].[Restaurants].[Id] WHERE [dbo].[Restaurants].[Name] = " + restaurantname;
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantAdmin] = [dbo].[Restaurants].[Id] WHERE [dbo].[Restaurants].[Name] = " + restaurantname;
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -329,7 +354,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[Id] = [dbo].[Restaurants].[Id] WHERE [dbo].[Users].[Username] = " + username;
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantAdmin] = [dbo].[Restaurants].[Id] WHERE [dbo].[Users].[Username] = " + username;
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();

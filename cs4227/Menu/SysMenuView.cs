@@ -15,9 +15,11 @@ namespace cs4227.Menu
     public partial class SysViewMenu : Form
     {
         private int RestaurantId = 0;
+        private int AdminId = 0;
 
-        public SysViewMenu(int RestaurantId)
+        public SysViewMenu(int AdminId, int RestaurantId)
         {
+            this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
             InitializeComponent();
         }
@@ -25,7 +27,7 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantId);
+            SysViewRestaraunt SVR = new SysViewRestaraunt(AdminId, RestaurantId);
             SVR.ShowDialog();
         }
 

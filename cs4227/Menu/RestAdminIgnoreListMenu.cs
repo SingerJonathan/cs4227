@@ -13,9 +13,11 @@ namespace cs4227.Menu
     public partial class RestAdminIgnoreListMenu : Form
     {
         private int RestaurantId = 0;
+        private int AdminId = 0;
 
-        public RestAdminIgnoreListMenu(int RestaurantId)
+        public RestAdminIgnoreListMenu(int AdminId, int RestaurantId)
         {
+            this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
             InitializeComponent();
         }
@@ -38,7 +40,7 @@ namespace cs4227.Menu
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            RestAdminMenu RAM = new RestAdminMenu(RestaurantId);
+            RestAdminMenu RAM = new RestAdminMenu(AdminId, RestaurantId);
             RAM.ShowDialog();
         }
     }

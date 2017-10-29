@@ -17,6 +17,7 @@ namespace cs4227.Menu
     public partial class EditAdminMenu : Form
     {
         private int RestaurantId = 0;
+        private int AdminId = 0;
         private string AdminEmail = "";
         private string AdminName = "";
         private string AdminUsername = "";
@@ -31,8 +32,9 @@ namespace cs4227.Menu
         private Boolean newAdmin = false;
         private Boolean sysAdmin = false;
 
-        public EditAdminMenu(string AdminUsername, int RestaurantId, Boolean sysAdmin, Boolean newAdmin)
+        public EditAdminMenu(int AdminId, string AdminUsername, int RestaurantId, Boolean sysAdmin, Boolean newAdmin)
         {
+            this.AdminId = AdminId;
             this.AdminUsername = AdminUsername;
             this.RestaurantId = RestaurantId; 
             this.sysAdmin = sysAdmin;
@@ -60,7 +62,23 @@ namespace cs4227.Menu
 
             if (!newAdmin)
             {
-
+                AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
+                Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(Admin.RestaurantAdmin);
+                AdminEmail = Admin.Email;
+                AdminName = Admin.FirstName + " " + Admin.LastName;
+                AdminPassword = Admin.Password;
+                if (Rest == null)
+                {
+                    AdminRestaurant = "";
+                }
+                else
+                {
+                    AdminRestaurant = Rest.Name;
+                }
+                AdminEmailTextbox.Text = AdminEmail;
+                AdminNameTextbox.Text = AdminName;
+                AdminPasswordTextbox.Text = AdminPassword;
+                AdminRestaurantTextbox.Text = AdminRestaurant;
             }
         }
 
@@ -350,7 +368,7 @@ namespace cs4227.Menu
                             //insert new admin to db
                             MessageBox.Show("New Admin Created");
                             this.Hide();
-                            SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                            SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(AdminId);
                             SAAM.ShowDialog();
                         }
                         else
@@ -361,13 +379,13 @@ namespace cs4227.Menu
                             if (sysAdmin)
                             {
                                 this.Hide();
-                                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(AdminId);
                                 SAAM.ShowDialog();
                             }
                             else
                             {
                                 this.Hide();
-                                RestAdminMenu RAM = new RestAdminMenu(RestaurantId);
+                                RestAdminMenu RAM = new RestAdminMenu(AdminId, RestaurantId);
                                 RAM.ShowDialog();
                             }
                         }
@@ -383,13 +401,13 @@ namespace cs4227.Menu
                             if (sysAdmin)
                             {
                                 this.Hide();
-                                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(AdminId);
                                 SAAM.ShowDialog();
                             }
                             else
                             {
                                 this.Hide();
-                                RestAdminMenu RAM = new RestAdminMenu(RestaurantId);
+                                RestAdminMenu RAM = new RestAdminMenu(AdminId, RestaurantId);
                                 RAM.ShowDialog();
                             }
                         }
@@ -418,13 +436,13 @@ namespace cs4227.Menu
             if (sysAdmin)
             {
                 this.Hide();
-                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(AdminId);
                 SAAM.ShowDialog();
             }
             else
             {
                 this.Hide();
-                RestAdminMenu RAM = new RestAdminMenu(RestaurantId);
+                RestAdminMenu RAM = new RestAdminMenu(AdminId, RestaurantId);
                 RAM.ShowDialog();
             }
         }
@@ -435,7 +453,7 @@ namespace cs4227.Menu
             {
                 //add code to delete admin
                 this.Hide();
-                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(AdminId);
                 SAAM.ShowDialog();
             }
         }

@@ -16,9 +16,11 @@ namespace cs4227.Menu
     public partial class SysViewOrder : Form
     {
         private int RestaurantId = 0;
+        private int AdminId = 0;
 
-        public SysViewOrder(int RestaurantId)
+        public SysViewOrder(int AdminId, int RestaurantId)
         {
+            this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
             InitializeComponent();
         }
@@ -26,7 +28,7 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysViewRestaraunt SVR = new SysViewRestaraunt(RestaurantId);
+            SysViewRestaraunt SVR = new SysViewRestaraunt(AdminId, RestaurantId);
             SVR.ShowDialog();
         }
 

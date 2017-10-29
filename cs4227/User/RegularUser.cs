@@ -1,5 +1,6 @@
 ﻿using System;
 using cs4227.Menu;
+using cs4227.Database;
 
 namespace cs4227.User
 {
@@ -10,8 +11,8 @@ namespace cs4227.User
         public void login(string username, string password)
         {
             Console.WriteLine("User " + username + " logged in.");
-            //add code to get userid
-
+            AbstractUser User = DatabaseHandler.GetUser(username);
+            UserId = User.Id;
             UserMainMenu UM = new UserMainMenu(UserId);
             UM.ShowDialog();
         }

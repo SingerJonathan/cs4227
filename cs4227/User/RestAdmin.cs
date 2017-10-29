@@ -1,17 +1,24 @@
 ﻿using System;
 using cs4227.Menu;
+using cs4227.Database;
+using cs4227.Restaurant;
+using cs4227.User;
 
 namespace cs4227.User
 {
     public class RestAdmin : LoginAPI
     {
         private int RestaurantId = 0;
+        private int UserId = 0;
 
         public void login(string username, string password)
         {
             Console.WriteLine("Restaurant Admin " + username + " logged in.");
-            //add code to get restaurantid
-            RestAdminMenu RM = new RestAdminMenu(RestaurantId);
+            AbstractUser RestAdmin = DatabaseHandler.GetUser(username);
+            RestaurantId = RestAdmin.RestaurantAdmin;
+            Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(RestaurantId);
+
+            RestAdminMenu RM = new RestAdminMenu(UserId, RestaurantId);
             RM.ShowDialog();
         }
     }

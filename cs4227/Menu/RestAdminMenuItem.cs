@@ -13,14 +13,16 @@ namespace cs4227.Menu
     public partial class RestAdminMenuItem : Form
     {
         private int RestaurantId = 0;
+        private int AdminId = 0;
         private string MenuItemName = "";
         private string Price = "0.0";
         private string ErrorMessage = "";
         private Boolean CorrectNameFormat = false;
         private Boolean CorrectPriceFormat = false;
 
-        public RestAdminMenuItem(int RestaurantId)
+        public RestAdminMenuItem(int AdminId, int RestaurantId)
         {
+            this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
             InitializeComponent();
         }
@@ -123,7 +125,7 @@ namespace cs4227.Menu
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            RestAdminMenu RAM = new RestAdminMenu(RestaurantId);
+            RestAdminMenu RAM = new RestAdminMenu(AdminId, RestaurantId);
             RAM.ShowDialog();
         }
 

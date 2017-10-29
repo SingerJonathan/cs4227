@@ -13,9 +13,11 @@ namespace cs4227.Menu
     public partial class SysAdminMenu : Form
     {
         Timer t = new Timer();
+        private int UserId = 0;
 
-        public SysAdminMenu()
+        public SysAdminMenu(int UserId)
         {
+            this.UserId = UserId;
             InitializeComponent();
         }
 
@@ -39,14 +41,14 @@ namespace cs4227.Menu
         private void RestaurantsButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysAdminRestaurantsMenu SRM = new SysAdminRestaurantsMenu();
+            SysAdminRestaurantsMenu SRM = new SysAdminRestaurantsMenu(UserId);
             SRM.ShowDialog();
         }
 
         private void AdminsButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu();
+            SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(UserId);
             SAAM.ShowDialog();
         }
 
