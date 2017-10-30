@@ -130,6 +130,10 @@ namespace cs4227.Menu
                     FoodItem NewItem = new FoodItem(MenuItemId,MenuItemName,NewPrice,RestaurantId);
                     DatabaseHandler.InsertFoodItem(NewItem);
                     MessageBox.Show("Item:" + MenuItemName + " Added");
+                    this.Hide();
+                    RestAdminViewMenu RAVM = new RestAdminViewMenu(AdminId,RestaurantId);
+                    RAVM.ShowDialog();
+
                 }
                 else
                 {
@@ -175,6 +179,9 @@ namespace cs4227.Menu
             FoodItem ItemToDelete = new FoodItem(MenuItemId,MenuItemName,NewPrice,RestaurantId,true);
             DatabaseHandler.UpdateFoodItem(ItemToDelete);
             MessageBox.Show("Item: " + MenuItemName + " Removed");
+            this.Hide();
+            RestAdminViewMenu RAVM = new RestAdminViewMenu(AdminId, RestaurantId);
+            RAVM.ShowDialog();
         }
 
         private void EditItemButton_Click(object sender, EventArgs e)
@@ -183,6 +190,9 @@ namespace cs4227.Menu
             FoodItem NewItem = new FoodItem(MenuItemId, MenuItemName,NewPrice,RestaurantId);
             DatabaseHandler.UpdateFoodItem(NewItem);
             MessageBox.Show("Item: " + MenuItemName + " edited");
+            this.Hide();
+            RestAdminViewMenu RAVM = new RestAdminViewMenu(AdminId, RestaurantId);
+            RAVM.ShowDialog();
         }
     }
 }
