@@ -56,8 +56,8 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = String.Format("INSERT INTO [dbo].[Restaurants] VALUES ({0}, '{1}', '{2}', {3}, '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', {10}, {11})",
-                restaurant.Id, restaurant.Name, restaurant.Address, restaurant.OwnerId, restaurant.Phone, restaurant.Email, restaurant.OpeningHours, restaurant.ClosingHours, restaurant.Days, restaurant.Type, restaurant.Delivery, restaurant.Deleted);
+            command.CommandText = String.Format("INSERT INTO [dbo].[Restaurants] VALUES ('{0}', '{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', {9}, {10})",
+                restaurant.Name, restaurant.Address, restaurant.OwnerId, restaurant.Phone, restaurant.Email, restaurant.OpeningHours, restaurant.ClosingHours, restaurant.Days, restaurant.Type, restaurant.Delivery, (restaurant.Deleted?"1":"0"));
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -68,7 +68,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO [dbo].[Items] VALUES (" + item.Id + ", '" + item.Name + "', " + item.Cost + ", " + item.RestaurantId + ", " + item.Deleted;
+            command.CommandText = "INSERT INTO [dbo].[Items] VALUES ('" + item.Name + "', " + item.Cost + ", " + item.RestaurantId + ", " + (item.Deleted?"1":"0");
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -82,8 +82,8 @@ namespace cs4227.Database
             string restaurantAdmin = "NULL";
             if (user.RestaurantAdmin != 0)
                 restaurantAdmin = ""+user.RestaurantAdmin;
-            command.CommandText = "INSERT INTO [dbo].[Users] VALUES (" + user.Id + ", '" + user.Username + "', '" + user.Password + "', '" + user.FirstName +
-                "', '" + user.LastName + "', '" + user.Email + "', " + restaurantAdmin + ", " + user.SystemAdmin + ", " + user.Deleted;
+            command.CommandText = "INSERT INTO [dbo].[Users] VALUES ('" + user.Username + "', '" + user.Password + "', '" + user.FirstName +
+                "', '" + user.LastName + "', '" + user.Email + "', " + restaurantAdmin + ", " + user.SystemAdmin + ", " + (user.Deleted?"1":"0");
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -116,8 +116,11 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
+            string restaurantName = restaurant.Name;
+            if (restaurantName.Contains("'"))
+                restaurantName = restaurantName.Replace("'", "''");
             command.CommandText = String.Format("UPDATE [dbo].[Restaurants] SET [Name] = '{1}', [Address] = '{2}', [OwnerId] = {3}, [Phone] = '{4}', [Email] = '{5}', [OpeningHours] = '{6}', [ClosingHours] = '{7}', [Days] = '{8}', [Type] = '{9}', [Delivery] = {10}, [Deleted] = {11} WHERE [Id] = {0}",
-                restaurant.Id, restaurant.Name, restaurant.Address, restaurant.OwnerId, restaurant.Phone, restaurant.Email, restaurant.OpeningHours, restaurant.ClosingHours, restaurant.Days, restaurant.Type, restaurant.Delivery, restaurant.Deleted);
+                restaurant.Id, restaurantName, restaurant.Address, restaurant.OwnerId, restaurant.Phone, restaurant.Email, restaurant.OpeningHours, restaurant.ClosingHours, restaurant.Days, restaurant.Type, restaurant.Delivery, (restaurant.Deleted?"1":"0"));
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -129,7 +132,7 @@ namespace cs4227.Database
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
             command.CommandText = "UPDATE [dbo].[Items] SET [Name] = '" + item.Name + "', [Cost] = " + item.Cost +
-                ", [Restaurant] = " + item.RestaurantId + ", [Deleted] = " + item.Deleted + " WHERE [Id] = " + item.Id;
+                ", [Restaurant] = " + item.RestaurantId + ", [Deleted] = " + (item.Deleted?"1":"0") + " WHERE [Id] = " + item.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -145,7 +148,7 @@ namespace cs4227.Database
                 restaurantAdmin = "" + user.RestaurantAdmin;
             command.CommandText = "UPDATE [dbo].[Users] SET [Username] = '" + user.Username + "', [Password] = '" + user.Password + "', [FirstName] = '" + user.FirstName +
                 "', [LastName] = '" + user.LastName + "', [Email] = '" + user.Email + "', [RestaurantAdmin] = " +restaurantAdmin +
-                ", [SystemAdmin] = " + user.SystemAdmin + ", [Deleted] = " + user.Deleted + " WHERE [Id] = " + user.Id;
+                ", [SystemAdmin] = " + user.SystemAdmin + ", [Deleted] = " + (user.Deleted?"1":"0") + " WHERE [Id] = " + user.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
