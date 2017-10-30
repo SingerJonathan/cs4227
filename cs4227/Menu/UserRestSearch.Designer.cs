@@ -39,6 +39,7 @@
             // 
             // ListOfRestaurants
             // 
+            this.ListOfRestaurants.HoverSelection = true;
             this.ListOfRestaurants.Location = new System.Drawing.Point(16, 46);
             this.ListOfRestaurants.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.ListOfRestaurants.Name = "ListOfRestaurants";

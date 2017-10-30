@@ -41,6 +41,7 @@
             // 
             this.AdminsList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AdminsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdminsList.HoverSelection = true;
             this.AdminsList.Location = new System.Drawing.Point(13, 54);
             this.AdminsList.MultiSelect = false;
             this.AdminsList.Name = "AdminsList";
@@ -86,13 +87,13 @@
             this.BackToMainMenuButton.UseVisualStyleBackColor = false;
             this.BackToMainMenuButton.Click += new System.EventHandler(this.BackToMainMenuButton_Click);
             // 
-            // AdminEmailLabel
+            // AdminUsernameLabel
             // 
             this.AdminUsernameLabel.AutoSize = true;
             this.AdminUsernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AdminUsernameLabel.Location = new System.Drawing.Point(565, 352);
             this.AdminUsernameLabel.Name = "AdminUsernameLabel";
-            this.AdminUsernameLabel.Size = new System.Drawing.Size(140, 25);
+            this.AdminUsernameLabel.Size = new System.Drawing.Size(188, 25);
             this.AdminUsernameLabel.TabIndex = 14;
             this.AdminUsernameLabel.Text = "Enter Username:";
             // 

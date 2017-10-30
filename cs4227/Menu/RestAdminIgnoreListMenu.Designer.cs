@@ -42,6 +42,8 @@
             // 
             // IgnoreList
             // 
+            this.IgnoreList.FullRowSelect = true;
+            this.IgnoreList.HoverSelection = true;
             this.IgnoreList.Location = new System.Drawing.Point(12, 49);
             this.IgnoreList.Name = "IgnoreList";
             this.IgnoreList.Size = new System.Drawing.Size(500, 600);

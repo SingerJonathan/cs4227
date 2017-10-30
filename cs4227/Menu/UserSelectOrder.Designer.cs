@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ColumnHeader MenuItemID;
             this.label1 = new System.Windows.Forms.Label();
             this.YourOrderLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -36,6 +37,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.RestaurantMenu = new System.Windows.Forms.ListView();
             this.YourOrder = new System.Windows.Forms.ListView();
+            this.MenuItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MenuItemPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OrderItemId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OrderItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OrderItemPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            MenuItemID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label1
@@ -104,25 +111,70 @@
             // 
             // RestaurantMenu
             // 
+            this.RestaurantMenu.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            MenuItemID,
+            this.MenuItemName,
+            this.MenuItemPrice});
             this.RestaurantMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RestaurantMenu.FullRowSelect = true;
+            this.RestaurantMenu.HoverSelection = true;
             this.RestaurantMenu.Location = new System.Drawing.Point(12, 38);
             this.RestaurantMenu.MultiSelect = false;
             this.RestaurantMenu.Name = "RestaurantMenu";
             this.RestaurantMenu.Size = new System.Drawing.Size(454, 522);
+            this.RestaurantMenu.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.RestaurantMenu.TabIndex = 8;
             this.RestaurantMenu.UseCompatibleStateImageBehavior = false;
+            this.RestaurantMenu.View = System.Windows.Forms.View.Details;
             this.RestaurantMenu.SelectedIndexChanged += new System.EventHandler(this.RestaurantMenu_SelectedIndexChanged);
             // 
             // YourOrder
             // 
+            this.YourOrder.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.OrderItemId,
+            this.OrderItemName,
+            this.OrderItemPrice});
             this.YourOrder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.YourOrder.FullRowSelect = true;
+            this.YourOrder.HoverSelection = true;
             this.YourOrder.Location = new System.Drawing.Point(518, 38);
             this.YourOrder.MultiSelect = false;
             this.YourOrder.Name = "YourOrder";
             this.YourOrder.Size = new System.Drawing.Size(454, 522);
             this.YourOrder.TabIndex = 9;
             this.YourOrder.UseCompatibleStateImageBehavior = false;
+            this.YourOrder.View = System.Windows.Forms.View.Details;
             this.YourOrder.SelectedIndexChanged += new System.EventHandler(this.YourOrder_SelectedIndexChanged);
+            // 
+            // MenuItemID
+            // 
+            MenuItemID.Text = "Id";
+            MenuItemID.Width = 0;
+            // 
+            // MenuItemName
+            // 
+            this.MenuItemName.Text = "Name";
+            this.MenuItemName.Width = 350;
+            // 
+            // MenuItemPrice
+            // 
+            this.MenuItemPrice.Text = "Price";
+            this.MenuItemPrice.Width = 100;
+            // 
+            // OrderItemId
+            // 
+            this.OrderItemId.Text = "Id";
+            this.OrderItemId.Width = 0;
+            // 
+            // OrderItemName
+            // 
+            this.OrderItemName.Text = "Name";
+            this.OrderItemName.Width = 350;
+            // 
+            // OrderItemPrice
+            // 
+            this.OrderItemPrice.Text = "Price";
+            this.OrderItemPrice.Width = 100;
             // 
             // UserOrderMenu
             // 
@@ -157,5 +209,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListView RestaurantMenu;
         private System.Windows.Forms.ListView YourOrder;
+        private System.Windows.Forms.ColumnHeader MenuItemName;
+        private System.Windows.Forms.ColumnHeader MenuItemPrice;
+        private System.Windows.Forms.ColumnHeader OrderItemId;
+        private System.Windows.Forms.ColumnHeader OrderItemName;
+        private System.Windows.Forms.ColumnHeader OrderItemPrice;
     }
 }

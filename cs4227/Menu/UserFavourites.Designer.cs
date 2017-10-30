@@ -84,6 +84,7 @@
             // 
             // FavouriteOrders
             // 
+            this.FavouriteOrders.HoverSelection = true;
             this.FavouriteOrders.Location = new System.Drawing.Point(16, 37);
             this.FavouriteOrders.Name = "FavouriteOrders";
             this.FavouriteOrders.Size = new System.Drawing.Size(500, 609);

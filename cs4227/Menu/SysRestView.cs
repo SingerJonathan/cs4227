@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cs4227.Database;
+using cs4227.Restaurant;
 
 namespace cs4227.Menu
 {
@@ -36,14 +38,10 @@ namespace cs4227.Menu
             SVM.ShowDialog();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(RestaurantId);
+            RestaurantNameLabel.Text = "Restaurant: " + Rest.Name;
         }
 
         private void EditRestaurantButton_Click(object sender, EventArgs e)

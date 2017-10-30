@@ -95,6 +95,7 @@
             this.Price,
             this.Cancelled});
             this.CurrentOrders.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CurrentOrders.HoverSelection = true;
             this.CurrentOrders.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
             this.CurrentOrders.Location = new System.Drawing.Point(13, 45);

@@ -116,6 +116,7 @@
             this.Cost});
             this.RestaurantMenuList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RestaurantMenuList.FullRowSelect = true;
+            this.RestaurantMenuList.HoverSelection = true;
             this.RestaurantMenuList.Location = new System.Drawing.Point(12, 49);
             this.RestaurantMenuList.Name = "RestaurantMenuList";
             this.RestaurantMenuList.Size = new System.Drawing.Size(526, 600);

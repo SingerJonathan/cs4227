@@ -30,9 +30,10 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.RestaurantViewingMenuLabel = new System.Windows.Forms.Label();
             this.EditRestaurantButton = new System.Windows.Forms.Button();
             this.BackButton = new System.Windows.Forms.Button();
+            this.RestaurantNameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -51,7 +52,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.Silver;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(95, 342);
+            this.button2.Location = new System.Drawing.Point(95, 393);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(591, 47);
             this.button2.TabIndex = 1;
@@ -59,22 +60,21 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label1
+            // RestaurantViewingMenuLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(175, 65);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(439, 42);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Restaraunt viewing menu";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.RestaurantViewingMenuLabel.AutoSize = true;
+            this.RestaurantViewingMenuLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RestaurantViewingMenuLabel.Location = new System.Drawing.Point(96, 9);
+            this.RestaurantViewingMenuLabel.Name = "RestaurantViewingMenuLabel";
+            this.RestaurantViewingMenuLabel.Size = new System.Drawing.Size(598, 55);
+            this.RestaurantViewingMenuLabel.TabIndex = 3;
+            this.RestaurantViewingMenuLabel.Text = "Restaraunt Viewing Menu";
             // 
             // EditRestaurantButton
             // 
             this.EditRestaurantButton.BackColor = System.Drawing.Color.Silver;
             this.EditRestaurantButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditRestaurantButton.Location = new System.Drawing.Point(95, 263);
+            this.EditRestaurantButton.Location = new System.Drawing.Point(95, 291);
             this.EditRestaurantButton.Name = "EditRestaurantButton";
             this.EditRestaurantButton.Size = new System.Drawing.Size(591, 47);
             this.EditRestaurantButton.TabIndex = 4;
@@ -94,15 +94,26 @@
             this.BackButton.UseVisualStyleBackColor = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
+            // RestaurantNameLabel
+            // 
+            this.RestaurantNameLabel.AutoSize = true;
+            this.RestaurantNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RestaurantNameLabel.Location = new System.Drawing.Point(12, 100);
+            this.RestaurantNameLabel.Name = "RestaurantNameLabel";
+            this.RestaurantNameLabel.Size = new System.Drawing.Size(134, 25);
+            this.RestaurantNameLabel.TabIndex = 6;
+            this.RestaurantNameLabel.Text = "Restaurant:";
+            // 
             // SysViewRestaraunt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(774, 575);
+            this.Controls.Add(this.RestaurantNameLabel);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.EditRestaurantButton);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.RestaurantViewingMenuLabel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "SysViewRestaraunt";
@@ -117,8 +128,9 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label RestaurantViewingMenuLabel;
         private System.Windows.Forms.Button EditRestaurantButton;
         private System.Windows.Forms.Button BackButton;
+        private System.Windows.Forms.Label RestaurantNameLabel;
     }
 }

@@ -90,6 +90,7 @@
             this.Id,
             this.Restaurant,
             this.Cost});
+            this.Orders.HoverSelection = true;
             this.Orders.Location = new System.Drawing.Point(12, 43);
             this.Orders.Name = "Orders";
             this.Orders.Size = new System.Drawing.Size(609, 606);

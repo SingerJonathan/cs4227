@@ -45,8 +45,6 @@
             " ",
             " "}, -1);
             this.Order = new System.Windows.Forms.ListView();
-            this.BackButton = new System.Windows.Forms.Button();
-            this.OrderNumberLabel = new System.Windows.Forms.Label();
             this.OrderId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.User = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Item0 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,6 +60,8 @@
             this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Address = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Cancelled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BackButton = new System.Windows.Forms.Button();
+            this.OrderNumberLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Order
@@ -91,27 +91,6 @@
             this.Order.TabIndex = 0;
             this.Order.UseCompatibleStateImageBehavior = false;
             this.Order.View = System.Windows.Forms.View.Details;
-            // 
-            // BackButton
-            // 
-            this.BackButton.BackColor = System.Drawing.Color.Silver;
-            this.BackButton.Location = new System.Drawing.Point(604, 569);
-            this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(300, 80);
-            this.BackButton.TabIndex = 1;
-            this.BackButton.Text = "Back";
-            this.BackButton.UseVisualStyleBackColor = false;
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
-            // 
-            // OrderNumberLabel
-            // 
-            this.OrderNumberLabel.AutoSize = true;
-            this.OrderNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderNumberLabel.Location = new System.Drawing.Point(278, 469);
-            this.OrderNumberLabel.Name = "OrderNumberLabel";
-            this.OrderNumberLabel.Size = new System.Drawing.Size(339, 42);
-            this.OrderNumberLabel.TabIndex = 2;
-            this.OrderNumberLabel.Text = "Viewing Order No:";
             // 
             // OrderId
             // 
@@ -187,6 +166,27 @@
             // 
             this.Cancelled.Text = "Cancelled";
             this.Cancelled.Width = 200;
+            // 
+            // BackButton
+            // 
+            this.BackButton.BackColor = System.Drawing.Color.Silver;
+            this.BackButton.Location = new System.Drawing.Point(370, 569);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(300, 80);
+            this.BackButton.TabIndex = 1;
+            this.BackButton.Text = "Back";
+            this.BackButton.UseVisualStyleBackColor = false;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // OrderNumberLabel
+            // 
+            this.OrderNumberLabel.AutoSize = true;
+            this.OrderNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderNumberLabel.Location = new System.Drawing.Point(278, 469);
+            this.OrderNumberLabel.Name = "OrderNumberLabel";
+            this.OrderNumberLabel.Size = new System.Drawing.Size(339, 42);
+            this.OrderNumberLabel.TabIndex = 2;
+            this.OrderNumberLabel.Text = "Viewing Order No:";
             // 
             // RestAdminViewOrders
             // 
