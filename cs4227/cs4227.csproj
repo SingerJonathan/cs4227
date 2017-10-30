@@ -83,11 +83,11 @@
     <Compile Include="Menu\RestAdminManageOrders.Designer.cs">
       <DependentUpon>RestAdminManageOrders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\RestAdminMenuItem.cs">
+    <Compile Include="Menu\RestAdminViewMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu\RestAdminMenuItem.Designer.cs">
-      <DependentUpon>RestAdminMenuItem.cs</DependentUpon>
+    <Compile Include="Menu\RestAdminViewMenu.Designer.cs">
+      <DependentUpon>RestAdminViewMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu\RestAdminViewOrders.cs">
       <SubType>Form</SubType>
@@ -127,11 +127,11 @@
     <Compile Include="Menu\LoginMenu.Designer.cs">
       <DependentUpon>LoginMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\RestAdminMenu.cs">
+    <Compile Include="Menu\RestAdminMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu\RestAdminMenu.Designer.cs">
-      <DependentUpon>RestAdminMenu.cs</DependentUpon>
+    <Compile Include="Menu\RestAdminMainMenu.Designer.cs">
+      <DependentUpon>RestAdminMainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu\SysAdminAdmins.cs">
       <SubType>Form</SubType>
@@ -284,11 +284,11 @@
     <EmbeddedResource Include="Menu\RestAdminManageOrders.resx">
       <DependentUpon>RestAdminManageOrders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu\RestAdminMenu.resx">
-      <DependentUpon>RestAdminMenu.cs</DependentUpon>
+    <EmbeddedResource Include="Menu\RestAdminMainMenu.resx">
+      <DependentUpon>RestAdminMainMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu\RestAdminMenuItem.resx">
-      <DependentUpon>RestAdminMenuItem.cs</DependentUpon>
+    <EmbeddedResource Include="Menu\RestAdminViewMenu.resx">
+      <DependentUpon>RestAdminViewMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\RestAdminViewOrders.resx">
       <DependentUpon>RestAdminViewOrders.cs</DependentUpon>

@@ -548,7 +548,7 @@ namespace cs4227.Menu
                 else
                 {
                     this.Hide();
-                    RestAdminMenu RM = new RestAdminMenu(AdminId, RestaurantId);
+                    RestAdminMainMenu RM = new RestAdminMainMenu(AdminId, RestaurantId);
                     RM.ShowDialog();
                 }
             }
@@ -579,7 +579,7 @@ namespace cs4227.Menu
             else
             {
                 this.Hide();
-                RestAdminMenu RM = new RestAdminMenu(AdminId, RestaurantId);
+                RestAdminMainMenu RM = new RestAdminMainMenu(AdminId, RestaurantId);
                 RM.ShowDialog();
             }
         }

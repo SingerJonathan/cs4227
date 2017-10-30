@@ -1,30 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using cs4227.Database;
+using cs4227.Restaurant;
+using System.Text.RegularExpressions;
 
 namespace cs4227.Menu
 {
-    public partial class RestAdminMenuItem : Form
+    public partial class RestAdminViewMenu : Form
     {
         private int RestaurantId = 0;
         private int AdminId = 0;
+        private int MenuItemId = 0;
         private string MenuItemName = "";
-        private string Price = "0.0";
+        private string Price = "0.00";
         private string ErrorMessage = "";
         private Boolean CorrectNameFormat = false;
         private Boolean CorrectPriceFormat = false;
+        private Boolean Delete = false;
 
-        public RestAdminMenuItem(int AdminId, int RestaurantId)
+        public RestAdminViewMenu(int AdminId, int RestaurantId)
         {
             this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
             InitializeComponent();
+        }
+
+        private void RestAdminViewMenu_Load(object sender, EventArgs e)
+        {
+            PriceTextbox.Text = Price;
+            List<FoodItem> FoodItems = DatabaseHandler.GetRestaurantFoodItems(RestaurantId);
+            foreach (FoodItem Food in FoodItems)
+            {
+                ListViewItem row = new ListViewItem("" + Food.Id);
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Name));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Cost));
+                RestaurantMenuList.Items.Add(row);
+            }
         }
 
         private void NameTextbox_TextChanged(object sender, EventArgs e)
@@ -46,7 +59,7 @@ namespace cs4227.Menu
             else
             {
                 CorrectNameFormat = false;
-                ErrorMessage = "Can't have a blank Menu Item Name. Try Again!";
+                ErrorMessage = "Can't have a blank \nMenu Item Name. Try Again!";
             }
 
             if (!CorrectNameFormat)
@@ -65,22 +78,28 @@ namespace cs4227.Menu
         private void PriceTextbox_TextChanged(object sender, EventArgs e)
         {
             Price = PriceTextbox.Text.ToString();
-
+            Regex r = new Regex(@"^[0-9]*(\.[0-9]{1,2})?$");
             if (Price.Length > 0)
             {
-                if (!Price.Any(char.IsDigit) || !Price.Any(char.IsWhiteSpace))
+                if (r.Match(Price).Success)
                 {
-                    ErrorMessage = "Enter Numbers Only \nFormat: 2 00 => €2.00";
-                    CorrectPriceFormat = false;
+                    if (Price.Length == 1)
+                    {
+                        Price += ".00";
+                    }
+                    PriceTextbox.Text = Price;
+                    CorrectPriceFormat = true;
                 }
                 else
                 {
-                    CorrectPriceFormat = true;
+                    ErrorMessage = "Incorrect Format: \nFormat = 0.00";
+                    CorrectPriceFormat = false;
                 }
             }
             else
             {
                 CorrectPriceFormat = false;
+                ErrorMessage = "Must Enter a Price";
             }
 
             if (!CorrectPriceFormat)
@@ -125,18 +144,31 @@ namespace cs4227.Menu
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            RestAdminMenu RAM = new RestAdminMenu(AdminId, RestaurantId);
+            RestAdminMainMenu RAM = new RestAdminMainMenu(AdminId, RestaurantId);
             RAM.ShowDialog();
         }
 
         private void RestaurantMenuList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //get item id and get item name
+            if (RestaurantMenuList.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                MenuItemId = Int32.Parse(RestaurantMenuList.SelectedItems[0].Text);
+                MenuItemName = RestaurantMenuList.SelectedItems[0].SubItems[1].Text;
+                Price = RestaurantMenuList.SelectedItems[0].SubItems[2].Text;
+                Price = string.Format("{0:#.00}", Convert.ToDecimal(Price));
+                NameTextbox.Text = MenuItemName;
+                PriceTextbox.Text = Price;
+            }
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             //remove item from db
+            Delete = true;
             MessageBox.Show("Item: " + MenuItemName + " Removed");
         }
     }

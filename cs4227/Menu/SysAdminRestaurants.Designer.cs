@@ -36,6 +36,7 @@
             this.SelectRestaurantMessageLabel = new System.Windows.Forms.Label();
             this.RestaurantNameLabel = new System.Windows.Forms.Label();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
+            this.DeleteRestaurantButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ListOfRestaurants
@@ -65,7 +66,7 @@
             // 
             this.AddRestaurantButton.BackColor = System.Drawing.Color.Silver;
             this.AddRestaurantButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddRestaurantButton.Location = new System.Drawing.Point(608, 446);
+            this.AddRestaurantButton.Location = new System.Drawing.Point(608, 360);
             this.AddRestaurantButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.AddRestaurantButton.Name = "AddRestaurantButton";
             this.AddRestaurantButton.Size = new System.Drawing.Size(300, 80);
@@ -77,7 +78,7 @@
             // RestaurantNameTextbox
             // 
             this.RestaurantNameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantNameTextbox.Location = new System.Drawing.Point(608, 354);
+            this.RestaurantNameTextbox.Location = new System.Drawing.Point(608, 298);
             this.RestaurantNameTextbox.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.RestaurantNameTextbox.Name = "RestaurantNameTextbox";
             this.RestaurantNameTextbox.Size = new System.Drawing.Size(300, 31);
@@ -113,7 +114,7 @@
             this.RestaurantNameLabel.AutoSize = true;
             this.RestaurantNameLabel.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.RestaurantNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantNameLabel.Location = new System.Drawing.Point(603, 312);
+            this.RestaurantNameLabel.Location = new System.Drawing.Point(603, 254);
             this.RestaurantNameLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.RestaurantNameLabel.Name = "RestaurantNameLabel";
             this.RestaurantNameLabel.Size = new System.Drawing.Size(264, 25);
@@ -124,7 +125,7 @@
             // 
             this.ErrorMessageLabel.AutoSize = true;
             this.ErrorMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrorMessageLabel.Location = new System.Drawing.Point(445, 258);
+            this.ErrorMessageLabel.Location = new System.Drawing.Point(445, 144);
             this.ErrorMessageLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.ErrorMessageLabel.Name = "ErrorMessageLabel";
             this.ErrorMessageLabel.Size = new System.Drawing.Size(173, 25);
@@ -132,12 +133,24 @@
             this.ErrorMessageLabel.Text = "Error Message:";
             this.ErrorMessageLabel.Visible = false;
             // 
+            // DeleteRestaurantButton
+            // 
+            this.DeleteRestaurantButton.BackColor = System.Drawing.Color.Silver;
+            this.DeleteRestaurantButton.Location = new System.Drawing.Point(608, 449);
+            this.DeleteRestaurantButton.Name = "DeleteRestaurantButton";
+            this.DeleteRestaurantButton.Size = new System.Drawing.Size(300, 80);
+            this.DeleteRestaurantButton.TabIndex = 8;
+            this.DeleteRestaurantButton.Text = "Delete Restaurant";
+            this.DeleteRestaurantButton.UseVisualStyleBackColor = false;
+            this.DeleteRestaurantButton.Click += new System.EventHandler(this.DeleteRestaurantButton_Click);
+            // 
             // SysAdminRestaurantsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.DeleteRestaurantButton);
             this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.RestaurantNameLabel);
             this.Controls.Add(this.SelectRestaurantMessageLabel);
@@ -166,5 +179,6 @@
         private System.Windows.Forms.Label RestaurantNameLabel;
         private System.Windows.Forms.Label ErrorMessageLabel;
         private System.Windows.Forms.ColumnHeader ListOfRestaurantsNames;
+        private System.Windows.Forms.Button DeleteRestaurantButton;
     }
 }

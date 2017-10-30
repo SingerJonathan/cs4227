@@ -56,7 +56,7 @@ namespace cs4227.Menu
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            RestAdminMenu RAM = new RestAdminMenu(AdminId, RestaurantId);
+            RestAdminMainMenu RAM = new RestAdminMainMenu(AdminId, RestaurantId);
             RAM.ShowDialog();
         }
     }

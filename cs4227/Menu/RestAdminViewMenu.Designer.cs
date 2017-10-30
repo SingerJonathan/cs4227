@@ -1,6 +1,6 @@
 ﻿namespace cs4227.Menu
 {
-    partial class RestAdminMenuItem
+    partial class RestAdminViewMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -36,6 +36,9 @@
             this.NameTextbox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
             this.RestaurantMenuList = new System.Windows.Forms.ListView();
+            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FoodName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -107,12 +110,34 @@
             // 
             // RestaurantMenuList
             // 
+            this.RestaurantMenuList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ID,
+            this.FoodName,
+            this.Cost});
+            this.RestaurantMenuList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RestaurantMenuList.FullRowSelect = true;
             this.RestaurantMenuList.Location = new System.Drawing.Point(12, 49);
             this.RestaurantMenuList.Name = "RestaurantMenuList";
-            this.RestaurantMenuList.Size = new System.Drawing.Size(500, 600);
+            this.RestaurantMenuList.Size = new System.Drawing.Size(526, 600);
             this.RestaurantMenuList.TabIndex = 8;
             this.RestaurantMenuList.UseCompatibleStateImageBehavior = false;
+            this.RestaurantMenuList.View = System.Windows.Forms.View.Details;
             this.RestaurantMenuList.SelectedIndexChanged += new System.EventHandler(this.RestaurantMenuList_SelectedIndexChanged);
+            // 
+            // ID
+            // 
+            this.ID.Text = "ID";
+            this.ID.Width = 75;
+            // 
+            // FoodName
+            // 
+            this.FoodName.Text = "Name";
+            this.FoodName.Width = 350;
+            // 
+            // Cost
+            // 
+            this.Cost.Text = "Cost";
+            this.Cost.Width = 100;
             // 
             // ErrorMessageLabel
             // 
@@ -134,7 +159,7 @@
             this.RemoveButton.UseVisualStyleBackColor = false;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
-            // RestAdminMenuItem
+            // RestAdminViewMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -152,8 +177,9 @@
             this.Controls.Add(this.SelectMenuItemLabel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.Name = "RestAdminMenuItem";
+            this.Name = "RestAdminViewMenu";
             this.Text = "RestAdmin Menu: View Menu";
+            this.Load += new System.EventHandler(this.RestAdminViewMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,5 +196,8 @@
         private System.Windows.Forms.ListView RestaurantMenuList;
         private System.Windows.Forms.Label ErrorMessageLabel;
         private System.Windows.Forms.Button RemoveButton;
+        private System.Windows.Forms.ColumnHeader ID;
+        private System.Windows.Forms.ColumnHeader FoodName;
+        private System.Windows.Forms.ColumnHeader Cost;
     }
 }

@@ -407,7 +407,7 @@ namespace cs4227.Menu
                             else
                             {
                                 this.Hide();
-                                RestAdminMenu RAM = new RestAdminMenu(AdminId, RestaurantId);
+                                RestAdminMainMenu RAM = new RestAdminMainMenu(AdminId, RestaurantId);
                                 RAM.ShowDialog();
                             }
                         }
@@ -429,7 +429,7 @@ namespace cs4227.Menu
                             else
                             {
                                 this.Hide();
-                                RestAdminMenu RAM = new RestAdminMenu(AdminId, RestaurantId);
+                                RestAdminMainMenu RAM = new RestAdminMainMenu(AdminId, RestaurantId);
                                 RAM.ShowDialog();
                             }
                         }
@@ -464,7 +464,7 @@ namespace cs4227.Menu
             else
             {
                 this.Hide();
-                RestAdminMenu RAM = new RestAdminMenu(AdminId, RestaurantId);
+                RestAdminMainMenu RAM = new RestAdminMainMenu(AdminId, RestaurantId);
                 RAM.ShowDialog();
             }
         }
