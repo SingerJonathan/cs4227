@@ -629,7 +629,20 @@ namespace cs4227.Menu
 
         private void DeleteRestaurantButton_Click(object sender, EventArgs e)
         {
-            
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete "+RestaurantName+"?", "Delete Restaurant", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Restaurant.Restaurant restaurant = DatabaseHandler.GetRestaurant(RestaurantId);
+                restaurant.Deleted = true;
+                DatabaseHandler.UpdateRestaurant(restaurant);
+
+                this.Hide();
+                SysAdminRestaurantsMenu SARM = new SysAdminRestaurantsMenu(AdminId);
+                SARM.ShowDialog();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+            }
         }
     }
 }

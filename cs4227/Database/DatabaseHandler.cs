@@ -162,7 +162,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Id] = " + id;
+            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Id] = " + id + " AND [Cancelled] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             Order order = new Order();
@@ -188,7 +188,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Restaurants] WHERE [Id] = " + id;
+            command.CommandText = "SELECT * FROM [dbo].[Restaurants] WHERE [Id] = " + id + " AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             Restaurant.Restaurant restaurant = new Restaurant.Restaurant();
@@ -203,7 +203,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Restaurants] WHERE [Name] = " + name;
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Restaurants] WHERE [Name] = " + name + " AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             Restaurant.Restaurant restaurant = new Restaurant.Restaurant();
@@ -218,7 +218,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Id] = " + id;
+            command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Id] = " + id + " AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             FoodItem foodItem = new FoodItem();
@@ -232,7 +232,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [Id] = " + id;
+            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [Id] = " + id + " AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -257,7 +257,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Restaurants].[Id] = [dbo].[Users].[RestaurantAdmin] WHERE [dbo].[Restaurants].[Id] = " + RestaurantId;
+            command.CommandText = "SELECT * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Restaurants].[Id] = [dbo].[Users].[RestaurantAdmin] WHERE [dbo].[Restaurants].[Id] = " + RestaurantId + " AND [dbo].[Users].[Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -282,7 +282,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [dbo].[Users].[Username] = '" + username + "'";
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [dbo].[Users].[Username] = '" + username + "' AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -307,7 +307,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [Email] = '" + email + "'";
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [Email] = '" + email + "' AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -332,7 +332,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantAdmin] = [dbo].[Restaurants].[Id] WHERE [dbo].[Restaurants].[Name] = '" + restaurantname + "'";
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantAdmin] = [dbo].[Restaurants].[Id] WHERE [dbo].[Restaurants].[Name] = '" + restaurantname + "' AND [dbo].[Users].[Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -357,7 +357,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantAdmin] = [dbo].[Restaurants].[Id] WHERE [dbo].[Users].[Username] = '" + username + "'";
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantAdmin] = [dbo].[Restaurants].[Id] WHERE [dbo].[Users].[Username] = '" + username + "' AND [dbo].[Users].[Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -427,7 +427,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Restaurants]";
+            command.CommandText = "SELECT * FROM [dbo].[Restaurants] WHERE [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             List<Restaurant.Restaurant> restaurants = new List<Restaurant.Restaurant>();
@@ -445,7 +445,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [RestaurantAdmin] IS NOT NULL";
+            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [RestaurantAdmin] IS NOT NULL AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             List<AbstractUser> users = new List<AbstractUser>();
@@ -472,7 +472,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Items]";
+            command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             List<FoodItem> foodItems = new List<FoodItem>();
@@ -506,7 +506,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Users]";
+            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             List<AbstractUser> users = new List<AbstractUser>();
