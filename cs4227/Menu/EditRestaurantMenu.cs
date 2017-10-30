@@ -534,12 +534,21 @@ namespace cs4227.Menu
         {
             if(CorrectNameFormat && CorrectAddressFormat && CorrectOwnerFormat && CorrectPhoneNumberFormat && CorrectEmailFormat && CorrectOpeningHoursFormat && CorrectClosingHoursFormat && CorrectDaysOpenFormat && CorrectTypeFormat && CorrectDeliveryChargeFormat && CorrectOwnerUsernameFormat)
             {
+                AbstractUser previousOwner = DatabaseHandler.GetUser(DatabaseHandler.GetRestaurant(RestaurantId).OwnerId);
+
                 int ownerId = DatabaseHandler.GetUser(RestaurantOwnerUsername).Id;
                 Restaurant.Restaurant restaurant = new Restaurant.Restaurant(RestaurantId, RestaurantName, RestaurantAddress, ownerId, RestaurantPhoneNumber, RestaurantEmail, RestaurantOpeningHours, RestaurantClosingHours, RestaurantDaysOpen, RestaurantType, Double.Parse(RestaurantDeliveryCharge), false);
                 if (newRestaurant)
                     DatabaseHandler.InsertRestaurant(restaurant);
                 else
                     DatabaseHandler.UpdateRestaurant(restaurant);
+
+                AbstractUser restaurantAdmin = DatabaseHandler.GetUser(ownerId);
+                restaurantAdmin.RestaurantId = RestaurantId;
+                DatabaseHandler.UpdateUser(restaurantAdmin);
+
+                previousOwner.RestaurantId = 0;
+                DatabaseHandler.UpdateUser(previousOwner);
 
                 if (sysAdmin)
                 {

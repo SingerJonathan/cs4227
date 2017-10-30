@@ -45,7 +45,6 @@
             this.ListOfRestaurantsNames});
             this.ListOfRestaurants.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ListOfRestaurants.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.ListOfRestaurants.HoverSelection = true;
             this.ListOfRestaurants.Location = new System.Drawing.Point(31, 48);
             this.ListOfRestaurants.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.ListOfRestaurants.MultiSelect = false;

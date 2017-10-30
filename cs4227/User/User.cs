@@ -8,8 +8,8 @@ namespace cs4227.User
         {
         }
 
-        public User(int id, string username, string firstName, string lastName, string password, string email, LoginAPI loginAPI, int restaurantAdmin = 0, bool systemAdmin = false, bool deleted = false)
-            : base(id, username, firstName, lastName, password, email, loginAPI, restaurantAdmin, systemAdmin, deleted)
+        public User(int id, string username, string firstName, string lastName, string password, string email, LoginAPI loginAPI, int restaurantId = 0, bool restaurantAdmin = false, bool systemAdmin = false, bool deleted = false)
+            : base(id, username, firstName, lastName, password, email, loginAPI, restaurantId, restaurantAdmin, systemAdmin, deleted)
         {
         }
 

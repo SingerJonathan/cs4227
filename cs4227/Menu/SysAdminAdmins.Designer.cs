@@ -41,7 +41,6 @@
             // 
             this.AdminsList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AdminsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdminsList.HoverSelection = true;
             this.AdminsList.Location = new System.Drawing.Point(13, 54);
             this.AdminsList.MultiSelect = false;
             this.AdminsList.Name = "AdminsList";

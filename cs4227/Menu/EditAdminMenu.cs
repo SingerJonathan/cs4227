@@ -19,7 +19,8 @@ namespace cs4227.Menu
         private int RestaurantId = 0;
         private int AdminId = 0;
         private string AdminEmail = "";
-        private string AdminName = "";
+        private string AdminFirstName = "";
+        private string AdminLastName = "";
         private string AdminUsername = "";
         private string AdminPassword = "";
         private string AdminRestaurant = "";
@@ -28,7 +29,7 @@ namespace cs4227.Menu
         private Boolean CorrectNameFormat = false;
         private Boolean CorrectUsernameFormat = false;
         private Boolean CorrectPasswordFormat = false;
-        private Boolean CorrectRestaurantFormat = false;
+        //private Boolean CorrectRestaurantFormat = false;
         private Boolean newAdmin = false;
         private Boolean sysAdmin = false;
 
@@ -63,9 +64,10 @@ namespace cs4227.Menu
             if (!newAdmin)
             {
                 AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
-                Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(Admin.RestaurantAdmin);
+                Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(Admin.RestaurantId);
                 AdminEmail = Admin.Email;
-                AdminName = Admin.FirstName + " " + Admin.LastName;
+                AdminFirstName = Admin.FirstName;
+                AdminLastName = Admin.LastName;
                 AdminPassword = Admin.Password;
                 if (Rest == null)
                 {
@@ -76,26 +78,26 @@ namespace cs4227.Menu
                     AdminRestaurant = Rest.Name;
                 }
                 AdminEmailTextbox.Text = AdminEmail;
-                AdminNameTextbox.Text = AdminName;
+                AdminFirstNameTextbox.Text = AdminFirstName;
+                AdminLastNameTextbox.Text = AdminLastName;
                 AdminPasswordTextbox.Text = AdminPassword;
-                AdminRestaurantTextbox.Text = AdminRestaurant;
             }
         }
 
-        private void AdminNameTextbox_TextChanged(object sender, EventArgs e)
+        private void AdminFirstNameTextbox_TextChanged(object sender, EventArgs e)
         {
-            AdminName = AdminNameTextbox.Text.ToString();
+            AdminFirstName = AdminFirstNameTextbox.Text.ToString();
 
-            if (AdminName.Length > 0)
+            if (AdminFirstName.Length > 0)
             {
                 CorrectNameFormat = true;
-                if (AdminName.Any(char.IsDigit))
+                if (AdminFirstName.Any(char.IsDigit))
                 {
                     ErrorMessage = "Can't Use Numbers in a Name";
                     CorrectNameFormat = false;
                 }
 
-                if (AdminName.Any(char.IsSymbol) || AdminName.Any(char.IsPunctuation))
+                if (AdminFirstName.Any(char.IsSymbol) || AdminFirstName.Any(char.IsPunctuation))
                 {
                     ErrorMessage = "Can't Use Symbols in a Name";
                     CorrectNameFormat = false;
@@ -111,11 +113,50 @@ namespace cs4227.Menu
             {
                 ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                AdminNameLabel.Text = "Name: ERROR";
+                AdminFirstNameLabel.Text = "First Name: ERROR";
             }
             else
             {
-                AdminNameLabel.Text = "Name:";
+                AdminFirstNameLabel.Text = "First Name:";
+                ErrorMessage = "";
+                ErrorMessageLabel.Visible = false;
+            }
+        }
+
+        private void AdminLastNameTextbox_TextChanged(object sender, EventArgs e)
+        {
+            AdminLastName = AdminLastNameTextbox.Text.ToString();
+
+            if (AdminLastName.Length > 0)
+            {
+                CorrectNameFormat = true;
+                if (AdminLastName.Any(char.IsDigit))
+                {
+                    ErrorMessage = "Can't Use Numbers in a Name";
+                    CorrectNameFormat = false;
+                }
+
+                if (AdminLastName.Any(char.IsSymbol) || AdminLastName.Any(char.IsPunctuation))
+                {
+                    ErrorMessage = "Can't Use Symbols in a Name";
+                    CorrectNameFormat = false;
+                }
+            }
+            else
+            {
+                CorrectNameFormat = false;
+                ErrorMessage = "Can't have a blank Name. Try Again!";
+            }
+
+            if (!CorrectNameFormat)
+            {
+                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Visible = true;
+                AdminLastNameLabel.Text = "Last Name: ERROR";
+            }
+            else
+            {
+                AdminLastNameLabel.Text = "Last Name:";
                 ErrorMessage = "";
                 ErrorMessageLabel.Visible = false;
             }
@@ -293,64 +334,18 @@ namespace cs4227.Menu
             }
         }
 
-        private void AdminRestaurantTextbox_TextChanged(object sender, EventArgs e)
-        {
-            if (sysAdmin)
-            {
-                AdminRestaurant = AdminRestaurantTextbox.Text.ToString();
-            }
-            else
-            {
-                AdminRestaurantTextbox.Text = AdminRestaurant;
-                ErrorMessage = "Can't Change Restaurant Name";
-            }
-
-            if (AdminRestaurant.Length > 0)
-            {
-
-                if (AdminRestaurant.Any(char.IsSymbol))
-                {
-                    ErrorMessage = "Can't use Symbols in a Restaurant's Name";
-                    CorrectRestaurantFormat = false;
-                }
-                else
-                {
-                    CorrectRestaurantFormat = true;
-                }
-            }
-            else
-            {
-                CorrectRestaurantFormat = false;
-                ErrorMessage = "Can't have a blank Restaurant Name. Try Again!";
-            }
-
-            if (!CorrectRestaurantFormat)
-            {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
-                ErrorMessageLabel.Visible = true;
-                AdminRestaurantLabel.Text = "Restaurant: ERROR";
-            }
-            else
-            {
-                AdminRestaurantLabel.Text = "Restaurant:";
-                ErrorMessage = "";
-                ErrorMessageLabel.Visible = false;
-                CorrectRestaurantFormat = true;
-            }
-        }
-
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            if (CorrectEmailFormat && CorrectNameFormat && CorrectUsernameFormat && CorrectPasswordFormat && CorrectRestaurantFormat)
+            if (CorrectEmailFormat && CorrectNameFormat && CorrectUsernameFormat && CorrectPasswordFormat/* && CorrectRestaurantFormat*/)
             {
                 Boolean UsernameExists = false;
                 Boolean EmailExists = false;
-                Boolean RestaurantExists = false;
+                //Boolean RestaurantExists = false;
                 AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
                 AbstractUser Admin2 = DatabaseHandler.GetUserEmail(AdminEmail);
-                Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(AdminRestaurant);
+                //Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(AdminRestaurant);
 
-                if (Admin == null)
+                if (Admin.Username == null)
                 {
                     UsernameExists = false;
                 }
@@ -359,7 +354,7 @@ namespace cs4227.Menu
                     UsernameExists = true;
                     ErrorMessage = "Error: Username Already Exists.";
                 }
-                if (Admin2 == null)
+                if (Admin2.Username == null)
                 {
                     EmailExists = false;
                 }
@@ -368,7 +363,7 @@ namespace cs4227.Menu
                     EmailExists = true;
                     ErrorMessage = "Error: Email Already Exists.";
                 }
-                if (Rest == null)
+                /*if (Rest == null)
                 {
                     RestaurantExists = false;
                     ErrorMessage = "Restaurant Doesn't Exist";
@@ -376,19 +371,22 @@ namespace cs4227.Menu
                 else
                 {
                     RestaurantExists = true;
-                }
+                }*/
 
-                if (!UsernameExists && !EmailExists && RestaurantExists)
+                if (!UsernameExists && !EmailExists/* && RestaurantExists*/)
                 {
                     //check if admin already exists
                     AbstractUser RestaurantAdminExists = DatabaseHandler.CheckAdminExists(AdminRestaurant);
                     AbstractUser IsCurrentAdmin = DatabaseHandler.CheckIfAdmin(AdminUsername);
-                    if (RestaurantAdminExists == null)
+                    if (RestaurantAdminExists.Username == null)
                     {
                         if (newAdmin)
                         {
-                            //insert new admin to db
+                            int restaurantId = DatabaseHandler.GetRestaurant(AdminRestaurant).Id;
+                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminFirstName, AdminLastName, AdminPassword, AdminEmail, "RestAdmin", restaurantId, true);
+                            DatabaseHandler.InsertUser(user);
                             MessageBox.Show("New Admin Created");
+
                             this.Hide();
                             SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(AdminId);
                             SAAM.ShowDialog();
@@ -415,7 +413,7 @@ namespace cs4227.Menu
                     }
                     else
                     {
-                        if (IsCurrentAdmin != null) //admin of that restaurant
+                        if (IsCurrentAdmin.Username != null) //admin of that restaurant
                         {
                             //update
                             MessageBox.Show("Admin Details Updated");
