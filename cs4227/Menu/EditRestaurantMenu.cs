@@ -543,12 +543,16 @@ namespace cs4227.Menu
                 else
                     DatabaseHandler.UpdateRestaurant(restaurant);
 
+                int newRestaurantId = DatabaseHandler.GetRestaurant(RestaurantName).Id;
                 AbstractUser restaurantAdmin = DatabaseHandler.GetUser(ownerId);
-                restaurantAdmin.RestaurantId = RestaurantId;
+                restaurantAdmin.RestaurantId = newRestaurantId;
                 DatabaseHandler.UpdateUser(restaurantAdmin);
 
-                previousOwner.RestaurantId = 0;
-                DatabaseHandler.UpdateUser(previousOwner);
+                if (previousOwner.Username != null && !previousOwner.Username.Equals(RestaurantOwnerUsername))
+                {
+                    previousOwner.RestaurantId = 0;
+                    DatabaseHandler.UpdateUser(previousOwner);
+                }
 
                 if (sysAdmin)
                 {

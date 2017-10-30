@@ -396,7 +396,9 @@ namespace cs4227.Menu
                         }
                         else
                         {
-                            //update
+                            int restaurantId = DatabaseHandler.GetRestaurant(AdminRestaurant).Id;
+                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminPassword, AdminFirstName, AdminLastName, AdminEmail, "RestAdmin", restaurantId, true);
+                            DatabaseHandler.UpdateUser(user);
                             MessageBox.Show("Admin Details Updated");
 
                             if (sysAdmin)
