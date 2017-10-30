@@ -1,6 +1,6 @@
 ﻿namespace cs4227.Menu
 {
-    partial class RestAdminMenu
+    partial class RestAdminMainMenu
     {
         /// <summary>
         /// Required designer variable.

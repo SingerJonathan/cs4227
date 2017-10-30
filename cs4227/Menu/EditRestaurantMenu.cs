@@ -53,7 +53,7 @@ namespace cs4227.Menu
             AbstractUser owner = DatabaseHandler.GetUser(Rest.OwnerId);
 
             if (newRestaurant)
-                RestaurantName = "";
+                RestaurantName = restaurantName;
             else
                 RestaurantName = Rest.Name;
             RestaurantAddress = Rest.Address;
@@ -536,7 +536,7 @@ namespace cs4227.Menu
                 else
                 {
                     this.Hide();
-                    RestAdminMenu RM = new RestAdminMenu(AdminId, RestaurantId);
+                    RestAdminMainMenu RM = new RestAdminMainMenu(AdminId, RestaurantId);
                     RM.ShowDialog();
                 }
             }
@@ -567,7 +567,7 @@ namespace cs4227.Menu
             else
             {
                 this.Hide();
-                RestAdminMenu RM = new RestAdminMenu(AdminId, RestaurantId);
+                RestAdminMainMenu RM = new RestAdminMainMenu(AdminId, RestaurantId);
                 RM.ShowDialog();
             }
         }

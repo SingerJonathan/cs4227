@@ -18,7 +18,7 @@ namespace cs4227.User
             RestaurantId = RestAdmin.RestaurantAdmin;
             Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(RestaurantId);
 
-            RestAdminMenu RM = new RestAdminMenu(UserId, RestaurantId);
+            RestAdminMainMenu RM = new RestAdminMainMenu(UserId, RestaurantId);
             RM.ShowDialog();
         }
     }

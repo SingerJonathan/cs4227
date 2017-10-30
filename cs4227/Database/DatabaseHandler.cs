@@ -482,6 +482,23 @@ namespace cs4227.Database
             return foodItems;
         }
 
+        public static List<FoodItem> GetRestaurantFoodItems(int RestId)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Deleted] <> 'true' AND [Restaurant] = " + RestId;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            List<FoodItem> foodItems = new List<FoodItem>();
+            while (reader.Read())
+            {
+                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), reader.GetBoolean(4));
+                foodItems.Add(foodItem);
+            }
+            connection.Close();
+            return foodItems;
+        }
+
         public static List<AbstractUser> GetUsers()
         {
             SqlConnection connection = GetLocalDBConnection();

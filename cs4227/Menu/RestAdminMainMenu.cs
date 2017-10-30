@@ -12,14 +12,14 @@ using cs4227.User;
 
 namespace cs4227.Menu
 {
-    public partial class RestAdminMenu : Form
+    public partial class RestAdminMainMenu : Form
     {
         private int RestaurantId = 0;
         private int AdminId = 0;
         private string RestaurantName = "";
         private string RestaurantAdmin = "";
 
-        public RestAdminMenu(int AdminId, int RestaurantId)
+        public RestAdminMainMenu(int AdminId, int RestaurantId)
         {
             this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
@@ -39,7 +39,7 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e) //View Menu
         {
             this.Hide();
-            RestAdminMenuItem RAMI = new RestAdminMenuItem(AdminId, RestaurantId);
+            RestAdminViewMenu RAMI = new RestAdminViewMenu(AdminId, RestaurantId);
             RAMI.ShowDialog();
         }
 
