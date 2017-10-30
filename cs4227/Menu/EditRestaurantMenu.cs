@@ -53,7 +53,7 @@ namespace cs4227.Menu
             AbstractUser owner = DatabaseHandler.GetUser(Rest.OwnerId);
 
             if (newRestaurant)
-                RestaurantName = "";
+                RestaurantName = restaurantName;
             else
                 RestaurantName = Rest.Name;
             RestaurantAddress = Rest.Address;

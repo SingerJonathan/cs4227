@@ -72,7 +72,7 @@ namespace cs4227.Menu
                 Boolean UsernameExists = false;
                 AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
 
-                if (Admin == null)
+                if (Admin.Username == null)
                 {
                     UsernameExists = false;
                 }
