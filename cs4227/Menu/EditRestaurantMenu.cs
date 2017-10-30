@@ -99,6 +99,8 @@ namespace cs4227.Menu
             }
             else
             {
+                DeleteRestaurantButton.Enabled = false;
+                DeleteRestaurantButton.Visible = false;
                 this.Text = "Admin Menu: Edit Restaurant";
             }
         }
@@ -618,6 +620,11 @@ namespace cs4227.Menu
                 ErrorMessageLabel.Visible = true;
                 OwnerUsernameLabel.Text = "Owner Username: ERROR";
             }
+        }
+
+        private void DeleteRestaurantButton_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

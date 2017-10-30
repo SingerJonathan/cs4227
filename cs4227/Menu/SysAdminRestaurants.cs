@@ -117,10 +117,5 @@ namespace cs4227.Menu
                 ListOfRestaurants.Items.Add(restaurantItem);
             }
         }
-
-        private void DeleteRestaurantButton_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

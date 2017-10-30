@@ -53,6 +53,7 @@
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
             this.OwnerUsernameLabel = new System.Windows.Forms.Label();
             this.RestaurantOwnerUsernameTextbox = new System.Windows.Forms.TextBox();
+            this.DeleteRestaurantButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // RestaurantNameLabel
@@ -290,14 +291,26 @@
             this.OwnerUsernameLabel.TabIndex = 23;
             this.OwnerUsernameLabel.Text = "Owner Username:";
             // 
-            // OwnerUsernameTextbox
+            // RestaurantOwnerUsernameTextbox
             // 
             this.RestaurantOwnerUsernameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RestaurantOwnerUsernameTextbox.Location = new System.Drawing.Point(341, 264);
-            this.RestaurantOwnerUsernameTextbox.Name = "OwnerUsernameTextbox";
+            this.RestaurantOwnerUsernameTextbox.Name = "RestaurantOwnerUsernameTextbox";
             this.RestaurantOwnerUsernameTextbox.Size = new System.Drawing.Size(300, 31);
             this.RestaurantOwnerUsernameTextbox.TabIndex = 24;
             this.RestaurantOwnerUsernameTextbox.TextChanged += new System.EventHandler(this.OwnerUsernameTextbox_TextChanged);
+            // 
+            // DeleteRestaurantButton
+            // 
+            this.DeleteRestaurantButton.BackColor = System.Drawing.Color.Silver;
+            this.DeleteRestaurantButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteRestaurantButton.Location = new System.Drawing.Point(341, 448);
+            this.DeleteRestaurantButton.Name = "DeleteRestaurantButton";
+            this.DeleteRestaurantButton.Size = new System.Drawing.Size(300, 185);
+            this.DeleteRestaurantButton.TabIndex = 25;
+            this.DeleteRestaurantButton.Text = "Delete Restaurant";
+            this.DeleteRestaurantButton.UseVisualStyleBackColor = false;
+            this.DeleteRestaurantButton.Click += new System.EventHandler(this.DeleteRestaurantButton_Click);
             // 
             // EditRestaurantMenu
             // 
@@ -305,6 +318,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 662);
+            this.Controls.Add(this.DeleteRestaurantButton);
             this.Controls.Add(this.RestaurantOwnerUsernameTextbox);
             this.Controls.Add(this.OwnerUsernameLabel);
             this.Controls.Add(this.ErrorMessageLabel);
@@ -365,5 +379,6 @@
         private System.Windows.Forms.Label ErrorMessageLabel;
         private System.Windows.Forms.Label OwnerUsernameLabel;
         private System.Windows.Forms.TextBox RestaurantOwnerUsernameTextbox;
+        private System.Windows.Forms.Button DeleteRestaurantButton;
     }
 }
