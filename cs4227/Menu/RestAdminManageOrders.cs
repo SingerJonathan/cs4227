@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cs4227.Database;
+using cs4227.Restaurant;
 
 namespace cs4227.Menu
 {
@@ -25,7 +27,24 @@ namespace cs4227.Menu
 
         private void RestAdminManageOrders_Load(object sender, EventArgs e)
         {
-            //display orders from database
+            List<Order> orders = DatabaseHandler.GetRestaurantOrders(RestaurantId);
+            foreach (Order order in orders)
+            {
+                if (order.RestaurantId == RestaurantId)
+                {
+                    ListViewItem row = new ListViewItem("" + order.Id);
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetUser(order.UserId).Username));
+                    string cost = order.Cost.ToString();
+                    if (cost.Length == 1 || cost.Length == 2)
+                    {
+                        cost += ".00";
+                    }
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));
+                    CurrentOrders.Items.Add(row);
+                }
+            }
         }
 
         private void CurrentOrders_SelectedIndexChanged(object sender, EventArgs e)
@@ -50,7 +69,20 @@ namespace cs4227.Menu
 
         private void CancelOrderButton_Click(object sender, EventArgs e)
         {
-            //add code to cancel order
+            Order CancelOrder = DatabaseHandler.GetOrder(OrderNo);
+            if (CancelOrder.Cancelled != true && OrderNo != 0)
+            {
+                CancelOrder.Cancelled = true;
+                DatabaseHandler.UpdateOrder(CancelOrder);
+                MessageBox.Show("Order No: " + CancelOrder.Id + " is now Cancelled");
+                this.Hide();
+                RestAdminManageOrders RAMO = new RestAdminManageOrders(AdminId, RestaurantId);
+                RAMO.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Select an Order to Cancel. \nSelect an Order that hasn't been Cancelled");
+            }
         }
 
         private void BackButton_Click(object sender, EventArgs e)

@@ -29,9 +29,9 @@ namespace cs4227.Menu
             List<FoodItem> FoodItems = DatabaseHandler.GetRestaurantFoodItems(RestaurantId);
             foreach (FoodItem Food in FoodItems)
             {
-                ListViewItem row = new ListViewItem("" + Food.Id);
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Name));
+                ListViewItem row = new ListViewItem("" + Food.Name);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Cost));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 RestaurantMenu.Items.Add(row);
             } 
         }

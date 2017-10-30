@@ -28,22 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "",
-            " ",
-            " ",
-            " ",
-            " ",
-            " ",
-            " ",
-            " ",
-            " ",
-            " ",
-            " ",
-            " ",
-            " ",
-            " ",
-            " "}, -1);
             this.Order = new System.Windows.Forms.ListView();
             this.OrderId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.User = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -55,10 +39,8 @@
             this.Item5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Item6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Item7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Item8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Item9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Address = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UserAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Cancelled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BackButton = new System.Windows.Forms.Button();
             this.OrderNumberLabel = new System.Windows.Forms.Label();
@@ -77,13 +59,9 @@
             this.Item5,
             this.Item6,
             this.Item7,
-            this.Item8,
-            this.Item9,
             this.Price,
-            this.Address,
+            this.UserAddress,
             this.Cancelled});
-            this.Order.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
             this.Order.Location = new System.Drawing.Point(12, 12);
             this.Order.MultiSelect = false;
             this.Order.Name = "Order";
@@ -104,63 +82,53 @@
             // 
             // Item0
             // 
-            this.Item0.Text = "Item No:1";
+            this.Item0.Text = "Items";
             this.Item0.Width = 200;
             // 
             // Item1
             // 
-            this.Item1.Text = "Item No:2";
+            this.Item1.Text = "";
             this.Item1.Width = 200;
             // 
             // Item2
             // 
-            this.Item2.Text = "Item No:3";
+            this.Item2.Text = "";
             this.Item2.Width = 200;
             // 
             // Item3
             // 
-            this.Item3.Text = "Item No:4";
+            this.Item3.Text = "";
             this.Item3.Width = 200;
             // 
             // Item4
             // 
-            this.Item4.Text = "Item No:5";
+            this.Item4.Text = "";
             this.Item4.Width = 200;
             // 
             // Item5
             // 
-            this.Item5.Text = "Item No:6";
+            this.Item5.Text = "";
             this.Item5.Width = 200;
             // 
             // Item6
             // 
-            this.Item6.Text = "Item No:7";
+            this.Item6.Text = "";
             this.Item6.Width = 200;
             // 
             // Item7
             // 
-            this.Item7.Text = "Item No:8";
+            this.Item7.Text = "";
             this.Item7.Width = 200;
-            // 
-            // Item8
-            // 
-            this.Item8.Text = "Item No:9";
-            this.Item8.Width = 200;
-            // 
-            // Item9
-            // 
-            this.Item9.Text = "Item No:10";
-            this.Item9.Width = 200;
             // 
             // Price
             // 
-            this.Price.Text = "Price: €";
+            this.Price.Text = "Price";
             this.Price.Width = 100;
             // 
-            // Address
+            // UserAddress
             // 
-            this.Address.Text = "Address:";
-            this.Address.Width = 300;
+            this.UserAddress.Text = "Address";
+            this.UserAddress.Width = 300;
             // 
             // Cancelled
             // 
@@ -220,10 +188,8 @@
         private System.Windows.Forms.ColumnHeader Item5;
         private System.Windows.Forms.ColumnHeader Item6;
         private System.Windows.Forms.ColumnHeader Item7;
-        private System.Windows.Forms.ColumnHeader Item8;
-        private System.Windows.Forms.ColumnHeader Item9;
         private System.Windows.Forms.ColumnHeader Price;
-        private System.Windows.Forms.ColumnHeader Address;
+        private System.Windows.Forms.ColumnHeader UserAddress;
         private System.Windows.Forms.ColumnHeader Cancelled;
         private System.Windows.Forms.Button BackButton;
         private System.Windows.Forms.Label OrderNumberLabel;

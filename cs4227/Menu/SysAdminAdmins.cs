@@ -29,7 +29,7 @@ namespace cs4227.Menu
         private void AdminsList_SelectedIndexChanged(object sender, EventArgs e)
         {
             AdminUsername = AdminsList.SelectedItems[0].Text.ToString();
-            RestaurantId = Int32.Parse(AdminsList.SelectedItems[0].SubItems[1].Text);
+            RestaurantId = Int32.Parse(AdminsList.SelectedItems[0].SubItems[2].Text);
             this.Hide();
             EditAdminMenu EAM = new EditAdminMenu(UserId, AdminUsername, RestaurantId, true, false);
             EAM.ShowDialog();
@@ -93,7 +93,7 @@ namespace cs4227.Menu
                 }
                 else
                 {
-                    ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
+                    ErrorMessageLabel.Text = "Error Message: Username already exists. \nTry Again!";
                     ErrorMessageLabel.Visible = true;
                     AdminUsernameLabel.Text = "Username: ERROR";
                     CorrectNameFormat = false;
@@ -101,7 +101,7 @@ namespace cs4227.Menu
             }
             else
             {
-                ErrorMessageLabel.Text = "Error Message: Please Fix Any Issues with the Admin's Email";
+                ErrorMessageLabel.Text = "Error Message: Please Fix Any Issues \nwith the Admin's Email";
                 ErrorMessageLabel.Visible = true;
             }
         }
@@ -120,6 +120,8 @@ namespace cs4227.Menu
             foreach (AbstractUser Admin in Admins)
             {
                 ListViewItem AdminItem = new ListViewItem(Admin.Username);
+                Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(Admin.RestaurantId);
+                AdminItem.SubItems.Add(new ListViewItem.ListViewSubItem(AdminItem, "" + Rest.Name));
                 AdminItem.SubItems.Add(new ListViewItem.ListViewSubItem(AdminItem, "" + Admin.Id));
                 AdminsList.Items.Add(AdminItem);
             }

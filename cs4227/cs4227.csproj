@@ -71,12 +71,6 @@
     <Compile Include="Menu\LoginMenuV2.Designer.cs">
       <DependentUpon>LoginMenuV2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\RestAdminIgnoreListMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu\RestAdminIgnoreListMenu.Designer.cs">
-      <DependentUpon>RestAdminIgnoreListMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menu\RestAdminManageOrders.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,9 +271,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\LoginMenu.resx">
       <DependentUpon>LoginMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menu\RestAdminIgnoreListMenu.resx">
-      <DependentUpon>RestAdminIgnoreListMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\RestAdminManageOrders.resx">
       <DependentUpon>RestAdminManageOrders.cs</DependentUpon>
