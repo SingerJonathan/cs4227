@@ -171,8 +171,18 @@ namespace cs4227.Menu
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             //remove item from db
-            Delete = true;
+            double NewPrice = Convert.ToDouble(Price);
+            FoodItem ItemToDelete = new FoodItem(MenuItemId,MenuItemName,NewPrice,RestaurantId,true);
+            DatabaseHandler.UpdateFoodItem(ItemToDelete);
             MessageBox.Show("Item: " + MenuItemName + " Removed");
+        }
+
+        private void EditItemButton_Click(object sender, EventArgs e)
+        {
+            double NewPrice = Convert.ToDouble(Price);
+            FoodItem NewItem = new FoodItem(MenuItemId, MenuItemName,NewPrice,RestaurantId);
+            DatabaseHandler.UpdateFoodItem(NewItem);
+            MessageBox.Show("Item: " + MenuItemName + " edited");
         }
     }
 }

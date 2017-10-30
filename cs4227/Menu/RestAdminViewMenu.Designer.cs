@@ -170,6 +170,7 @@
             this.EditItemButton.TabIndex = 11;
             this.EditItemButton.Text = "Edit Item";
             this.EditItemButton.UseVisualStyleBackColor = false;
+            this.EditItemButton.Click += new System.EventHandler(this.EditItemButton_Click);
             // 
             // RestAdminViewMenu
             // 
