@@ -178,7 +178,7 @@ namespace cs4227.Menu
 
         private void AdminUsernameTextbox_TextChanged(object sender, EventArgs e)
         {
-            if (!newAdmin)
+            if (newAdmin)
             {
                 AdminUsername = AdminUsernameTextbox.Text.ToString();
             }
@@ -192,7 +192,7 @@ namespace cs4227.Menu
                 if (AdminUsername.Any(char.IsPunctuation) || AdminUsername.Any(char.IsWhiteSpace))
                 {
                     CorrectUsernameFormat = false;
-                    ErrorMessage = "Can't Use Spaces or Punctuation for an Username";
+                    ErrorMessage = "Can't Use Spaces or Punctuation for a Username";
                 }
                 else
                 {
@@ -213,10 +213,32 @@ namespace cs4227.Menu
             }
             else
             {
-                ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
-                ErrorMessageLabel.Visible = true;
-                AdminUsernameLabel.Text = "Username: ERROR";
-                CorrectUsernameFormat = false;
+                Boolean UsernameExists = false;
+                AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
+
+                if (Admin.Username == null)
+                {
+                    UsernameExists = false;
+                }
+                else
+                {
+                    UsernameExists = true;
+                }
+
+
+                if (!UsernameExists)
+                {
+                    AdminUsernameLabel.Text = "Username:";
+                    ErrorMessage = "";
+                    ErrorMessageLabel.Visible = false;
+                }
+                else if (newAdmin)
+                {
+                    ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
+                    ErrorMessageLabel.Visible = true;
+                    AdminUsernameLabel.Text = "Username: ERROR";
+                    CorrectNameFormat = false;
+                }
             }
         }
 

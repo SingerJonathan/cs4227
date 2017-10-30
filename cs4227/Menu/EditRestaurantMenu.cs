@@ -11,6 +11,7 @@ using System.Net.Mail;
 using cs4227.Database;
 using cs4227.Restaurant;
 using cs4227.User;
+using System.Text.RegularExpressions;
 
 namespace cs4227.Menu
 {
@@ -85,6 +86,12 @@ namespace cs4227.Menu
             RestaurantOpeningHoursTextbox.Text = RestaurantOpeningHours;
             RestaurantClosingHoursTextbox.Text = RestaurantClosingHours;
             RestaurantDaysOpenTextbox.Text = RestaurantDaysOpen;
+
+            if (RestaurantDeliveryCharge.Equals("0"))
+                RestaurantDeliveryCharge = "0.00";
+            else
+                RestaurantDeliveryCharge = string.Format("{0:#.00}", Convert.ToDecimal(RestaurantDeliveryCharge));
+            RestaurantDeliveryChargeTextbox.Text = RestaurantDeliveryCharge;
 
             if (sysAdmin)
             {
@@ -344,9 +351,9 @@ namespace cs4227.Menu
 
             if (RestaurantOpeningHours.Length > 0)
             {
-                if (!RestaurantOpeningHours.All(char.IsDigit))
+                if (!Regex.IsMatch(RestaurantOpeningHours, @"^(?:0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"))
                 {
-                    ErrorMessage = "Enter Numbers Only \nFormat: 9000 => 9am | 2200 => 10pm";
+                    ErrorMessage = "Enter Numbers Only \nFormat: 9:00 => 9am | 22:00 => 10pm";
                     CorrectOpeningHoursFormat = false;
                 }
                 else
@@ -379,9 +386,9 @@ namespace cs4227.Menu
 
             if (RestaurantClosingHours.Length > 0)
             {
-                if (!RestaurantClosingHours.All(char.IsDigit))
+                if (!Regex.IsMatch(RestaurantClosingHours, @"^(?:0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"))
                 {
-                    ErrorMessage = "Enter Numbers Only \nFormat: 9000 => 9am | 2200 => 10pm";
+                    ErrorMessage = "Enter Numbers Only \nFormat: 9:00 => 9am | 22:00 => 10pm";
                     CorrectClosingHoursFormat = false;
                 }
                 else
@@ -492,9 +499,9 @@ namespace cs4227.Menu
 
             if (RestaurantDeliveryCharge.Length > 0)
             {
-                if (!RestaurantDeliveryCharge.Any(char.IsDigit) || !RestaurantDeliveryCharge.Any(char.IsWhiteSpace))
+                if (!Regex.IsMatch(RestaurantDeliveryCharge, @"^[0-9]*(\.[0-9]{1,2})?$"))
                 {
-                    ErrorMessage = "Enter Numbers Only \nFormat: 2 00 => €2.00";
+                    ErrorMessage = "Enter Numbers Only \nFormat: 2.00";
                     CorrectDeliveryChargeFormat = false;
                 }
                 else
