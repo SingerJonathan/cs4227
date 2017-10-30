@@ -68,7 +68,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO [dbo].[Items] VALUES ('" + item.Name + "', " + item.Cost + ", " + item.RestaurantId + ", " + (item.Deleted?"1":"0");
+            command.CommandText = "INSERT INTO [dbo].[Items] VALUES ('" + item.Name + "', " + item.Cost + ", " + item.RestaurantId + ", " + (item.Deleted?"1":"0")+")";
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();

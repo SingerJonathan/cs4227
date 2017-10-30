@@ -41,6 +41,7 @@
             this.Cost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
             this.RemoveButton = new System.Windows.Forms.Button();
+            this.EditItemButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SelectMenuItemLabel
@@ -68,7 +69,7 @@
             this.AddItemButton.BackColor = System.Drawing.Color.Silver;
             this.AddItemButton.Location = new System.Drawing.Point(624, 391);
             this.AddItemButton.Name = "AddItemButton";
-            this.AddItemButton.Size = new System.Drawing.Size(300, 86);
+            this.AddItemButton.Size = new System.Drawing.Size(148, 86);
             this.AddItemButton.TabIndex = 3;
             this.AddItemButton.Text = "Add Item";
             this.AddItemButton.UseVisualStyleBackColor = false;
@@ -160,12 +161,23 @@
             this.RemoveButton.UseVisualStyleBackColor = false;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
+            // EditItemButton
+            // 
+            this.EditItemButton.BackColor = System.Drawing.Color.Silver;
+            this.EditItemButton.Location = new System.Drawing.Point(778, 391);
+            this.EditItemButton.Name = "EditItemButton";
+            this.EditItemButton.Size = new System.Drawing.Size(146, 86);
+            this.EditItemButton.TabIndex = 11;
+            this.EditItemButton.Text = "Edit Item";
+            this.EditItemButton.UseVisualStyleBackColor = false;
+            // 
             // RestAdminViewMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.EditItemButton);
             this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.RestaurantMenuList);
@@ -200,5 +212,6 @@
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader FoodName;
         private System.Windows.Forms.ColumnHeader Cost;
+        private System.Windows.Forms.Button EditItemButton;
     }
 }

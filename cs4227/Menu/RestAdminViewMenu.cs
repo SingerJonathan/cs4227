@@ -126,6 +126,9 @@ namespace cs4227.Menu
                 if (!Exists)
                 {
                     //add to db
+                    double NewPrice = Convert.ToDouble(Price);
+                    FoodItem NewItem = new FoodItem(MenuItemId,MenuItemName,NewPrice,RestaurantId);
+                    DatabaseHandler.InsertFoodItem(NewItem);
                     MessageBox.Show("Item:" + MenuItemName + " Added");
                 }
                 else
