@@ -345,23 +345,26 @@ namespace cs4227.Menu
                 AbstractUser Admin2 = DatabaseHandler.GetUserEmail(AdminEmail);
                 //Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(AdminRestaurant);
 
-                if (Admin.Username == null)
+                if (newAdmin)
                 {
-                    UsernameExists = false;
-                }
-                else
-                {
-                    UsernameExists = true;
-                    ErrorMessage = "Error: Username Already Exists.";
-                }
-                if (Admin2.Username == null)
-                {
-                    EmailExists = false;
-                }
-                else
-                {
-                    EmailExists = true;
-                    ErrorMessage = "Error: Email Already Exists.";
+                    if (Admin.Username == null)
+                    {
+                        UsernameExists = false;
+                    }
+                    else
+                    {
+                        UsernameExists = true;
+                        ErrorMessage = "Error: Username Already Exists.";
+                    }
+                    if (Admin2.Username == null)
+                    {
+                        EmailExists = false;
+                    }
+                    else
+                    {
+                        EmailExists = true;
+                        ErrorMessage = "Error: Email Already Exists.";
+                    }
                 }
                 /*if (Rest == null)
                 {
@@ -383,7 +386,7 @@ namespace cs4227.Menu
                         if (newAdmin)
                         {
                             int restaurantId = DatabaseHandler.GetRestaurant(AdminRestaurant).Id;
-                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminFirstName, AdminLastName, AdminPassword, AdminEmail, "RestAdmin", restaurantId, true);
+                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminPassword, AdminFirstName, AdminLastName, AdminEmail, "RestAdmin", restaurantId, true);
                             DatabaseHandler.InsertUser(user);
                             MessageBox.Show("New Admin Created");
 
