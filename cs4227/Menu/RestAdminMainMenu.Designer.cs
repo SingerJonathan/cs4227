@@ -30,19 +30,18 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.RestaurantNameLabel = new System.Windows.Forms.Label();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.EditAdminDetailsButton = new System.Windows.Forms.Button();
-            this.AdminEmailLabel = new System.Windows.Forms.Label();
+            this.AdminUsernameLabel = new System.Windows.Forms.Label();
             this.RestaurantAdminMenuLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Silver;
-            this.button1.Location = new System.Drawing.Point(382, 296);
+            this.button1.Location = new System.Drawing.Point(382, 388);
             this.button1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(300, 80);
@@ -54,7 +53,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Silver;
-            this.button2.Location = new System.Drawing.Point(382, 204);
+            this.button2.Location = new System.Drawing.Point(382, 296);
             this.button2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(300, 80);
@@ -62,18 +61,6 @@
             this.button2.Text = "Change Restauraunt Details";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.Silver;
-            this.button3.Location = new System.Drawing.Point(382, 388);
-            this.button3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(300, 80);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Ignore List";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -91,7 +78,7 @@
             // 
             this.RestaurantNameLabel.AutoSize = true;
             this.RestaurantNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestaurantNameLabel.Location = new System.Drawing.Point(4, 115);
+            this.RestaurantNameLabel.Location = new System.Drawing.Point(4, 92);
             this.RestaurantNameLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.RestaurantNameLabel.Name = "RestaurantNameLabel";
             this.RestaurantNameLabel.Size = new System.Drawing.Size(201, 25);
@@ -112,7 +99,7 @@
             // EditAdminDetailsButton
             // 
             this.EditAdminDetailsButton.BackColor = System.Drawing.Color.Silver;
-            this.EditAdminDetailsButton.Location = new System.Drawing.Point(382, 115);
+            this.EditAdminDetailsButton.Location = new System.Drawing.Point(382, 207);
             this.EditAdminDetailsButton.Name = "EditAdminDetailsButton";
             this.EditAdminDetailsButton.Size = new System.Drawing.Size(300, 80);
             this.EditAdminDetailsButton.TabIndex = 6;
@@ -120,15 +107,15 @@
             this.EditAdminDetailsButton.UseVisualStyleBackColor = false;
             this.EditAdminDetailsButton.Click += new System.EventHandler(this.EditAdminDetailsButton_Click);
             // 
-            // AdminEmailLabel
+            // AdminUsernameLabel
             // 
-            this.AdminEmailLabel.AutoSize = true;
-            this.AdminEmailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdminEmailLabel.Location = new System.Drawing.Point(4, 194);
-            this.AdminEmailLabel.Name = "AdminEmailLabel";
-            this.AdminEmailLabel.Size = new System.Drawing.Size(149, 25);
-            this.AdminEmailLabel.TabIndex = 7;
-            this.AdminEmailLabel.Text = "Admin Email:";
+            this.AdminUsernameLabel.AutoSize = true;
+            this.AdminUsernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdminUsernameLabel.Location = new System.Drawing.Point(4, 140);
+            this.AdminUsernameLabel.Name = "AdminUsernameLabel";
+            this.AdminUsernameLabel.Size = new System.Drawing.Size(197, 25);
+            this.AdminUsernameLabel.TabIndex = 7;
+            this.AdminUsernameLabel.Text = "Admin Username:";
             // 
             // RestaurantAdminMenuLabel
             // 
@@ -140,24 +127,23 @@
             this.RestaurantAdminMenuLabel.TabIndex = 8;
             this.RestaurantAdminMenuLabel.Text = "Restaurant Admin Menu";
             // 
-            // RestAdminMenu
+            // RestAdminMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
             this.Controls.Add(this.RestaurantAdminMenuLabel);
-            this.Controls.Add(this.AdminEmailLabel);
+            this.Controls.Add(this.AdminUsernameLabel);
             this.Controls.Add(this.EditAdminDetailsButton);
             this.Controls.Add(this.LogOutButton);
             this.Controls.Add(this.RestaurantNameLabel);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.Name = "RestAdminMenu";
+            this.Name = "RestAdminMainMenu";
             this.Text = "RestAdmin Menu: Main Menu";
             this.Load += new System.EventHandler(this.RestMenu_Load);
             this.ResumeLayout(false);
@@ -169,12 +155,11 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label RestaurantNameLabel;
         private System.Windows.Forms.Button LogOutButton;
         private System.Windows.Forms.Button EditAdminDetailsButton;
-        private System.Windows.Forms.Label AdminEmailLabel;
+        private System.Windows.Forms.Label AdminUsernameLabel;
         private System.Windows.Forms.Label RestaurantAdminMenuLabel;
     }
 }

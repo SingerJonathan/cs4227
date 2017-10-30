@@ -35,21 +35,26 @@
             this.AdminUsernameLabel = new System.Windows.Forms.Label();
             this.SelectAdminMessageLabel = new System.Windows.Forms.Label();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
+            this.Username = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RestaurantAdmin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // AdminsList
             // 
+            this.AdminsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Username,
+            this.RestaurantAdmin});
             this.AdminsList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AdminsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdminsList.HoverSelection = true;
+            this.AdminsList.FullRowSelect = true;
             this.AdminsList.Location = new System.Drawing.Point(13, 54);
             this.AdminsList.MultiSelect = false;
             this.AdminsList.Name = "AdminsList";
-            this.AdminsList.Size = new System.Drawing.Size(400, 596);
+            this.AdminsList.Size = new System.Drawing.Size(551, 596);
             this.AdminsList.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.AdminsList.TabIndex = 0;
             this.AdminsList.UseCompatibleStateImageBehavior = false;
-            this.AdminsList.View = System.Windows.Forms.View.List;
+            this.AdminsList.View = System.Windows.Forms.View.Details;
             this.AdminsList.SelectedIndexChanged += new System.EventHandler(this.AdminsList_SelectedIndexChanged);
             // 
             // AddAdminButton
@@ -111,12 +116,22 @@
             // 
             this.ErrorMessageLabel.AutoSize = true;
             this.ErrorMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrorMessageLabel.Location = new System.Drawing.Point(419, 245);
+            this.ErrorMessageLabel.Location = new System.Drawing.Point(565, 214);
             this.ErrorMessageLabel.Name = "ErrorMessageLabel";
             this.ErrorMessageLabel.Size = new System.Drawing.Size(166, 25);
             this.ErrorMessageLabel.TabIndex = 17;
             this.ErrorMessageLabel.Text = "Error Message";
             this.ErrorMessageLabel.Visible = false;
+            // 
+            // Username
+            // 
+            this.Username.Text = "Username";
+            this.Username.Width = 300;
+            // 
+            // RestaurantAdmin
+            // 
+            this.RestaurantAdmin.Text = "Restaurant";
+            this.RestaurantAdmin.Width = 250;
             // 
             // SysAdminAdminsMenu
             // 
@@ -148,5 +163,7 @@
         private System.Windows.Forms.Label AdminUsernameLabel;
         private System.Windows.Forms.Label SelectAdminMessageLabel;
         private System.Windows.Forms.Label ErrorMessageLabel;
+        private System.Windows.Forms.ColumnHeader Username;
+        private System.Windows.Forms.ColumnHeader RestaurantAdmin;
     }
 }

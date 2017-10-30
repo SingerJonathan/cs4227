@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cs4227.Database;
+using cs4227.Restaurant;
 
 namespace cs4227.Menu
 {
@@ -44,24 +46,24 @@ namespace cs4227.Menu
         {
             OrderNumberLabel.Text = "Viewing Order No: " + OrderNo;
 
-            //Add code to display order
+            List<Order> orders = DatabaseHandler.GetRestaurantOrder(OrderNo, RestaurantId);
+            foreach (Order order in orders)
+            {
+                ListViewItem row = new ListViewItem("" + order.Id);
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetUser(order.UserId).Username));
+                for (int i = 0; i < 8; i++)
+                {
+                    if (i < order.FoodItems.Count)
+                        row.SubItems.Add(new ListViewItem.ListViewSubItem(row, DatabaseHandler.GetFoodItem(order.FoodItems[i].Id).Name));
+                    else
+                        row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
+                }
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Cost));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));
+                Order.Items.Add(row);
 
-            ListViewItem row = Order.Items[0];
-            row.SubItems[0].Text = OrderNo.ToString();
-            row.SubItems[1].Text = Username;
-            row.SubItems[2].Text = Item00;
-            row.SubItems[3].Text = Item01;
-            row.SubItems[4].Text = Item02;
-            row.SubItems[5].Text = Item03;
-            row.SubItems[6].Text = Item04;
-            row.SubItems[7].Text = Item05;
-            row.SubItems[8].Text = Item06;
-            row.SubItems[9].Text = Item07;
-            row.SubItems[10].Text = Item08;
-            row.SubItems[11].Text = Item09;
-            row.SubItems[12].Text = Cost.ToString();
-            row.SubItems[13].Text = DeliveryAddress;
-            row.SubItems[14].Text = IsCancelled.ToString();
+            }
         }
 
         private void BackButton_Click(object sender, EventArgs e)

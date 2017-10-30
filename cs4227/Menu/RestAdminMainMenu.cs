@@ -32,8 +32,8 @@ namespace cs4227.Menu
             AbstractUser Admin = DatabaseHandler.GetAdmin(RestaurantId);
             RestaurantName = Rest.Name;
             RestaurantAdmin = Admin.Username;
-            RestaurantNameLabel.Text = "Restaurant Name: \n" + RestaurantName;
-            AdminEmailLabel.Text = "Admin Email: \n" + RestaurantAdmin;
+            RestaurantNameLabel.Text = "Restaurant Name: " + RestaurantName;
+            AdminUsernameLabel.Text = "Admin Username: " + RestaurantAdmin;
         }
 
         private void button1_Click(object sender, EventArgs e) //View Menu
@@ -48,13 +48,6 @@ namespace cs4227.Menu
             this.Hide();
             EditRestaurantMenu ERM = new EditRestaurantMenu(AdminId, RestaurantId, false, false);
             ERM.ShowDialog();
-        }
-
-        private void button3_Click(object sender, EventArgs e) //AddUsertoIgnoreList
-        {
-            this.Hide();
-            RestAdminIgnoreListMenu RAILM = new RestAdminIgnoreListMenu(AdminId, RestaurantId);
-            RAILM.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e) //ManageOrder

@@ -83,7 +83,7 @@ namespace cs4227.Menu
             {
                 if (r.Match(Price).Success)
                 {
-                    if (Price.Length == 1)
+                    if (Price.Length == 1 || Price.Length == 2)
                     {
                         Price += ".00";
                     }

@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "1",
-            " ",
-            " ",
-            " ",
-            " "}, -1);
             this.CurrentOrdersLabel = new System.Windows.Forms.Label();
             this.BackButton = new System.Windows.Forms.Button();
             this.CancelOrderButton = new System.Windows.Forms.Button();
@@ -43,6 +37,7 @@
             this.User = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Cancelled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UserAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // CurrentOrdersLabel
@@ -93,11 +88,11 @@
             this.OrderId,
             this.User,
             this.Price,
+            this.UserAddress,
             this.Cancelled});
             this.CurrentOrders.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CurrentOrders.FullRowSelect = true;
             this.CurrentOrders.HoverSelection = true;
-            this.CurrentOrders.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
             this.CurrentOrders.Location = new System.Drawing.Point(13, 45);
             this.CurrentOrders.MultiSelect = false;
             this.CurrentOrders.Name = "CurrentOrders";
@@ -109,23 +104,28 @@
             // 
             // OrderId
             // 
-            this.OrderId.Text = "ID:";
+            this.OrderId.Text = "ID";
             this.OrderId.Width = 100;
             // 
             // User
             // 
-            this.User.Text = "User:";
-            this.User.Width = 200;
+            this.User.Text = "User";
+            this.User.Width = 250;
             // 
             // Price
             // 
-            this.Price.Text = "Price:";
+            this.Price.Text = "Price";
             this.Price.Width = 100;
             // 
             // Cancelled
             // 
-            this.Cancelled.Text = "Cancelled:";
-            this.Cancelled.Width = 200;
+            this.Cancelled.Text = "Cancelled";
+            this.Cancelled.Width = 205;
+            // 
+            // UserAddress
+            // 
+            this.UserAddress.Text = "Address";
+            this.UserAddress.Width = 300;
             // 
             // RestAdminManageOrders
             // 
@@ -158,5 +158,6 @@
         private System.Windows.Forms.ColumnHeader User;
         private System.Windows.Forms.ColumnHeader Price;
         private System.Windows.Forms.ColumnHeader Cancelled;
+        private System.Windows.Forms.ColumnHeader UserAddress;
     }
 }

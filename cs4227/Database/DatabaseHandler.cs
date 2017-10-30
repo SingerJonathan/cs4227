@@ -97,7 +97,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "UPDATE [dbo].[Orders] SET [User] = "+order.UserId+", "+order.RestaurantId+", ";
+            command.CommandText = "UPDATE [dbo].[Orders] SET [User] = "+order.UserId+", [Restaurant] = "+order.RestaurantId+", ";
             for (int index = 0; index < 8; index++)
             {
                 if (index < order.FoodItems.Count)
@@ -105,7 +105,7 @@ namespace cs4227.Database
                 else
                     command.CommandText += "[Item" + index + "] = NULL, ";
             }
-            command.CommandText += "[Cancelled] = "+(order.Cancelled ? 1 : 0)+", [Address] = "+order.Address+", [Cost] = "+order.Cost + " WHERE [Id] = " + order.Id;
+            command.CommandText += "[Cancelled] = "+(order.Cancelled ? 1 : 0)+", [Address] = '"+order.Address+"', [Cost] = "+order.Cost + " WHERE [Id] = " + order.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -416,6 +416,62 @@ namespace cs4227.Database
                 {
                     if (!reader.IsDBNull(3+i))
                     order.Add(GetFoodItem((int)reader["Item" + i]));
+                }
+                orders.Add(order);
+            }
+            connection.Close();
+            return orders;
+        }
+
+        public static List<Order> GetRestaurantOrder(int OrderId, int RestaurantId)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Id] = " + OrderId + " AND [Restaurant] = " + RestaurantId;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            List<Order> orders = new List<Order>();
+            while (reader.Read())
+            {
+                Order order = new Order();
+                order.Id = (int)reader["Id"];
+                order.UserId = (int)reader["User"];
+                order.RestaurantId = (int)reader["Restaurant"];
+                order.Address = (string)reader["Address"];
+                order.Cost = Convert.ToDouble(reader["Cost"]);
+                order.Cancelled = (bool)reader["Cancelled"];
+                for (int i = 0; i < 8; i++)
+                {
+                    if (!reader.IsDBNull(3 + i))
+                        order.Add(GetFoodItem((int)reader["Item" + i]));
+                }
+                orders.Add(order);
+            }
+            connection.Close();
+            return orders;
+        }
+
+        public static List<Order> GetRestaurantOrders(int RestaurantId)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Restaurant] = " + RestaurantId;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            List<Order> orders = new List<Order>();
+            while (reader.Read())
+            {
+                Order order = new Order();
+                order.Id = (int)reader["Id"];
+                order.UserId = (int)reader["User"];
+                order.RestaurantId = (int)reader["Restaurant"];
+                order.Address = (string)reader["Address"];
+                order.Cost = Convert.ToDouble(reader["Cost"]);
+                order.Cancelled = (bool)reader["Cancelled"];
+                for (int i = 0; i < 8; i++)
+                {
+                    if (!reader.IsDBNull(3 + i))
+                        order.Add(GetFoodItem((int)reader["Item" + i]));
                 }
                 orders.Add(order);
             }
