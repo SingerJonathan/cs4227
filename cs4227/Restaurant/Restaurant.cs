@@ -80,7 +80,7 @@ namespace cs4227.Restaurant
 
         public Restaurant()
         {
-            name = "Restaurant";
+            name = "None";
             delivery = 0;
             deleted = false;
         }

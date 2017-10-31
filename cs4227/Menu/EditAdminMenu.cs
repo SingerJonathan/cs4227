@@ -476,14 +476,27 @@ namespace cs4227.Menu
         {
             if(sysAdmin)
             {
-                //TODO: Only allow admin deletion if he isn't the admin of a restaurant
                 AbstractUser admin = DatabaseHandler.GetUser(AdminUsername);
-                admin.Deleted = true;
-                DatabaseHandler.UpdateUser(admin);
+                if (admin.RestaurantId <= 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete " + AdminUsername + "?", "Delete Admin", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        admin.Deleted = true;
+                        DatabaseHandler.UpdateUser(admin);
 
-                this.Hide();
-                SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(AdminId);
-                SAAM.ShowDialog();
+                        this.Hide();
+                        SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(AdminId);
+                        SAAM.ShowDialog();
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(AdminUsername + " is currently an admin of " + AdminRestaurant + " and therefore cannot be deleted.\nChange the admin of that restaurant first.");
+                }
             }
         }
     }
