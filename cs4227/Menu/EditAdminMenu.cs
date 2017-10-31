@@ -476,7 +476,11 @@ namespace cs4227.Menu
         {
             if(sysAdmin)
             {
-                //add code to delete admin
+                //TODO: Only allow admin deletion if he isn't the admin of a restaurant
+                AbstractUser admin = DatabaseHandler.GetUser(AdminUsername);
+                admin.Deleted = true;
+                DatabaseHandler.UpdateUser(admin);
+
                 this.Hide();
                 SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(AdminId);
                 SAAM.ShowDialog();
