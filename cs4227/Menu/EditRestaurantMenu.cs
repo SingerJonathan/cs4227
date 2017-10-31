@@ -649,6 +649,10 @@ namespace cs4227.Menu
                 restaurant.Deleted = true;
                 DatabaseHandler.UpdateRestaurant(restaurant);
 
+                AbstractUser restaurantOwner = DatabaseHandler.GetUser(restaurant.OwnerId);
+                restaurantOwner.RestaurantId = 0;
+                DatabaseHandler.UpdateUser(restaurantOwner);
+
                 this.Hide();
                 SysAdminRestaurantsMenu SARM = new SysAdminRestaurantsMenu(AdminId);
                 SARM.ShowDialog();
