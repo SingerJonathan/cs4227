@@ -38,17 +38,26 @@ namespace cs4227.Menu
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 RestaurantMenu.Items.Add(row);
-            } 
+            }
         }
 
         private void RestaurantMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (RestaurantMenu.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedRow = RestaurantMenu.SelectedItems[0];
+                YourOrder.Items.Add((ListViewItem)selectedRow.Clone());
+                selectedRow.Selected = false;
+            }
         }
 
         private void YourOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (YourOrder.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedRow = YourOrder.SelectedItems[0];
+                selectedRow.Remove();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e) //back
