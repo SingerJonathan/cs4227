@@ -39,13 +39,6 @@ namespace cs4227.Menu
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            UserFavouriteOrders UFO = new UserFavouriteOrders(UserId);
-            UFO.ShowDialog();
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             this.Hide();

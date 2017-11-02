@@ -394,7 +394,10 @@ namespace cs4227.Menu
                             SysAdminAdminsMenu SAAM = new SysAdminAdminsMenu(AdminId);
                             SAAM.ShowDialog();
                         }
-                        else
+                    }
+                    else
+                    {
+                        if (IsCurrentAdmin.Username != null) //admin of that restaurant
                         {
                             int restaurantId = DatabaseHandler.GetRestaurant(AdminRestaurant).Id;
                             AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminPassword, AdminFirstName, AdminLastName, AdminEmail, "RestAdmin", restaurantId, true);
@@ -413,14 +416,6 @@ namespace cs4227.Menu
                                 RestAdminMainMenu RAM = new RestAdminMainMenu(AdminId, RestaurantId);
                                 RAM.ShowDialog();
                             }
-                        }
-
-                    }
-                    else
-                    {
-                        if (IsCurrentAdmin.Username != null) //admin of that restaurant
-                        {
-                            //update
                             MessageBox.Show("Admin Details Updated");
 
                             if (sysAdmin)
