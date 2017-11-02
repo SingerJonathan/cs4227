@@ -37,9 +37,11 @@
             this.UserPasswordLabel = new System.Windows.Forms.Label();
             this.UserUsernameTextbox = new System.Windows.Forms.TextBox();
             this.UserUsernameLabel = new System.Windows.Forms.Label();
-            this.UserNameTextbox = new System.Windows.Forms.TextBox();
-            this.UserNameLabel = new System.Windows.Forms.Label();
+            this.UserFirstNameTextbox = new System.Windows.Forms.TextBox();
+            this.UserFirstNameLabel = new System.Windows.Forms.Label();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
+            this.UserLastNameLabel = new System.Windows.Forms.Label();
+            this.UserLastNameTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BackButton
@@ -77,7 +79,7 @@
             // 
             // UserEmailTextbox
             // 
-            this.UserEmailTextbox.Location = new System.Drawing.Point(340, 372);
+            this.UserEmailTextbox.Location = new System.Drawing.Point(340, 419);
             this.UserEmailTextbox.Name = "UserEmailTextbox";
             this.UserEmailTextbox.Size = new System.Drawing.Size(300, 31);
             this.UserEmailTextbox.TabIndex = 3;
@@ -86,7 +88,7 @@
             // UserEmailLabel
             // 
             this.UserEmailLabel.AutoSize = true;
-            this.UserEmailLabel.Location = new System.Drawing.Point(335, 335);
+            this.UserEmailLabel.Location = new System.Drawing.Point(335, 382);
             this.UserEmailLabel.Name = "UserEmailLabel";
             this.UserEmailLabel.Size = new System.Drawing.Size(77, 25);
             this.UserEmailLabel.TabIndex = 4;
@@ -94,7 +96,7 @@
             // 
             // UserPasswordTextbox
             // 
-            this.UserPasswordTextbox.Location = new System.Drawing.Point(340, 301);
+            this.UserPasswordTextbox.Location = new System.Drawing.Point(340, 339);
             this.UserPasswordTextbox.Name = "UserPasswordTextbox";
             this.UserPasswordTextbox.Size = new System.Drawing.Size(300, 31);
             this.UserPasswordTextbox.TabIndex = 5;
@@ -103,7 +105,7 @@
             // UserPasswordLabel
             // 
             this.UserPasswordLabel.AutoSize = true;
-            this.UserPasswordLabel.Location = new System.Drawing.Point(335, 263);
+            this.UserPasswordLabel.Location = new System.Drawing.Point(335, 301);
             this.UserPasswordLabel.Name = "UserPasswordLabel";
             this.UserPasswordLabel.Size = new System.Drawing.Size(121, 25);
             this.UserPasswordLabel.TabIndex = 6;
@@ -111,7 +113,7 @@
             // 
             // UserUsernameTextbox
             // 
-            this.UserUsernameTextbox.Location = new System.Drawing.Point(340, 229);
+            this.UserUsernameTextbox.Location = new System.Drawing.Point(340, 260);
             this.UserUsernameTextbox.Name = "UserUsernameTextbox";
             this.UserUsernameTextbox.Size = new System.Drawing.Size(300, 31);
             this.UserUsernameTextbox.TabIndex = 7;
@@ -120,28 +122,28 @@
             // UserUsernameLabel
             // 
             this.UserUsernameLabel.AutoSize = true;
-            this.UserUsernameLabel.Location = new System.Drawing.Point(335, 191);
+            this.UserUsernameLabel.Location = new System.Drawing.Point(335, 222);
             this.UserUsernameLabel.Name = "UserUsernameLabel";
             this.UserUsernameLabel.Size = new System.Drawing.Size(125, 25);
             this.UserUsernameLabel.TabIndex = 8;
             this.UserUsernameLabel.Text = "Username:";
             // 
-            // UserNameTextbox
+            // UserFirstNameTextbox
             // 
-            this.UserNameTextbox.Location = new System.Drawing.Point(340, 157);
-            this.UserNameTextbox.Name = "UserNameTextbox";
-            this.UserNameTextbox.Size = new System.Drawing.Size(300, 31);
-            this.UserNameTextbox.TabIndex = 9;
-            this.UserNameTextbox.TextChanged += new System.EventHandler(this.UserNameTextbox_TextChanged);
+            this.UserFirstNameTextbox.Location = new System.Drawing.Point(340, 94);
+            this.UserFirstNameTextbox.Name = "UserFirstNameTextbox";
+            this.UserFirstNameTextbox.Size = new System.Drawing.Size(300, 31);
+            this.UserFirstNameTextbox.TabIndex = 9;
+            this.UserFirstNameTextbox.TextChanged += new System.EventHandler(this.UserFirstNameTextbox_TextChanged);
             // 
-            // UserNameLabel
+            // UserFirstNameLabel
             // 
-            this.UserNameLabel.AutoSize = true;
-            this.UserNameLabel.Location = new System.Drawing.Point(335, 119);
-            this.UserNameLabel.Name = "UserNameLabel";
-            this.UserNameLabel.Size = new System.Drawing.Size(79, 25);
-            this.UserNameLabel.TabIndex = 10;
-            this.UserNameLabel.Text = "Name:";
+            this.UserFirstNameLabel.AutoSize = true;
+            this.UserFirstNameLabel.Location = new System.Drawing.Point(335, 56);
+            this.UserFirstNameLabel.Name = "UserFirstNameLabel";
+            this.UserFirstNameLabel.Size = new System.Drawing.Size(133, 25);
+            this.UserFirstNameLabel.TabIndex = 10;
+            this.UserFirstNameLabel.Text = "First Name:";
             // 
             // ErrorMessageLabel
             // 
@@ -152,15 +154,34 @@
             this.ErrorMessageLabel.TabIndex = 11;
             this.ErrorMessageLabel.Text = "Error Message:";
             // 
+            // UserLastNameLabel
+            // 
+            this.UserLastNameLabel.AutoSize = true;
+            this.UserLastNameLabel.Location = new System.Drawing.Point(335, 138);
+            this.UserLastNameLabel.Name = "UserLastNameLabel";
+            this.UserLastNameLabel.Size = new System.Drawing.Size(131, 25);
+            this.UserLastNameLabel.TabIndex = 13;
+            this.UserLastNameLabel.Text = "Last Name:";
+            // 
+            // UserLastNameTextbox
+            // 
+            this.UserLastNameTextbox.Location = new System.Drawing.Point(340, 176);
+            this.UserLastNameTextbox.Name = "UserLastNameTextbox";
+            this.UserLastNameTextbox.Size = new System.Drawing.Size(300, 31);
+            this.UserLastNameTextbox.TabIndex = 12;
+            this.UserLastNameTextbox.TextChanged += new System.EventHandler(this.UserLastNameTextbox_TextChanged);
+            // 
             // UserManageAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.UserLastNameLabel);
+            this.Controls.Add(this.UserLastNameTextbox);
             this.Controls.Add(this.ErrorMessageLabel);
-            this.Controls.Add(this.UserNameLabel);
-            this.Controls.Add(this.UserNameTextbox);
+            this.Controls.Add(this.UserFirstNameLabel);
+            this.Controls.Add(this.UserFirstNameTextbox);
             this.Controls.Add(this.UserUsernameLabel);
             this.Controls.Add(this.UserUsernameTextbox);
             this.Controls.Add(this.UserPasswordLabel);
@@ -191,8 +212,10 @@
         private System.Windows.Forms.Label UserPasswordLabel;
         private System.Windows.Forms.TextBox UserUsernameTextbox;
         private System.Windows.Forms.Label UserUsernameLabel;
-        private System.Windows.Forms.TextBox UserNameTextbox;
-        private System.Windows.Forms.Label UserNameLabel;
+        private System.Windows.Forms.TextBox UserFirstNameTextbox;
+        private System.Windows.Forms.Label UserFirstNameLabel;
         private System.Windows.Forms.Label ErrorMessageLabel;
+        private System.Windows.Forms.Label UserLastNameLabel;
+        private System.Windows.Forms.TextBox UserLastNameTextbox;
     }
 }
