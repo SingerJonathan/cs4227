@@ -19,7 +19,8 @@ namespace cs4227.Menu
         private string Username = "";
         private string Password = "";
         private string Email = "";
-        private string FullName = "";
+        private string FirstName = "";
+        private string LastName = "";
         private string ErrorMessage = "";
         private Boolean CorrectEmailFormat = false;
         private Boolean CorrectNameFormat = false;
@@ -40,11 +41,13 @@ namespace cs4227.Menu
             {
                 AbstractUser User = DatabaseHandler.GetUser(UserId);
                 Email = User.Email;
-                FullName = User.FirstName + " " + User.LastName;
+                FirstName = User.FirstName;
+                LastName = User.LastName;
                 Password = User.Password;
                 Username = User.Username;
                 UserEmailTextbox.Text = Email;
-                UserNameTextbox.Text = FullName;
+                UserFirstNameTextbox.Text = FirstName;
+                UserLastNameTextbox.Text = LastName;
                 UserPasswordTextbox.Text = Password;
                 UserUsernameTextbox.Text = Username;
             }
@@ -164,20 +167,20 @@ namespace cs4227.Menu
             }
         }
 
-        private void UserNameTextbox_TextChanged(object sender, EventArgs e)
+        private void UserFirstNameTextbox_TextChanged(object sender, EventArgs e)
         {
-            FullName = UserNameTextbox.Text.ToString();
+            FirstName = UserFirstNameTextbox.Text.ToString();
 
-            if (FullName.Length > 0)
+            if (FirstName.Length > 0)
             {
                 CorrectNameFormat = true;
-                if (FullName.Any(char.IsDigit))
+                if (FirstName.Any(char.IsDigit))
                 {
                     ErrorMessage = "Can't Use Numbers in a Name";
                     CorrectNameFormat = false;
                 }
 
-                if (FullName.Any(char.IsSymbol) || FullName.Any(char.IsPunctuation))
+                if (FirstName.Any(char.IsSymbol) || FirstName.Any(char.IsPunctuation))
                 {
                     ErrorMessage = "Can't Use Symbols in a Name";
                     CorrectNameFormat = false;
@@ -193,11 +196,50 @@ namespace cs4227.Menu
             {
                 ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                UserNameLabel.Text = "Name: ERROR";
+                UserFirstNameLabel.Text = "First Name: ERROR";
             }
             else
             {
-                UserNameLabel.Text = "Name:";
+                UserFirstNameLabel.Text = "First Name:";
+                ErrorMessage = "";
+                ErrorMessageLabel.Visible = false;
+            }
+        }
+
+        private void UserLastNameTextbox_TextChanged(object sender, EventArgs e)
+        {
+            LastName = UserLastNameTextbox.Text.ToString();
+
+            if (LastName.Length > 0)
+            {
+                CorrectNameFormat = true;
+                if (LastName.Any(char.IsDigit))
+                {
+                    ErrorMessage = "Can't Use Numbers in a Name";
+                    CorrectNameFormat = false;
+                }
+
+                if (LastName.Any(char.IsSymbol) || LastName.Any(char.IsPunctuation))
+                {
+                    ErrorMessage = "Can't Use Symbols in a Name";
+                    CorrectNameFormat = false;
+                }
+            }
+            else
+            {
+                CorrectNameFormat = false;
+                ErrorMessage = "Can't have a blank Name. Try Again!";
+            }
+
+            if (!CorrectNameFormat)
+            {
+                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Visible = true;
+                UserLastNameLabel.Text = "Last Name: ERROR";
+            }
+            else
+            {
+                UserLastNameLabel.Text = "Last Name:";
                 ErrorMessage = "";
                 ErrorMessageLabel.Visible = false;
             }
@@ -205,7 +247,12 @@ namespace cs4227.Menu
 
         private void UserUsernameTextbox_TextChanged(object sender, EventArgs e)
         {
+            if(!newAccount)
+            {
+                UserUsernameTextbox.Text = Username;
+            }
             Username = UserUsernameTextbox.Text.ToString();
+
 
             if (Username.Length > 0)
             {
@@ -233,21 +280,28 @@ namespace cs4227.Menu
             }
             else
             {
-                Boolean UsernameExists = false;
-                //Add code to check if username exists already
-
-                if (!UsernameExists)
+                if (newAccount)
                 {
-                    UserUsernameLabel.Text = "Username:";
-                    ErrorMessage = "";
-                    ErrorMessageLabel.Visible = false;
+                    Boolean UsernameExists = false;
+                    //Add code to check if username exists already
+
+                    if (!UsernameExists)
+                    {
+                        UserUsernameLabel.Text = "Username:";
+                        ErrorMessage = "";
+                        ErrorMessageLabel.Visible = false;
+                    }
+                    else
+                    {
+                        ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
+                        ErrorMessageLabel.Visible = true;
+                        UserUsernameLabel.Text = "Username: ERROR";
+                        CorrectUsernameFormat = false;
+                    }
                 }
                 else
                 {
-                    ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
-                    ErrorMessageLabel.Visible = true;
-                    UserUsernameLabel.Text = "Username: ERROR";
-                    CorrectUsernameFormat = false;
+                    UserUsernameTextbox.Text = Username;
                 }
             }
         }
@@ -256,7 +310,7 @@ namespace cs4227.Menu
         {
             if (newAccount)
             {
-                //insert
+                //DatabaseHandler.InsertUser();
                 MessageBox.Show("Account Created");
                 this.Hide();
                 LoginMenuV2 LMV2 = new LoginMenuV2();
@@ -264,7 +318,13 @@ namespace cs4227.Menu
             }
             else
             {
-                //update or delete then insert
+                AbstractUser user = DatabaseHandler.GetUser(UserId);
+                user.FirstName = FirstName;
+                user.LastName = LastName;
+                user.Username = Username;
+                user.Password = Password;
+                user.Email = Email;
+                DatabaseHandler.UpdateUser(user);
                 MessageBox.Show("Changes Saved");
                 this.Hide();
                 UserMainMenu UMM = new UserMainMenu(UserId);
@@ -274,11 +334,21 @@ namespace cs4227.Menu
 
         private void DeleteAccountButton_Click(object sender, EventArgs e)
         {
-            //delete account from db
-            MessageBox.Show("Account Deleted \nReturning to login screen");
-            this.Hide();
-            LoginMenu LM = new LoginMenu();
-            LM.ShowDialog();
+            DialogResult dialogResult = MessageBox.Show(Username + ", are you sure you want to delete your account?", "Delete Account", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                AbstractUser user = DatabaseHandler.GetUser(UserId);
+                user.Deleted = true;
+                DatabaseHandler.UpdateUser(user);
+                
+                MessageBox.Show("Account Deleted \nReturning to login screen");
+                this.Hide();
+                LoginMenu LM = new LoginMenu();
+                LM.ShowDialog();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+            }
         }
 
         private void BackButton_Click(object sender, EventArgs e)
