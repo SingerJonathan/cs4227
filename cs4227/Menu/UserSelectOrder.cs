@@ -30,7 +30,12 @@ namespace cs4227.Menu
             foreach (FoodItem Food in FoodItems)
             {
                 ListViewItem row = new ListViewItem("" + Food.Name);
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Cost));
+                string cost = Food.Cost.ToString();
+                if (cost.Length == 1 || cost.Length == 2)
+                {
+                    cost += ".00";
+                }
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 RestaurantMenu.Items.Add(row);
             } 

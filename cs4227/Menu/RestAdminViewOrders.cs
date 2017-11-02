@@ -58,7 +58,12 @@ namespace cs4227.Menu
                     else
                         row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
                 }
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Cost));
+                string cost = order.Cost.ToString();
+                if (cost.Length == 1 || cost.Length == 2)
+                {
+                    cost += ".00";
+                }
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));
                 Order.Items.Add(row);

@@ -157,18 +157,6 @@
     <Compile Include="Menu\SysOrderView.Designer.cs">
       <DependentUpon>SysOrderView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\SysRestMenuAdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu\SysRestMenuAdd.Designer.cs">
-      <DependentUpon>SysRestMenuAdd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Menu\SysRestMenuEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu\SysRestMenuEdit.Designer.cs">
-      <DependentUpon>SysRestMenuEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menu\SysRestView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,12 +280,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\SysOrderView.resx">
       <DependentUpon>SysOrderView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menu\SysRestMenuAdd.resx">
-      <DependentUpon>SysRestMenuAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menu\SysRestMenuEdit.resx">
-      <DependentUpon>SysRestMenuEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\SysRestView.resx">
       <DependentUpon>SysRestView.cs</DependentUpon>

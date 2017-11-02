@@ -432,6 +432,34 @@ namespace cs4227.Database
             return orders;
         }
 
+        public static List<Order> GetUserOrders(int id)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [User] = " + id;
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            List<Order> orders = new List<Order>();
+            while (reader.Read())
+            {
+                Order order = new Order();
+                order.Id = (int)reader["Id"];
+                order.UserId = (int)reader["User"];
+                order.RestaurantId = (int)reader["Restaurant"];
+                order.Address = (string)reader["Address"];
+                order.Cost = Convert.ToDouble(reader["Cost"]);
+                order.Cancelled = (bool)reader["Cancelled"];
+                for (int i = 0; i < 8; i++)
+                {
+                    if (!reader.IsDBNull(3 + i))
+                        order.Add(GetFoodItem((int)reader["Item" + i]));
+                }
+                orders.Add(order);
+            }
+            connection.Close();
+            return orders;
+        }
+
         public static List<Order> GetRestaurantOrder(int OrderId, int RestaurantId)
         {
             SqlConnection connection = GetLocalDBConnection();
