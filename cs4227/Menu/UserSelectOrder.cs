@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using cs4227.Database;
 using cs4227.Restaurant;
+using cs4227.Meal;
 
 namespace cs4227.Menu
 {
@@ -16,6 +17,8 @@ namespace cs4227.Menu
     {
         private int UserId = 0;
         private int RestaurantId = 0;
+        private List<Memento> mementos = new List<Memento>();
+        private Order order = new Order();
 
         public UserOrderMenu(int UserId, int RestaurantId)
         {
@@ -26,16 +29,17 @@ namespace cs4227.Menu
 
         private void UserOrderMenu_Load(object sender, EventArgs e)
         {
+            order.UserId = UserId;
             List<FoodItem> FoodItems = DatabaseHandler.GetRestaurantFoodItems(RestaurantId);
             foreach (FoodItem Food in FoodItems)
             {
-                ListViewItem row = new ListViewItem("" + Food.Name);
+                ListViewItem row = new ListViewItem(Food.Name);
                 string cost = Food.Cost.ToString();
                 if (cost.Length == 1 || cost.Length == 2)
                 {
                     cost += ".00";
                 }
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 RestaurantMenu.Items.Add(row);
             }
@@ -48,17 +52,37 @@ namespace cs4227.Menu
                 ListViewItem selectedRow = RestaurantMenu.SelectedItems[0];
                 YourOrder.Items.Add((ListViewItem)selectedRow.Clone());
                 selectedRow.Selected = false;
+                order.Cost += Convert.ToDouble(selectedRow.SubItems[1].Text);
+                order.Add(DatabaseHandler.GetFoodItem(Convert.ToInt32(selectedRow.SubItems[2].Text)));
+                mementos.Add(order.CreateMemento());
             }
         }
 
-        private void YourOrder_SelectedIndexChanged(object sender, EventArgs e)
+        private void UndoButton_Click(object sender, EventArgs e)
+        {
+            if (YourOrder.Items.Count > 0)
+            {
+                YourOrder.Items.RemoveAt(YourOrder.Items.Count - 1);
+                try
+                {
+                    order.SetMemento(mementos[mementos.Count - 2]);
+                }
+                catch
+                {
+                    order.SetMemento(new Memento(order.Id, order.UserId, order.Cancelled, new List<FoodItem>()));
+                }
+                mementos.RemoveAt(mementos.Count - 1);
+            }
+        }
+
+        /*private void YourOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (YourOrder.SelectedItems.Count > 0)
             {
                 ListViewItem selectedRow = YourOrder.SelectedItems[0];
                 selectedRow.Remove();
             }
-        }
+        }*/
 
         private void button1_Click(object sender, EventArgs e) //back
         {

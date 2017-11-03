@@ -40,6 +40,7 @@
             this.YourOrder = new System.Windows.Forms.ListView();
             this.OrderItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.OrderItemPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UndoButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -78,14 +79,14 @@
             this.label4.Location = new System.Drawing.Point(513, 563);
             this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(329, 25);
+            this.label4.Size = new System.Drawing.Size(442, 25);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Click item to delete from order";
+            this.label4.Text = "Click undo to remove the last item added";
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Silver;
-            this.button1.Location = new System.Drawing.Point(518, 602);
+            this.button1.Location = new System.Drawing.Point(809, 602);
             this.button1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(163, 44);
@@ -147,7 +148,6 @@
             this.YourOrder.TabIndex = 9;
             this.YourOrder.UseCompatibleStateImageBehavior = false;
             this.YourOrder.View = System.Windows.Forms.View.Details;
-            this.YourOrder.SelectedIndexChanged += new System.EventHandler(this.YourOrder_SelectedIndexChanged);
             // 
             // OrderItemName
             // 
@@ -159,12 +159,25 @@
             this.OrderItemPrice.Text = "Price";
             this.OrderItemPrice.Width = 100;
             // 
+            // UndoButton
+            // 
+            this.UndoButton.BackColor = System.Drawing.Color.Silver;
+            this.UndoButton.Location = new System.Drawing.Point(518, 602);
+            this.UndoButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.UndoButton.Name = "UndoButton";
+            this.UndoButton.Size = new System.Drawing.Size(163, 44);
+            this.UndoButton.TabIndex = 10;
+            this.UndoButton.Text = "Undo";
+            this.UndoButton.UseVisualStyleBackColor = false;
+            this.UndoButton.Click += new System.EventHandler(this.UndoButton_Click);
+            // 
             // UserOrderMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.UndoButton);
             this.Controls.Add(this.YourOrder);
             this.Controls.Add(this.RestaurantMenu);
             this.Controls.Add(this.button2);
@@ -196,5 +209,6 @@
         private System.Windows.Forms.ColumnHeader MenuItemPrice;
         private System.Windows.Forms.ColumnHeader OrderItemName;
         private System.Windows.Forms.ColumnHeader OrderItemPrice;
+        private System.Windows.Forms.Button UndoButton;
     }
 }
