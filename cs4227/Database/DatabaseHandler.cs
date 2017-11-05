@@ -45,7 +45,7 @@ namespace cs4227.Database
                 else
                     command.CommandText += "NULL, ";
             }
-            command.CommandText += "0)";
+            command.CommandText += order.Cost + ", '" + order.Address + "', 0)";
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();

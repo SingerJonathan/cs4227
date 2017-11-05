@@ -80,7 +80,10 @@ namespace cs4227.Menu
         {
             if (CorrectAddressFormat)
             {
-                //add order to db
+                Order.Address = Address;
+                OrderId = DatabaseHandler.GetNewestOrderId() + 1;
+                DatabaseHandler.InsertOrder(Order);
+
                 this.Hide();
                 UserPlaceOrderMenu UPOM = new UserPlaceOrderMenu(UserId, OrderId);
                 UPOM.ShowDialog();

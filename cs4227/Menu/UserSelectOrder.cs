@@ -32,6 +32,7 @@ namespace cs4227.Menu
         private void UserOrderMenu_Load(object sender, EventArgs e)
         {
             Order.UserId = UserId;
+            Order.RestaurantId = RestaurantId;
             List<FoodItem> FoodItems = DatabaseHandler.GetRestaurantFoodItems(RestaurantId);
             foreach (FoodItem Food in FoodItems)
             {
