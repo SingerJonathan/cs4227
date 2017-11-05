@@ -343,7 +343,7 @@ namespace cs4227.Menu
                 
                 MessageBox.Show("Account Deleted \nReturning to login screen");
                 this.Hide();
-                LoginMenu LM = new LoginMenu();
+                LoginMenuV2 LM = new LoginMenuV2();
                 LM.ShowDialog();
             }
             else if (dialogResult == DialogResult.No)

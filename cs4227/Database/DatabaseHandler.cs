@@ -309,6 +309,31 @@ namespace cs4227.Database
             return user;
         }
 
+        public static AbstractUser UserLogin(string username, string password)
+        {
+            SqlConnection connection = GetLocalDBConnection();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [dbo].[Users].[Username] = '" + username + "' AND [dbo].[Users].[Password] = '" + password + "' AND [Deleted] = 0";
+            command.Connection = connection;
+            SqlDataReader reader = command.ExecuteReader();
+            AbstractUser user = new User.User();
+            if (reader.Read())
+            {
+                string userType = "User";
+                if (reader.GetBoolean(7))
+                    userType = "RestAdmin";
+                else if (reader.GetBoolean(8))
+                    userType = "SysAdmin";
+                int restaurantId = 0;
+                if (!reader.IsDBNull(6))
+                    restaurantId = reader.GetInt32(6);
+                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), userType, restaurantId, reader.GetBoolean(7), reader.GetBoolean(8), reader.GetBoolean(9));
+            }
+            connection.Close();
+            return user;
+        }
+
         public static AbstractUser GetUserEmail(string email)
         {
             SqlConnection connection = GetLocalDBConnection();

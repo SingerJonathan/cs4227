@@ -55,7 +55,7 @@ namespace cs4227.Menu
         private void LogOutButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            LoginMenu LG = new LoginMenu();
+            LoginMenuV2 LG = new LoginMenuV2();
             LG.ShowDialog();
         } 
     }
