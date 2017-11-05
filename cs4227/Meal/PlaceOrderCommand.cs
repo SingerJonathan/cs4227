@@ -1,5 +1,6 @@
 ﻿using System;
 using cs4227.Restaurant;
+using cs4227.Database;
 
 namespace cs4227.Meal
 {
@@ -14,9 +15,9 @@ namespace cs4227.Meal
 
         void Command.Execute()
         {
-            Database.DatabaseHandler.InsertOrder(order);
-            Console.WriteLine("Order "+order.Id+" placed");
-            Console.ReadKey();
+            int orderId = DatabaseHandler.GetNewestOrderId() + 1;
+            DatabaseHandler.InsertOrder(order);
+            Console.WriteLine("Order "+ orderId + " placed");
         }
     }
 }

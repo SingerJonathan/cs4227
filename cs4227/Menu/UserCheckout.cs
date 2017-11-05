@@ -23,6 +23,7 @@ namespace cs4227.Menu
         private Order Order;
         private List<Memento> Mementos;
         private Boolean CorrectAddressFormat = false;
+        private Invoker invoker = new Invoker();
 
         public UserCheckout(int UserId, int RestaurantId, Order Order, List<Memento> Mementos)
         {
@@ -80,9 +81,12 @@ namespace cs4227.Menu
         {
             if (CorrectAddressFormat)
             {
-                Order.Address = Address;
                 OrderId = DatabaseHandler.GetNewestOrderId() + 1;
-                DatabaseHandler.InsertOrder(Order);
+                Order.Address = Address;
+
+                PlaceOrderCommand placeOrderCommand = new PlaceOrderCommand(Order);
+                invoker.Command = placeOrderCommand;
+                invoker.Invoke();
 
                 this.Hide();
                 UserPlaceOrderMenu UPOM = new UserPlaceOrderMenu(UserId, OrderId);
