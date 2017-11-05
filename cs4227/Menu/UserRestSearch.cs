@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using cs4227.Database;
+using cs4227.Restaurant;
 
 namespace cs4227.Menu
 {
@@ -51,7 +52,7 @@ namespace cs4227.Menu
                 {
                     RestaurantId = Rest.Id;
                     this.Hide();
-                    UserOrderMenu UOM = new UserOrderMenu(UserId, RestaurantId);
+                    UserOrderMenu UOM = new UserOrderMenu(UserId, RestaurantId, new Order(), new List<Meal.Memento>());
                     UOM.ShowDialog();
                 }
                 else
@@ -84,7 +85,7 @@ namespace cs4227.Menu
         {
             RestaurantId = Int32.Parse(ListOfRestaurants.SelectedItems[0].SubItems[1].Text);
             this.Hide();
-            UserOrderMenu UOM = new UserOrderMenu(UserId, RestaurantId);
+            UserOrderMenu UOM = new UserOrderMenu(UserId, RestaurantId, new Order(), new List<Meal.Memento>());
             UOM.ShowDialog();
         }
 

@@ -60,7 +60,7 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserOrderMenu UOM = new UserOrderMenu(UserId, RestaurantId);
+            UserOrderMenu UOM = new UserOrderMenu(UserId, RestaurantId, new Order(), new List<Meal.Memento>());
             UOM.ShowDialog();
         }
 
