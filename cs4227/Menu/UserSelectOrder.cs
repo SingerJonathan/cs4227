@@ -37,7 +37,7 @@ namespace cs4227.Menu
             foreach (FoodItem Food in FoodItems)
             {
                 ListViewItem row = new ListViewItem(Food.Name);
-                string cost = UserCheckout.DoubleToMoneyString(Food.Cost);
+                string cost = StaticAccessor.DoubleToMoneyString(Food.Cost);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 RestaurantMenu.Items.Add(row);
@@ -46,12 +46,12 @@ namespace cs4227.Menu
             foreach (FoodItem Food in Order.FoodItems)
             {
                 ListViewItem row = new ListViewItem(Food.Name);
-                string cost = UserCheckout.DoubleToMoneyString(Food.Cost);
+                string cost = StaticAccessor.DoubleToMoneyString(Food.Cost);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 YourOrder.Items.Add(row);
             }
-            TotalCostLabel.Text = "" + UserCheckout.DoubleToMoneyString(Order.Cost);
+            TotalCostLabel.Text = "" + StaticAccessor.DoubleToMoneyString(Order.Cost);
         }
 
         private void RestaurantMenu_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace cs4227.Menu
                 //order.Cost += Convert.ToDouble(selectedRow.SubItems[1].Text);
                 Order.Add(DatabaseHandler.GetFoodItem(Convert.ToInt32(selectedRow.SubItems[2].Text)));
                 Mementos.Add(Order.CreateMemento());
-                TotalCostLabel.Text = ""+UserCheckout.DoubleToMoneyString(Order.Cost);
+                TotalCostLabel.Text = ""+ StaticAccessor.DoubleToMoneyString(Order.Cost);
                 if (YourOrder.Items.Count >= 8)
                     MessageBox.Show("You've reached the item limit.");
             }
@@ -84,7 +84,7 @@ namespace cs4227.Menu
                     Order.SetMemento(new Memento(Order.Id, Order.UserId, Order.Cancelled, new List<FoodItem>()));
                 }
                 Mementos.RemoveAt(Mementos.Count - 1);
-                TotalCostLabel.Text = "" + UserCheckout.DoubleToMoneyString(Order.Cost);
+                TotalCostLabel.Text = "" + StaticAccessor.DoubleToMoneyString(Order.Cost);
             }
         }
 

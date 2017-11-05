@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using cs4227.Database;
 using cs4227.Restaurant;
+using cs4227.Meal;
 
 namespace cs4227.Menu
 {
@@ -73,7 +74,12 @@ namespace cs4227.Menu
             if (CancelOrder.Cancelled != true && OrderNo != 0)
             {
                 CancelOrder.Cancelled = true;
-                DatabaseHandler.UpdateOrder(CancelOrder);
+                
+                CancelOrderCommand cancelOrderCommand = new CancelOrderCommand(CancelOrder);
+                StaticAccessor.Invoker.Command = cancelOrderCommand;
+                StaticAccessor.Invoker.Invoke();
+
+                //DatabaseHandler.UpdateOrder(CancelOrder);
                 MessageBox.Show("Order No: " + CancelOrder.Id + " is now Cancelled");
                 this.Hide();
                 RestAdminManageOrders RAMO = new RestAdminManageOrders(AdminId, RestaurantId);

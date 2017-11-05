@@ -35,7 +35,7 @@ namespace cs4227.Menu
 
             //getOrderid and Cost
             OrderIdLabel.Text = "Order ID: " + OrderId;
-            TotalCostLabel.Text = "Total Cost: " + UserCheckout.DoubleToMoneyString(TotalCost);
+            TotalCostLabel.Text = "Total Cost: " + StaticAccessor.DoubleToMoneyString(TotalCost);
             currentTime = DateTime.Now.ToString("h:mm");
             TimeLabel.Text = "Time: " + currentTime;
             Random num = new Random();

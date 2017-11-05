@@ -89,6 +89,7 @@
     <Compile Include="Menu\RestAdminViewOrders.Designer.cs">
       <DependentUpon>RestAdminViewOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menu\StaticAccessor.cs" />
     <Compile Include="Menu\UserPlacedOrderMenu.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -78,11 +78,5 @@ namespace cs4227.Menu
             UserManageAccount UMA = new UserManageAccount(0, true);
             UMA.ShowDialog();
         }
-
-        public static void Main()
-        {
-            LoginMenuV2 LG = new LoginMenuV2();
-            LG.ShowDialog();
-        } 
     }
 }

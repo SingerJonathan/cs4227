@@ -23,7 +23,6 @@ namespace cs4227.Menu
         private Order Order;
         private List<Memento> Mementos;
         private Boolean CorrectAddressFormat = false;
-        private Invoker invoker = new Invoker();
 
         public UserCheckout(int UserId, int RestaurantId, Order Order, List<Memento> Mementos)
         {
@@ -85,8 +84,8 @@ namespace cs4227.Menu
                 Order.Address = Address;
 
                 PlaceOrderCommand placeOrderCommand = new PlaceOrderCommand(Order);
-                invoker.Command = placeOrderCommand;
-                invoker.Invoke();
+                StaticAccessor.Invoker.Command = placeOrderCommand;
+                StaticAccessor.Invoker.Invoke();
 
                 this.Hide();
                 UserPlaceOrderMenu UPOM = new UserPlaceOrderMenu(UserId, OrderId);
@@ -106,27 +105,17 @@ namespace cs4227.Menu
             foreach (FoodItem Food in Order.FoodItems)
             {
                 ListViewItem row = new ListViewItem(Food.Name);
-                string cost = DoubleToMoneyString(Food.Cost);
+                string cost = StaticAccessor.DoubleToMoneyString(Food.Cost);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 YourOrder.Items.Add(row);
             }
 
             double deliveryCharge = DatabaseHandler.GetRestaurant(RestaurantId).Delivery;
-            OrderPriceLabel.Text = "Price: " + DoubleToMoneyString(Order.Cost);
-            DeliveryChargeLabel.Text = "Delivery: " + DoubleToMoneyString(deliveryCharge);
-            PriceLabel.Text = "Total: " + DoubleToMoneyString(Order.Cost + deliveryCharge);
+            OrderPriceLabel.Text = "Price: " + StaticAccessor.DoubleToMoneyString(Order.Cost);
+            DeliveryChargeLabel.Text = "Delivery: " + StaticAccessor.DoubleToMoneyString(deliveryCharge);
+            PriceLabel.Text = "Total: " + StaticAccessor.DoubleToMoneyString(Order.Cost + deliveryCharge);
             ErrorMessageLabel.Visible = false;
-        }
-
-        public static string DoubleToMoneyString(double value)
-        {
-            string result = "" + value;
-            if (result.Equals("0"))
-                result = "0.00";
-            else
-                result = string.Format("{0:#.00}", Convert.ToDecimal(result));
-            return result;
         }
     }
 }
