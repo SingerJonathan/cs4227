@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.YourOrder = new System.Windows.Forms.ListView();
+            this.PriceLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.YourOrderLabel = new System.Windows.Forms.Label();
@@ -38,27 +38,34 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.DeliveryChargeLabel = new System.Windows.Forms.Label();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
+            this.OrderItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OrderItemPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OrderPriceLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listView1
+            // YourOrder
             // 
-            this.listView1.Location = new System.Drawing.Point(16, 51);
-            this.listView1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(500, 595);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.YourOrder.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.OrderItemName,
+            this.OrderItemPrice});
+            this.YourOrder.Location = new System.Drawing.Point(16, 51);
+            this.YourOrder.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.YourOrder.Name = "YourOrder";
+            this.YourOrder.Size = new System.Drawing.Size(500, 595);
+            this.YourOrder.TabIndex = 0;
+            this.YourOrder.UseCompatibleStateImageBehavior = false;
+            this.YourOrder.View = System.Windows.Forms.View.Details;
             // 
-            // label1
+            // PriceLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(619, 333);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 42);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Price: €";
+            this.PriceLabel.AutoSize = true;
+            this.PriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PriceLabel.Location = new System.Drawing.Point(619, 333);
+            this.PriceLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.PriceLabel.Name = "PriceLabel";
+            this.PriceLabel.Size = new System.Drawing.Size(117, 42);
+            this.PriceLabel.TabIndex = 1;
+            this.PriceLabel.Text = "Total:";
             // 
             // button1
             // 
@@ -129,9 +136,9 @@
             this.DeliveryChargeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeliveryChargeLabel.Location = new System.Drawing.Point(619, 191);
             this.DeliveryChargeLabel.Name = "DeliveryChargeLabel";
-            this.DeliveryChargeLabel.Size = new System.Drawing.Size(297, 37);
+            this.DeliveryChargeLabel.Size = new System.Drawing.Size(147, 37);
             this.DeliveryChargeLabel.TabIndex = 9;
-            this.DeliveryChargeLabel.Text = "Delivery Charge: €";
+            this.DeliveryChargeLabel.Text = "Delivery:";
             // 
             // ErrorMessageLabel
             // 
@@ -142,12 +149,33 @@
             this.ErrorMessageLabel.TabIndex = 10;
             this.ErrorMessageLabel.Text = "Error Message:";
             // 
+            // OrderItemName
+            // 
+            this.OrderItemName.Text = "Item";
+            this.OrderItemName.Width = 395;
+            // 
+            // OrderItemPrice
+            // 
+            this.OrderItemPrice.Text = "Price";
+            this.OrderItemPrice.Width = 100;
+            // 
+            // OrderPriceLabel
+            // 
+            this.OrderPriceLabel.AutoSize = true;
+            this.OrderPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderPriceLabel.Location = new System.Drawing.Point(328, 9);
+            this.OrderPriceLabel.Name = "OrderPriceLabel";
+            this.OrderPriceLabel.Size = new System.Drawing.Size(90, 31);
+            this.OrderPriceLabel.TabIndex = 11;
+            this.OrderPriceLabel.Text = "Price:";
+            // 
             // UserCheckout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.OrderPriceLabel);
             this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.DeliveryChargeLabel);
             this.Controls.Add(this.CancelButton);
@@ -156,8 +184,8 @@
             this.Controls.Add(this.YourOrderLabel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.PriceLabel);
+            this.Controls.Add(this.YourOrder);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "UserCheckout";
@@ -170,8 +198,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListView YourOrder;
+        private System.Windows.Forms.Label PriceLabel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label YourOrderLabel;
@@ -180,5 +208,8 @@
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Label DeliveryChargeLabel;
         private System.Windows.Forms.Label ErrorMessageLabel;
+        private System.Windows.Forms.ColumnHeader OrderItemName;
+        private System.Windows.Forms.ColumnHeader OrderItemPrice;
+        private System.Windows.Forms.Label OrderPriceLabel;
     }
 }

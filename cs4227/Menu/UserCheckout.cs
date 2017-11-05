@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cs4227.Restaurant;
+using cs4227.Database;
 
 namespace cs4227.Menu
 {
@@ -17,10 +19,12 @@ namespace cs4227.Menu
         private string Address = "";
         private string ErrorMessage = "";
         private int RestaurantId = 0;
+        private Order Order;
         private Boolean CorrectAddressFormat = false;
 
-        public UserCheckout(int UserId, int RestaurantId)
+        public UserCheckout(int UserId, int RestaurantId, Order Order)
         {
+            this.Order = Order;
             this.UserId = UserId;
             this.RestaurantId = RestaurantId;
             InitializeComponent();
@@ -90,7 +94,34 @@ namespace cs4227.Menu
         private void UserCheckout_Load(object sender, EventArgs e)
         {
             //Add code to display order and display cost
+            foreach (FoodItem Food in Order.FoodItems)
+            {
+                ListViewItem row = new ListViewItem(Food.Name);
+                string cost = Food.Cost.ToString();
+                if (cost.Equals("0"))
+                    cost = "0.00";
+                else
+                    cost = string.Format("{0:#.00}", Convert.ToDecimal(cost));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
+                YourOrder.Items.Add(row);
+            }
+
+            double deliveryCharge = DatabaseHandler.GetRestaurant(RestaurantId).Delivery;
+            OrderPriceLabel.Text = "Price: " + DoubleToMoneyString(Order.Cost);
+            DeliveryChargeLabel.Text = "Delivery: " + DoubleToMoneyString(deliveryCharge);
+            PriceLabel.Text = "Total: " + DoubleToMoneyString(Order.Cost + deliveryCharge);
             ErrorMessageLabel.Visible = false;
+        }
+
+        private string DoubleToMoneyString(double value)
+        {
+            string result = "" + value;
+            if (result.Equals("0"))
+                result = "0.00";
+            else
+                result = string.Format("{0:#.00}", Convert.ToDecimal(result));
+            return result;
         }
     }
 }

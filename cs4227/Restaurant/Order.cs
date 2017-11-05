@@ -4,7 +4,7 @@ using cs4227.Meal;
 
 namespace cs4227.Restaurant
 {
-    class Order
+    public class Order
     {
         private int id;
         private int userId;

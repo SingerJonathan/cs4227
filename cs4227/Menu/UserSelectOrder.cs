@@ -18,7 +18,7 @@ namespace cs4227.Menu
         private int UserId = 0;
         private int RestaurantId = 0;
         private List<Memento> mementos = new List<Memento>();
-        private Order order = new Order();
+        private Order Order = new Order();
 
         public UserOrderMenu(int UserId, int RestaurantId)
         {
@@ -29,7 +29,7 @@ namespace cs4227.Menu
 
         private void UserOrderMenu_Load(object sender, EventArgs e)
         {
-            order.UserId = UserId;
+            Order.UserId = UserId;
             List<FoodItem> FoodItems = DatabaseHandler.GetRestaurantFoodItems(RestaurantId);
             foreach (FoodItem Food in FoodItems)
             {
@@ -47,19 +47,21 @@ namespace cs4227.Menu
 
         private void RestaurantMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (RestaurantMenu.SelectedItems.Count > 0)
+            if (YourOrder.Items.Count < 8 && RestaurantMenu.SelectedItems.Count > 0)
             {
                 ListViewItem selectedRow = RestaurantMenu.SelectedItems[0];
                 YourOrder.Items.Add((ListViewItem)selectedRow.Clone());
                 selectedRow.Selected = false;
                 //order.Cost += Convert.ToDouble(selectedRow.SubItems[1].Text);
-                order.Add(DatabaseHandler.GetFoodItem(Convert.ToInt32(selectedRow.SubItems[2].Text)));
-                mementos.Add(order.CreateMemento());
-                TotalCostLabel.Text = ""+order.Cost;
+                Order.Add(DatabaseHandler.GetFoodItem(Convert.ToInt32(selectedRow.SubItems[2].Text)));
+                mementos.Add(Order.CreateMemento());
+                TotalCostLabel.Text = ""+Order.Cost;
                 if (TotalCostLabel.Text.Equals("0"))
                     TotalCostLabel.Text = "0.00";
                 else
                     TotalCostLabel.Text = string.Format("{0:#.00}", Convert.ToDecimal(TotalCostLabel.Text));
+                if (YourOrder.Items.Count >= 8)
+                    MessageBox.Show("You've reached the item limit.");
             }
         }
 
@@ -70,14 +72,14 @@ namespace cs4227.Menu
                 YourOrder.Items.RemoveAt(YourOrder.Items.Count - 1);
                 try
                 {
-                    order.SetMemento(mementos[mementos.Count - 2]);
+                    Order.SetMemento(mementos[mementos.Count - 2]);
                 }
                 catch
                 {
-                    order.SetMemento(new Memento(order.Id, order.UserId, order.Cancelled, new List<FoodItem>()));
+                    Order.SetMemento(new Memento(Order.Id, Order.UserId, Order.Cancelled, new List<FoodItem>()));
                 }
                 mementos.RemoveAt(mementos.Count - 1);
-                TotalCostLabel.Text = "" + order.Cost;
+                TotalCostLabel.Text = "" + Order.Cost;
                 if (TotalCostLabel.Text.Equals("0"))
                     TotalCostLabel.Text = "0.00";
                 else
@@ -104,7 +106,7 @@ namespace cs4227.Menu
         private void button2_Click(object sender, EventArgs e) //checkout
         {
             this.Hide();
-            UserCheckout UC = new UserCheckout(UserId, RestaurantId);
+            UserCheckout UC = new UserCheckout(UserId, RestaurantId, Order);
             UC.ShowDialog();
         }
     }

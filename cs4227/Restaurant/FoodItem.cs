@@ -2,7 +2,7 @@
 
 namespace cs4227.Restaurant
 {
-    class FoodItem
+    public class FoodItem
     {
         private int id;
         private string name;

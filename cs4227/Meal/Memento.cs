@@ -4,7 +4,7 @@ using cs4227.Restaurant;
 
 namespace cs4227.Meal
 {
-    class Memento
+    public class Memento
     {
         public readonly int id;
         public readonly int userId;
