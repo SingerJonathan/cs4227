@@ -8,12 +8,10 @@ namespace cs4227.Menu
     public partial class LoginMenuV2 : Form
     {
         Timer t = new Timer();
-        private Boolean systemAdmin = false;
-        private Boolean restaurantAdmin = false;
-        private Boolean normalUser = false;
         private Boolean UserFound = false;
         private string Username = "";
         private string Password = "";
+        private int UserId = 0;
 
         public LoginMenuV2()
         {
@@ -52,35 +50,19 @@ namespace cs4227.Menu
         private void LoginButton_Click(object sender, EventArgs e)
         {
             //Check User is exists in db
-
+            AbstractUser User = DatabaseHandler.UserLogin(Username, Password);
+            if (User.Username == null)
+            {
+                UserFound = false;
+            }
+            else
+            {
+                UserFound = true;
+            }
             if (UserFound)
             {
-                if (systemAdmin)
-                {
-                    this.Hide();
-                    // HARD CODED VALUES, REPLACE WHEN LOGIN IS IMPLEMENTED
-                    //AbstractUser sysAdmin = new UserFactory().getUser(1, "geoffsysman96", "Geoff", "Sysman", "#Badpassword1", "geoffsysman96@gmail.com", "SysAdmin", 0, true);
-                    AbstractUser sysAdmin = DatabaseHandler.GetUser(1);
-                    sysAdmin.login();
-                }
-
-                if (restaurantAdmin)
-                {
-                    this.Hide();
-                    // HARD CODED VALUES, REPLACE WHEN LOGIN IS IMPLEMENTED
-                    //AbstractUser restAdmin = new UserFactory().getUser(8, "larryrestman96", "Larry", "Restman", "#Badpassword1", "larryrestman96@gmail.com", "RestAdmin", 1);
-                    AbstractUser restAdmin = DatabaseHandler.GetUser(8);
-                    restAdmin.login();
-                }
-
-                if (normalUser)
-                {
-                    this.Hide();
-                    // HARD CODED VALUES, REPLACE WHEN LOGIN IS IMPLEMENTED
-                    //AbstractUser user = new UserFactory().getUser(9, "michaeluserman96", "Michael", "Userman", "#Badpassword1", "michaeluserman96@gmail.com", "User");
-                    AbstractUser user = DatabaseHandler.GetUser(9);
-                    user.login();
-                }
+                this.Hide();
+                User.login();
             }
             else
             {
@@ -97,10 +79,10 @@ namespace cs4227.Menu
             UMA.ShowDialog();
         }
 
-        /*public static void Main()
+        public static void Main()
         {
             LoginMenuV2 LG = new LoginMenuV2();
             LG.ShowDialog();
-        } */
+        } 
     }
 }
