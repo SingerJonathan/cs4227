@@ -31,7 +31,14 @@ namespace cs4227.Restaurant
         }
         public double Cost
         {
-            get { return cost; }
+            //get { return cost; }
+            get
+            {
+                double cost = 0.00;
+                foreach (FoodItem item in foodItems)
+                    cost += item.Cost;
+                return cost;
+            }
             set { cost = value; }
         }
         public string Address
