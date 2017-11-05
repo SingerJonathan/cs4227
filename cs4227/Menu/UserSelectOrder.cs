@@ -35,10 +35,10 @@ namespace cs4227.Menu
             {
                 ListViewItem row = new ListViewItem(Food.Name);
                 string cost = Food.Cost.ToString();
-                if (cost.Length == 1 || cost.Length == 2)
-                {
-                    cost += ".00";
-                }
+                if (cost.Equals("0"))
+                    cost = "0.00";
+                else
+                    cost = string.Format("{0:#.00}", Convert.ToDecimal(cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 RestaurantMenu.Items.Add(row);
@@ -52,9 +52,14 @@ namespace cs4227.Menu
                 ListViewItem selectedRow = RestaurantMenu.SelectedItems[0];
                 YourOrder.Items.Add((ListViewItem)selectedRow.Clone());
                 selectedRow.Selected = false;
-                order.Cost += Convert.ToDouble(selectedRow.SubItems[1].Text);
+                //order.Cost += Convert.ToDouble(selectedRow.SubItems[1].Text);
                 order.Add(DatabaseHandler.GetFoodItem(Convert.ToInt32(selectedRow.SubItems[2].Text)));
                 mementos.Add(order.CreateMemento());
+                TotalCostLabel.Text = ""+order.Cost;
+                if (TotalCostLabel.Text.Equals("0"))
+                    TotalCostLabel.Text = "0.00";
+                else
+                    TotalCostLabel.Text = string.Format("{0:#.00}", Convert.ToDecimal(TotalCostLabel.Text));
             }
         }
 
@@ -72,6 +77,11 @@ namespace cs4227.Menu
                     order.SetMemento(new Memento(order.Id, order.UserId, order.Cancelled, new List<FoodItem>()));
                 }
                 mementos.RemoveAt(mementos.Count - 1);
+                TotalCostLabel.Text = "" + order.Cost;
+                if (TotalCostLabel.Text.Equals("0"))
+                    TotalCostLabel.Text = "0.00";
+                else
+                    TotalCostLabel.Text = string.Format("{0:#.00}", Convert.ToDecimal(TotalCostLabel.Text));
             }
         }
 

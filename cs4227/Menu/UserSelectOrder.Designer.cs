@@ -41,12 +41,14 @@
             this.OrderItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.OrderItemPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UndoButton = new System.Windows.Forms.Button();
+            this.TotalLabel = new System.Windows.Forms.Label();
+            this.TotalCostLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 9);
+            this.label1.Location = new System.Drawing.Point(16, 8);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(199, 25);
@@ -56,7 +58,7 @@
             // YourOrderLabel
             // 
             this.YourOrderLabel.AutoSize = true;
-            this.YourOrderLabel.Location = new System.Drawing.Point(513, 9);
+            this.YourOrderLabel.Location = new System.Drawing.Point(513, 8);
             this.YourOrderLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.YourOrderLabel.Name = "YourOrderLabel";
             this.YourOrderLabel.Size = new System.Drawing.Size(135, 25);
@@ -171,12 +173,34 @@
             this.UndoButton.UseVisualStyleBackColor = false;
             this.UndoButton.Click += new System.EventHandler(this.UndoButton_Click);
             // 
+            // TotalLabel
+            // 
+            this.TotalLabel.AutoSize = true;
+            this.TotalLabel.Location = new System.Drawing.Point(804, 8);
+            this.TotalLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.TotalLabel.Name = "TotalLabel";
+            this.TotalLabel.Size = new System.Drawing.Size(72, 25);
+            this.TotalLabel.TabIndex = 11;
+            this.TotalLabel.Text = "Total:";
+            // 
+            // TotalCostLabel
+            // 
+            this.TotalCostLabel.AutoSize = true;
+            this.TotalCostLabel.Location = new System.Drawing.Point(871, 8);
+            this.TotalCostLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.TotalCostLabel.Name = "TotalCostLabel";
+            this.TotalCostLabel.Size = new System.Drawing.Size(58, 25);
+            this.TotalCostLabel.TabIndex = 12;
+            this.TotalCostLabel.Text = "0.00";
+            // 
             // UserOrderMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.TotalCostLabel);
+            this.Controls.Add(this.TotalLabel);
             this.Controls.Add(this.UndoButton);
             this.Controls.Add(this.YourOrder);
             this.Controls.Add(this.RestaurantMenu);
@@ -210,5 +234,7 @@
         private System.Windows.Forms.ColumnHeader OrderItemName;
         private System.Windows.Forms.ColumnHeader OrderItemPrice;
         private System.Windows.Forms.Button UndoButton;
+        private System.Windows.Forms.Label TotalLabel;
+        private System.Windows.Forms.Label TotalCostLabel;
     }
 }
