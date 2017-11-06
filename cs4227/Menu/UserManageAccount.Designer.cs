@@ -42,6 +42,8 @@
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
             this.UserLastNameLabel = new System.Windows.Forms.Label();
             this.UserLastNameTextbox = new System.Windows.Forms.TextBox();
+            this.MembershipComboBox = new System.Windows.Forms.ComboBox();
+            this.MembershipLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BackButton
@@ -79,7 +81,7 @@
             // 
             // UserEmailTextbox
             // 
-            this.UserEmailTextbox.Location = new System.Drawing.Point(340, 419);
+            this.UserEmailTextbox.Location = new System.Drawing.Point(498, 230);
             this.UserEmailTextbox.Name = "UserEmailTextbox";
             this.UserEmailTextbox.Size = new System.Drawing.Size(300, 31);
             this.UserEmailTextbox.TabIndex = 3;
@@ -88,7 +90,7 @@
             // UserEmailLabel
             // 
             this.UserEmailLabel.AutoSize = true;
-            this.UserEmailLabel.Location = new System.Drawing.Point(335, 382);
+            this.UserEmailLabel.Location = new System.Drawing.Point(493, 193);
             this.UserEmailLabel.Name = "UserEmailLabel";
             this.UserEmailLabel.Size = new System.Drawing.Size(77, 25);
             this.UserEmailLabel.TabIndex = 4;
@@ -96,7 +98,7 @@
             // 
             // UserPasswordTextbox
             // 
-            this.UserPasswordTextbox.Location = new System.Drawing.Point(340, 339);
+            this.UserPasswordTextbox.Location = new System.Drawing.Point(498, 159);
             this.UserPasswordTextbox.Name = "UserPasswordTextbox";
             this.UserPasswordTextbox.Size = new System.Drawing.Size(300, 31);
             this.UserPasswordTextbox.TabIndex = 5;
@@ -105,7 +107,7 @@
             // UserPasswordLabel
             // 
             this.UserPasswordLabel.AutoSize = true;
-            this.UserPasswordLabel.Location = new System.Drawing.Point(335, 301);
+            this.UserPasswordLabel.Location = new System.Drawing.Point(493, 120);
             this.UserPasswordLabel.Name = "UserPasswordLabel";
             this.UserPasswordLabel.Size = new System.Drawing.Size(121, 25);
             this.UserPasswordLabel.TabIndex = 6;
@@ -113,7 +115,7 @@
             // 
             // UserUsernameTextbox
             // 
-            this.UserUsernameTextbox.Location = new System.Drawing.Point(340, 260);
+            this.UserUsernameTextbox.Location = new System.Drawing.Point(157, 301);
             this.UserUsernameTextbox.Name = "UserUsernameTextbox";
             this.UserUsernameTextbox.Size = new System.Drawing.Size(300, 31);
             this.UserUsernameTextbox.TabIndex = 7;
@@ -122,7 +124,7 @@
             // UserUsernameLabel
             // 
             this.UserUsernameLabel.AutoSize = true;
-            this.UserUsernameLabel.Location = new System.Drawing.Point(335, 222);
+            this.UserUsernameLabel.Location = new System.Drawing.Point(152, 264);
             this.UserUsernameLabel.Name = "UserUsernameLabel";
             this.UserUsernameLabel.Size = new System.Drawing.Size(125, 25);
             this.UserUsernameLabel.TabIndex = 8;
@@ -130,7 +132,7 @@
             // 
             // UserFirstNameTextbox
             // 
-            this.UserFirstNameTextbox.Location = new System.Drawing.Point(340, 94);
+            this.UserFirstNameTextbox.Location = new System.Drawing.Point(157, 159);
             this.UserFirstNameTextbox.Name = "UserFirstNameTextbox";
             this.UserFirstNameTextbox.Size = new System.Drawing.Size(300, 31);
             this.UserFirstNameTextbox.TabIndex = 9;
@@ -139,7 +141,7 @@
             // UserFirstNameLabel
             // 
             this.UserFirstNameLabel.AutoSize = true;
-            this.UserFirstNameLabel.Location = new System.Drawing.Point(335, 56);
+            this.UserFirstNameLabel.Location = new System.Drawing.Point(152, 120);
             this.UserFirstNameLabel.Name = "UserFirstNameLabel";
             this.UserFirstNameLabel.Size = new System.Drawing.Size(133, 25);
             this.UserFirstNameLabel.TabIndex = 10;
@@ -157,7 +159,7 @@
             // UserLastNameLabel
             // 
             this.UserLastNameLabel.AutoSize = true;
-            this.UserLastNameLabel.Location = new System.Drawing.Point(335, 138);
+            this.UserLastNameLabel.Location = new System.Drawing.Point(152, 193);
             this.UserLastNameLabel.Name = "UserLastNameLabel";
             this.UserLastNameLabel.Size = new System.Drawing.Size(131, 25);
             this.UserLastNameLabel.TabIndex = 13;
@@ -165,11 +167,34 @@
             // 
             // UserLastNameTextbox
             // 
-            this.UserLastNameTextbox.Location = new System.Drawing.Point(340, 176);
+            this.UserLastNameTextbox.Location = new System.Drawing.Point(157, 230);
             this.UserLastNameTextbox.Name = "UserLastNameTextbox";
             this.UserLastNameTextbox.Size = new System.Drawing.Size(300, 31);
             this.UserLastNameTextbox.TabIndex = 12;
             this.UserLastNameTextbox.TextChanged += new System.EventHandler(this.UserLastNameTextbox_TextChanged);
+            // 
+            // MembershipComboBox
+            // 
+            this.MembershipComboBox.FormattingEnabled = true;
+            this.MembershipComboBox.Items.AddRange(new object[] {
+            "Basic (Free)",
+            "Bronze (5.00/month)",
+            "Silver (8.00/month)",
+            "Gold (12.00/month)"});
+            this.MembershipComboBox.Location = new System.Drawing.Point(498, 302);
+            this.MembershipComboBox.Name = "MembershipComboBox";
+            this.MembershipComboBox.Size = new System.Drawing.Size(300, 33);
+            this.MembershipComboBox.TabIndex = 14;
+            this.MembershipComboBox.SelectedIndexChanged += new System.EventHandler(this.MembershipComboBox_SelectedIndexChanged);
+            // 
+            // MembershipLabel
+            // 
+            this.MembershipLabel.AutoSize = true;
+            this.MembershipLabel.Location = new System.Drawing.Point(493, 264);
+            this.MembershipLabel.Name = "MembershipLabel";
+            this.MembershipLabel.Size = new System.Drawing.Size(147, 25);
+            this.MembershipLabel.TabIndex = 15;
+            this.MembershipLabel.Text = "Membership:";
             // 
             // UserManageAccount
             // 
@@ -177,6 +202,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.MembershipLabel);
+            this.Controls.Add(this.MembershipComboBox);
             this.Controls.Add(this.UserLastNameLabel);
             this.Controls.Add(this.UserLastNameTextbox);
             this.Controls.Add(this.ErrorMessageLabel);
@@ -217,5 +244,7 @@
         private System.Windows.Forms.Label ErrorMessageLabel;
         private System.Windows.Forms.Label UserLastNameLabel;
         private System.Windows.Forms.TextBox UserLastNameTextbox;
+        private System.Windows.Forms.ComboBox MembershipComboBox;
+        private System.Windows.Forms.Label MembershipLabel;
     }
 }

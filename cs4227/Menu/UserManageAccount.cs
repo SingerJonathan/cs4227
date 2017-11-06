@@ -21,6 +21,7 @@ namespace cs4227.Menu
         private string Email = "";
         private string FirstName = "";
         private string LastName = "";
+        private int Membership = 0;
         private string ErrorMessage = "";
         private Boolean CorrectEmailFormat = false;
         private Boolean CorrectNameFormat = false;
@@ -45,11 +46,13 @@ namespace cs4227.Menu
                 LastName = User.LastName;
                 Password = User.Password;
                 Username = User.Username;
+                Membership = User.Membership;
                 UserEmailTextbox.Text = Email;
                 UserFirstNameTextbox.Text = FirstName;
                 UserLastNameTextbox.Text = LastName;
                 UserPasswordTextbox.Text = Password;
                 UserUsernameTextbox.Text = Username;
+                MembershipComboBox.SelectedIndex = Membership;
             }
             else
             {
@@ -324,6 +327,7 @@ namespace cs4227.Menu
                 user.Username = Username;
                 user.Password = Password;
                 user.Email = Email;
+                user.Membership = Membership;
                 DatabaseHandler.UpdateUser(user);
                 MessageBox.Show("Changes Saved");
                 this.Hide();
@@ -365,6 +369,11 @@ namespace cs4227.Menu
                 UserMainMenu UMM = new UserMainMenu(UserId);
                 UMM.ShowDialog();
             }
+        }
+
+        private void MembershipComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Membership = MembershipComboBox.SelectedIndex;
         }
     }
 }
