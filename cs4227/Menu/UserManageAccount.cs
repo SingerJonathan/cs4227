@@ -38,6 +38,7 @@ namespace cs4227.Menu
 
         private void UserManageAccount_Load(object sender, EventArgs e)
         {
+            MembershipComboBox.SelectedIndex = Membership;
             if (!newAccount)
             {
                 AbstractUser User = DatabaseHandler.GetUser(UserId);
@@ -52,7 +53,6 @@ namespace cs4227.Menu
                 UserLastNameTextbox.Text = LastName;
                 UserPasswordTextbox.Text = Password;
                 UserUsernameTextbox.Text = Username;
-                MembershipComboBox.SelectedIndex = Membership;
             }
             else
             {
@@ -313,7 +313,8 @@ namespace cs4227.Menu
         {
             if (newAccount)
             {
-                //DatabaseHandler.InsertUser();
+                AbstractUser user = new UserFactory().GetUser(0, Username, Password, FirstName, LastName, Email, Membership, "User");
+                DatabaseHandler.InsertUser(user);
                 MessageBox.Show("Account Created");
                 this.Hide();
                 LoginMenuV2 LMV2 = new LoginMenuV2();
