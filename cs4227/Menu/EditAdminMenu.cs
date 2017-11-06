@@ -386,7 +386,7 @@ namespace cs4227.Menu
                         if (newAdmin)
                         {
                             int restaurantId = DatabaseHandler.GetRestaurant(AdminRestaurant).Id;
-                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminPassword, AdminFirstName, AdminLastName, AdminEmail, "RestAdmin", restaurantId, true);
+                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminPassword, AdminFirstName, AdminLastName, AdminEmail, 0, "RestAdmin", restaurantId, true);
                             DatabaseHandler.InsertUser(user);
                             MessageBox.Show("New Admin Created");
 
@@ -400,7 +400,7 @@ namespace cs4227.Menu
                         if (IsCurrentAdmin.Username != null) //admin of that restaurant
                         {
                             int restaurantId = DatabaseHandler.GetRestaurant(AdminRestaurant).Id;
-                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminPassword, AdminFirstName, AdminLastName, AdminEmail, "RestAdmin", restaurantId, true);
+                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminPassword, AdminFirstName, AdminLastName, AdminEmail, 0, "RestAdmin", restaurantId, true);
                             DatabaseHandler.UpdateUser(user);
                             MessageBox.Show("Admin Details Updated");
 
