@@ -69,6 +69,7 @@ namespace cs4227.Menu
                 MessageBox.Show("Login Falied");
                 ErrorMessageLabel.Text = "Error Message: Incorrect Username or Password";
                 ErrorMessageLabel.Visible = true;
+                PasswordTextbox.Text = "";
             }
         }
 

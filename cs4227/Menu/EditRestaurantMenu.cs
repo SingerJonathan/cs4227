@@ -103,6 +103,7 @@ namespace cs4227.Menu
                 DeleteRestaurantButton.Visible = false;
                 this.Text = "Admin Menu: Edit Restaurant";
             }
+
         }
 
         private void RestaurantNameTextbox_TextChanged(object sender, EventArgs e)
@@ -508,6 +509,11 @@ namespace cs4227.Menu
                 }
                 else
                 {
+                    if (RestaurantDeliveryCharge.Length == 1 || RestaurantDeliveryCharge.Length == 2)
+                    {
+                        RestaurantDeliveryCharge += ".00";
+                    }
+                    RestaurantDeliveryChargeTextbox.Text = RestaurantDeliveryCharge;
                     CorrectDeliveryChargeFormat = true;
                 }
             }

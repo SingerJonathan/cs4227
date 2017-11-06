@@ -18,7 +18,9 @@ namespace cs4227.Menu
         private string ErrorMessage = "";
         private Boolean CorrectNameFormat = false;
         private Boolean CorrectPriceFormat = false;
-        private Boolean Delete = false;
+        private Boolean CorrectBronzeFormat = false;
+        private Boolean CorrectSilverFormat = false;
+        private Boolean CorrectGoldFormat = false;
 
         public RestAdminViewMenu(int AdminId, int RestaurantId)
         {
@@ -193,6 +195,21 @@ namespace cs4227.Menu
             this.Hide();
             RestAdminViewMenu RAVM = new RestAdminViewMenu(AdminId, RestaurantId);
             RAVM.ShowDialog();
+        }
+
+        private void BronzeDiscountTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SilverDiscountTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GoldDiscountTextbox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

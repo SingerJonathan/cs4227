@@ -268,6 +268,7 @@
             this.RestaurantDeliveryChargeTextbox.Name = "RestaurantDeliveryChargeTextbox";
             this.RestaurantDeliveryChargeTextbox.Size = new System.Drawing.Size(300, 31);
             this.RestaurantDeliveryChargeTextbox.TabIndex = 21;
+            this.RestaurantDeliveryChargeTextbox.Text = "0.00";
             this.RestaurantDeliveryChargeTextbox.TextChanged += new System.EventHandler(this.RestaurantDeliveryChargeTextbox_TextChanged);
             // 
             // ErrorMessageLabel
