@@ -129,7 +129,6 @@
             this.GoldDiscount});
             this.RestaurantMenuList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RestaurantMenuList.FullRowSelect = true;
-            this.RestaurantMenuList.HoverSelection = true;
             this.RestaurantMenuList.Location = new System.Drawing.Point(12, 49);
             this.RestaurantMenuList.Name = "RestaurantMenuList";
             this.RestaurantMenuList.Size = new System.Drawing.Size(526, 600);
@@ -146,7 +145,7 @@
             // FoodName
             // 
             this.FoodName.Text = "Name";
-            this.FoodName.Width = 350;
+            this.FoodName.Width = 300;
             // 
             // Cost
             // 
@@ -156,17 +155,17 @@
             // BronzeDiscount
             // 
             this.BronzeDiscount.Text = "Bronze Discount";
-            this.BronzeDiscount.Width = 100;
+            this.BronzeDiscount.Width = 200;
             // 
             // SilverDiscount
             // 
             this.SilverDiscount.Text = "Silver Discount";
-            this.SilverDiscount.Width = 100;
+            this.SilverDiscount.Width = 200;
             // 
             // GoldDiscount
             // 
             this.GoldDiscount.Text = "Gold Discount";
-            this.GoldDiscount.Width = 100;
+            this.GoldDiscount.Width = 200;
             // 
             // ErrorMessageLabel
             // 
