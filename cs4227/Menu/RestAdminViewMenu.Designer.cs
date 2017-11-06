@@ -39,18 +39,9 @@
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FoodName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Cost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.BronzeDiscount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SilverDiscount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.GoldDiscount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.EditItemButton = new System.Windows.Forms.Button();
-            this.BronzeDiscountTextbox = new System.Windows.Forms.TextBox();
-            this.BronzeDiscountLabel = new System.Windows.Forms.Label();
-            this.SilverDiscountLabel = new System.Windows.Forms.Label();
-            this.SilverDiscountTextbox = new System.Windows.Forms.TextBox();
-            this.GoldDiscountLabel = new System.Windows.Forms.Label();
-            this.GoldDiscountTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // SelectMenuItemLabel
@@ -65,9 +56,9 @@
             // BackButton
             // 
             this.BackButton.BackColor = System.Drawing.Color.Silver;
-            this.BackButton.Location = new System.Drawing.Point(778, 569);
+            this.BackButton.Location = new System.Drawing.Point(624, 569);
             this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(146, 80);
+            this.BackButton.Size = new System.Drawing.Size(300, 80);
             this.BackButton.TabIndex = 2;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = false;
@@ -76,7 +67,7 @@
             // AddItemButton
             // 
             this.AddItemButton.BackColor = System.Drawing.Color.Silver;
-            this.AddItemButton.Location = new System.Drawing.Point(624, 477);
+            this.AddItemButton.Location = new System.Drawing.Point(624, 391);
             this.AddItemButton.Name = "AddItemButton";
             this.AddItemButton.Size = new System.Drawing.Size(148, 86);
             this.AddItemButton.TabIndex = 3;
@@ -86,7 +77,7 @@
             // 
             // PriceTextbox
             // 
-            this.PriceTextbox.Location = new System.Drawing.Point(624, 225);
+            this.PriceTextbox.Location = new System.Drawing.Point(624, 313);
             this.PriceTextbox.Name = "PriceTextbox";
             this.PriceTextbox.Size = new System.Drawing.Size(300, 31);
             this.PriceTextbox.TabIndex = 4;
@@ -95,7 +86,7 @@
             // PriceLabel
             // 
             this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Location = new System.Drawing.Point(619, 187);
+            this.PriceLabel.Location = new System.Drawing.Point(619, 276);
             this.PriceLabel.Name = "PriceLabel";
             this.PriceLabel.Size = new System.Drawing.Size(73, 25);
             this.PriceLabel.TabIndex = 5;
@@ -103,7 +94,7 @@
             // 
             // NameTextbox
             // 
-            this.NameTextbox.Location = new System.Drawing.Point(624, 153);
+            this.NameTextbox.Location = new System.Drawing.Point(624, 242);
             this.NameTextbox.Name = "NameTextbox";
             this.NameTextbox.Size = new System.Drawing.Size(300, 31);
             this.NameTextbox.TabIndex = 6;
@@ -112,7 +103,7 @@
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(619, 115);
+            this.NameLabel.Location = new System.Drawing.Point(619, 202);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(79, 25);
             this.NameLabel.TabIndex = 7;
@@ -123,10 +114,7 @@
             this.RestaurantMenuList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ID,
             this.FoodName,
-            this.Cost,
-            this.BronzeDiscount,
-            this.SilverDiscount,
-            this.GoldDiscount});
+            this.Cost});
             this.RestaurantMenuList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RestaurantMenuList.FullRowSelect = true;
             this.RestaurantMenuList.HoverSelection = true;
@@ -153,25 +141,10 @@
             this.Cost.Text = "Cost";
             this.Cost.Width = 100;
             // 
-            // BronzeDiscount
-            // 
-            this.BronzeDiscount.Text = "Bronze Discount";
-            this.BronzeDiscount.Width = 100;
-            // 
-            // SilverDiscount
-            // 
-            this.SilverDiscount.Text = "Silver Discount";
-            this.SilverDiscount.Width = 100;
-            // 
-            // GoldDiscount
-            // 
-            this.GoldDiscount.Text = "Gold Discount";
-            this.GoldDiscount.Width = 100;
-            // 
             // ErrorMessageLabel
             // 
             this.ErrorMessageLabel.AutoSize = true;
-            this.ErrorMessageLabel.Location = new System.Drawing.Point(544, 49);
+            this.ErrorMessageLabel.Location = new System.Drawing.Point(544, 81);
             this.ErrorMessageLabel.Name = "ErrorMessageLabel";
             this.ErrorMessageLabel.Size = new System.Drawing.Size(173, 25);
             this.ErrorMessageLabel.TabIndex = 9;
@@ -180,9 +153,9 @@
             // RemoveButton
             // 
             this.RemoveButton.BackColor = System.Drawing.Color.Silver;
-            this.RemoveButton.Location = new System.Drawing.Point(624, 569);
+            this.RemoveButton.Location = new System.Drawing.Point(624, 483);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(148, 80);
+            this.RemoveButton.Size = new System.Drawing.Size(300, 80);
             this.RemoveButton.TabIndex = 10;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = false;
@@ -191,7 +164,7 @@
             // EditItemButton
             // 
             this.EditItemButton.BackColor = System.Drawing.Color.Silver;
-            this.EditItemButton.Location = new System.Drawing.Point(778, 477);
+            this.EditItemButton.Location = new System.Drawing.Point(778, 391);
             this.EditItemButton.Name = "EditItemButton";
             this.EditItemButton.Size = new System.Drawing.Size(146, 86);
             this.EditItemButton.TabIndex = 11;
@@ -199,72 +172,12 @@
             this.EditItemButton.UseVisualStyleBackColor = false;
             this.EditItemButton.Click += new System.EventHandler(this.EditItemButton_Click);
             // 
-            // BronzeDiscountTextbox
-            // 
-            this.BronzeDiscountTextbox.Location = new System.Drawing.Point(624, 296);
-            this.BronzeDiscountTextbox.Name = "BronzeDiscountTextbox";
-            this.BronzeDiscountTextbox.Size = new System.Drawing.Size(300, 31);
-            this.BronzeDiscountTextbox.TabIndex = 12;
-            this.BronzeDiscountTextbox.Text = "0.00";
-            this.BronzeDiscountTextbox.TextChanged += new System.EventHandler(this.BronzeDiscountTextbox_TextChanged);
-            // 
-            // BronzeDiscountLabel
-            // 
-            this.BronzeDiscountLabel.AutoSize = true;
-            this.BronzeDiscountLabel.Location = new System.Drawing.Point(619, 259);
-            this.BronzeDiscountLabel.Name = "BronzeDiscountLabel";
-            this.BronzeDiscountLabel.Size = new System.Drawing.Size(192, 25);
-            this.BronzeDiscountLabel.TabIndex = 15;
-            this.BronzeDiscountLabel.Text = "Bronze Discount:";
-            // 
-            // SilverDiscountLabel
-            // 
-            this.SilverDiscountLabel.AutoSize = true;
-            this.SilverDiscountLabel.Location = new System.Drawing.Point(619, 330);
-            this.SilverDiscountLabel.Name = "SilverDiscountLabel";
-            this.SilverDiscountLabel.Size = new System.Drawing.Size(178, 25);
-            this.SilverDiscountLabel.TabIndex = 17;
-            this.SilverDiscountLabel.Text = "Silver Discount:";
-            // 
-            // SilverDiscountTextbox
-            // 
-            this.SilverDiscountTextbox.Location = new System.Drawing.Point(624, 367);
-            this.SilverDiscountTextbox.Name = "SilverDiscountTextbox";
-            this.SilverDiscountTextbox.Size = new System.Drawing.Size(300, 31);
-            this.SilverDiscountTextbox.TabIndex = 16;
-            this.SilverDiscountTextbox.Text = "0.00";
-            this.SilverDiscountTextbox.TextChanged += new System.EventHandler(this.SilverDiscountTextbox_TextChanged);
-            // 
-            // GoldDiscountLabel
-            // 
-            this.GoldDiscountLabel.AutoSize = true;
-            this.GoldDiscountLabel.Location = new System.Drawing.Point(619, 401);
-            this.GoldDiscountLabel.Name = "GoldDiscountLabel";
-            this.GoldDiscountLabel.Size = new System.Drawing.Size(167, 25);
-            this.GoldDiscountLabel.TabIndex = 19;
-            this.GoldDiscountLabel.Text = "Gold Discount:";
-            // 
-            // GoldDiscountTextbox
-            // 
-            this.GoldDiscountTextbox.Location = new System.Drawing.Point(624, 438);
-            this.GoldDiscountTextbox.Name = "GoldDiscountTextbox";
-            this.GoldDiscountTextbox.Size = new System.Drawing.Size(300, 31);
-            this.GoldDiscountTextbox.TabIndex = 18;
-            this.GoldDiscountTextbox.Text = "0.00";
-            this.GoldDiscountTextbox.TextChanged += new System.EventHandler(this.GoldDiscountTextbox_TextChanged);
-            // 
             // RestAdminViewMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
-            this.Controls.Add(this.GoldDiscountLabel);
-            this.Controls.Add(this.GoldDiscountTextbox);
-            this.Controls.Add(this.SilverDiscountLabel);
-            this.Controls.Add(this.SilverDiscountTextbox);
-            this.Controls.Add(this.BronzeDiscountLabel);
-            this.Controls.Add(this.BronzeDiscountTextbox);
             this.Controls.Add(this.EditItemButton);
             this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.ErrorMessageLabel);
@@ -301,14 +214,5 @@
         private System.Windows.Forms.ColumnHeader FoodName;
         private System.Windows.Forms.ColumnHeader Cost;
         private System.Windows.Forms.Button EditItemButton;
-        private System.Windows.Forms.ColumnHeader BronzeDiscount;
-        private System.Windows.Forms.ColumnHeader SilverDiscount;
-        private System.Windows.Forms.ColumnHeader GoldDiscount;
-        private System.Windows.Forms.TextBox BronzeDiscountTextbox;
-        private System.Windows.Forms.Label BronzeDiscountLabel;
-        private System.Windows.Forms.Label SilverDiscountLabel;
-        private System.Windows.Forms.TextBox SilverDiscountTextbox;
-        private System.Windows.Forms.Label GoldDiscountLabel;
-        private System.Windows.Forms.TextBox GoldDiscountTextbox;
     }
 }
