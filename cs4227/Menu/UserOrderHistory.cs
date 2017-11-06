@@ -37,11 +37,8 @@ namespace cs4227.Menu
                     else
                         row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
                 }
-                string cost = order.Cost.ToString();
-                if (cost.Length == 1 || cost.Length == 2)
-                {
-                    cost += ".00";
-                }
+                double delivery = DatabaseHandler.GetRestaurant(order.RestaurantId).Delivery;
+                string cost = StaticAccessor.DoubleToMoneyString(order.Cost + delivery);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));
@@ -60,7 +57,7 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserOrderMenu UOM = new UserOrderMenu(UserId, RestaurantId);
+            UserOrderMenu UOM = new UserOrderMenu(UserId, RestaurantId, new Order(), new List<Meal.Memento>());
             UOM.ShowDialog();
         }
 

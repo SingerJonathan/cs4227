@@ -11,6 +11,7 @@ namespace cs4227.User
         protected string lastName;
         protected string password;
         protected string email;
+        protected int membership;
         protected int restaurantId;
         protected bool restaurantAdmin;
         protected bool systemAdmin;
@@ -20,8 +21,8 @@ namespace cs4227.User
         {
         }
 
-        public AbstractUser(int id, string username, string password, string firstName, string lastName, string email, LoginAPI loginAPI,
-            int restaurantId = 0, bool restaurantAdmin = false, bool systemAdmin = false, bool deleted = false)
+        public AbstractUser(int id, string username, string password, string firstName, string lastName, string email, int membership,
+             LoginAPI loginAPI, int restaurantId = 0, bool restaurantAdmin = false, bool systemAdmin = false, bool deleted = false)
         {
             this.id = id;
             this.loginAPI = loginAPI;
@@ -30,6 +31,7 @@ namespace cs4227.User
             this.lastName = lastName;
             this.password = password;
             this.email = email;
+            this.membership = membership;
             this.restaurantId = restaurantId;
             this.restaurantAdmin = restaurantAdmin;
             this.systemAdmin = systemAdmin;
@@ -67,6 +69,11 @@ namespace cs4227.User
         {
             get { return email; }
             set { email = value; }
+        }
+        public int Membership
+        {
+            get { return membership; }
+            set { membership = value; }
         }
         public LoginAPI LoginAPI
         {

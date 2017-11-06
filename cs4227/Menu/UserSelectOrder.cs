@@ -17,11 +17,13 @@ namespace cs4227.Menu
     {
         private int UserId = 0;
         private int RestaurantId = 0;
-        private List<Memento> mementos = new List<Memento>();
-        private Order Order = new Order();
+        private List<Memento> Mementos;
+        private Order Order;
 
-        public UserOrderMenu(int UserId, int RestaurantId)
+        public UserOrderMenu(int UserId, int RestaurantId, Order Order, List<Memento> Mementos)
         {
+            this.Mementos = Mementos;
+            this.Order = Order;
             this.RestaurantId = RestaurantId;
             this.UserId = UserId;
             InitializeComponent();
@@ -30,19 +32,26 @@ namespace cs4227.Menu
         private void UserOrderMenu_Load(object sender, EventArgs e)
         {
             Order.UserId = UserId;
+            Order.RestaurantId = RestaurantId;
             List<FoodItem> FoodItems = DatabaseHandler.GetRestaurantFoodItems(RestaurantId);
             foreach (FoodItem Food in FoodItems)
             {
                 ListViewItem row = new ListViewItem(Food.Name);
-                string cost = Food.Cost.ToString();
-                if (cost.Equals("0"))
-                    cost = "0.00";
-                else
-                    cost = string.Format("{0:#.00}", Convert.ToDecimal(cost));
+                string cost = StaticAccessor.DoubleToMoneyString(Food.Cost);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 RestaurantMenu.Items.Add(row);
             }
+            
+            foreach (FoodItem Food in Order.FoodItems)
+            {
+                ListViewItem row = new ListViewItem(Food.Name);
+                string cost = StaticAccessor.DoubleToMoneyString(Food.Cost);
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
+                YourOrder.Items.Add(row);
+            }
+            TotalCostLabel.Text = "" + StaticAccessor.DoubleToMoneyString(Order.Cost);
         }
 
         private void RestaurantMenu_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,12 +63,8 @@ namespace cs4227.Menu
                 selectedRow.Selected = false;
                 //order.Cost += Convert.ToDouble(selectedRow.SubItems[1].Text);
                 Order.Add(DatabaseHandler.GetFoodItem(Convert.ToInt32(selectedRow.SubItems[2].Text)));
-                mementos.Add(Order.CreateMemento());
-                TotalCostLabel.Text = ""+Order.Cost;
-                if (TotalCostLabel.Text.Equals("0"))
-                    TotalCostLabel.Text = "0.00";
-                else
-                    TotalCostLabel.Text = string.Format("{0:#.00}", Convert.ToDecimal(TotalCostLabel.Text));
+                Mementos.Add(Order.CreateMemento());
+                TotalCostLabel.Text = ""+ StaticAccessor.DoubleToMoneyString(Order.Cost);
                 if (YourOrder.Items.Count >= 8)
                     MessageBox.Show("You've reached the item limit.");
             }
@@ -72,18 +77,14 @@ namespace cs4227.Menu
                 YourOrder.Items.RemoveAt(YourOrder.Items.Count - 1);
                 try
                 {
-                    Order.SetMemento(mementos[mementos.Count - 2]);
+                    Order.SetMemento(Mementos[Mementos.Count - 2]);
                 }
                 catch
                 {
                     Order.SetMemento(new Memento(Order.Id, Order.UserId, Order.Cancelled, new List<FoodItem>()));
                 }
-                mementos.RemoveAt(mementos.Count - 1);
-                TotalCostLabel.Text = "" + Order.Cost;
-                if (TotalCostLabel.Text.Equals("0"))
-                    TotalCostLabel.Text = "0.00";
-                else
-                    TotalCostLabel.Text = string.Format("{0:#.00}", Convert.ToDecimal(TotalCostLabel.Text));
+                Mementos.RemoveAt(Mementos.Count - 1);
+                TotalCostLabel.Text = "" + StaticAccessor.DoubleToMoneyString(Order.Cost);
             }
         }
 
@@ -106,7 +107,7 @@ namespace cs4227.Menu
         private void button2_Click(object sender, EventArgs e) //checkout
         {
             this.Hide();
-            UserCheckout UC = new UserCheckout(UserId, RestaurantId, Order);
+            UserCheckout UC = new UserCheckout(UserId, RestaurantId, Order, Mementos);
             UC.ShowDialog();
         }
     }

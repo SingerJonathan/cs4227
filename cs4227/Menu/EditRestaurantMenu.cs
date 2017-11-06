@@ -86,12 +86,8 @@ namespace cs4227.Menu
             RestaurantOpeningHoursTextbox.Text = RestaurantOpeningHours;
             RestaurantClosingHoursTextbox.Text = RestaurantClosingHours;
             RestaurantDaysOpenTextbox.Text = RestaurantDaysOpen;
-
-            if (RestaurantDeliveryCharge.Equals("0"))
-                RestaurantDeliveryCharge = "0.00";
-            else
-                RestaurantDeliveryCharge = string.Format("{0:#.00}", Convert.ToDecimal(RestaurantDeliveryCharge));
-            RestaurantDeliveryChargeTextbox.Text = RestaurantDeliveryCharge;
+            
+            RestaurantDeliveryChargeTextbox.Text = StaticAccessor.DoubleToMoneyString(Convert.ToDouble(RestaurantDeliveryCharge));
 
             if (sysAdmin)
             {
