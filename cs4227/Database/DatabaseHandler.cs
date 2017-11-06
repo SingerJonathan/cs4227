@@ -150,7 +150,7 @@ namespace cs4227.Database
             if (user.RestaurantId != 0)
                 restaurantId = "" + user.RestaurantId;
             command.CommandText = "UPDATE [dbo].[Users] SET [Username] = '" + user.Username + "', [Password] = '" + user.Password + "', [FirstName] = '" + user.FirstName +
-                "', [LastName] = '" + user.LastName + "', [Email] = '" + user.Email + "', [RestaurantId] = " + restaurantId + ", [RestaurantAdmin] = " + (user.RestaurantAdmin ? "1":"0") +
+                "', [LastName] = '" + user.LastName + "', [Email] = '" + user.Email + "', [Membership] = " + user.Membership + ", [RestaurantId] = " + restaurantId + ", [RestaurantAdmin] = " + (user.RestaurantAdmin ? "1":"0") +
                 ", [SystemAdmin] = " + (user.SystemAdmin?"1":"0") + ", [Deleted] = " + (user.Deleted?"1":"0") + " WHERE [Id] = " + user.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
