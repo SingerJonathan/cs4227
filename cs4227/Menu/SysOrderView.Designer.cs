@@ -84,6 +84,7 @@
             this.cost,
             this.address,
             this.cancelled});
+            this.listView.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.listView.Location = new System.Drawing.Point(12, 79);
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(960, 466);
@@ -98,7 +99,7 @@
             // username
             // 
             this.username.Text = "Username";
-            this.username.Width = 80;
+            this.username.Width = 120;
             // 
             // item0
             // 
@@ -142,16 +143,18 @@
             // 
             // cost
             // 
-            this.cost.Text = "Cost";
+            this.cost.Text = "Price";
+            this.cost.Width = 80;
             // 
             // address
             // 
             this.address.Text = "Address";
+            this.address.Width = 120;
             // 
             // cancelled
             // 
             this.cancelled.Text = "Cancelled";
-            this.cancelled.Width = 56;
+            this.cancelled.Width = 120;
             // 
             // SysViewOrder
             // 

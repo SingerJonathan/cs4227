@@ -49,9 +49,13 @@ namespace cs4227.Menu
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            //Check User is exists in db
-            AbstractUser User = DatabaseHandler.UserLogin(Username, Password);
-            if (User.Username == null)
+            //Hash password input so the raw password isn't stored in the database
+            string hashPassword = StaticAccessor.HashString(Password);
+
+            AbstractUser User = DatabaseHandler.GetUser(Username);
+
+            //Check User exists in db and compare hashed passwords
+            if (User.Username == null || !User.Password.Equals(hashPassword))
             {
                 UserFound = false;
             }

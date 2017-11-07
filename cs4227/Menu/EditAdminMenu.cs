@@ -80,7 +80,7 @@ namespace cs4227.Menu
                 AdminEmailTextbox.Text = AdminEmail;
                 AdminFirstNameTextbox.Text = AdminFirstName;
                 AdminLastNameTextbox.Text = AdminLastName;
-                AdminPasswordTextbox.Text = AdminPassword;
+                //AdminPasswordTextbox.Text = AdminPassword;
             }
         }
 
@@ -381,12 +381,16 @@ namespace cs4227.Menu
                     //check if admin already exists
                     AbstractUser RestaurantAdminExists = DatabaseHandler.CheckAdminExists(AdminRestaurant);
                     AbstractUser IsCurrentAdmin = DatabaseHandler.CheckIfAdmin(AdminUsername);
+                    
+                    //Hash password input so the raw password isn't stored in the database
+                    string hashPassword = StaticAccessor.HashString(AdminPassword);
+
                     if (RestaurantAdminExists.Username == null)
                     {
                         if (newAdmin)
                         {
                             int restaurantId = DatabaseHandler.GetRestaurant(AdminRestaurant).Id;
-                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminPassword, AdminFirstName, AdminLastName, AdminEmail, 0, "RestAdmin", restaurantId, true);
+                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, hashPassword, AdminFirstName, AdminLastName, AdminEmail, 0, "RestAdmin", restaurantId, true);
                             DatabaseHandler.InsertUser(user);
                             MessageBox.Show("New Admin Created");
 
@@ -400,7 +404,7 @@ namespace cs4227.Menu
                         if (IsCurrentAdmin.Username != null) //admin of that restaurant
                         {
                             int restaurantId = DatabaseHandler.GetRestaurant(AdminRestaurant).Id;
-                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, AdminPassword, AdminFirstName, AdminLastName, AdminEmail, 0, "RestAdmin", restaurantId, true);
+                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, hashPassword, AdminFirstName, AdminLastName, AdminEmail, 0, "RestAdmin", restaurantId, true);
                             DatabaseHandler.UpdateUser(user);
                             MessageBox.Show("Admin Details Updated");
 
