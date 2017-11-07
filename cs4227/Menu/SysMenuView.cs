@@ -40,7 +40,7 @@ namespace cs4227.Menu
                 {
                     ListViewItem row = new ListViewItem("" + item.Id);
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetFoodItem(item.Id).Name));
-                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + item.Cost));
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DoubleToMoneyString(item.Cost)));
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (item.Deleted ? "Yes" : "No")));
                     listView.Items.Add(row);
                 }

@@ -35,11 +35,7 @@ namespace cs4227.Menu
                 {
                     ListViewItem row = new ListViewItem("" + order.Id);
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetUser(order.UserId).Username));
-                    string cost = order.Cost.ToString();
-                    if (cost.Length == 1 || cost.Length == 2)
-                    {
-                        cost += ".00";
-                    }
+                    string cost = StaticAccessor.DoubleToMoneyString(order.Cost);
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));

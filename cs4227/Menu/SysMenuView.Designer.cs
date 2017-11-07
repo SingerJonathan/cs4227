@@ -66,6 +66,7 @@
             this.name,
             this.cost,
             this.deleted});
+            this.listView.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.listView.Location = new System.Drawing.Point(12, 85);
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(960, 477);
@@ -85,12 +86,13 @@
             // 
             // cost
             // 
-            this.cost.Text = "Cost";
+            this.cost.Text = "Price";
             this.cost.Width = 100;
             // 
             // deleted
             // 
             this.deleted.Text = "Deleted";
+            this.deleted.Width = 100;
             // 
             // SysViewMenu
             // 
