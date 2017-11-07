@@ -41,19 +41,19 @@ namespace cs4227.Menu
                 ListViewItem row = new ListViewItem("" + Food.Id);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Name));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Cost));
-                string bronze = Food.BronzeDiscount.ToString();
+                string bronze = Food.Discounts[1].ToString();
                 if (bronze.Length == 1 || bronze.Length == 2)
                 {
                     bronze += ".00";
                 }
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + bronze));
-                string silver = Food.SilverDiscount.ToString();
+                string silver = Food.Discounts[2].ToString();
                 if (silver.Length == 1 || silver.Length == 2)
                 {
                     silver += ".00";
                 }
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + silver));
-                string gold = Food.GoldDiscount.ToString();
+                string gold = Food.Discounts[3].ToString();
                 if (gold.Length == 1 || gold.Length == 2)
                 {
                     gold += ".00";

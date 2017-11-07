@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.YourOrder = new System.Windows.Forms.ListView();
+            this.OrderItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OrderItemPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PriceLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -38,16 +40,16 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.DeliveryChargeLabel = new System.Windows.Forms.Label();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
-            this.OrderItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.OrderItemPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.OrderPriceLabel = new System.Windows.Forms.Label();
+            this.OrderItemDiscountedPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // YourOrder
             // 
             this.YourOrder.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.OrderItemName,
-            this.OrderItemPrice});
+            this.OrderItemPrice,
+            this.OrderItemDiscountedPrice});
             this.YourOrder.Location = new System.Drawing.Point(16, 51);
             this.YourOrder.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.YourOrder.Name = "YourOrder";
@@ -55,6 +57,16 @@
             this.YourOrder.TabIndex = 0;
             this.YourOrder.UseCompatibleStateImageBehavior = false;
             this.YourOrder.View = System.Windows.Forms.View.Details;
+            // 
+            // OrderItemName
+            // 
+            this.OrderItemName.Text = "Item";
+            this.OrderItemName.Width = 210;
+            // 
+            // OrderItemPrice
+            // 
+            this.OrderItemPrice.Text = "Price";
+            this.OrderItemPrice.Width = 80;
             // 
             // PriceLabel
             // 
@@ -149,16 +161,6 @@
             this.ErrorMessageLabel.TabIndex = 10;
             this.ErrorMessageLabel.Text = "Error Message:";
             // 
-            // OrderItemName
-            // 
-            this.OrderItemName.Text = "Item";
-            this.OrderItemName.Width = 395;
-            // 
-            // OrderItemPrice
-            // 
-            this.OrderItemPrice.Text = "Price";
-            this.OrderItemPrice.Width = 100;
-            // 
             // OrderPriceLabel
             // 
             this.OrderPriceLabel.AutoSize = true;
@@ -168,6 +170,11 @@
             this.OrderPriceLabel.Size = new System.Drawing.Size(90, 31);
             this.OrderPriceLabel.TabIndex = 11;
             this.OrderPriceLabel.Text = "Price:";
+            // 
+            // OrderItemDiscountedPrice
+            // 
+            this.OrderItemDiscountedPrice.Text = "Discounted Price";
+            this.OrderItemDiscountedPrice.Width = 200;
             // 
             // UserCheckout
             // 
@@ -211,5 +218,6 @@
         private System.Windows.Forms.ColumnHeader OrderItemName;
         private System.Windows.Forms.ColumnHeader OrderItemPrice;
         private System.Windows.Forms.Label OrderPriceLabel;
+        private System.Windows.Forms.ColumnHeader OrderItemDiscountedPrice;
     }
 }

@@ -8,9 +8,7 @@ namespace cs4227.Restaurant
         private string name;
         private double cost;
         private int restaurantId;
-        private double bronzediscount;
-        private double silverdiscount;
-        private double golddiscount;
+        private double[] discounts;
         private bool deleted;
 
         public int Id
@@ -38,20 +36,10 @@ namespace cs4227.Restaurant
             get { return deleted; }
             set { deleted = value; }
         }
-        public double BronzeDiscount
+        public double[] Discounts
         {
-            get { return bronzediscount; }
-            set { bronzediscount = value; }
-        }
-        public double SilverDiscount
-        {
-            get { return silverdiscount; }
-            set { silverdiscount = value; }
-        }
-        public double GoldDiscount
-        {
-            get { return golddiscount; }
-            set { golddiscount = value; }
+            get => discounts;
+            set => discounts = value;
         }
 
         public FoodItem()
@@ -59,9 +47,7 @@ namespace cs4227.Restaurant
             name = "Food Item";
             cost = 0.0f;
             deleted = false;
-            bronzediscount = 0.0f;
-            silverdiscount = 0.0f;
-            golddiscount = 0.0f;
+            discounts = new double[]{ 0, 0, 0, 0 };
         }
 
         public FoodItem(int id, string name, double cost, int restaurantId, double bronzediscount, double silverdiscount, double golddiscount, bool deleted = false)
@@ -71,9 +57,7 @@ namespace cs4227.Restaurant
             this.cost = cost;
             this.restaurantId = restaurantId;
             this.deleted = deleted;
-            this.bronzediscount = bronzediscount;
-            this.silverdiscount = silverdiscount;
-            this.golddiscount = golddiscount;
+            this.discounts = new double[] { 0, bronzediscount, silverdiscount, golddiscount };
         }
     }
 }

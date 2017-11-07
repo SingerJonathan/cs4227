@@ -102,11 +102,20 @@ namespace cs4227.Menu
 
         private void UserCheckout_Load(object sender, EventArgs e)
         {
+            int membership = DatabaseHandler.GetUser(UserId).Membership;
+            if (membership == 0)
+            {
+                YourOrder.Columns.RemoveAt(2);
+                YourOrder.Columns[0].Width += 200;
+            }
+
             foreach (FoodItem Food in Order.FoodItems)
             {
                 ListViewItem row = new ListViewItem(Food.Name);
                 string cost = StaticAccessor.DoubleToMoneyString(Food.Cost);
+                string discountedCost = StaticAccessor.DoubleToMoneyString(Food.Cost - Food.Discounts[membership]);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, discountedCost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 YourOrder.Items.Add(row);
             }

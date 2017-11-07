@@ -43,6 +43,8 @@
             this.UndoButton = new System.Windows.Forms.Button();
             this.TotalLabel = new System.Windows.Forms.Label();
             this.TotalCostLabel = new System.Windows.Forms.Label();
+            this.MenuItemDiscountedPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OrderItemDiscountedPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label1
@@ -113,7 +115,8 @@
             // 
             this.RestaurantMenu.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.MenuItemName,
-            this.MenuItemPrice});
+            this.MenuItemPrice,
+            this.MenuItemDiscountedPrice});
             this.RestaurantMenu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RestaurantMenu.FullRowSelect = true;
             this.RestaurantMenu.Location = new System.Drawing.Point(12, 38);
@@ -129,18 +132,19 @@
             // MenuItemName
             // 
             this.MenuItemName.Text = "Name";
-            this.MenuItemName.Width = 350;
+            this.MenuItemName.Width = 200;
             // 
             // MenuItemPrice
             // 
             this.MenuItemPrice.Text = "Price";
-            this.MenuItemPrice.Width = 100;
+            this.MenuItemPrice.Width = 80;
             // 
             // YourOrder
             // 
             this.YourOrder.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.OrderItemName,
-            this.OrderItemPrice});
+            this.OrderItemPrice,
+            this.OrderItemDiscountedPrice});
             this.YourOrder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.YourOrder.FullRowSelect = true;
             this.YourOrder.Location = new System.Drawing.Point(518, 38);
@@ -154,12 +158,12 @@
             // OrderItemName
             // 
             this.OrderItemName.Text = "Name";
-            this.OrderItemName.Width = 350;
+            this.OrderItemName.Width = 200;
             // 
             // OrderItemPrice
             // 
             this.OrderItemPrice.Text = "Price";
-            this.OrderItemPrice.Width = 100;
+            this.OrderItemPrice.Width = 80;
             // 
             // UndoButton
             // 
@@ -192,6 +196,16 @@
             this.TotalCostLabel.Size = new System.Drawing.Size(58, 25);
             this.TotalCostLabel.TabIndex = 12;
             this.TotalCostLabel.Text = "0.00";
+            // 
+            // MenuItemDiscountedPrice
+            // 
+            this.MenuItemDiscountedPrice.Text = "Discounted Price";
+            this.MenuItemDiscountedPrice.Width = 230;
+            // 
+            // OrderItemDiscountedPrice
+            // 
+            this.OrderItemDiscountedPrice.Text = "Discounted Price";
+            this.OrderItemDiscountedPrice.Width = 230;
             // 
             // UserOrderMenu
             // 
@@ -236,5 +250,7 @@
         private System.Windows.Forms.Button UndoButton;
         private System.Windows.Forms.Label TotalLabel;
         private System.Windows.Forms.Label TotalCostLabel;
+        private System.Windows.Forms.ColumnHeader MenuItemDiscountedPrice;
+        private System.Windows.Forms.ColumnHeader OrderItemDiscountedPrice;
     }
 }

@@ -38,15 +38,7 @@ namespace cs4227.Restaurant
                 double cost = 0.00;
                 int membership = DatabaseHandler.GetUser(userId).Membership;
                 foreach (FoodItem item in foodItems)
-                {
-                    cost += item.Cost;
-                    switch (membership)
-                    {
-                        case 1: cost -= item.BronzeDiscount;    break;
-                        case 2: cost -= item.SilverDiscount;    break;
-                        case 3: cost -= item.GoldDiscount;      break;
-                    }
-                }
+                    cost += item.Cost - item.Discounts[membership];
                 cost += DatabaseHandler.GetRestaurant(restaurantId).Delivery;
                 return cost;
             }
