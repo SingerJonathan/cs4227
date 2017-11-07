@@ -23,7 +23,7 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            UserResterauntSearch URS = new UserResterauntSearch(UserId);
+            UserRestarauntSearch URS = new UserRestarauntSearch(UserId);
             URS.ShowDialog();
         }
 

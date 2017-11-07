@@ -26,6 +26,8 @@ namespace cs4227.Menu
                 result = "0.00";
             else
                 result = string.Format("{0:#.00}", Convert.ToDecimal(result));
+            if (result.Substring(0, 1).Equals("."))
+                result = "0" + result;
             return result;
         }
     }
