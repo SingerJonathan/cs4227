@@ -219,18 +219,18 @@
             this.SilverDiscountLabel.AutoSize = true;
             this.SilverDiscountLabel.Location = new System.Drawing.Point(619, 371);
             this.SilverDiscountLabel.Name = "SilverDiscountLabel";
-            this.SilverDiscountLabel.Size = new System.Drawing.Size(178, 25);
+            this.SilverDiscountLabel.Size = new System.Drawing.Size(231, 25);
             this.SilverDiscountLabel.TabIndex = 17;
-            this.SilverDiscountLabel.Text = "Silver Discount:";
+            this.SilverDiscountLabel.Text = "Silver Discount: 0.00";
             // 
             // GoldDiscountLabel
             // 
             this.GoldDiscountLabel.AutoSize = true;
             this.GoldDiscountLabel.Location = new System.Drawing.Point(619, 427);
             this.GoldDiscountLabel.Name = "GoldDiscountLabel";
-            this.GoldDiscountLabel.Size = new System.Drawing.Size(167, 25);
+            this.GoldDiscountLabel.Size = new System.Drawing.Size(220, 25);
             this.GoldDiscountLabel.TabIndex = 19;
-            this.GoldDiscountLabel.Text = "Gold Discount:";
+            this.GoldDiscountLabel.Text = "Gold Discount: 0.00";
             // 
             // RestAdminViewMenu
             // 

@@ -42,19 +42,19 @@ namespace cs4227.Menu
                 ListViewItem row = new ListViewItem("" + Food.Id);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Name));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Cost));
-                string bronze = Food.BronzeDiscount.ToString();
+                string bronze = Math.Round(Food.BronzeDiscount, 2).ToString();
                 if (bronze.Length == 1 || bronze.Length == 2)
                 {
                     bronze += ".00";
                 }
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + bronze));
-                string silver = Food.SilverDiscount.ToString();
+                string silver = Math.Round(Food.SilverDiscount,2).ToString();
                 if (silver.Length == 1 || silver.Length == 2)
                 {
                     silver += ".00";
                 }
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + silver));
-                string gold = Food.GoldDiscount.ToString();
+                string gold = Math.Round(Food.GoldDiscount,2).ToString();
                 if (gold.Length == 1 || gold.Length == 2)
                 {
                     gold += ".00";
@@ -201,8 +201,8 @@ namespace cs4227.Menu
                 Price = RestaurantMenuList.SelectedItems[0].SubItems[2].Text;
                 Price = string.Format("{0:#.00}", Convert.ToDecimal(Price));
                 BronzeDiscountTextbox.Text = RestaurantMenuList.SelectedItems[0].SubItems[3].Text;
-                SilverDiscountLabel.Text = RestaurantMenuList.SelectedItems[0].SubItems[4].Text;
-                GoldDiscountLabel.Text = RestaurantMenuList.SelectedItems[0].SubItems[5].Text;
+                SilverDiscountLabel.Text = "Silver Discount: " + RestaurantMenuList.SelectedItems[0].SubItems[4].Text;
+                GoldDiscountLabel.Text = "Gold Discount: " + RestaurantMenuList.SelectedItems[0].SubItems[5].Text;
                 NameTextbox.Text = MenuItemName;
                 PriceTextbox.Text = Price;
             }
@@ -266,16 +266,17 @@ namespace cs4227.Menu
                 else
                 {
                     ErrorMessage = "Incorrect Format: \nFormat = 0.00";
-                    CorrectPriceFormat = false;
+                    CorrectBronzeFormat = false;
                 }
             }
             else
             {
-                CorrectPriceFormat = false;
-                ErrorMessage = "Must Enter a Price";
+                CorrectBronzeFormat = false;
+                ErrorMessage = "Must Enter a Discount";
+                BronzeDiscountTextbox.Text = "0.00";
             }
 
-            if (!CorrectPriceFormat)
+            if (!CorrectBronzeFormat)
             {
                 ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
@@ -289,10 +290,19 @@ namespace cs4227.Menu
                 BronzeDiscountValue = Math.Round(Convert.ToDouble(Bronze), 2);
                 SilverDiscountValue = Math.Round(BronzeDiscountValue * 1.30, 2);
                 SilverDiscountLabel.Text = "Silver Discount: " + SilverDiscountValue.ToString();
+                if (BronzeDiscountValue == 0.0)
+                {
+                    SilverDiscountLabel.Text = "Silver Discount: 0.00";
+                }
                 Silver = SilverDiscountValue.ToString();
                 GoldDiscountValue = Math.Round(BronzeDiscountValue * 1.60, 2);
                 GoldDiscountLabel.Text = "Gold Discount: " + GoldDiscountValue.ToString();
                 Gold = GoldDiscountValue.ToString();
+                if (BronzeDiscountValue == 0.0)
+                {
+                    SilverDiscountLabel.Text = "Silver Discount: 0.00";
+                    GoldDiscountLabel.Text = "Gold Discount: 0.00";
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace cs4227.Menu
 {
-    partial class UserResterauntSearch
+    partial class UserRestarauntSearch
     {
         /// <summary>
         /// Required designer variable.

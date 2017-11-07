@@ -12,7 +12,7 @@ using cs4227.Restaurant;
 
 namespace cs4227.Menu
 {
-    public partial class UserResterauntSearch : Form
+    public partial class UserRestarauntSearch : Form
     {
         private int UserId = 0;
         private int RestaurantId = 0;
@@ -20,7 +20,7 @@ namespace cs4227.Menu
         private string ErrorMessage = "";
         private Boolean CorrectNameFormat = false;
 
-        public UserResterauntSearch(int UserId)
+        public UserRestarauntSearch(int UserId)
         {
             this.UserId = UserId;
             InitializeComponent();

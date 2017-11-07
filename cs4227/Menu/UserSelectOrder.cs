@@ -101,8 +101,8 @@ namespace cs4227.Menu
         private void button1_Click(object sender, EventArgs e) //back
         {
             this.Hide();
-            UserMainMenu UMM = new UserMainMenu(UserId);
-            UMM.ShowDialog();
+            UserRestarauntSearch URS = new UserRestarauntSearch(UserId);
+            URS.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e) //checkout
