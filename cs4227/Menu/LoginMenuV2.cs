@@ -11,7 +11,7 @@ namespace cs4227.Menu
         private Boolean UserFound = false;
         private string Username = "";
         private string Password = "";
-        private int UserId = 0;
+        private int ShowPassword = 1;
 
         public LoginMenuV2()
         {
@@ -78,6 +78,15 @@ namespace cs4227.Menu
             this.Hide();
             UserManageAccount UMA = new UserManageAccount(0, true);
             UMA.ShowDialog();
+        }
+
+        private void ShowPasswordCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowPassword = ShowPassword * -1;
+            if (ShowPassword == -1)
+                PasswordTextbox.PasswordChar = '\0';
+            else
+                PasswordTextbox.PasswordChar = '*';
         }
     }
 }

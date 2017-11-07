@@ -39,6 +39,7 @@
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
             this.SignUpButton = new System.Windows.Forms.Button();
+            this.ShowPasswordCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // WelcomeMessageLabel
@@ -154,12 +155,25 @@
             this.SignUpButton.UseVisualStyleBackColor = false;
             this.SignUpButton.Click += new System.EventHandler(this.SignUpButton_Click);
             // 
+            // ShowPasswordCheckBox
+            // 
+            this.ShowPasswordCheckBox.AutoSize = true;
+            this.ShowPasswordCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShowPasswordCheckBox.Location = new System.Drawing.Point(646, 345);
+            this.ShowPasswordCheckBox.Name = "ShowPasswordCheckBox";
+            this.ShowPasswordCheckBox.Size = new System.Drawing.Size(197, 29);
+            this.ShowPasswordCheckBox.TabIndex = 11;
+            this.ShowPasswordCheckBox.Text = "Show Password";
+            this.ShowPasswordCheckBox.UseVisualStyleBackColor = true;
+            this.ShowPasswordCheckBox.CheckedChanged += new System.EventHandler(this.ShowPasswordCheckBox_CheckedChanged);
+            // 
             // LoginMenuV2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.ShowPasswordCheckBox);
             this.Controls.Add(this.SignUpButton);
             this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.UsernameLabel);
@@ -192,5 +206,6 @@
         private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.Label ErrorMessageLabel;
         private System.Windows.Forms.Button SignUpButton;
+        private System.Windows.Forms.CheckBox ShowPasswordCheckBox;
     }
 }
