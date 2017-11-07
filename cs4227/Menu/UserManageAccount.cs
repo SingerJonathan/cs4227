@@ -38,7 +38,6 @@ namespace cs4227.Menu
 
         private void UserManageAccount_Load(object sender, EventArgs e)
         {
-            MembershipComboBox.SelectedIndex = Membership;
             if (!newAccount)
             {
                 AbstractUser User = DatabaseHandler.GetUser(UserId);
@@ -51,7 +50,7 @@ namespace cs4227.Menu
                 UserEmailTextbox.Text = Email;
                 UserFirstNameTextbox.Text = FirstName;
                 UserLastNameTextbox.Text = LastName;
-                UserPasswordTextbox.Text = Password;
+                //UserPasswordTextbox.Text = Password;
                 UserUsernameTextbox.Text = Username;
             }
             else
@@ -62,6 +61,7 @@ namespace cs4227.Menu
                 SaveChangesButton.Text = "Create Account";
                 BackButton.Text = "Cancel";
             }
+            MembershipComboBox.SelectedIndex = Membership;
         }
 
         private void UserPasswordTextbox_TextChanged(object sender, EventArgs e)
@@ -311,9 +311,12 @@ namespace cs4227.Menu
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
+            //Hash password input so the raw password isn't stored in the database
+            string hashPassword = StaticAccessor.HashString(Password);
+
             if (newAccount)
             {
-                AbstractUser user = new UserFactory().GetUser(0, Username, Password, FirstName, LastName, Email, Membership, "User");
+                AbstractUser user = new UserFactory().GetUser(0, Username, hashPassword, FirstName, LastName, Email, Membership, "User");
                 DatabaseHandler.InsertUser(user);
                 MessageBox.Show("Account Created");
                 this.Hide();
@@ -326,7 +329,7 @@ namespace cs4227.Menu
                 user.FirstName = FirstName;
                 user.LastName = LastName;
                 user.Username = Username;
-                user.Password = Password;
+                user.Password = hashPassword;
                 user.Email = Email;
                 user.Membership = Membership;
                 DatabaseHandler.UpdateUser(user);
