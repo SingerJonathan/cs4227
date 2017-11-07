@@ -64,7 +64,6 @@
     <Compile Include="Meal\Memento.cs" />
     <Compile Include="Meal\PlaceOrderCommand.cs" />
     <Compile Include="Meal\Invoker.cs" />
-    <Compile Include="Meal\TestHarness.cs" />
     <Compile Include="UI\LoginMenuV2.cs">
       <SubType>Form</SubType>
     </Compile>
