@@ -42,12 +42,13 @@
             this.DeleteAdminButton = new System.Windows.Forms.Button();
             this.AdminLastNameLabel = new System.Windows.Forms.Label();
             this.AdminLastNameTextbox = new System.Windows.Forms.TextBox();
+            this.ShowPasswordCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // AdminFirstNameLabel
             // 
             this.AdminFirstNameLabel.AutoSize = true;
-            this.AdminFirstNameLabel.Location = new System.Drawing.Point(182, 83);
+            this.AdminFirstNameLabel.Location = new System.Drawing.Point(324, 19);
             this.AdminFirstNameLabel.Name = "AdminFirstNameLabel";
             this.AdminFirstNameLabel.Size = new System.Drawing.Size(133, 25);
             this.AdminFirstNameLabel.TabIndex = 0;
@@ -55,7 +56,7 @@
             // 
             // AdminFirstNameTextbox
             // 
-            this.AdminFirstNameTextbox.Location = new System.Drawing.Point(187, 121);
+            this.AdminFirstNameTextbox.Location = new System.Drawing.Point(329, 56);
             this.AdminFirstNameTextbox.Name = "AdminFirstNameTextbox";
             this.AdminFirstNameTextbox.Size = new System.Drawing.Size(300, 31);
             this.AdminFirstNameTextbox.TabIndex = 1;
@@ -64,15 +65,16 @@
             // AdminEmailLabel
             // 
             this.AdminEmailLabel.AutoSize = true;
-            this.AdminEmailLabel.Location = new System.Drawing.Point(182, 168);
+            this.AdminEmailLabel.Location = new System.Drawing.Point(324, 162);
             this.AdminEmailLabel.Name = "AdminEmailLabel";
             this.AdminEmailLabel.Size = new System.Drawing.Size(77, 25);
             this.AdminEmailLabel.TabIndex = 2;
             this.AdminEmailLabel.Text = "Email:";
+            this.AdminEmailLabel.Click += new System.EventHandler(this.AdminEmailLabel_Click);
             // 
             // AdminEmailTextbox
             // 
-            this.AdminEmailTextbox.Location = new System.Drawing.Point(187, 206);
+            this.AdminEmailTextbox.Location = new System.Drawing.Point(329, 200);
             this.AdminEmailTextbox.Name = "AdminEmailTextbox";
             this.AdminEmailTextbox.Size = new System.Drawing.Size(300, 31);
             this.AdminEmailTextbox.TabIndex = 3;
@@ -81,15 +83,16 @@
             // AdminUsernameLabel
             // 
             this.AdminUsernameLabel.AutoSize = true;
-            this.AdminUsernameLabel.Location = new System.Drawing.Point(182, 255);
+            this.AdminUsernameLabel.Location = new System.Drawing.Point(324, 249);
             this.AdminUsernameLabel.Name = "AdminUsernameLabel";
             this.AdminUsernameLabel.Size = new System.Drawing.Size(125, 25);
             this.AdminUsernameLabel.TabIndex = 4;
             this.AdminUsernameLabel.Text = "Username:";
+            this.AdminUsernameLabel.Click += new System.EventHandler(this.AdminUsernameLabel_Click);
             // 
             // AdminUsernameTextbox
             // 
-            this.AdminUsernameTextbox.Location = new System.Drawing.Point(187, 292);
+            this.AdminUsernameTextbox.Location = new System.Drawing.Point(329, 286);
             this.AdminUsernameTextbox.Name = "AdminUsernameTextbox";
             this.AdminUsernameTextbox.Size = new System.Drawing.Size(300, 31);
             this.AdminUsernameTextbox.TabIndex = 5;
@@ -120,16 +123,18 @@
             // AdminPasswordLabel
             // 
             this.AdminPasswordLabel.AutoSize = true;
-            this.AdminPasswordLabel.Location = new System.Drawing.Point(498, 254);
+            this.AdminPasswordLabel.Location = new System.Drawing.Point(324, 325);
             this.AdminPasswordLabel.Name = "AdminPasswordLabel";
             this.AdminPasswordLabel.Size = new System.Drawing.Size(121, 25);
             this.AdminPasswordLabel.TabIndex = 8;
             this.AdminPasswordLabel.Text = "Password:";
+            this.AdminPasswordLabel.Click += new System.EventHandler(this.AdminPasswordLabel_Click);
             // 
             // AdminPasswordTextbox
             // 
-            this.AdminPasswordTextbox.Location = new System.Drawing.Point(503, 292);
+            this.AdminPasswordTextbox.Location = new System.Drawing.Point(329, 363);
             this.AdminPasswordTextbox.Name = "AdminPasswordTextbox";
+            this.AdminPasswordTextbox.PasswordChar = '*';
             this.AdminPasswordTextbox.Size = new System.Drawing.Size(300, 31);
             this.AdminPasswordTextbox.TabIndex = 9;
             this.AdminPasswordTextbox.TextChanged += new System.EventHandler(this.AdminPasswordTextbox_TextChanged);
@@ -137,7 +142,7 @@
             // ErrorMessageLabel
             // 
             this.ErrorMessageLabel.AutoSize = true;
-            this.ErrorMessageLabel.Location = new System.Drawing.Point(8, 405);
+            this.ErrorMessageLabel.Location = new System.Drawing.Point(8, 420);
             this.ErrorMessageLabel.Name = "ErrorMessageLabel";
             this.ErrorMessageLabel.Size = new System.Drawing.Size(173, 25);
             this.ErrorMessageLabel.TabIndex = 12;
@@ -158,7 +163,7 @@
             // AdminLastNameLabel
             // 
             this.AdminLastNameLabel.AutoSize = true;
-            this.AdminLastNameLabel.Location = new System.Drawing.Point(498, 83);
+            this.AdminLastNameLabel.Location = new System.Drawing.Point(324, 90);
             this.AdminLastNameLabel.Name = "AdminLastNameLabel";
             this.AdminLastNameLabel.Size = new System.Drawing.Size(131, 25);
             this.AdminLastNameLabel.TabIndex = 14;
@@ -166,11 +171,22 @@
             // 
             // AdminLastNameTextbox
             // 
-            this.AdminLastNameTextbox.Location = new System.Drawing.Point(503, 121);
+            this.AdminLastNameTextbox.Location = new System.Drawing.Point(329, 128);
             this.AdminLastNameTextbox.Name = "AdminLastNameTextbox";
             this.AdminLastNameTextbox.Size = new System.Drawing.Size(300, 31);
             this.AdminLastNameTextbox.TabIndex = 15;
             this.AdminLastNameTextbox.TextChanged += new System.EventHandler(this.AdminLastNameTextbox_TextChanged);
+            // 
+            // ShowPasswordCheckBox
+            // 
+            this.ShowPasswordCheckBox.AutoSize = true;
+            this.ShowPasswordCheckBox.Location = new System.Drawing.Point(635, 363);
+            this.ShowPasswordCheckBox.Name = "ShowPasswordCheckBox";
+            this.ShowPasswordCheckBox.Size = new System.Drawing.Size(197, 29);
+            this.ShowPasswordCheckBox.TabIndex = 16;
+            this.ShowPasswordCheckBox.Text = "Show Password";
+            this.ShowPasswordCheckBox.UseVisualStyleBackColor = true;
+            this.ShowPasswordCheckBox.CheckedChanged += new System.EventHandler(this.ShowPasswordCheckBox_CheckedChanged);
             // 
             // EditAdminMenu
             // 
@@ -178,6 +194,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 662);
+            this.Controls.Add(this.ShowPasswordCheckBox);
             this.Controls.Add(this.AdminLastNameTextbox);
             this.Controls.Add(this.AdminLastNameLabel);
             this.Controls.Add(this.DeleteAdminButton);
@@ -218,5 +235,6 @@
         private System.Windows.Forms.Button DeleteAdminButton;
         private System.Windows.Forms.Label AdminLastNameLabel;
         private System.Windows.Forms.TextBox AdminLastNameTextbox;
+        private System.Windows.Forms.CheckBox ShowPasswordCheckBox;
     }
 }

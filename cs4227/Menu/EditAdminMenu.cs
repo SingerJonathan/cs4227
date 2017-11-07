@@ -32,6 +32,7 @@ namespace cs4227.Menu
         //private Boolean CorrectRestaurantFormat = false;
         private Boolean newAdmin = false;
         private Boolean sysAdmin = false;
+        private int ShowPassword = 1;
 
         public EditAdminMenu(int AdminId, string AdminUsername, int RestaurantId, Boolean sysAdmin, Boolean newAdmin)
         {
@@ -497,6 +498,30 @@ namespace cs4227.Menu
                     MessageBox.Show(AdminUsername + " is currently an admin of " + AdminRestaurant + " and therefore cannot be deleted.\nChange the admin of that restaurant first.");
                 }
             }
+        }
+
+        private void AdminEmailLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AdminUsernameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AdminPasswordLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ShowPasswordCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowPassword = ShowPassword * -1;
+            if (ShowPassword == -1)
+                AdminPasswordTextbox.PasswordChar = '\0';
+            else
+                AdminPasswordTextbox.PasswordChar = '*';
         }
     }
 }
