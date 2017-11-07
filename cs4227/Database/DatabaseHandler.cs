@@ -229,8 +229,8 @@ namespace cs4227.Database
             SqlDataReader reader = command.ExecuteReader();
             FoodItem foodItem = new FoodItem();
             if (reader.Read())
-                foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*Menu.StaticAccessor.Discounts[3],
-                    Convert.ToDouble(reader[4])*Menu.StaticAccessor.Discounts[2], Convert.ToDouble(reader[4])*Menu.StaticAccessor.Discounts[3], reader.GetBoolean(5));
+                foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[3],
+                    Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[2], Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[3], reader.GetBoolean(5));
             connection.Close();
             return foodItem;
         }
@@ -572,8 +572,8 @@ namespace cs4227.Database
             List<FoodItem> foodItems = new List<FoodItem>();
             while (reader.Read())
             {
-                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*Menu.StaticAccessor.Discounts[1],
-                    Convert.ToDouble(reader[4])*Menu.StaticAccessor.Discounts[2], Convert.ToDouble(reader[4])*Menu.StaticAccessor.Discounts[3], reader.GetBoolean(5));
+                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[1],
+                    Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[2], Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[3], reader.GetBoolean(5));
                 foodItems.Add(foodItem);
             }
             connection.Close();
@@ -590,8 +590,8 @@ namespace cs4227.Database
             List<FoodItem> foodItems = new List<FoodItem>();
             while (reader.Read())
             {
-                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*Menu.StaticAccessor.Discounts[1],
-                    Convert.ToDouble(reader[4])*Menu.StaticAccessor.Discounts[2], Convert.ToDouble(reader[4])*Menu.StaticAccessor.Discounts[3], reader.GetBoolean(5));
+                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[1],
+                    Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[2], Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[3], reader.GetBoolean(5));
                 foodItems.Add(foodItem);
             }
             connection.Close();

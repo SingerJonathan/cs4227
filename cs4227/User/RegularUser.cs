@@ -1,5 +1,5 @@
 ﻿using System;
-using cs4227.Menu;
+using cs4227.UI;
 using cs4227.Database;
 
 namespace cs4227.User
