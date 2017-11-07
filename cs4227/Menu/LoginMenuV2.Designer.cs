@@ -93,11 +93,12 @@
             this.LoginButton.UseVisualStyleBackColor = false;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
-            // PaaswordTextbox
+            // PasswordTextbox
             // 
             this.PasswordTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordTextbox.Location = new System.Drawing.Point(339, 345);
             this.PasswordTextbox.Name = "PasswordTextbox";
+            this.PasswordTextbox.PasswordChar = '*';
             this.PasswordTextbox.Size = new System.Drawing.Size(300, 31);
             this.PasswordTextbox.TabIndex = 5;
             this.PasswordTextbox.TextChanged += new System.EventHandler(this.PasswordTextbox_TextChanged);
