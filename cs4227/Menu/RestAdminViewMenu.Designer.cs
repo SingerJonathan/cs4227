@@ -48,9 +48,7 @@
             this.BronzeDiscountTextbox = new System.Windows.Forms.TextBox();
             this.BronzeDiscountLabel = new System.Windows.Forms.Label();
             this.SilverDiscountLabel = new System.Windows.Forms.Label();
-            this.SilverDiscountTextbox = new System.Windows.Forms.TextBox();
             this.GoldDiscountLabel = new System.Windows.Forms.Label();
-            this.GoldDiscountTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // SelectMenuItemLabel
@@ -219,38 +217,20 @@
             // SilverDiscountLabel
             // 
             this.SilverDiscountLabel.AutoSize = true;
-            this.SilverDiscountLabel.Location = new System.Drawing.Point(619, 330);
+            this.SilverDiscountLabel.Location = new System.Drawing.Point(619, 371);
             this.SilverDiscountLabel.Name = "SilverDiscountLabel";
             this.SilverDiscountLabel.Size = new System.Drawing.Size(178, 25);
             this.SilverDiscountLabel.TabIndex = 17;
             this.SilverDiscountLabel.Text = "Silver Discount:";
             // 
-            // SilverDiscountTextbox
-            // 
-            this.SilverDiscountTextbox.Location = new System.Drawing.Point(624, 367);
-            this.SilverDiscountTextbox.Name = "SilverDiscountTextbox";
-            this.SilverDiscountTextbox.Size = new System.Drawing.Size(300, 31);
-            this.SilverDiscountTextbox.TabIndex = 16;
-            this.SilverDiscountTextbox.Text = "0.00";
-            this.SilverDiscountTextbox.TextChanged += new System.EventHandler(this.SilverDiscountTextbox_TextChanged);
-            // 
             // GoldDiscountLabel
             // 
             this.GoldDiscountLabel.AutoSize = true;
-            this.GoldDiscountLabel.Location = new System.Drawing.Point(619, 401);
+            this.GoldDiscountLabel.Location = new System.Drawing.Point(619, 427);
             this.GoldDiscountLabel.Name = "GoldDiscountLabel";
             this.GoldDiscountLabel.Size = new System.Drawing.Size(167, 25);
             this.GoldDiscountLabel.TabIndex = 19;
             this.GoldDiscountLabel.Text = "Gold Discount:";
-            // 
-            // GoldDiscountTextbox
-            // 
-            this.GoldDiscountTextbox.Location = new System.Drawing.Point(624, 438);
-            this.GoldDiscountTextbox.Name = "GoldDiscountTextbox";
-            this.GoldDiscountTextbox.Size = new System.Drawing.Size(300, 31);
-            this.GoldDiscountTextbox.TabIndex = 18;
-            this.GoldDiscountTextbox.Text = "0.00";
-            this.GoldDiscountTextbox.TextChanged += new System.EventHandler(this.GoldDiscountTextbox_TextChanged);
             // 
             // RestAdminViewMenu
             // 
@@ -259,9 +239,7 @@
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
             this.Controls.Add(this.GoldDiscountLabel);
-            this.Controls.Add(this.GoldDiscountTextbox);
             this.Controls.Add(this.SilverDiscountLabel);
-            this.Controls.Add(this.SilverDiscountTextbox);
             this.Controls.Add(this.BronzeDiscountLabel);
             this.Controls.Add(this.BronzeDiscountTextbox);
             this.Controls.Add(this.EditItemButton);
@@ -306,8 +284,6 @@
         private System.Windows.Forms.TextBox BronzeDiscountTextbox;
         private System.Windows.Forms.Label BronzeDiscountLabel;
         private System.Windows.Forms.Label SilverDiscountLabel;
-        private System.Windows.Forms.TextBox SilverDiscountTextbox;
         private System.Windows.Forms.Label GoldDiscountLabel;
-        private System.Windows.Forms.TextBox GoldDiscountTextbox;
     }
 }

@@ -15,15 +15,16 @@ namespace cs4227.Menu
         private int MenuItemId = 0;
         private string MenuItemName = "";
         private string Price = "0.00";
-        private double BronzeDiscountValue = 0.0;
-        private double SilverDiscountValue = 0.0;
-        private double GoldDiscountValue = 0.0;
+        private string Bronze = "0.00";
+        private string Silver = "0.00";
+        private string Gold = "0.00";
+        private double BronzeDiscountValue = 0.00;
+        private double SilverDiscountValue = 0.00;
+        private double GoldDiscountValue = 0.00;
         private string ErrorMessage = "";
         private Boolean CorrectNameFormat = false;
         private Boolean CorrectPriceFormat = false;
         private Boolean CorrectBronzeFormat = false;
-        private Boolean CorrectSilverFormat = false;
-        private Boolean CorrectGoldFormat = false;
 
         public RestAdminViewMenu(int AdminId, int RestaurantId)
         {
@@ -141,15 +142,16 @@ namespace cs4227.Menu
 
         private void AddItemButton_Click(object sender, EventArgs e)
         {
+            if (BronzeDiscountValue < 0)
+            {
+                BronzeDiscountValue = 0.0;
+                BronzeDiscountTextbox.Text = "0.00";
+            }
             if (BronzeDiscountTextbox.Text == "0.00")
                 CorrectBronzeFormat = true;
-            if (SilverDiscountTextbox.Text == "0.00")
-                CorrectSilverFormat = true;
-            if (GoldDiscountTextbox.Text == "0.00")
-                CorrectGoldFormat = true;
 
 
-            if (CorrectNameFormat && CorrectPriceFormat && CorrectBronzeFormat && CorrectSilverFormat && CorrectGoldFormat)
+            if (CorrectNameFormat && CorrectPriceFormat && CorrectBronzeFormat)
             {
                 //check if item exists already
                 ErrorMessageLabel.Visible = false;
@@ -199,8 +201,8 @@ namespace cs4227.Menu
                 Price = RestaurantMenuList.SelectedItems[0].SubItems[2].Text;
                 Price = string.Format("{0:#.00}", Convert.ToDecimal(Price));
                 BronzeDiscountTextbox.Text = RestaurantMenuList.SelectedItems[0].SubItems[3].Text;
-                SilverDiscountTextbox.Text = RestaurantMenuList.SelectedItems[0].SubItems[4].Text;
-                GoldDiscountTextbox.Text = RestaurantMenuList.SelectedItems[0].SubItems[5].Text;
+                SilverDiscountLabel.Text = RestaurantMenuList.SelectedItems[0].SubItems[4].Text;
+                GoldDiscountLabel.Text = RestaurantMenuList.SelectedItems[0].SubItems[5].Text;
                 NameTextbox.Text = MenuItemName;
                 PriceTextbox.Text = Price;
             }
@@ -220,14 +222,15 @@ namespace cs4227.Menu
 
         private void EditItemButton_Click(object sender, EventArgs e)
         {
+            if (BronzeDiscountValue < 0)
+            {
+                BronzeDiscountValue = 0.0;
+                BronzeDiscountTextbox.Text = "0.00";
+            }
             if (BronzeDiscountTextbox.Text == "0.00")
                 CorrectBronzeFormat = true;
-            if (SilverDiscountTextbox.Text == "0.00")
-                CorrectSilverFormat = true;
-            if (GoldDiscountTextbox.Text == "0.00")
-                CorrectGoldFormat = true;
 
-            if (CorrectNameFormat && CorrectPriceFormat && CorrectBronzeFormat && CorrectSilverFormat && CorrectGoldFormat)
+            if (CorrectNameFormat && CorrectPriceFormat && CorrectBronzeFormat)
             {
                 ErrorMessageLabel.Visible = false;
                 double NewPrice = Convert.ToDouble(Price);
@@ -247,8 +250,7 @@ namespace cs4227.Menu
 
         private void BronzeDiscountTextbox_TextChanged(object sender, EventArgs e)
         {
-            string Bronze = BronzeDiscountTextbox.Text;
-            BronzeDiscountValue = Convert.ToDouble(Bronze);
+            Bronze = BronzeDiscountTextbox.Text;
             Regex r = new Regex(@"^[0-9]*(\.[0-9]{1,2})?$");
             if (Bronze.Length > 0)
             {
@@ -284,90 +286,13 @@ namespace cs4227.Menu
                 ErrorMessage = "";
                 ErrorMessageLabel.Visible = false;
                 BronzeDiscountLabel.Text = "Bronze Discount:";
-            }
-        }
-
-        private void SilverDiscountTextbox_TextChanged(object sender, EventArgs e)
-        {
-            string Silver = SilverDiscountTextbox.Text;
-            SilverDiscountValue = Convert.ToDouble(Silver);
-            Regex r = new Regex(@"^[0-9]*(\.[0-9]{1,2})?$");
-            if (Silver.Length > 0)
-            {
-                if (r.Match(Silver).Success)
-                {
-                    if (Silver.Length == 1 || Silver.Length == 2)
-                    {
-                        Silver += ".00";
-                    }
-                    SilverDiscountTextbox.Text = Silver;
-                    CorrectSilverFormat = true;
-                }
-                else
-                {
-                    ErrorMessage = "Incorrect Format: \nFormat = 0.00";
-                    CorrectPriceFormat = false;
-                }
-            }
-            else
-            {
-                CorrectPriceFormat = false;
-                ErrorMessage = "Must Enter a Price";
-            }
-
-            if (!CorrectPriceFormat)
-            {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
-                ErrorMessageLabel.Visible = true;
-                SilverDiscountLabel.Text = "Silver Discount: ERROR";
-            }
-            else
-            {
-                ErrorMessage = "";
-                ErrorMessageLabel.Visible = false;
-                SilverDiscountLabel.Text = "Silver Discount:";
-            }
-        }
-
-        private void GoldDiscountTextbox_TextChanged(object sender, EventArgs e)
-        {
-            string Gold = GoldDiscountTextbox.Text;
-            GoldDiscountValue = Convert.ToDouble(Gold);
-            Regex r = new Regex(@"^[0-9]*(\.[0-9]{1,2})?$");
-            if (Gold.Length > 0)
-            {
-                if (r.Match(Gold).Success)
-                {
-                    if (Gold.Length == 1 || Gold.Length == 2)
-                    {
-                        Gold += ".00";
-                    }
-                    GoldDiscountTextbox.Text = Gold;
-                    CorrectGoldFormat = true;
-                }
-                else
-                {
-                    ErrorMessage = "Incorrect Format: \nFormat = 0.00";
-                    CorrectPriceFormat = false;
-                }
-            }
-            else
-            {
-                CorrectPriceFormat = false;
-                ErrorMessage = "Must Enter a Price";
-            }
-
-            if (!CorrectPriceFormat)
-            {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
-                ErrorMessageLabel.Visible = true;
-                GoldDiscountLabel.Text = "Gold Discount: ERROR";
-            }
-            else
-            {
-                ErrorMessage = "";
-                ErrorMessageLabel.Visible = false;
-                GoldDiscountLabel.Text = "Gold Discount:";
+                BronzeDiscountValue = Math.Round(Convert.ToDouble(Bronze), 2);
+                SilverDiscountValue = Math.Round(BronzeDiscountValue * 1.30, 2);
+                SilverDiscountLabel.Text = "Silver Discount: " + SilverDiscountValue.ToString();
+                Silver = SilverDiscountValue.ToString();
+                GoldDiscountValue = Math.Round(BronzeDiscountValue * 1.60, 2);
+                GoldDiscountLabel.Text = "Gold Discount: " + GoldDiscountValue.ToString();
+                Gold = GoldDiscountValue.ToString();
             }
         }
     }
