@@ -8,11 +8,10 @@ namespace cs4227.Restaurant
         private string name;
         private double cost;
         private int restaurantId;
-        private bool deleted;
         private double bronzediscount;
         private double silverdiscount;
         private double golddiscount;
-
+        private bool deleted;
 
         public int Id
         {

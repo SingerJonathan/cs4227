@@ -37,8 +37,7 @@ namespace cs4227.Menu
                     else
                         row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
                 }
-                double delivery = DatabaseHandler.GetRestaurant(order.RestaurantId).Delivery;
-                string cost = StaticAccessor.DoubleToMoneyString(order.Cost + delivery);
+                string cost = StaticAccessor.DoubleToMoneyString(order.Cost);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));
