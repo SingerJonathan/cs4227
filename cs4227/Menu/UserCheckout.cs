@@ -112,9 +112,9 @@ namespace cs4227.Menu
             }
 
             double deliveryCharge = DatabaseHandler.GetRestaurant(RestaurantId).Delivery;
-            OrderPriceLabel.Text = "Price: " + StaticAccessor.DoubleToMoneyString(Order.Cost);
+            OrderPriceLabel.Text = "Price: " + StaticAccessor.DoubleToMoneyString(Order.Cost-deliveryCharge);
             DeliveryChargeLabel.Text = "Delivery: " + StaticAccessor.DoubleToMoneyString(deliveryCharge);
-            PriceLabel.Text = "Total: " + StaticAccessor.DoubleToMoneyString(Order.Cost + deliveryCharge);
+            PriceLabel.Text = "Total: " + StaticAccessor.DoubleToMoneyString(Order.Cost);
             ErrorMessageLabel.Visible = false;
         }
     }

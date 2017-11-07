@@ -71,7 +71,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO [dbo].[Items] VALUES ('" + item.Name + "', " + item.Cost + ", " + item.RestaurantId + ", " + (item.Deleted?"1":"0")+")";
+            command.CommandText = "INSERT INTO [dbo].[Items] VALUES ('" + item.Name + "', " + item.Cost + ", " + item.RestaurantId + ", " + item.BronzeDiscount + ", " + (item.Deleted?"1":"0")+")";
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -135,7 +135,7 @@ namespace cs4227.Database
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
             command.CommandText = "UPDATE [dbo].[Items] SET [Name] = '" + item.Name + "', [Cost] = " + item.Cost +
-                ", [Restaurant] = " + item.RestaurantId + ", [BronzeDiscount] = " + item.BronzeDiscount + ", [SilverDiscount] = " + item.SilverDiscount + ", [GoldDiscount] = " + item.GoldDiscount + ", [Deleted] = " + (item.Deleted?"1":"0") + " WHERE [Id] = " + item.Id;
+                ", [Restaurant] = " + item.RestaurantId + ", [BronzeDiscount] = " + item.BronzeDiscount + ", [Deleted] = " + (item.Deleted?"1":"0") + " WHERE [Id] = " + item.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -229,7 +229,8 @@ namespace cs4227.Database
             SqlDataReader reader = command.ExecuteReader();
             FoodItem foodItem = new FoodItem();
             if (reader.Read())
-                foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4]), Convert.ToDouble(reader[5]), Convert.ToDouble(reader[6]), reader.GetBoolean(7));
+                foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*Menu.StaticAccessor.BronzeDiscount,
+                    Convert.ToDouble(reader[4])*Menu.StaticAccessor.SilverDiscount, Convert.ToDouble(reader[4])*Menu.StaticAccessor.GoldDiscount, reader.GetBoolean(5));
             connection.Close();
             return foodItem;
         }
@@ -596,7 +597,8 @@ namespace cs4227.Database
             List<FoodItem> foodItems = new List<FoodItem>();
             while (reader.Read())
             {
-                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4]), Convert.ToDouble(reader[5]), Convert.ToDouble(reader[6]), reader.GetBoolean(7));
+                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*Menu.StaticAccessor.BronzeDiscount,
+                    Convert.ToDouble(reader[4])*Menu.StaticAccessor.SilverDiscount, Convert.ToDouble(reader[4])*Menu.StaticAccessor.GoldDiscount, reader.GetBoolean(5));
                 foodItems.Add(foodItem);
             }
             connection.Close();
@@ -613,7 +615,8 @@ namespace cs4227.Database
             List<FoodItem> foodItems = new List<FoodItem>();
             while (reader.Read())
             {
-                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4]), Convert.ToDouble(reader[5]), Convert.ToDouble(reader[6]), reader.GetBoolean(7));
+                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*Menu.StaticAccessor.BronzeDiscount,
+                    Convert.ToDouble(reader[4])*Menu.StaticAccessor.SilverDiscount, Convert.ToDouble(reader[4])*Menu.StaticAccessor.GoldDiscount, reader.GetBoolean(5));
                 foodItems.Add(foodItem);
             }
             connection.Close();

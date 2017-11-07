@@ -51,7 +51,8 @@ namespace cs4227.Menu
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 YourOrder.Items.Add(row);
             }
-            TotalCostLabel.Text = "" + StaticAccessor.DoubleToMoneyString(Order.Cost);
+            double delivery = DatabaseHandler.GetRestaurant(RestaurantId).Delivery;
+            TotalCostLabel.Text = "" + StaticAccessor.DoubleToMoneyString(Order.Cost - delivery);
         }
 
         private void RestaurantMenu_SelectedIndexChanged(object sender, EventArgs e)

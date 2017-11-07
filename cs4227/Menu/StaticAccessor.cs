@@ -5,7 +5,15 @@ namespace cs4227.Menu
 {
     class StaticAccessor
     {
-        public static Invoker Invoker;
+        private static Invoker invoker;
+        private static double bronzeDiscount = 1;
+        private static double silverDiscount = 1.3;
+        private static double goldDiscount = 1.6;
+
+        internal static Invoker Invoker { get => invoker; set => invoker = value; }
+        public static double BronzeDiscount { get => bronzeDiscount; set => bronzeDiscount = value; }
+        public static double SilverDiscount { get => silverDiscount; set => silverDiscount = value; }
+        public static double GoldDiscount { get => goldDiscount; set => goldDiscount = value; }
 
         public static void Main()
         {
