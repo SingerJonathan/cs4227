@@ -44,6 +44,7 @@
             this.UserLastNameTextbox = new System.Windows.Forms.TextBox();
             this.MembershipComboBox = new System.Windows.Forms.ComboBox();
             this.MembershipLabel = new System.Windows.Forms.Label();
+            this.PasswordCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // BackButton
@@ -100,6 +101,7 @@
             // 
             this.UserPasswordTextbox.Location = new System.Drawing.Point(498, 159);
             this.UserPasswordTextbox.Name = "UserPasswordTextbox";
+            this.UserPasswordTextbox.PasswordChar = '*';
             this.UserPasswordTextbox.Size = new System.Drawing.Size(300, 31);
             this.UserPasswordTextbox.TabIndex = 5;
             this.UserPasswordTextbox.TextChanged += new System.EventHandler(this.UserPasswordTextbox_TextChanged);
@@ -196,12 +198,25 @@
             this.MembershipLabel.TabIndex = 15;
             this.MembershipLabel.Text = "Membership:";
             // 
+            // PasswordCheckbox
+            // 
+            this.PasswordCheckbox.AutoSize = true;
+            this.PasswordCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordCheckbox.Location = new System.Drawing.Point(804, 161);
+            this.PasswordCheckbox.Name = "PasswordCheckbox";
+            this.PasswordCheckbox.Size = new System.Drawing.Size(177, 28);
+            this.PasswordCheckbox.TabIndex = 16;
+            this.PasswordCheckbox.Text = "Show Password";
+            this.PasswordCheckbox.UseVisualStyleBackColor = true;
+            this.PasswordCheckbox.CheckedChanged += new System.EventHandler(this.PasswordCheckbox_CheckedChanged);
+            // 
             // UserManageAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.PasswordCheckbox);
             this.Controls.Add(this.MembershipLabel);
             this.Controls.Add(this.MembershipComboBox);
             this.Controls.Add(this.UserLastNameLabel);
@@ -246,5 +261,6 @@
         private System.Windows.Forms.TextBox UserLastNameTextbox;
         private System.Windows.Forms.ComboBox MembershipComboBox;
         private System.Windows.Forms.Label MembershipLabel;
+        private System.Windows.Forms.CheckBox PasswordCheckbox;
     }
 }

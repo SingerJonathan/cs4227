@@ -28,6 +28,7 @@ namespace cs4227.UI
         private Boolean CorrectUsernameFormat = false;
         private Boolean CorrectPasswordFormat = false;
         private Boolean newAccount = false;
+        private int ShowPassword = 1;
 
         public UserManageAccount(int UserId, Boolean newAccount)
         {
@@ -378,6 +379,15 @@ namespace cs4227.UI
         private void MembershipComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Membership = MembershipComboBox.SelectedIndex;
+        }
+
+        private void PasswordCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowPassword = ShowPassword * -1;
+            if (ShowPassword == -1)
+                UserPasswordTextbox.PasswordChar = '\0';
+            else
+                UserPasswordTextbox.PasswordChar = '*';
         }
     }
 }
