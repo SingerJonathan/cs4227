@@ -70,6 +70,11 @@
     <Compile Include="Interceptor\Interceptor.cs" />
     <Compile Include="Meal\CancelOrderCommand.cs" />
     <Compile Include="Meal\Command.cs" />
+    <Compile Include="Meal\HashAdaptee.cs" />
+    <Compile Include="HashAdapter\HashAdapter.cs" />
+    <Compile Include="Meal\HashTarget.cs" />
+    <Compile Include="Meal\IHashAdaptee.cs" />
+    <Compile Include="Meal\IHashTarget.cs" />
     <Compile Include="Meal\Memento.cs" />
     <Compile Include="Meal\PlaceOrderCommand.cs" />
     <Compile Include="Meal\Invoker.cs" />
