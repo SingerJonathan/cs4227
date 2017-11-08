@@ -64,9 +64,10 @@
   <ItemGroup>
     <Compile Include="Database\DatabaseHandler.cs" />
     <Compile Include="Interceptor\ConcreteInterceptor\ConcreteLoginInterceptor.cs" />
+    <Compile Include="Interceptor\ConcreteInterceptor\ConcreteOrderInterceptor.cs" />
     <Compile Include="Interceptor\ContextObject.cs" />
     <Compile Include="Interceptor\Dispatcher.cs" />
-    <Compile Include="Interceptor\LoginInterceptor.cs" />
+    <Compile Include="Interceptor\Interceptor.cs" />
     <Compile Include="Meal\CancelOrderCommand.cs" />
     <Compile Include="Meal\Command.cs" />
     <Compile Include="Meal\Memento.cs" />

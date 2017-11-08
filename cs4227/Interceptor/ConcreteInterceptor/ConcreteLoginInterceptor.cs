@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace cs4227.Interceptor.ConcreteInterceptor
 {
-    class ConcreteLoginInterceptor : LoginInterceptor
+    class ConcreteLoginInterceptor : Interceptor
     {
 
         public void LoginRegister(LoginMenuV2 reference)
@@ -22,7 +22,7 @@ namespace cs4227.Interceptor.ConcreteInterceptor
             {
                 if(!(File.Exists(FileName)))
                 {
-                    File.Create(FileName);
+                    File.Create(FileName).Close();
                     TextWriter tw = new StreamWriter(FileName);
                     tw.WriteLine(Username + ", "+LoginTime);
                     tw.Close();
@@ -37,6 +37,6 @@ namespace cs4227.Interceptor.ConcreteInterceptor
             catch (IOException e) { }
         }
 
-
+        public void OrderLog() { }
     }
 }

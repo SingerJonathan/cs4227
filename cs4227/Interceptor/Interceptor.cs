@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace cs4227.Interceptor
 {
-    interface LoginInterceptor
+    interface Interceptor
     {
         void LoginRegister(LoginMenuV2 reference);
+        void OrderLog();
     }
 }

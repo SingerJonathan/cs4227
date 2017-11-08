@@ -67,7 +67,7 @@ namespace cs4227.UI
             }
             if (UserFound)
             {
-                LoginInterceptor interceptor = new ConcreteLoginInterceptor();
+                Interceptor.Interceptor interceptor = new ConcreteLoginInterceptor();
                 Dispatcher dispatcher = new Dispatcher();
                 dispatcher.RegisterInterceptor(interceptor);
                 if (User.SystemAdmin)
