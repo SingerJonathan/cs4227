@@ -71,7 +71,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO [dbo].[Items] VALUES ('" + item.Name + "', " + item.Cost + ", " + item.RestaurantId + ", " + (item.Deleted?"1":"0")+")";
+            command.CommandText = "INSERT INTO [dbo].[Items] VALUES ('" + item.Name + "', " + item.Cost + ", " + item.RestaurantId + ", " + item.Discounts[1] + ", " + (item.Deleted?"1":"0")+")";
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -86,7 +86,7 @@ namespace cs4227.Database
             if (user.RestaurantId != 0)
                 restaurantId = ""+user.RestaurantId;
             command.CommandText = "INSERT INTO [dbo].[Users] VALUES ('" + user.Username + "', '" + user.Password + "', '" + user.FirstName +
-                "', '" + user.LastName + "', '" + user.Email + "', " + restaurantId + ", " + (user.RestaurantAdmin ? "1" : "0") + ", " + (user.SystemAdmin?"1":"0") + ", " + (user.Deleted?"1":"0") + ")";
+                "', '" + user.LastName + "', '" + user.Email + "', " + user.Membership + ", " + restaurantId + ", " + (user.RestaurantAdmin ? "1" : "0") + ", " + (user.SystemAdmin?"1":"0") + ", " + (user.Deleted?"1":"0") + ")";
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -135,7 +135,7 @@ namespace cs4227.Database
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
             command.CommandText = "UPDATE [dbo].[Items] SET [Name] = '" + item.Name + "', [Cost] = " + item.Cost +
-                ", [Restaurant] = " + item.RestaurantId + ", [Deleted] = " + (item.Deleted?"1":"0") + " WHERE [Id] = " + item.Id;
+                ", [Restaurant] = " + item.RestaurantId + ", [BronzeDiscount] = " + item.Discounts[1] + ", [Deleted] = " + (item.Deleted?"1":"0") + " WHERE [Id] = " + item.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
@@ -150,7 +150,7 @@ namespace cs4227.Database
             if (user.RestaurantId != 0)
                 restaurantId = "" + user.RestaurantId;
             command.CommandText = "UPDATE [dbo].[Users] SET [Username] = '" + user.Username + "', [Password] = '" + user.Password + "', [FirstName] = '" + user.FirstName +
-                "', [LastName] = '" + user.LastName + "', [Email] = '" + user.Email + "', [RestaurantId] = " + restaurantId + ", [RestaurantAdmin] = " + (user.RestaurantAdmin ? "1":"0") +
+                "', [LastName] = '" + user.LastName + "', [Email] = '" + user.Email + "', [Membership] = " + user.Membership + ", [RestaurantId] = " + restaurantId + ", [RestaurantAdmin] = " + (user.RestaurantAdmin ? "1":"0") +
                 ", [SystemAdmin] = " + (user.SystemAdmin?"1":"0") + ", [Deleted] = " + (user.Deleted?"1":"0") + " WHERE [Id] = " + user.Id;
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
@@ -229,7 +229,8 @@ namespace cs4227.Database
             SqlDataReader reader = command.ExecuteReader();
             FoodItem foodItem = new FoodItem();
             if (reader.Read())
-                foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), reader.GetBoolean(4));
+                foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[3],
+                    Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[2], Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[3], reader.GetBoolean(5));
             connection.Close();
             return foodItem;
         }
@@ -245,15 +246,15 @@ namespace cs4227.Database
             if (reader.Read())
             {
                 string userType = "User";
-                if (reader.GetBoolean(7))
+                if (reader.GetBoolean(8))
                     userType = "RestAdmin";
-                else if (reader.GetBoolean(8))
+                else if (reader.GetBoolean(9))
                     userType = "SysAdmin";
                 int restaurantId = 0;
-                if (!reader.IsDBNull(6))
-                    restaurantId = reader.GetInt32(6);
+                if (!reader.IsDBNull(7))
+                    restaurantId = reader.GetInt32(7);
                 user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), userType, restaurantId, reader.GetBoolean(7), reader.GetBoolean(8), reader.GetBoolean(9));
+                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
             }
             connection.Close();
             return user;
@@ -270,15 +271,15 @@ namespace cs4227.Database
             if (reader.Read())
             {
                 string userType = "User";
-                if (reader.GetBoolean(7))
+                if (reader.GetBoolean(8))
                     userType = "RestAdmin";
-                else if (reader.GetBoolean(8))
+                else if (reader.GetBoolean(9))
                     userType = "SysAdmin";
                 int restaurantId = 0;
-                if (!reader.IsDBNull(6))
-                    restaurantId = reader.GetInt32(6);
+                if (!reader.IsDBNull(7))
+                    restaurantId = reader.GetInt32(7);
                 user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), userType, restaurantId, reader.GetBoolean(7), reader.GetBoolean(8), reader.GetBoolean(9));
+                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
             }
             connection.Close();
             return user;
@@ -295,40 +296,15 @@ namespace cs4227.Database
             if (reader.Read())
             {
                 string userType = "User";
-                if (reader.GetBoolean(7))
+                if (reader.GetBoolean(8))
                     userType = "RestAdmin";
-                else if (reader.GetBoolean(8))
+                else if (reader.GetBoolean(9))
                     userType = "SysAdmin";
                 int restaurantId = 0;
-                if (!reader.IsDBNull(6))
-                    restaurantId = reader.GetInt32(6);
+                if (!reader.IsDBNull(7))
+                    restaurantId = reader.GetInt32(7);
                 user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), userType, restaurantId, reader.GetBoolean(7), reader.GetBoolean(8), reader.GetBoolean(9));
-            }
-            connection.Close();
-            return user;
-        }
-
-        public static AbstractUser UserLogin(string username, string password)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [dbo].[Users].[Username] = '" + username + "' AND [dbo].[Users].[Password] = '" + password + "' AND [Deleted] = 0";
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            AbstractUser user = new User.User();
-            if (reader.Read())
-            {
-                string userType = "User";
-                if (reader.GetBoolean(7))
-                    userType = "RestAdmin";
-                else if (reader.GetBoolean(8))
-                    userType = "SysAdmin";
-                int restaurantId = 0;
-                if (!reader.IsDBNull(6))
-                    restaurantId = reader.GetInt32(6);
-                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), userType, restaurantId, reader.GetBoolean(7), reader.GetBoolean(8), reader.GetBoolean(9));
+                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
             }
             connection.Close();
             return user;
@@ -345,15 +321,15 @@ namespace cs4227.Database
             if (reader.Read())
             {
                 string userType = "User";
-                if (reader.GetBoolean(7))
+                if (reader.GetBoolean(8))
                     userType = "RestAdmin";
-                else if (reader.GetBoolean(8))
+                else if (reader.GetBoolean(9))
                     userType = "SysAdmin";
                 int restaurantId = 0;
-                if (!reader.IsDBNull(6))
-                    restaurantId = reader.GetInt32(6);
+                if (!reader.IsDBNull(7))
+                    restaurantId = reader.GetInt32(7);
                 user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), userType, restaurantId, reader.GetBoolean(7), reader.GetBoolean(8), reader.GetBoolean(9));
+                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
             }
             connection.Close();
             return user;
@@ -373,15 +349,15 @@ namespace cs4227.Database
             if (reader.Read())
             {
                 string userType = "User";
-                if (reader.GetBoolean(7))
+                if (reader.GetBoolean(8))
                     userType = "RestAdmin";
-                else if (reader.GetBoolean(8))
+                else if (reader.GetBoolean(9))
                     userType = "SysAdmin";
                 int restaurantId = 0;
-                if (!reader.IsDBNull(6))
-                    restaurantId = reader.GetInt32(6);
+                if (!reader.IsDBNull(7))
+                    restaurantId = reader.GetInt32(7);
                 user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), userType, restaurantId, reader.GetBoolean(7), reader.GetBoolean(8), reader.GetBoolean(9));
+                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
             }
             connection.Close();
             return user;
@@ -398,15 +374,15 @@ namespace cs4227.Database
             if (reader.Read())
             {
                 string userType = "User";
-                if (reader.GetBoolean(7))
+                if (reader.GetBoolean(8))
                     userType = "RestAdmin";
-                else if (reader.GetBoolean(8))
+                else if (reader.GetBoolean(9))
                     userType = "SysAdmin";
                 int restaurantId = 0;
-                if (!reader.IsDBNull(6))
-                    restaurantId = reader.GetInt32(6);
+                if (!reader.IsDBNull(7))
+                    restaurantId = reader.GetInt32(7);
                 user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), userType, restaurantId, reader.GetBoolean(7), reader.GetBoolean(8), reader.GetBoolean(9));
+                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
             }
             connection.Close();
             return user;
@@ -571,15 +547,15 @@ namespace cs4227.Database
             {
                 AbstractUser user = new User.User();
                 string userType = "User";
-                if (reader.GetBoolean(7))
+                if (reader.GetBoolean(8))
                     userType = "RestAdmin";
-                else if (reader.GetBoolean(8))
+                else if (reader.GetBoolean(9))
                     userType = "SysAdmin";
                 int restaurantId = 0;
-                if (!reader.IsDBNull(6))
-                    restaurantId = reader.GetInt32(6);
+                if (!reader.IsDBNull(7))
+                    restaurantId = reader.GetInt32(7);
                 user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), userType, restaurantId, reader.GetBoolean(7), reader.GetBoolean(8), reader.GetBoolean(9));
+                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
                 users.Add(user);
             }
             connection.Close();
@@ -596,7 +572,8 @@ namespace cs4227.Database
             List<FoodItem> foodItems = new List<FoodItem>();
             while (reader.Read())
             {
-                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), reader.GetBoolean(4));
+                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[1],
+                    Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[2], Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[3], reader.GetBoolean(5));
                 foodItems.Add(foodItem);
             }
             connection.Close();
@@ -613,7 +590,8 @@ namespace cs4227.Database
             List<FoodItem> foodItems = new List<FoodItem>();
             while (reader.Read())
             {
-                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), reader.GetBoolean(4));
+                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[1],
+                    Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[2], Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[3], reader.GetBoolean(5));
                 foodItems.Add(foodItem);
             }
             connection.Close();
@@ -632,15 +610,15 @@ namespace cs4227.Database
             {
                 AbstractUser user = new User.User();
                 string userType = "User";
-                if (reader.GetBoolean(7))
+                if (reader.GetBoolean(8))
                     userType = "RestAdmin";
-                else if (reader.GetBoolean(8))
+                else if (reader.GetBoolean(9))
                     userType = "SysAdmin";
                 int restaurantId = 0;
-                if (!reader.IsDBNull(6))
-                    restaurantId = reader.GetInt32(6);
+                if (!reader.IsDBNull(7))
+                    restaurantId = reader.GetInt32(7);
                 user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), userType, restaurantId, reader.GetBoolean(7), reader.GetBoolean(8), reader.GetBoolean(9));
+                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
                 users.Add(user);
             }
             connection.Close();
