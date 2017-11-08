@@ -57,6 +57,7 @@ namespace cs4227.UI
             else
             {
                 DeleteAccountButton.Enabled = false;
+                ErrorMessageLabel.Visible = false;
                 DeleteAccountButton.Hide();
                 this.Text = "User Menu: Create Account";
                 SaveChangesButton.Text = "Create Account";
