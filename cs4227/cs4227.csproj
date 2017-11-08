@@ -64,6 +64,12 @@
     <Compile Include="Meal\Memento.cs" />
     <Compile Include="Meal\PlaceOrderCommand.cs" />
     <Compile Include="Meal\Invoker.cs" />
+    <Compile Include="UI\SysAdminAuthentication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SysAdminAuthentication.Designer.cs">
+      <DependentUpon>SysAdminAuthentication.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\LoginMenuV2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +200,9 @@
       <DependentUpon>UserSelectOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="Restaurant\Restaurant.cs" />
+    <Compile Include="User\IAuthenticator.cs" />
+    <Compile Include="User\ProxyAuthenticator.cs" />
+    <Compile Include="User\RealAuthenticator.cs" />
     <Compile Include="User\RegularUser.cs" />
     <Compile Include="User\User.cs" />
     <Compile Include="User\LoginAPI.cs" />
@@ -259,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SysAdminAdmins.resx">
       <DependentUpon>SysAdminAdmins.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SysAdminAuthentication.resx">
+      <DependentUpon>SysAdminAuthentication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SysAdminMenu.resx">
       <DependentUpon>SysAdminMenu.cs</DependentUpon>

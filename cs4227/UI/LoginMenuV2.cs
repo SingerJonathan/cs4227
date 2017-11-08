@@ -66,7 +66,13 @@ namespace cs4227.UI
             if (UserFound)
             {
                 this.Hide();
-                User.login();
+                if (User.SystemAdmin)
+                {
+                    SysAdminAuthentication SAA = new SysAdminAuthentication(User.Id);
+                    SAA.ShowDialog();
+                }
+                else
+                    User.login();
             }
             else
             {
