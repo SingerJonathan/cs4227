@@ -18,6 +18,7 @@ namespace cs4227.UI
         public LoginMenuV2()
         {
             InitializeComponent();
+            ShowDialog();
         }
 
         private void LoginMenu_Load(object sender, EventArgs e)
@@ -27,6 +28,8 @@ namespace cs4227.UI
             t.Tick += new EventHandler(this.UpdateTime_Tick);
 
             t.Start();
+
+            WelcomeMessageLabel.Text = $"Welcome to {StaticAccessor.AppName}!";
 
             ErrorMessageLabel.Visible = false;
         }

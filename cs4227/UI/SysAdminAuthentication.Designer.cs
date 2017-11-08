@@ -41,7 +41,7 @@
             this.TwoStepCodeTextBox.Location = new System.Drawing.Point(155, 280);
             this.TwoStepCodeTextBox.Name = "TwoStepCodeTextBox";
             this.TwoStepCodeTextBox.Size = new System.Drawing.Size(172, 53);
-            this.TwoStepCodeTextBox.TabIndex = 0;
+            this.TwoStepCodeTextBox.TabIndex = 2;
             this.TwoStepCodeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TwoStepCodeTextBox.TextChanged += new System.EventHandler(this.TwoStepCodeTextBox_TextChanged);
             // 
@@ -52,7 +52,7 @@
             this.TwoStepAuthenticationLabel.Location = new System.Drawing.Point(4, 73);
             this.TwoStepAuthenticationLabel.Name = "TwoStepAuthenticationLabel";
             this.TwoStepAuthenticationLabel.Size = new System.Drawing.Size(477, 46);
-            this.TwoStepAuthenticationLabel.TabIndex = 1;
+            this.TwoStepAuthenticationLabel.TabIndex = 0;
             this.TwoStepAuthenticationLabel.Text = "Two Step Authentication";
             // 
             // EnterCodeLabel
@@ -73,7 +73,7 @@
             this.LoginButton.Location = new System.Drawing.Point(248, 369);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(224, 80);
-            this.LoginButton.TabIndex = 5;
+            this.LoginButton.TabIndex = 3;
             this.LoginButton.Text = "Login";
             this.LoginButton.UseVisualStyleBackColor = false;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
@@ -85,7 +85,7 @@
             this.BackButton.Location = new System.Drawing.Point(12, 369);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(224, 80);
-            this.BackButton.TabIndex = 6;
+            this.BackButton.TabIndex = 4;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);

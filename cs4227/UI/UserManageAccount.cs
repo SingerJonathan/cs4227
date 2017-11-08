@@ -322,8 +322,7 @@ namespace cs4227.UI
                 DatabaseHandler.InsertUser(user);
                 MessageBox.Show("Account Created");
                 this.Hide();
-                LoginMenuV2 LMV2 = new LoginMenuV2();
-                LMV2.ShowDialog();
+                new LoginMenuV2();
             }
             else
             {
@@ -353,8 +352,7 @@ namespace cs4227.UI
                 
                 MessageBox.Show("Account Deleted \nReturning to login screen");
                 this.Hide();
-                LoginMenuV2 LM = new LoginMenuV2();
-                LM.ShowDialog();
+                new LoginMenuV2();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -366,8 +364,7 @@ namespace cs4227.UI
             if (newAccount)
             {
                 this.Hide();
-                LoginMenuV2 LMV2 = new LoginMenuV2();
-                LMV2.ShowDialog();
+                new LoginMenuV2();
             }
             else
             {
