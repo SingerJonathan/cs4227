@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using cs4227.Database;
 using cs4227.User;
+using cs4227.Interceptor;
+using cs4227.Interceptor.ConcreteInterceptor;
 
 namespace cs4227.Menu
 {
@@ -61,12 +63,16 @@ namespace cs4227.Menu
             }
             if (UserFound)
             {
+                LoginInterceptor interceptor = new ConcreteLoginInterceptor();
+                Dispatcher dispatcher = new Dispatcher();
+                dispatcher.RegisterInterceptor(interceptor);
+                dispatcher.DispatchLoginInterceptor(interceptor,this);
                 this.Hide();
                 User.login();
             }
             else
             {
-                MessageBox.Show("Login Falied");
+                MessageBox.Show("Login Failed");
                 ErrorMessageLabel.Text = "Error Message: Incorrect Username or Password";
                 ErrorMessageLabel.Visible = true;
             }
@@ -78,5 +84,11 @@ namespace cs4227.Menu
             UserManageAccount UMA = new UserManageAccount(0, true);
             UMA.ShowDialog();
         }
+
+        public string UsernameTextBox()
+        {
+            return UsernameTextbox.Text;
+        }
+
     }
 }
