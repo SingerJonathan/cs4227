@@ -35,25 +35,8 @@ namespace cs4227.UI
 
         public static string HashString(string input)
         {
-            string result = "";
-            //Convert input and salt into bytes
-            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-            byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
-            //Add salt to input
-            byte[] mergedBytes = new byte[inputBytes.Length + saltBytes.Length];
-            Buffer.BlockCopy(inputBytes, 0, mergedBytes, 0, inputBytes.Length);
-            Buffer.BlockCopy(saltBytes, 0, mergedBytes, inputBytes.Length, saltBytes.Length);
-            //Generate hash
-            System.Security.Cryptography.HashAlgorithm hashAlgorithm = new System.Security.Cryptography.SHA256Managed();
-            byte[] hash = hashAlgorithm.ComputeHash(mergedBytes);
-            //Add salt to the hash
-            byte[] hashPlusSalt = new byte[hash.Length + saltBytes.Length];
-            Buffer.BlockCopy(hash, 0, hashPlusSalt, 0, hash.Length);
-            Buffer.BlockCopy(saltBytes, 0, hashPlusSalt, hash.Length, saltBytes.Length);
-            //Convert each byte to 2 hexadecimal characters
-            foreach (byte b in hashPlusSalt)
-                result += $"{b:x2}";
-            return result;
+            HashAdapter.HashAdapter adapter = new HashAdapter.HashAdapter(new HashAdaptee());
+            return adapter.RequestDelegate(input);
         }
     }
 }
