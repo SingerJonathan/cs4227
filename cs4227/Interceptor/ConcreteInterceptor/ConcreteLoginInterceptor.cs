@@ -13,6 +13,7 @@ namespace cs4227.Interceptor.ConcreteInterceptor
 
         public void LoginRegister(LoginMenuV2 reference)
         {
+            //Console.WriteLine(Environment.CurrentDirectory);
             ContextObject UsernameContext = new ContextObject();
             string Username = UsernameContext.LoginContext(reference);
             string FileName = "logins.txt";
@@ -23,12 +24,14 @@ namespace cs4227.Interceptor.ConcreteInterceptor
                 {
                     File.Create(FileName);
                     TextWriter tw = new StreamWriter(FileName);
-                    tw.WriteLine(Username, ","+LoginTime);
+                    tw.WriteLine(Username + ", "+LoginTime);
+                    tw.Close();
                 }
                 else
                 {
-                    TextWriter tw = new StreamWriter(FileName);
-                    tw.WriteLine(Username, ","+LoginTime);
+                    TextWriter tw = new StreamWriter(FileName, true);
+                    tw.WriteLine(Username + ", "+LoginTime);
+                    tw.Close();
                 }
             }
             catch (IOException e) { }
