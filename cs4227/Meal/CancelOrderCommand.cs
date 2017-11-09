@@ -1,5 +1,6 @@
 ﻿using System;
 using cs4227.Restaurant;
+using cs4227.UI;
 
 namespace cs4227.Meal
 {
@@ -15,7 +16,7 @@ namespace cs4227.Meal
         void Command.Execute()
         {
             order.Cancelled = true;
-            Database.DatabaseHandler.UpdateOrder(order);
+            StaticAccessor.DB.UpdateOrder(order);
             Console.WriteLine("Order " + order.Id + " cancelled");
         }
     }

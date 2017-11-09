@@ -14,9 +14,9 @@ namespace cs4227.User
         public void login(string username, string password)
         {
             Console.WriteLine("Restaurant Admin " + username + " logged in.");
-            AbstractUser RestAdmin = DatabaseHandler.GetUser(0, username);
+            AbstractUser RestAdmin = StaticAccessor.DB.GetUser(0, username);
             RestaurantId = RestAdmin.RestaurantId;
-            Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(RestaurantId);
+            Restaurant.Restaurant Rest = StaticAccessor.DB.GetRestaurant(RestaurantId);
 
             RestAdminMainMenu RM = new RestAdminMainMenu(UserId, RestaurantId);
             RM.ShowDialog();

@@ -12,7 +12,7 @@ namespace cs4227.UI
 
         public SysAdminAuthentication(int userId)
         {
-            _user = DatabaseHandler.GetUser(userId);
+            _user = StaticAccessor.DB.GetUser(userId);
 
             _proxy = new ProxyAuthenticator();
             _proxy.SendAuthenticationCode(_user.Email);

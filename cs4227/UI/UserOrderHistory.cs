@@ -25,19 +25,19 @@ namespace cs4227.UI
 
         private void UserOrderHistory_Load(object sender, EventArgs e)
         {
-            List<Order> orders = DatabaseHandler.GetOrders(UserId);
+            List<Order> orders = StaticAccessor.DB.GetOrders(UserId);
             foreach (Order order in orders)
             {
                 ListViewItem row = new ListViewItem("" + order.Id);
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetRestaurant(order.RestaurantId).Name));
+                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DB.GetRestaurant(order.RestaurantId).Name));
                 for (int i = 0; i < 8; i++)
                 {
                     if (i < order.FoodItems.Count)
-                        row.SubItems.Add(new ListViewItem.ListViewSubItem(row, DatabaseHandler.GetFoodItem(order.FoodItems[i].Id).Name));
+                        row.SubItems.Add(new ListViewItem.ListViewSubItem(row, StaticAccessor.DB.GetFoodItem(order.FoodItems[i].Id).Name));
                     else
                         row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
                 }
-                string cost = StaticAccessor.DoubleToMoneyString(order.Cost - DatabaseHandler.GetRestaurant(order.RestaurantId).Delivery);
+                string cost = StaticAccessor.DoubleToMoneyString(order.Cost - StaticAccessor.DB.GetRestaurant(order.RestaurantId).Delivery);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));

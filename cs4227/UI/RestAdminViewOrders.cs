@@ -43,13 +43,13 @@ namespace cs4227.UI
         private void RestAdminViewOrders_Load(object sender, EventArgs e)
         {
             OrderNumberLabel.Text = "Viewing Order No: " + OrderNo;
-            Order order = DatabaseHandler.GetOrder(OrderNo);
+            Order order = StaticAccessor.DB.GetOrder(OrderNo);
             ListViewItem row = new ListViewItem("" + order.Id);
-            row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetUser(order.UserId).Username));
+            row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DB.GetUser(order.UserId).Username));
             for (int i = 0; i < 8; i++)
             {
                 if (i < order.FoodItems.Count)
-                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, DatabaseHandler.GetFoodItem(order.FoodItems[i].Id).Name));
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, StaticAccessor.DB.GetFoodItem(order.FoodItems[i].Id).Name));
                 else
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
             }

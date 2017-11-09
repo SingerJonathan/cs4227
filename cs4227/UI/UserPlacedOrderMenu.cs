@@ -29,8 +29,8 @@ namespace cs4227.UI
 
         private void UserPlaceOrderMenu_Load(object sender, EventArgs e)
         {
-            Order order = DatabaseHandler.GetOrder(OrderId);
-            Restaurant.Restaurant restaurant = DatabaseHandler.GetRestaurant(order.RestaurantId);
+            Order order = StaticAccessor.DB.GetOrder(OrderId);
+            Restaurant.Restaurant restaurant = StaticAccessor.DB.GetRestaurant(order.RestaurantId);
             TotalCost = order.Cost + restaurant.Delivery;
 
             //getOrderid and Cost

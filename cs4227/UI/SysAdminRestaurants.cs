@@ -109,7 +109,7 @@ namespace cs4227.UI
 
         private void SysAdminRestaurantsMenu_Load(object sender, EventArgs e)
         {
-            List<Restaurant.Restaurant> restaurants = DatabaseHandler.GetRestaurants();
+            List<Restaurant.Restaurant> restaurants = StaticAccessor.DB.GetRestaurants();
             foreach (Restaurant.Restaurant restaurant in restaurants)
             {
                 ListViewItem restaurantItem = new ListViewItem(restaurant.Name);

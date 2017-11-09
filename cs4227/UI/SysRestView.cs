@@ -40,7 +40,7 @@ namespace cs4227.UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(RestaurantId);
+            Restaurant.Restaurant Rest = StaticAccessor.DB.GetRestaurant(RestaurantId);
             RestaurantNameLabel.Text = "Restaurant: " + Rest.Name;
         }
 
