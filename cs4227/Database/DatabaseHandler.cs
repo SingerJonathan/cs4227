@@ -15,8 +15,8 @@ namespace cs4227.Database
         public static SqlConnection GetLocalDBConnection()
         {
             string outputFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string dbFileName = Path.Combine(outputFolder, DB_NAME + ".mdf");
-            string logFileName = Path.Combine(outputFolder, String.Format("{0}_log.ldf", DB_NAME));
+            string dbFileName = Path.Combine(outputFolder, $"{DB_NAME}.mdf");
+            string logFileName = Path.Combine(outputFolder, $"{DB_NAME}_log.ldf");
 
             string connectionString = String.Format(@"Data Source=(LocalDB)\v11.0;AttachDBFileName={1};Initial Catalog={0};Integrated Security=True;", DB_NAME, dbFileName);
             SqlConnection connection = new SqlConnection(connectionString);
@@ -30,19 +30,19 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO [dbo].[Orders] VALUES (" + order.UserId + ", " + order.RestaurantId + ", ";
+            command.CommandText = String.Format("INSERT INTO [dbo].[Orders] VALUES ({0}, {1}, ", order.UserId, order.RestaurantId);
             for (int index = 0; index < 8; index++)
             {
                 if (index < order.FoodItems.Count)
-                    command.CommandText += order.FoodItems[index].Id + ", ";
+                    command.CommandText += $"{order.FoodItems[index].Id}, ";
                 else
                     command.CommandText += "NULL, ";
             }
-            command.CommandText += order.Cost + ", '" + order.Address + "', 0)";
+            command.CommandText += String.Format("{0}, '{1}', {2})", order.Cost, order.Address, order.Cancelled?"1":"0");
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine("(" + result + " row(s) affected)");
+            Console.WriteLine($"({result} row(s) affected)");
         }
 
         public static void InsertRestaurant(Restaurant.Restaurant restaurant)
@@ -53,22 +53,24 @@ namespace cs4227.Database
             if (restaurantName.Contains("'"))
                 restaurantName = restaurantName.Replace("'", "''");
             command.CommandText = String.Format("INSERT INTO [dbo].[Restaurants] VALUES ('{0}', '{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', {9}, {10})",
-                restaurantName, restaurant.Address, restaurant.OwnerId, restaurant.Phone, restaurant.Email, restaurant.OpeningHours, restaurant.ClosingHours, restaurant.Days, restaurant.Type, restaurant.Delivery, (restaurant.Deleted?"1":"0"));
+                                                restaurantName, restaurant.Address, restaurant.OwnerId, restaurant.Phone, restaurant.Email,restaurant.OpeningHours,
+                                                restaurant.ClosingHours, restaurant.Days, restaurant.Type, restaurant.Delivery, restaurant.Deleted?"1":"0");
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine("(" + result + " row(s) affected)");
+            Console.WriteLine($"({result} row(s) affected)");
         }
 
         public static void InsertFoodItem(FoodItem item)
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO [dbo].[Items] VALUES ('" + item.Name + "', " + item.Cost + ", " + item.RestaurantId + ", " + item.Discounts[1] + ", " + (item.Deleted?"1":"0")+")";
+            command.CommandText = String.Format("INSERT INTO [dbo].[Items] VALUES ('{0}', {1}, {2}, {3}, {4})",
+                                                item.Name, item.Cost, item.RestaurantId, item.Discounts[1], item.Deleted?"1":"0");
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine("(" + result + " row(s) affected)");
+            Console.WriteLine($"({result} row(s) affected)");
         }
 
         public static void InsertUser(AbstractUser user)
@@ -78,12 +80,13 @@ namespace cs4227.Database
             string restaurantId = "NULL";
             if (user.RestaurantId != 0)
                 restaurantId = ""+user.RestaurantId;
-            command.CommandText = "INSERT INTO [dbo].[Users] VALUES ('" + user.Username + "', '" + user.Password + "', '" + user.FirstName +
-                "', '" + user.LastName + "', '" + user.Email + "', " + user.Membership + ", " + restaurantId + ", " + (user.RestaurantAdmin ? "1" : "0") + ", " + (user.SystemAdmin?"1":"0") + ", " + (user.Deleted?"1":"0") + ")";
+            command.CommandText = String.Format("INSERT INTO [dbo].[Users] VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', {5}, {6}, {7}, {8}, {9})",
+                                                user.Username, user.Password, user.FirstName, user.LastName, user.Email, user.Membership,
+                                                restaurantId, user.RestaurantAdmin?"1":"0",user.SystemAdmin?"1":"0", user.Deleted?"1":"0");
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine("(" + result + " row(s) affected)");
+            Console.WriteLine($"({result} row(s) affected)");
         }
 
         #endregion
@@ -93,19 +96,20 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "UPDATE [dbo].[Orders] SET [User] = "+order.UserId+", [Restaurant] = "+order.RestaurantId+", ";
+            command.CommandText = String.Format("UPDATE [dbo].[Orders] SET [User] = {0}, [Restaurant] = {1}, ", order.UserId, order.RestaurantId);
             for (int index = 0; index < 8; index++)
             {
                 if (index < order.FoodItems.Count)
-                    command.CommandText += "[Item"+index+"] = "+order.FoodItems[index].Id + ", ";
+                    command.CommandText += $"[Item{index}] = {order.FoodItems[index].Id}, ";
                 else
-                    command.CommandText += "[Item" + index + "] = NULL, ";
+                    command.CommandText += $"[Item{index}] = NULL, ";
             }
-            command.CommandText += "[Cancelled] = "+(order.Cancelled ? 1 : 0)+", [Address] = '"+order.Address+"', [Cost] = "+order.Cost + " WHERE [Id] = " + order.Id;
+            command.CommandText += String.Format("[Cancelled] = {0}, [Address] = '{1}', [Cost] = {2} WHERE [Id] = ",
+                                                 order.Cancelled?1:0, order.Address, order.Cost);
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine("(" + result + " row(s) affected)");
+            Console.WriteLine($"({result} row(s) affected)");
         }
 
         public static void UpdateRestaurant(Restaurant.Restaurant restaurant)
@@ -115,24 +119,26 @@ namespace cs4227.Database
             string restaurantName = restaurant.Name;
             if (restaurantName.Contains("'"))
                 restaurantName = restaurantName.Replace("'", "''");
-            command.CommandText = String.Format("UPDATE [dbo].[Restaurants] SET [Name] = '{1}', [Address] = '{2}', [OwnerId] = {3}, [Phone] = '{4}', [Email] = '{5}', [OpeningHours] = '{6}', [ClosingHours] = '{7}', [Days] = '{8}', [Type] = '{9}', [Delivery] = {10}, [Deleted] = {11} WHERE [Id] = {0}",
-                restaurant.Id, restaurantName, restaurant.Address, restaurant.OwnerId, restaurant.Phone, restaurant.Email, restaurant.OpeningHours, restaurant.ClosingHours, restaurant.Days, restaurant.Type, restaurant.Delivery, (restaurant.Deleted?"1":"0"));
+            command.CommandText = String.Format("UPDATE [dbo].[Restaurants] SET [Name] = '{1}', [Address] = '{2}', [OwnerId] = {3}, [Phone] = '{4}', [Email] = '{5}', " +
+                                                "[OpeningHours] = '{6}', [ClosingHours] = '{7}', [Days] = '{8}', [Type] = '{9}', [Delivery] = {10}, [Deleted] = {11} WHERE [Id] = {0}",
+                                                restaurant.Id, restaurantName, restaurant.Address, restaurant.OwnerId, restaurant.Phone, restaurant.Email, restaurant.OpeningHours,
+                                                restaurant.ClosingHours, restaurant.Days, restaurant.Type, restaurant.Delivery, (restaurant.Deleted?"1":"0"));
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine("(" + result + " row(s) affected)");
+            Console.WriteLine($"({result} row(s) affected)");
         }
 
         public static void UpdateFoodItem(FoodItem item)
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "UPDATE [dbo].[Items] SET [Name] = '" + item.Name + "', [Cost] = " + item.Cost +
-                ", [Restaurant] = " + item.RestaurantId + ", [BronzeDiscount] = " + item.Discounts[1] + ", [Deleted] = " + (item.Deleted?"1":"0") + " WHERE [Id] = " + item.Id;
+            command.CommandText = String.Format("UPDATE [dbo].[Items] SET [Name] = '{0}', [Cost] = {1}, [Restaurant] = {2}, [BronzeDiscount] = {3}, [Deleted] = {4} WHERE [Id] = {5}",
+                                                item.Name, item.Cost, item.RestaurantId, item.Discounts[1], item.Deleted?"1":"0", item.Id);
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine("(" + result + " row(s) affected)");
+            Console.WriteLine($"({result} row(s) affected)");
         }
 
         public static void UpdateUser(AbstractUser user)
@@ -142,13 +148,14 @@ namespace cs4227.Database
             string restaurantId = "NULL";
             if (user.RestaurantId != 0)
                 restaurantId = "" + user.RestaurantId;
-            command.CommandText = "UPDATE [dbo].[Users] SET [Username] = '" + user.Username + "', [Password] = '" + user.Password + "', [FirstName] = '" + user.FirstName +
-                "', [LastName] = '" + user.LastName + "', [Email] = '" + user.Email + "', [Membership] = " + user.Membership + ", [RestaurantId] = " + restaurantId + ", [RestaurantAdmin] = " + (user.RestaurantAdmin ? "1":"0") +
-                ", [SystemAdmin] = " + (user.SystemAdmin?"1":"0") + ", [Deleted] = " + (user.Deleted?"1":"0") + " WHERE [Id] = " + user.Id;
+            command.CommandText = String.Format("UPDATE [dbo].[Users] SET [Username] = '{0}', [Password] = '{1}', [FirstName] = '{2}', [LastName] = '{3}', [Email] = '{4}', " +
+                                                "[Membership] = {5}, [RestaurantId] = {6}, [RestaurantAdmin] = {7}, [SystemAdmin] = {8}, [Deleted] = {9} WHERE [Id] = {10}",
+                                                user.Username, user.Password, user.FirstName, user.LastName, user.Email, user.Membership, restaurantId,
+                                                user.RestaurantAdmin?"1":"0", user.SystemAdmin?"1":"0", user.Deleted?"1":"0", user.Id);
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine("(" + result + " row(s) affected)");
+            Console.WriteLine($"({result} row(s) affected)");
         }
 
         #endregion
@@ -158,7 +165,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Id] = " + id + " AND [Cancelled] = 0";
+            command.CommandText = $"SELECT * FROM [dbo].[Orders] WHERE [Id] = {id} AND [Cancelled] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             Order order = new Order();
@@ -189,10 +196,10 @@ namespace cs4227.Database
             {
                 if (restaurantName.Contains("'"))
                     restaurantName = restaurantName.Replace("'", "''");
-                command.CommandText = "SELECT TOP 1 * FROM [dbo].[Restaurants] WHERE [Name] = '" + restaurantName + "' AND [Deleted] = 0";
+                command.CommandText = $"SELECT TOP 1 * FROM [dbo].[Restaurants] WHERE [Name] = '{restaurantName}' AND [Deleted] = 0";
             }
             else
-                command.CommandText = "SELECT * FROM [dbo].[Restaurants] WHERE [Id] = " + id + " AND [Deleted] = 0";
+                command.CommandText = $"SELECT * FROM [dbo].[Restaurants] WHERE [Id] = {id} AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             Restaurant.Restaurant restaurant = new Restaurant.Restaurant();
@@ -207,7 +214,7 @@ namespace cs4227.Database
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Id] = " + id + " AND [Deleted] = 0";
+            command.CommandText = $"SELECT * FROM [dbo].[Items] WHERE [Id] = {id} AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             FoodItem foodItem = new FoodItem();
@@ -224,19 +231,19 @@ namespace cs4227.Database
             SqlCommand command = new SqlCommand();
             string restaurant = restaurantName;
             if (!username.Equals(""))
-                command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [dbo].[Users].[Username] = '" + username + "' AND [Deleted] = 0";
+                command.CommandText = $"SELECT TOP 1 * FROM [dbo].[Users] WHERE [dbo].[Users].[Username] = '{username}' AND [Deleted] = 0";
             else if (!email.Equals(""))
-                command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [Email] = '" + email + "' AND [Deleted] = 0";
+                command.CommandText = $"SELECT TOP 1 * FROM [dbo].[Users] WHERE [Email] = '{email}' AND [Deleted] = 0";
             else if (restaurantId != 0)
-                command.CommandText = "SELECT * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Restaurants].[Id] = [dbo].[Users].[RestaurantId] WHERE [dbo].[Restaurants].[Id] = " + restaurantId + " AND [dbo].[Users].[Deleted] = 0";
+                command.CommandText = $"SELECT * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Restaurants].[Id] = [dbo].[Users].[RestaurantId] WHERE [dbo].[Restaurants].[Id] = {restaurantId} AND [dbo].[Users].[Deleted] = 0";
             else if (!restaurantName.Equals(""))
             {
                 if (restaurant.Contains("'"))
                     restaurant = restaurant.Replace("'", "''");
-                command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantId] = [dbo].[Restaurants].[Id] WHERE [dbo].[Restaurants].[Name] = '" + restaurant + "' AND [dbo].[Users].[Deleted] = 0";
+                command.CommandText = $"SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantId] = [dbo].[Restaurants].[Id] WHERE [dbo].[Restaurants].[Name] = '{restaurant}' AND [dbo].[Users].[Deleted] = 0";
             }
             else
-                command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [Id] = " + id + " AND [Deleted] = 0";
+                command.CommandText = $"SELECT * FROM [dbo].[Users] WHERE [Id] = {id} AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -279,9 +286,9 @@ namespace cs4227.Database
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
             if (userId > 0)
-                command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [User] = " + userId;
+                command.CommandText = $"SELECT * FROM [dbo].[Orders] WHERE [User] = {userId}";
             else if (restaurantId > 0)
-                command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Restaurant] = " + restaurantId;
+                command.CommandText = $"SELECT * FROM [dbo].[Orders] WHERE [Restaurant] = {restaurantId}";
             else
                 command.CommandText = "SELECT * FROM [dbo].[Orders]";
             command.Connection = connection;
@@ -330,7 +337,7 @@ namespace cs4227.Database
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
             if (restaurantId > 0)
-                command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Deleted] <> 'true' AND [Restaurant] = " + restaurantId;
+                command.CommandText = $"SELECT * FROM [dbo].[Items] WHERE [Deleted] <> 'true' AND [Restaurant] = {restaurantId}";
             else
                 command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Deleted] = 0";
             command.Connection = connection;
