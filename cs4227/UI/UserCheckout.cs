@@ -80,7 +80,7 @@ namespace cs4227.UI
         {
             if (CorrectAddressFormat)
             {
-                OrderId = DatabaseHandler.GetNewestOrderId() + 1;
+                OrderId = StaticAccessor.DB.GetNewestOrderId() + 1;
                 Order.Address = Address;
 
                 PlaceOrderCommand placeOrderCommand = new PlaceOrderCommand(Order);
@@ -102,7 +102,7 @@ namespace cs4227.UI
 
         private void UserCheckout_Load(object sender, EventArgs e)
         {
-            int membership = DatabaseHandler.GetUser(UserId).Membership;
+            int membership = StaticAccessor.DB.GetUser(UserId).Membership;
             if (membership == 0)
             {
                 YourOrder.Columns.RemoveAt(2);
@@ -120,7 +120,7 @@ namespace cs4227.UI
                 YourOrder.Items.Add(row);
             }
 
-            double deliveryCharge = DatabaseHandler.GetRestaurant(RestaurantId).Delivery;
+            double deliveryCharge = StaticAccessor.DB.GetRestaurant(RestaurantId).Delivery;
             OrderPriceLabel.Text = "Price: " + StaticAccessor.DoubleToMoneyString(Order.Cost-deliveryCharge);
             DeliveryChargeLabel.Text = "Delivery: " + StaticAccessor.DoubleToMoneyString(deliveryCharge);
             PriceLabel.Text = "Total: " + StaticAccessor.DoubleToMoneyString(Order.Cost);

@@ -50,8 +50,8 @@ namespace cs4227.UI
             this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
 
-            Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(RestaurantId);
-            AbstractUser owner = DatabaseHandler.GetUser(Rest.OwnerId);
+            Restaurant.Restaurant Rest = StaticAccessor.DB.GetRestaurant(RestaurantId);
+            AbstractUser owner = StaticAccessor.DB.GetUser(Rest.OwnerId);
 
             if (newRestaurant)
                 RestaurantName = restaurantName;
@@ -536,24 +536,24 @@ namespace cs4227.UI
         {
             if(CorrectNameFormat && CorrectAddressFormat && CorrectOwnerFormat && CorrectPhoneNumberFormat && CorrectEmailFormat && CorrectOpeningHoursFormat && CorrectClosingHoursFormat && CorrectDaysOpenFormat && CorrectTypeFormat && CorrectDeliveryChargeFormat && CorrectOwnerUsernameFormat)
             {
-                AbstractUser previousOwner = DatabaseHandler.GetUser(DatabaseHandler.GetRestaurant(RestaurantId).OwnerId);
+                AbstractUser previousOwner = StaticAccessor.DB.GetUser(StaticAccessor.DB.GetRestaurant(RestaurantId).OwnerId);
 
-                int ownerId = DatabaseHandler.GetUser(RestaurantOwnerUsername).Id;
+                int ownerId = StaticAccessor.DB.GetUser(0, RestaurantOwnerUsername).Id;
                 Restaurant.Restaurant restaurant = new Restaurant.Restaurant(RestaurantId, RestaurantName, RestaurantAddress, ownerId, RestaurantPhoneNumber, RestaurantEmail, RestaurantOpeningHours, RestaurantClosingHours, RestaurantDaysOpen, RestaurantType, Double.Parse(RestaurantDeliveryCharge), false);
                 if (newRestaurant)
-                    DatabaseHandler.InsertRestaurant(restaurant);
+                    StaticAccessor.DB.InsertRestaurant(restaurant);
                 else
-                    DatabaseHandler.UpdateRestaurant(restaurant);
+                    StaticAccessor.DB.UpdateRestaurant(restaurant);
 
-                int newRestaurantId = DatabaseHandler.GetRestaurant(RestaurantName).Id;
-                AbstractUser restaurantAdmin = DatabaseHandler.GetUser(ownerId);
+                int newRestaurantId = StaticAccessor.DB.GetRestaurant(0, RestaurantName).Id;
+                AbstractUser restaurantAdmin = StaticAccessor.DB.GetUser(ownerId);
                 restaurantAdmin.RestaurantId = newRestaurantId;
-                DatabaseHandler.UpdateUser(restaurantAdmin);
+                StaticAccessor.DB.UpdateUser(restaurantAdmin);
 
                 if (previousOwner.Username != null && !previousOwner.Username.Equals(RestaurantOwnerUsername))
                 {
                     previousOwner.RestaurantId = 0;
-                    DatabaseHandler.UpdateUser(previousOwner);
+                    StaticAccessor.DB.UpdateUser(previousOwner);
                 }
 
                 if (sysAdmin)
@@ -608,7 +608,7 @@ namespace cs4227.UI
             if (RestaurantOwnerUsername.Length > 0)
             {
                 Boolean OwnerUsernameExists = false;
-                List<AbstractUser> users = DatabaseHandler.GetUsers();
+                List<AbstractUser> users = StaticAccessor.DB.GetUsers();
                 foreach (AbstractUser user in users)
                     if (user.Username == RestaurantOwnerUsername)
                         OwnerUsernameExists = true;
@@ -647,13 +647,13 @@ namespace cs4227.UI
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete "+RestaurantName+"?", "Delete Restaurant", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Restaurant.Restaurant restaurant = DatabaseHandler.GetRestaurant(RestaurantId);
+                Restaurant.Restaurant restaurant = StaticAccessor.DB.GetRestaurant(RestaurantId);
                 restaurant.Deleted = true;
-                DatabaseHandler.UpdateRestaurant(restaurant);
+                StaticAccessor.DB.UpdateRestaurant(restaurant);
 
-                AbstractUser restaurantOwner = DatabaseHandler.GetUser(restaurant.OwnerId);
+                AbstractUser restaurantOwner = StaticAccessor.DB.GetUser(restaurant.OwnerId);
                 restaurantOwner.RestaurantId = 0;
-                DatabaseHandler.UpdateUser(restaurantOwner);
+                StaticAccessor.DB.UpdateUser(restaurantOwner);
 
                 this.Hide();
                 SysAdminRestaurantsMenu SARM = new SysAdminRestaurantsMenu(AdminId);

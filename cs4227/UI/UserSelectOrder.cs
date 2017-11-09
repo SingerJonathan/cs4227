@@ -34,7 +34,7 @@ namespace cs4227.UI
             Order.UserId = UserId;
             Order.RestaurantId = RestaurantId;
 
-            int membership = DatabaseHandler.GetUser(UserId).Membership;
+            int membership = StaticAccessor.DB.GetUser(UserId).Membership;
             if (membership == 0)
             {
                 RestaurantMenu.Columns.RemoveAt(2);
@@ -43,7 +43,7 @@ namespace cs4227.UI
                 YourOrder.Columns[0].Width += 170;
             }
 
-            List<FoodItem> FoodItems = DatabaseHandler.GetRestaurantFoodItems(RestaurantId);
+            List<FoodItem> FoodItems = StaticAccessor.DB.GetFoodItems(RestaurantId);
             foreach (FoodItem Food in FoodItems)
             {
                 ListViewItem row = new ListViewItem(Food.Name);
@@ -65,7 +65,7 @@ namespace cs4227.UI
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 YourOrder.Items.Add(row);
             }
-            double delivery = DatabaseHandler.GetRestaurant(RestaurantId).Delivery;
+            double delivery = StaticAccessor.DB.GetRestaurant(RestaurantId).Delivery;
             TotalCostLabel.Text = "" + StaticAccessor.DoubleToMoneyString(Order.Cost - delivery);
         }
 
@@ -77,7 +77,7 @@ namespace cs4227.UI
                 YourOrder.Items.Add((ListViewItem)selectedRow.Clone());
                 selectedRow.Selected = false;
                 //order.Cost += Convert.ToDouble(selectedRow.SubItems[1].Text);
-                Order.Add(DatabaseHandler.GetFoodItem(Convert.ToInt32(selectedRow.SubItems[3].Text)));
+                Order.Add(StaticAccessor.DB.GetFoodItem(Convert.ToInt32(selectedRow.SubItems[3].Text)));
                 Mementos.Add(Order.CreateMemento());
                 TotalCostLabel.Text = ""+ StaticAccessor.DoubleToMoneyString(Order.Cost);
                 if (YourOrder.Items.Count >= 8)

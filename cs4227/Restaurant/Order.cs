@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using cs4227.Database;
 using cs4227.Meal;
+using cs4227.UI;
 
 namespace cs4227.Restaurant
 {
@@ -36,10 +37,10 @@ namespace cs4227.Restaurant
             get
             {
                 double cost = 0.00;
-                int membership = DatabaseHandler.GetUser(userId).Membership;
+                int membership = StaticAccessor.DB.GetUser(userId).Membership;
                 foreach (FoodItem item in foodItems)
                     cost += item.Cost - item.Discounts[membership];
-                cost += DatabaseHandler.GetRestaurant(restaurantId).Delivery;
+                cost += StaticAccessor.DB.GetRestaurant(restaurantId).Delivery;
                 return cost;
             }
             set { cost = value; }

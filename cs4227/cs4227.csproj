@@ -229,6 +229,11 @@
     <Compile Include="Client\Interceptor\ContextObject.cs" />
     <Compile Include="Client\Interceptor\Dispatcher.cs" />
     <Compile Include="Client\Interceptor\Interceptor.cs" />
+    <Compile Include="Database\FoodItemDatabaseHandler.cs" />
+    <Compile Include="Database\IDatabaseHandler.cs" />
+    <Compile Include="Database\OrderDatabaseHandler.cs" />
+    <Compile Include="Database\RestaurantDatabaseHandler.cs" />
+    <Compile Include="Database\UserDatabaseHandler.cs" />
     <Compile Include="Meal\CancelOrderCommand.cs" />
     <Compile Include="Meal\Command.cs" />
     <Compile Include="Meal\HashAdaptee.cs" />

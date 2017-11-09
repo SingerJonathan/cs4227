@@ -41,7 +41,7 @@ namespace cs4227.UI
         {
             if (!newAccount)
             {
-                AbstractUser User = DatabaseHandler.GetUser(UserId);
+                AbstractUser User = StaticAccessor.DB.GetUser(UserId);
                 Email = User.Email;
                 FirstName = User.FirstName;
                 LastName = User.LastName;
@@ -319,21 +319,21 @@ namespace cs4227.UI
             if (newAccount)
             {
                 AbstractUser user = new UserFactory().GetUser(0, Username, hashPassword, FirstName, LastName, Email, Membership, "User");
-                DatabaseHandler.InsertUser(user);
+                StaticAccessor.DB.InsertUser(user);
                 MessageBox.Show("Account Created");
                 this.Hide();
                 new LoginMenuV2();
             }
             else
             {
-                AbstractUser user = DatabaseHandler.GetUser(UserId);
+                AbstractUser user = StaticAccessor.DB.GetUser(UserId);
                 user.FirstName = FirstName;
                 user.LastName = LastName;
                 user.Username = Username;
                 user.Password = hashPassword;
                 user.Email = Email;
                 user.Membership = Membership;
-                DatabaseHandler.UpdateUser(user);
+                StaticAccessor.DB.UpdateUser(user);
                 MessageBox.Show("Changes Saved");
                 this.Hide();
                 UserMainMenu UMM = new UserMainMenu(UserId);
@@ -346,9 +346,9 @@ namespace cs4227.UI
             DialogResult dialogResult = MessageBox.Show(Username + ", are you sure you want to delete your account?", "Delete Account", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                AbstractUser user = DatabaseHandler.GetUser(UserId);
+                AbstractUser user = StaticAccessor.DB.GetUser(UserId);
                 user.Deleted = true;
-                DatabaseHandler.UpdateUser(user);
+                StaticAccessor.DB.UpdateUser(user);
                 
                 MessageBox.Show("Account Deleted \nReturning to login screen");
                 this.Hide();

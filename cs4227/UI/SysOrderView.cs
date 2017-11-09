@@ -34,17 +34,17 @@ namespace cs4227.UI
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            List<Order> orders = DatabaseHandler.GetOrders();
+            List<Order> orders = StaticAccessor.DB.GetOrders();
             foreach (Order order in orders)
             {
                 if (order.RestaurantId == RestaurantId)
                 {
                     ListViewItem row = new ListViewItem("" + order.Id);
-                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetUser(order.UserId).Username));
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DB.GetUser(order.UserId).Username));
                     for (int i = 0; i < 8; i++)
                     {
                         if (i < order.FoodItems.Count)
-                            row.SubItems.Add(new ListViewItem.ListViewSubItem(row, DatabaseHandler.GetFoodItem(order.FoodItems[i].Id).Name));
+                            row.SubItems.Add(new ListViewItem.ListViewSubItem(row, StaticAccessor.DB.GetFoodItem(order.FoodItems[i].Id).Name));
                         else
                             row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
                     }

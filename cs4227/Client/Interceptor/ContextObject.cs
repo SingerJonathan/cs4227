@@ -19,8 +19,8 @@ namespace cs4227.Interceptor
 
         public Order OrderContext()
         {
-            int id = DatabaseHandler.GetNewestOrderId();
-            return DatabaseHandler.GetOrder(id);
+            int id = StaticAccessor.DB.GetNewestOrderId();
+            return StaticAccessor.DB.GetOrder(id);
         }
     }
 }

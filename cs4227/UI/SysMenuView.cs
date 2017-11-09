@@ -33,13 +33,13 @@ namespace cs4227.UI
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            List<FoodItem> items = DatabaseHandler.GetFoodItems();
+            List<FoodItem> items = StaticAccessor.DB.GetFoodItems();
             foreach (FoodItem item in items)
             {
                 if (item.RestaurantId == RestaurantId)
                 {
                     ListViewItem row = new ListViewItem("" + item.Id);
-                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetFoodItem(item.Id).Name));
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DB.GetFoodItem(item.Id).Name));
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DoubleToMoneyString(item.Cost)));
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (item.Deleted ? "Yes" : "No")));
                     listView.Items.Add(row);

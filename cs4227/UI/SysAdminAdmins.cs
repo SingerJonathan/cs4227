@@ -70,7 +70,7 @@ namespace cs4227.UI
             if (CorrectNameFormat)
             {
                 Boolean UsernameExists = false;
-                AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
+                AbstractUser Admin = StaticAccessor.DB.GetUser(0, AdminUsername);
 
                 if (Admin.Username == null)
                 {
@@ -116,11 +116,11 @@ namespace cs4227.UI
         private void SysAdminAdminsMenu_Load(object sender, EventArgs e)
         {
             ErrorMessageLabel.Visible = false;
-            List<AbstractUser> Admins = DatabaseHandler.GetAdmins();
+            List<AbstractUser> Admins = StaticAccessor.DB.GetUsers(true);
             foreach (AbstractUser Admin in Admins)
             {
                 ListViewItem AdminItem = new ListViewItem(Admin.Username);
-                Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(Admin.RestaurantId);
+                Restaurant.Restaurant Rest = StaticAccessor.DB.GetRestaurant(Admin.RestaurantId);
                 AdminItem.SubItems.Add(new ListViewItem.ListViewSubItem(AdminItem, "" + Rest.Name));
                 AdminItem.SubItems.Add(new ListViewItem.ListViewSubItem(AdminItem, "" + Admin.Id));
                 AdminsList.Items.Add(AdminItem);

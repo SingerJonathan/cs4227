@@ -36,7 +36,7 @@ namespace cs4227.UI
         private void RestAdminViewMenu_Load(object sender, EventArgs e)
         {
             PriceTextbox.Text = Price;
-            List<FoodItem> FoodItems = DatabaseHandler.GetRestaurantFoodItems(RestaurantId);
+            List<FoodItem> FoodItems = StaticAccessor.DB.GetFoodItems(RestaurantId);
             foreach (FoodItem Food in FoodItems)
             {
                 ListViewItem row = new ListViewItem("" + Food.Id);
@@ -149,7 +149,7 @@ namespace cs4227.UI
                     //add to db
                     double NewPrice = Convert.ToDouble(Price);
                     FoodItem NewItem = new FoodItem(MenuItemId, MenuItemName, NewPrice, RestaurantId, BronzeDiscountValue, SilverDiscountValue, GoldDiscountValue, false);
-                    DatabaseHandler.InsertFoodItem(NewItem);
+                    StaticAccessor.DB.InsertFoodItem(NewItem);
                     MessageBox.Show("Item:" + MenuItemName + " Added");
                     this.Hide();
                     RestAdminViewMenu RAVM = new RestAdminViewMenu(AdminId,RestaurantId);
@@ -201,7 +201,7 @@ namespace cs4227.UI
             //remove item from db
             double NewPrice = Convert.ToDouble(Price);
             FoodItem ItemToDelete = new FoodItem(MenuItemId, MenuItemName, NewPrice, RestaurantId, BronzeDiscountValue, SilverDiscountValue, GoldDiscountValue, true);
-            DatabaseHandler.UpdateFoodItem(ItemToDelete);
+            StaticAccessor.DB.UpdateFoodItem(ItemToDelete);
             MessageBox.Show("Item: " + MenuItemName + " Removed");
             this.Hide();
             RestAdminViewMenu RAVM = new RestAdminViewMenu(AdminId, RestaurantId);
@@ -223,7 +223,7 @@ namespace cs4227.UI
                 ErrorMessageLabel.Visible = false;
                 double NewPrice = Convert.ToDouble(Price);
                 FoodItem NewItem = new FoodItem(MenuItemId, MenuItemName, NewPrice, RestaurantId, BronzeDiscountValue, SilverDiscountValue, GoldDiscountValue, false);
-                DatabaseHandler.UpdateFoodItem(NewItem);
+                StaticAccessor.DB.UpdateFoodItem(NewItem);
                 MessageBox.Show("Item: " + MenuItemName + " edited");
                 this.Hide();
                 RestAdminViewMenu RAVM = new RestAdminViewMenu(AdminId, RestaurantId);

@@ -11,7 +11,7 @@ namespace cs4227.User
         public void login(string username, string password)
         {
             Console.WriteLine("System Admin " + username + " logged in.");
-            AbstractUser systemAdmin = DatabaseHandler.GetUser(username);
+            AbstractUser systemAdmin = StaticAccessor.DB.GetUser(0, username);
             UserId = systemAdmin.Id;
             SysAdminMenu SAM = new SysAdminMenu(UserId);
             SAM.ShowDialog();

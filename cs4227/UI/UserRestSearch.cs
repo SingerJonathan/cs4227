@@ -38,7 +38,7 @@ namespace cs4227.UI
             if (CorrectNameFormat)
             {
                 Boolean Restaurantfound = false;
-                Restaurant.Restaurant Rest =  DatabaseHandler.GetRestaurant(RestaurantName);
+                Restaurant.Restaurant Rest = StaticAccessor.DB.GetRestaurant(0, RestaurantName);
                 if (Rest == null)
                 {
                     Restaurantfound = false;
@@ -72,7 +72,7 @@ namespace cs4227.UI
         private void UserResterauntSearch_Load(object sender, EventArgs e)
         {
             ErrorMessageLabel.Visible = false;
-            List<Restaurant.Restaurant> restaurants = DatabaseHandler.GetRestaurants();
+            List<Restaurant.Restaurant> restaurants = StaticAccessor.DB.GetRestaurants();
             foreach (Restaurant.Restaurant restaurant in restaurants)
             {
                 ListViewItem RestaurantItem = new ListViewItem(restaurant.Name);
