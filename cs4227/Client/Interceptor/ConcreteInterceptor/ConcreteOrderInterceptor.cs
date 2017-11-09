@@ -35,6 +35,7 @@ namespace cs4227.Interceptor.ConcreteInterceptor
                     Console.WriteLine("Check 5");
                     tw.Close();
                 }
+                Console.WriteLine("Interceptor for logging orders invoked");
             }
             catch (IOException e) { }
         }

@@ -1,4 +1,6 @@
-﻿namespace cs4227.User
+﻿using System;
+
+namespace cs4227.User
 {
     public class ProxyAuthenticator : IAuthenticator
     {
@@ -7,6 +9,7 @@
         public ProxyAuthenticator()
         {
             _realAuthenticator = new RealAuthenticator();
+            Console.WriteLine("New RealAuthenticator assigned to ProxyAuthenticator");
         }
 
         public void SendAuthenticationCode(string email)

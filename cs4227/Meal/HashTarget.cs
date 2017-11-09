@@ -8,6 +8,7 @@ namespace cs4227.Meal
         {
             char[] charArray = input.ToCharArray();
             Array.Reverse(charArray);
+            Console.WriteLine("Target implementation called");
             return new string(charArray);
         }
     }

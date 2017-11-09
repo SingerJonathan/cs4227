@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace cs4227.User
+﻿namespace cs4227.User
 {
     public interface LoginAPI
     {

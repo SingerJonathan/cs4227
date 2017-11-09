@@ -33,6 +33,7 @@ namespace cs4227.Interceptor.ConcreteInterceptor
                     tw.WriteLine(Username + ", "+LoginTime);
                     tw.Close();
                 }
+                Console.WriteLine("Interceptor for logging logins invoked");
             }
             catch (IOException e) { }
         }
