@@ -44,7 +44,7 @@
             this.RestaurantsButton.Location = new System.Drawing.Point(250, 350);
             this.RestaurantsButton.Name = "RestaurantsButton";
             this.RestaurantsButton.Size = new System.Drawing.Size(500, 80);
-            this.RestaurantsButton.TabIndex = 0;
+            this.RestaurantsButton.TabIndex = 1;
             this.RestaurantsButton.Text = "Restaurants";
             this.RestaurantsButton.UseVisualStyleBackColor = false;
             this.RestaurantsButton.Click += new System.EventHandler(this.RestaurantsButton_Click);
@@ -57,7 +57,7 @@
             this.AdminsButton.Location = new System.Drawing.Point(250, 436);
             this.AdminsButton.Name = "AdminsButton";
             this.AdminsButton.Size = new System.Drawing.Size(500, 80);
-            this.AdminsButton.TabIndex = 1;
+            this.AdminsButton.TabIndex = 2;
             this.AdminsButton.Text = "Admins";
             this.AdminsButton.UseVisualStyleBackColor = false;
             this.AdminsButton.Click += new System.EventHandler(this.AdminsButton_Click);

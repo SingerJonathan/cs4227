@@ -37,14 +37,14 @@
             this.RestaurantMenu = new System.Windows.Forms.ListView();
             this.MenuItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MenuItemPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MenuItemDiscountedPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.YourOrder = new System.Windows.Forms.ListView();
             this.OrderItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.OrderItemPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OrderItemDiscountedPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UndoButton = new System.Windows.Forms.Button();
             this.TotalLabel = new System.Windows.Forms.Label();
             this.TotalCostLabel = new System.Windows.Forms.Label();
-            this.MenuItemDiscountedPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.OrderItemDiscountedPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label1
@@ -94,7 +94,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(163, 44);
-            this.button1.TabIndex = 6;
+            this.button1.TabIndex = 5;
             this.button1.Text = "Back";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -106,7 +106,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(163, 44);
-            this.button2.TabIndex = 7;
+            this.button2.TabIndex = 3;
             this.button2.Text = "Checkout";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -124,7 +124,7 @@
             this.RestaurantMenu.Name = "RestaurantMenu";
             this.RestaurantMenu.Size = new System.Drawing.Size(454, 522);
             this.RestaurantMenu.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.RestaurantMenu.TabIndex = 8;
+            this.RestaurantMenu.TabIndex = 1;
             this.RestaurantMenu.UseCompatibleStateImageBehavior = false;
             this.RestaurantMenu.View = System.Windows.Forms.View.Details;
             this.RestaurantMenu.SelectedIndexChanged += new System.EventHandler(this.RestaurantMenu_SelectedIndexChanged);
@@ -139,6 +139,11 @@
             this.MenuItemPrice.Text = "Price";
             this.MenuItemPrice.Width = 80;
             // 
+            // MenuItemDiscountedPrice
+            // 
+            this.MenuItemDiscountedPrice.Text = "Discounted Price";
+            this.MenuItemDiscountedPrice.Width = 230;
+            // 
             // YourOrder
             // 
             this.YourOrder.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -147,11 +152,12 @@
             this.OrderItemDiscountedPrice});
             this.YourOrder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.YourOrder.FullRowSelect = true;
-            this.YourOrder.Location = new System.Drawing.Point(518, 38);
+            this.YourOrder.Location = new System.Drawing.Point(518, 39);
             this.YourOrder.MultiSelect = false;
             this.YourOrder.Name = "YourOrder";
             this.YourOrder.Size = new System.Drawing.Size(454, 522);
-            this.YourOrder.TabIndex = 9;
+            this.YourOrder.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.YourOrder.TabIndex = 2;
             this.YourOrder.UseCompatibleStateImageBehavior = false;
             this.YourOrder.View = System.Windows.Forms.View.Details;
             // 
@@ -165,14 +171,19 @@
             this.OrderItemPrice.Text = "Price";
             this.OrderItemPrice.Width = 80;
             // 
+            // OrderItemDiscountedPrice
+            // 
+            this.OrderItemDiscountedPrice.Text = "Discounted Price";
+            this.OrderItemDiscountedPrice.Width = 230;
+            // 
             // UndoButton
             // 
             this.UndoButton.BackColor = System.Drawing.Color.Silver;
-            this.UndoButton.Location = new System.Drawing.Point(518, 602);
+            this.UndoButton.Location = new System.Drawing.Point(518, 603);
             this.UndoButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.UndoButton.Name = "UndoButton";
             this.UndoButton.Size = new System.Drawing.Size(163, 44);
-            this.UndoButton.TabIndex = 10;
+            this.UndoButton.TabIndex = 4;
             this.UndoButton.Text = "Undo";
             this.UndoButton.UseVisualStyleBackColor = false;
             this.UndoButton.Click += new System.EventHandler(this.UndoButton_Click);
@@ -196,16 +207,6 @@
             this.TotalCostLabel.Size = new System.Drawing.Size(58, 25);
             this.TotalCostLabel.TabIndex = 12;
             this.TotalCostLabel.Text = "0.00";
-            // 
-            // MenuItemDiscountedPrice
-            // 
-            this.MenuItemDiscountedPrice.Text = "Discounted Price";
-            this.MenuItemDiscountedPrice.Width = 230;
-            // 
-            // OrderItemDiscountedPrice
-            // 
-            this.OrderItemDiscountedPrice.Text = "Discounted Price";
-            this.OrderItemDiscountedPrice.Width = 230;
             // 
             // UserOrderMenu
             // 

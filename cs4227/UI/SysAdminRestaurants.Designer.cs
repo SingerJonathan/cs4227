@@ -51,7 +51,7 @@
             this.ListOfRestaurants.Name = "ListOfRestaurants";
             this.ListOfRestaurants.Size = new System.Drawing.Size(400, 600);
             this.ListOfRestaurants.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.ListOfRestaurants.TabIndex = 0;
+            this.ListOfRestaurants.TabIndex = 1;
             this.ListOfRestaurants.UseCompatibleStateImageBehavior = false;
             this.ListOfRestaurants.View = System.Windows.Forms.View.Details;
             this.ListOfRestaurants.SelectedIndexChanged += new System.EventHandler(this.ListOfRestaurants_SelectedIndexChanged);
@@ -69,7 +69,7 @@
             this.AddRestaurantButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.AddRestaurantButton.Name = "AddRestaurantButton";
             this.AddRestaurantButton.Size = new System.Drawing.Size(300, 80);
-            this.AddRestaurantButton.TabIndex = 1;
+            this.AddRestaurantButton.TabIndex = 3;
             this.AddRestaurantButton.Text = "Add Restaurant";
             this.AddRestaurantButton.UseVisualStyleBackColor = false;
             this.AddRestaurantButton.Click += new System.EventHandler(this.AddRestaurantButton_Click);

@@ -43,7 +43,7 @@
             this.button1.Location = new System.Drawing.Point(95, 180);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(591, 47);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 1;
             this.button1.Text = "View order logs";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -55,7 +55,7 @@
             this.button2.Location = new System.Drawing.Point(95, 393);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(591, 47);
-            this.button2.TabIndex = 1;
+            this.button2.TabIndex = 3;
             this.button2.Text = "View Menu";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -77,7 +77,7 @@
             this.EditRestaurantButton.Location = new System.Drawing.Point(95, 291);
             this.EditRestaurantButton.Name = "EditRestaurantButton";
             this.EditRestaurantButton.Size = new System.Drawing.Size(591, 47);
-            this.EditRestaurantButton.TabIndex = 4;
+            this.EditRestaurantButton.TabIndex = 2;
             this.EditRestaurantButton.Text = "Edit Restaurant Details";
             this.EditRestaurantButton.UseVisualStyleBackColor = false;
             this.EditRestaurantButton.Click += new System.EventHandler(this.EditRestaurantButton_Click);
@@ -89,7 +89,7 @@
             this.BackButton.Location = new System.Drawing.Point(95, 493);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(591, 47);
-            this.BackButton.TabIndex = 5;
+            this.BackButton.TabIndex = 4;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);

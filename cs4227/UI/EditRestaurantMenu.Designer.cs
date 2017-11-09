@@ -91,7 +91,7 @@
             this.RestaurantAddressTextbox.Location = new System.Drawing.Point(12, 122);
             this.RestaurantAddressTextbox.Name = "RestaurantAddressTextbox";
             this.RestaurantAddressTextbox.Size = new System.Drawing.Size(300, 31);
-            this.RestaurantAddressTextbox.TabIndex = 3;
+            this.RestaurantAddressTextbox.TabIndex = 4;
             this.RestaurantAddressTextbox.TextChanged += new System.EventHandler(this.RestaurantAddressTextbox_TextChanged);
             // 
             // RestaurantOwnerLabel
@@ -110,7 +110,7 @@
             this.RestaurantOwnerTextbox.Location = new System.Drawing.Point(12, 193);
             this.RestaurantOwnerTextbox.Name = "RestaurantOwnerTextbox";
             this.RestaurantOwnerTextbox.Size = new System.Drawing.Size(300, 31);
-            this.RestaurantOwnerTextbox.TabIndex = 5;
+            this.RestaurantOwnerTextbox.TabIndex = 7;
             this.RestaurantOwnerTextbox.TextChanged += new System.EventHandler(this.RestaurantOwnerTextbox_TextChanged);
             // 
             // RestaurantPhoneNumberLabel
@@ -129,7 +129,7 @@
             this.RestaurantPhoneNumberTextbox.Location = new System.Drawing.Point(12, 264);
             this.RestaurantPhoneNumberTextbox.Name = "RestaurantPhoneNumberTextbox";
             this.RestaurantPhoneNumberTextbox.Size = new System.Drawing.Size(300, 31);
-            this.RestaurantPhoneNumberTextbox.TabIndex = 7;
+            this.RestaurantPhoneNumberTextbox.TabIndex = 10;
             this.RestaurantPhoneNumberTextbox.TextChanged += new System.EventHandler(this.RestaurantPhoneNumberTextbox_TextChanged);
             // 
             // RestaurantEmailLabel
@@ -148,7 +148,7 @@
             this.RestaurantEmailTextbox.Location = new System.Drawing.Point(341, 51);
             this.RestaurantEmailTextbox.Name = "RestaurantEmailTextbox";
             this.RestaurantEmailTextbox.Size = new System.Drawing.Size(300, 31);
-            this.RestaurantEmailTextbox.TabIndex = 9;
+            this.RestaurantEmailTextbox.TabIndex = 2;
             this.RestaurantEmailTextbox.TextChanged += new System.EventHandler(this.RestaurantEmailTextbox_TextChanged);
             // 
             // SaveChangesButton
@@ -158,7 +158,7 @@
             this.SaveChangesButton.Location = new System.Drawing.Point(12, 448);
             this.SaveChangesButton.Name = "SaveChangesButton";
             this.SaveChangesButton.Size = new System.Drawing.Size(300, 185);
-            this.SaveChangesButton.TabIndex = 10;
+            this.SaveChangesButton.TabIndex = 12;
             this.SaveChangesButton.Text = "Save Changes";
             this.SaveChangesButton.UseVisualStyleBackColor = false;
             this.SaveChangesButton.Click += new System.EventHandler(this.SaveChangesButton_Click);
@@ -170,7 +170,7 @@
             this.BackButton.Location = new System.Drawing.Point(672, 448);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(300, 185);
-            this.BackButton.TabIndex = 11;
+            this.BackButton.TabIndex = 14;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
@@ -191,7 +191,7 @@
             this.RestaurantOpeningHoursTextbox.Location = new System.Drawing.Point(672, 51);
             this.RestaurantOpeningHoursTextbox.Name = "RestaurantOpeningHoursTextbox";
             this.RestaurantOpeningHoursTextbox.Size = new System.Drawing.Size(300, 31);
-            this.RestaurantOpeningHoursTextbox.TabIndex = 13;
+            this.RestaurantOpeningHoursTextbox.TabIndex = 3;
             this.RestaurantOpeningHoursTextbox.TextChanged += new System.EventHandler(this.RestaurantOpeningHoursTextbox_TextChanged);
             // 
             // RestaurantClosingHoursLabel
@@ -210,7 +210,7 @@
             this.RestaurantClosingHoursTextbox.Location = new System.Drawing.Point(672, 122);
             this.RestaurantClosingHoursTextbox.Name = "RestaurantClosingHoursTextbox";
             this.RestaurantClosingHoursTextbox.Size = new System.Drawing.Size(300, 31);
-            this.RestaurantClosingHoursTextbox.TabIndex = 15;
+            this.RestaurantClosingHoursTextbox.TabIndex = 6;
             this.RestaurantClosingHoursTextbox.TextChanged += new System.EventHandler(this.RestaurantClosingHoursTextbox_TextChanged);
             // 
             // RestaurantDaysOpenLabel
@@ -229,7 +229,7 @@
             this.RestaurantDaysOpenTextbox.Location = new System.Drawing.Point(672, 193);
             this.RestaurantDaysOpenTextbox.Name = "RestaurantDaysOpenTextbox";
             this.RestaurantDaysOpenTextbox.Size = new System.Drawing.Size(300, 31);
-            this.RestaurantDaysOpenTextbox.TabIndex = 17;
+            this.RestaurantDaysOpenTextbox.TabIndex = 9;
             this.RestaurantDaysOpenTextbox.TextChanged += new System.EventHandler(this.RestaurantDaysOpenTextbox_TextChanged);
             // 
             // RestaurantTypeLabel
@@ -248,7 +248,7 @@
             this.RestaurantTypeTextbox.Location = new System.Drawing.Point(341, 193);
             this.RestaurantTypeTextbox.Name = "RestaurantTypeTextbox";
             this.RestaurantTypeTextbox.Size = new System.Drawing.Size(300, 31);
-            this.RestaurantTypeTextbox.TabIndex = 19;
+            this.RestaurantTypeTextbox.TabIndex = 8;
             this.RestaurantTypeTextbox.TextChanged += new System.EventHandler(this.RestaurantTypeTextbox_TextChanged);
             // 
             // RestaurantDeliveryChargeLabel
@@ -267,7 +267,7 @@
             this.RestaurantDeliveryChargeTextbox.Location = new System.Drawing.Point(341, 122);
             this.RestaurantDeliveryChargeTextbox.Name = "RestaurantDeliveryChargeTextbox";
             this.RestaurantDeliveryChargeTextbox.Size = new System.Drawing.Size(300, 31);
-            this.RestaurantDeliveryChargeTextbox.TabIndex = 21;
+            this.RestaurantDeliveryChargeTextbox.TabIndex = 5;
             this.RestaurantDeliveryChargeTextbox.Text = "0.00";
             this.RestaurantDeliveryChargeTextbox.TextChanged += new System.EventHandler(this.RestaurantDeliveryChargeTextbox_TextChanged);
             // 
@@ -298,7 +298,7 @@
             this.RestaurantOwnerUsernameTextbox.Location = new System.Drawing.Point(341, 264);
             this.RestaurantOwnerUsernameTextbox.Name = "RestaurantOwnerUsernameTextbox";
             this.RestaurantOwnerUsernameTextbox.Size = new System.Drawing.Size(300, 31);
-            this.RestaurantOwnerUsernameTextbox.TabIndex = 24;
+            this.RestaurantOwnerUsernameTextbox.TabIndex = 11;
             this.RestaurantOwnerUsernameTextbox.TextChanged += new System.EventHandler(this.OwnerUsernameTextbox_TextChanged);
             // 
             // DeleteRestaurantButton
@@ -308,7 +308,7 @@
             this.DeleteRestaurantButton.Location = new System.Drawing.Point(341, 448);
             this.DeleteRestaurantButton.Name = "DeleteRestaurantButton";
             this.DeleteRestaurantButton.Size = new System.Drawing.Size(300, 185);
-            this.DeleteRestaurantButton.TabIndex = 25;
+            this.DeleteRestaurantButton.TabIndex = 13;
             this.DeleteRestaurantButton.Text = "Delete Restaurant";
             this.DeleteRestaurantButton.UseVisualStyleBackColor = false;
             this.DeleteRestaurantButton.Click += new System.EventHandler(this.DeleteRestaurantButton_Click);

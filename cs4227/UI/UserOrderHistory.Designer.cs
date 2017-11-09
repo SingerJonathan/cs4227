@@ -53,7 +53,7 @@
             this.button3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(300, 80);
-            this.button3.TabIndex = 3;
+            this.button3.TabIndex = 2;
             this.button3.Text = "Back";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -90,7 +90,7 @@
             this.UserOrders.Location = new System.Drawing.Point(12, 43);
             this.UserOrders.Name = "UserOrders";
             this.UserOrders.Size = new System.Drawing.Size(960, 491);
-            this.UserOrders.TabIndex = 5;
+            this.UserOrders.TabIndex = 1;
             this.UserOrders.UseCompatibleStateImageBehavior = false;
             this.UserOrders.View = System.Windows.Forms.View.Details;
             this.UserOrders.SelectedIndexChanged += new System.EventHandler(this.Orders_SelectedIndexChanged);

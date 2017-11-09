@@ -53,7 +53,7 @@
             this.BackButton.Location = new System.Drawing.Point(672, 569);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(300, 80);
-            this.BackButton.TabIndex = 0;
+            this.BackButton.TabIndex = 10;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
@@ -64,7 +64,7 @@
             this.SaveChangesButton.Location = new System.Drawing.Point(12, 569);
             this.SaveChangesButton.Name = "SaveChangesButton";
             this.SaveChangesButton.Size = new System.Drawing.Size(300, 80);
-            this.SaveChangesButton.TabIndex = 1;
+            this.SaveChangesButton.TabIndex = 8;
             this.SaveChangesButton.Text = "Save Changes";
             this.SaveChangesButton.UseVisualStyleBackColor = false;
             this.SaveChangesButton.Click += new System.EventHandler(this.SaveChangesButton_Click);
@@ -75,7 +75,7 @@
             this.DeleteAccountButton.Location = new System.Drawing.Point(340, 569);
             this.DeleteAccountButton.Name = "DeleteAccountButton";
             this.DeleteAccountButton.Size = new System.Drawing.Size(300, 80);
-            this.DeleteAccountButton.TabIndex = 2;
+            this.DeleteAccountButton.TabIndex = 9;
             this.DeleteAccountButton.Text = "Delete Account";
             this.DeleteAccountButton.UseVisualStyleBackColor = false;
             this.DeleteAccountButton.Click += new System.EventHandler(this.DeleteAccountButton_Click);
@@ -85,7 +85,7 @@
             this.UserEmailTextbox.Location = new System.Drawing.Point(498, 230);
             this.UserEmailTextbox.Name = "UserEmailTextbox";
             this.UserEmailTextbox.Size = new System.Drawing.Size(300, 31);
-            this.UserEmailTextbox.TabIndex = 3;
+            this.UserEmailTextbox.TabIndex = 5;
             this.UserEmailTextbox.TextChanged += new System.EventHandler(this.UserEmailTextbox_TextChanged);
             // 
             // UserEmailLabel
@@ -103,7 +103,7 @@
             this.UserPasswordTextbox.Name = "UserPasswordTextbox";
             this.UserPasswordTextbox.PasswordChar = '*';
             this.UserPasswordTextbox.Size = new System.Drawing.Size(300, 31);
-            this.UserPasswordTextbox.TabIndex = 5;
+            this.UserPasswordTextbox.TabIndex = 2;
             this.UserPasswordTextbox.TextChanged += new System.EventHandler(this.UserPasswordTextbox_TextChanged);
             // 
             // UserPasswordLabel
@@ -120,7 +120,7 @@
             this.UserUsernameTextbox.Location = new System.Drawing.Point(157, 301);
             this.UserUsernameTextbox.Name = "UserUsernameTextbox";
             this.UserUsernameTextbox.Size = new System.Drawing.Size(300, 31);
-            this.UserUsernameTextbox.TabIndex = 7;
+            this.UserUsernameTextbox.TabIndex = 6;
             this.UserUsernameTextbox.TextChanged += new System.EventHandler(this.UserUsernameTextbox_TextChanged);
             // 
             // UserUsernameLabel
@@ -137,7 +137,7 @@
             this.UserFirstNameTextbox.Location = new System.Drawing.Point(157, 159);
             this.UserFirstNameTextbox.Name = "UserFirstNameTextbox";
             this.UserFirstNameTextbox.Size = new System.Drawing.Size(300, 31);
-            this.UserFirstNameTextbox.TabIndex = 9;
+            this.UserFirstNameTextbox.TabIndex = 1;
             this.UserFirstNameTextbox.TextChanged += new System.EventHandler(this.UserFirstNameTextbox_TextChanged);
             // 
             // UserFirstNameLabel
@@ -172,7 +172,7 @@
             this.UserLastNameTextbox.Location = new System.Drawing.Point(157, 230);
             this.UserLastNameTextbox.Name = "UserLastNameTextbox";
             this.UserLastNameTextbox.Size = new System.Drawing.Size(300, 31);
-            this.UserLastNameTextbox.TabIndex = 12;
+            this.UserLastNameTextbox.TabIndex = 4;
             this.UserLastNameTextbox.TextChanged += new System.EventHandler(this.UserLastNameTextbox_TextChanged);
             // 
             // MembershipComboBox
@@ -186,7 +186,7 @@
             this.MembershipComboBox.Location = new System.Drawing.Point(498, 302);
             this.MembershipComboBox.Name = "MembershipComboBox";
             this.MembershipComboBox.Size = new System.Drawing.Size(300, 33);
-            this.MembershipComboBox.TabIndex = 14;
+            this.MembershipComboBox.TabIndex = 7;
             this.MembershipComboBox.SelectedIndexChanged += new System.EventHandler(this.MembershipComboBox_SelectedIndexChanged);
             // 
             // MembershipLabel
@@ -205,7 +205,7 @@
             this.PasswordCheckbox.Location = new System.Drawing.Point(804, 161);
             this.PasswordCheckbox.Name = "PasswordCheckbox";
             this.PasswordCheckbox.Size = new System.Drawing.Size(177, 28);
-            this.PasswordCheckbox.TabIndex = 16;
+            this.PasswordCheckbox.TabIndex = 3;
             this.PasswordCheckbox.Text = "Show Password";
             this.PasswordCheckbox.UseVisualStyleBackColor = true;
             this.PasswordCheckbox.CheckedChanged += new System.EventHandler(this.PasswordCheckbox_CheckedChanged);

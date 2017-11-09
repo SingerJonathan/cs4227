@@ -95,7 +95,7 @@
             this.AdminUsernameTextbox.Location = new System.Drawing.Point(329, 286);
             this.AdminUsernameTextbox.Name = "AdminUsernameTextbox";
             this.AdminUsernameTextbox.Size = new System.Drawing.Size(300, 31);
-            this.AdminUsernameTextbox.TabIndex = 5;
+            this.AdminUsernameTextbox.TabIndex = 4;
             this.AdminUsernameTextbox.TextChanged += new System.EventHandler(this.AdminUsernameTextbox_TextChanged);
             // 
             // SaveChangesButton
@@ -104,7 +104,7 @@
             this.SaveChangesButton.Location = new System.Drawing.Point(13, 465);
             this.SaveChangesButton.Name = "SaveChangesButton";
             this.SaveChangesButton.Size = new System.Drawing.Size(300, 185);
-            this.SaveChangesButton.TabIndex = 6;
+            this.SaveChangesButton.TabIndex = 7;
             this.SaveChangesButton.Text = "Save Changes";
             this.SaveChangesButton.UseVisualStyleBackColor = false;
             this.SaveChangesButton.Click += new System.EventHandler(this.SaveChangesButton_Click);
@@ -115,7 +115,7 @@
             this.BackButton.Location = new System.Drawing.Point(672, 465);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(300, 185);
-            this.BackButton.TabIndex = 7;
+            this.BackButton.TabIndex = 9;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
@@ -132,11 +132,11 @@
             // 
             // AdminPasswordTextbox
             // 
-            this.AdminPasswordTextbox.Location = new System.Drawing.Point(329, 363);
+            this.AdminPasswordTextbox.Location = new System.Drawing.Point(329, 374);
             this.AdminPasswordTextbox.Name = "AdminPasswordTextbox";
             this.AdminPasswordTextbox.PasswordChar = '*';
             this.AdminPasswordTextbox.Size = new System.Drawing.Size(300, 31);
-            this.AdminPasswordTextbox.TabIndex = 9;
+            this.AdminPasswordTextbox.TabIndex = 5;
             this.AdminPasswordTextbox.TextChanged += new System.EventHandler(this.AdminPasswordTextbox_TextChanged);
             // 
             // ErrorMessageLabel
@@ -155,7 +155,7 @@
             this.DeleteAdminButton.Location = new System.Drawing.Point(349, 465);
             this.DeleteAdminButton.Name = "DeleteAdminButton";
             this.DeleteAdminButton.Size = new System.Drawing.Size(300, 185);
-            this.DeleteAdminButton.TabIndex = 13;
+            this.DeleteAdminButton.TabIndex = 8;
             this.DeleteAdminButton.Text = "Delete Admin";
             this.DeleteAdminButton.UseVisualStyleBackColor = false;
             this.DeleteAdminButton.Click += new System.EventHandler(this.DeleteAdminButton_Click);
@@ -174,7 +174,7 @@
             this.AdminLastNameTextbox.Location = new System.Drawing.Point(329, 128);
             this.AdminLastNameTextbox.Name = "AdminLastNameTextbox";
             this.AdminLastNameTextbox.Size = new System.Drawing.Size(300, 31);
-            this.AdminLastNameTextbox.TabIndex = 15;
+            this.AdminLastNameTextbox.TabIndex = 2;
             this.AdminLastNameTextbox.TextChanged += new System.EventHandler(this.AdminLastNameTextbox_TextChanged);
             // 
             // ShowPasswordCheckBox
@@ -183,7 +183,7 @@
             this.ShowPasswordCheckBox.Location = new System.Drawing.Point(635, 363);
             this.ShowPasswordCheckBox.Name = "ShowPasswordCheckBox";
             this.ShowPasswordCheckBox.Size = new System.Drawing.Size(197, 29);
-            this.ShowPasswordCheckBox.TabIndex = 16;
+            this.ShowPasswordCheckBox.TabIndex = 6;
             this.ShowPasswordCheckBox.Text = "Show Password";
             this.ShowPasswordCheckBox.UseVisualStyleBackColor = true;
             this.ShowPasswordCheckBox.CheckedChanged += new System.EventHandler(this.ShowPasswordCheckBox_CheckedChanged);
