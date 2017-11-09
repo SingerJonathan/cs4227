@@ -53,7 +53,7 @@
             this.button1.Location = new System.Drawing.Point(326, 576);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(353, 62);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 2;
             this.button1.Text = "Back";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -88,7 +88,7 @@
             this.listView.Location = new System.Drawing.Point(12, 79);
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(960, 466);
-            this.listView.TabIndex = 2;
+            this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             // 

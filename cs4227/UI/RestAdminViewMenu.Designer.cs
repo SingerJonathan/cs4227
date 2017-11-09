@@ -66,7 +66,7 @@
             this.BackButton.Location = new System.Drawing.Point(778, 569);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(146, 80);
-            this.BackButton.TabIndex = 2;
+            this.BackButton.TabIndex = 7;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
@@ -77,7 +77,7 @@
             this.AddItemButton.Location = new System.Drawing.Point(624, 477);
             this.AddItemButton.Name = "AddItemButton";
             this.AddItemButton.Size = new System.Drawing.Size(148, 86);
-            this.AddItemButton.TabIndex = 3;
+            this.AddItemButton.TabIndex = 4;
             this.AddItemButton.Text = "Add Item";
             this.AddItemButton.UseVisualStyleBackColor = false;
             this.AddItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
@@ -87,7 +87,7 @@
             this.PriceTextbox.Location = new System.Drawing.Point(624, 225);
             this.PriceTextbox.Name = "PriceTextbox";
             this.PriceTextbox.Size = new System.Drawing.Size(300, 31);
-            this.PriceTextbox.TabIndex = 4;
+            this.PriceTextbox.TabIndex = 2;
             this.PriceTextbox.TextChanged += new System.EventHandler(this.PriceTextbox_TextChanged);
             // 
             // PriceLabel
@@ -104,7 +104,7 @@
             this.NameTextbox.Location = new System.Drawing.Point(624, 153);
             this.NameTextbox.Name = "NameTextbox";
             this.NameTextbox.Size = new System.Drawing.Size(300, 31);
-            this.NameTextbox.TabIndex = 6;
+            this.NameTextbox.TabIndex = 1;
             this.NameTextbox.TextChanged += new System.EventHandler(this.NameTextbox_TextChanged);
             // 
             // NameLabel
@@ -130,7 +130,7 @@
             this.RestaurantMenuList.Location = new System.Drawing.Point(12, 49);
             this.RestaurantMenuList.Name = "RestaurantMenuList";
             this.RestaurantMenuList.Size = new System.Drawing.Size(526, 600);
-            this.RestaurantMenuList.TabIndex = 8;
+            this.RestaurantMenuList.TabIndex = 10;
             this.RestaurantMenuList.UseCompatibleStateImageBehavior = false;
             this.RestaurantMenuList.View = System.Windows.Forms.View.Details;
             this.RestaurantMenuList.SelectedIndexChanged += new System.EventHandler(this.RestaurantMenuList_SelectedIndexChanged);
@@ -180,7 +180,7 @@
             this.RemoveButton.Location = new System.Drawing.Point(624, 569);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(148, 80);
-            this.RemoveButton.TabIndex = 10;
+            this.RemoveButton.TabIndex = 6;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = false;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
@@ -191,7 +191,7 @@
             this.EditItemButton.Location = new System.Drawing.Point(778, 477);
             this.EditItemButton.Name = "EditItemButton";
             this.EditItemButton.Size = new System.Drawing.Size(146, 86);
-            this.EditItemButton.TabIndex = 11;
+            this.EditItemButton.TabIndex = 5;
             this.EditItemButton.Text = "Edit Item";
             this.EditItemButton.UseVisualStyleBackColor = false;
             this.EditItemButton.Click += new System.EventHandler(this.EditItemButton_Click);
@@ -201,7 +201,7 @@
             this.BronzeDiscountTextbox.Location = new System.Drawing.Point(624, 296);
             this.BronzeDiscountTextbox.Name = "BronzeDiscountTextbox";
             this.BronzeDiscountTextbox.Size = new System.Drawing.Size(300, 31);
-            this.BronzeDiscountTextbox.TabIndex = 12;
+            this.BronzeDiscountTextbox.TabIndex = 3;
             this.BronzeDiscountTextbox.Text = "0.00";
             this.BronzeDiscountTextbox.TextChanged += new System.EventHandler(this.BronzeDiscountTextbox_TextChanged);
             // 

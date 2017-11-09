@@ -31,6 +31,7 @@
             this.YourOrder = new System.Windows.Forms.ListView();
             this.OrderItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.OrderItemPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OrderItemDiscountedPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PriceLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.DeliveryChargeLabel = new System.Windows.Forms.Label();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
             this.OrderPriceLabel = new System.Windows.Forms.Label();
-            this.OrderItemDiscountedPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // YourOrder
@@ -54,7 +54,7 @@
             this.YourOrder.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.YourOrder.Name = "YourOrder";
             this.YourOrder.Size = new System.Drawing.Size(500, 595);
-            this.YourOrder.TabIndex = 0;
+            this.YourOrder.TabIndex = 1;
             this.YourOrder.UseCompatibleStateImageBehavior = false;
             this.YourOrder.View = System.Windows.Forms.View.Details;
             // 
@@ -67,6 +67,11 @@
             // 
             this.OrderItemPrice.Text = "Price";
             this.OrderItemPrice.Width = 80;
+            // 
+            // OrderItemDiscountedPrice
+            // 
+            this.OrderItemDiscountedPrice.Text = "Discounted Price";
+            this.OrderItemDiscountedPrice.Width = 200;
             // 
             // PriceLabel
             // 
@@ -87,7 +92,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(300, 80);
-            this.button1.TabIndex = 3;
+            this.button1.TabIndex = 4;
             this.button1.Text = "Place Order";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -99,7 +104,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(300, 80);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 3;
             this.button2.Text = "Change Order";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -119,7 +124,7 @@
             this.AddressTextBox.Location = new System.Drawing.Point(626, 289);
             this.AddressTextBox.Name = "AddressTextBox";
             this.AddressTextBox.Size = new System.Drawing.Size(300, 31);
-            this.AddressTextBox.TabIndex = 6;
+            this.AddressTextBox.TabIndex = 2;
             this.AddressTextBox.TextChanged += new System.EventHandler(this.AddressTextBox_TextChanged);
             // 
             // AddressLabel
@@ -137,7 +142,7 @@
             this.CancelButton.Location = new System.Drawing.Point(626, 566);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(300, 80);
-            this.CancelButton.TabIndex = 8;
+            this.CancelButton.TabIndex = 5;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -170,11 +175,6 @@
             this.OrderPriceLabel.Size = new System.Drawing.Size(90, 31);
             this.OrderPriceLabel.TabIndex = 11;
             this.OrderPriceLabel.Text = "Price:";
-            // 
-            // OrderItemDiscountedPrice
-            // 
-            this.OrderItemDiscountedPrice.Text = "Discounted Price";
-            this.OrderItemDiscountedPrice.Width = 200;
             // 
             // UserCheckout
             // 

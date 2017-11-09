@@ -42,7 +42,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(300, 80);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 2;
             this.button1.Text = "Browse Restaraunts";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -54,7 +54,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(300, 80);
-            this.button2.TabIndex = 1;
+            this.button2.TabIndex = 3;
             this.button2.Text = "View Orders";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -66,7 +66,7 @@
             this.button4.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(300, 80);
-            this.button4.TabIndex = 3;
+            this.button4.TabIndex = 1;
             this.button4.Text = "Manage Account";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -89,7 +89,7 @@
             this.LogOutButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.LogOutButton.Name = "LogOutButton";
             this.LogOutButton.Size = new System.Drawing.Size(300, 80);
-            this.LogOutButton.TabIndex = 5;
+            this.LogOutButton.TabIndex = 4;
             this.LogOutButton.Text = "Log Out";
             this.LogOutButton.UseVisualStyleBackColor = false;
             this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);

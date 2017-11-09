@@ -43,7 +43,7 @@
             this.ListOfRestaurants.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.ListOfRestaurants.Name = "ListOfRestaurants";
             this.ListOfRestaurants.Size = new System.Drawing.Size(500, 600);
-            this.ListOfRestaurants.TabIndex = 0;
+            this.ListOfRestaurants.TabIndex = 1;
             this.ListOfRestaurants.UseCompatibleStateImageBehavior = false;
             this.ListOfRestaurants.View = System.Windows.Forms.View.List;
             this.ListOfRestaurants.SelectedIndexChanged += new System.EventHandler(this.ListOfRestaurants_SelectedIndexChanged);
@@ -54,7 +54,7 @@
             this.SearchTextbox.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.SearchTextbox.Name = "SearchTextbox";
             this.SearchTextbox.Size = new System.Drawing.Size(300, 31);
-            this.SearchTextbox.TabIndex = 1;
+            this.SearchTextbox.TabIndex = 2;
             this.SearchTextbox.TextChanged += new System.EventHandler(this.SearchTextbox_TextChanged);
             // 
             // EnterRestaurantName
@@ -84,7 +84,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(300, 80);
-            this.button1.TabIndex = 4;
+            this.button1.TabIndex = 3;
             this.button1.Text = "View Menu";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -96,7 +96,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(300, 80);
-            this.button2.TabIndex = 5;
+            this.button2.TabIndex = 4;
             this.button2.Text = "Back";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -110,7 +110,7 @@
             this.ErrorMessageLabel.TabIndex = 6;
             this.ErrorMessageLabel.Text = "Error Message:";
             // 
-            // UserResterauntSearch
+            // UserRestarauntSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -125,7 +125,7 @@
             this.Controls.Add(this.ListOfRestaurants);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.Name = "UserResterauntSearch";
+            this.Name = "UserRestarauntSearch";
             this.Text = "User Menu: Search for Restaurant";
             this.Load += new System.EventHandler(this.UserResterauntSearch_Load);
             this.ResumeLayout(false);

@@ -41,7 +41,7 @@
             this.TwoStepCodeTextBox.Location = new System.Drawing.Point(155, 280);
             this.TwoStepCodeTextBox.Name = "TwoStepCodeTextBox";
             this.TwoStepCodeTextBox.Size = new System.Drawing.Size(172, 53);
-            this.TwoStepCodeTextBox.TabIndex = 2;
+            this.TwoStepCodeTextBox.TabIndex = 1;
             this.TwoStepCodeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TwoStepCodeTextBox.TextChanged += new System.EventHandler(this.TwoStepCodeTextBox_TextChanged);
             // 
@@ -85,7 +85,7 @@
             this.BackButton.Location = new System.Drawing.Point(12, 369);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(224, 80);
-            this.BackButton.TabIndex = 4;
+            this.BackButton.TabIndex = 2;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);

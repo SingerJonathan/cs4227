@@ -36,8 +36,8 @@
             this.OrderId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.User = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Cancelled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UserAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cancelled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // CurrentOrdersLabel
@@ -55,7 +55,7 @@
             this.BackButton.Location = new System.Drawing.Point(672, 569);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(300, 80);
-            this.BackButton.TabIndex = 2;
+            this.BackButton.TabIndex = 3;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
@@ -66,7 +66,7 @@
             this.CancelOrderButton.Location = new System.Drawing.Point(343, 569);
             this.CancelOrderButton.Name = "CancelOrderButton";
             this.CancelOrderButton.Size = new System.Drawing.Size(300, 80);
-            this.CancelOrderButton.TabIndex = 4;
+            this.CancelOrderButton.TabIndex = 2;
             this.CancelOrderButton.Text = "Cancel Order";
             this.CancelOrderButton.UseVisualStyleBackColor = false;
             this.CancelOrderButton.Click += new System.EventHandler(this.CancelOrderButton_Click);
@@ -77,7 +77,7 @@
             this.ViewOrderButton.Location = new System.Drawing.Point(12, 569);
             this.ViewOrderButton.Name = "ViewOrderButton";
             this.ViewOrderButton.Size = new System.Drawing.Size(300, 80);
-            this.ViewOrderButton.TabIndex = 7;
+            this.ViewOrderButton.TabIndex = 1;
             this.ViewOrderButton.Text = "View Order";
             this.ViewOrderButton.UseVisualStyleBackColor = false;
             this.ViewOrderButton.Click += new System.EventHandler(this.ViewOrderButton_Click);
@@ -117,15 +117,15 @@
             this.Price.Text = "Price";
             this.Price.Width = 100;
             // 
-            // Cancelled
-            // 
-            this.Cancelled.Text = "Cancelled";
-            this.Cancelled.Width = 205;
-            // 
             // UserAddress
             // 
             this.UserAddress.Text = "Address";
             this.UserAddress.Width = 300;
+            // 
+            // Cancelled
+            // 
+            this.Cancelled.Text = "Cancelled";
+            this.Cancelled.Width = 205;
             // 
             // RestAdminManageOrders
             // 
