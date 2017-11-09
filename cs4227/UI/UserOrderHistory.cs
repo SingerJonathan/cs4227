@@ -25,7 +25,7 @@ namespace cs4227.UI
 
         private void UserOrderHistory_Load(object sender, EventArgs e)
         {
-            List<Order> orders = DatabaseHandler.GetUserOrders(UserId);
+            List<Order> orders = DatabaseHandler.GetOrders(UserId);
             foreach (Order order in orders)
             {
                 ListViewItem row = new ListViewItem("" + order.Id);

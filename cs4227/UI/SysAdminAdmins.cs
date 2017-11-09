@@ -70,7 +70,7 @@ namespace cs4227.UI
             if (CorrectNameFormat)
             {
                 Boolean UsernameExists = false;
-                AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
+                AbstractUser Admin = DatabaseHandler.GetUser(0, AdminUsername);
 
                 if (Admin.Username == null)
                 {
@@ -116,7 +116,7 @@ namespace cs4227.UI
         private void SysAdminAdminsMenu_Load(object sender, EventArgs e)
         {
             ErrorMessageLabel.Visible = false;
-            List<AbstractUser> Admins = DatabaseHandler.GetAdmins();
+            List<AbstractUser> Admins = DatabaseHandler.GetUsers(true);
             foreach (AbstractUser Admin in Admins)
             {
                 ListViewItem AdminItem = new ListViewItem(Admin.Username);

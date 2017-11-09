@@ -38,7 +38,7 @@ namespace cs4227.UI
             if (CorrectNameFormat)
             {
                 Boolean Restaurantfound = false;
-                Restaurant.Restaurant Rest =  DatabaseHandler.GetRestaurant(RestaurantName);
+                Restaurant.Restaurant Rest =  DatabaseHandler.GetRestaurant(0, RestaurantName);
                 if (Rest == null)
                 {
                     Restaurantfound = false;

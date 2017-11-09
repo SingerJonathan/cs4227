@@ -57,7 +57,7 @@ namespace cs4227.UI
             //Hash password input so the raw password isn't stored in the database
             string hashPassword = StaticAccessor.HashString(Password);
 
-            AbstractUser User = DatabaseHandler.GetUser(Username);
+            AbstractUser User = DatabaseHandler.GetUser(0, Username);
 
             //Check User exists in db and compare hashed passwords
             if (User.Username == null || !User.Password.Equals(hashPassword))

@@ -29,7 +29,7 @@ namespace cs4227.UI
         private void RestMenu_Load(object sender, EventArgs e)
         {
             Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(RestaurantId);
-            AbstractUser Admin = DatabaseHandler.GetAdmin(RestaurantId);
+            AbstractUser Admin = DatabaseHandler.GetUser(0, "", "", RestaurantId);
             RestaurantName = Rest.Name;
             RestaurantAdmin = Admin.Username;
             RestaurantNameLabel.Text = "Restaurant Name: " + RestaurantName;

@@ -32,8 +32,6 @@ namespace cs4227.UI
         private string DeliveryAddress = "";
         private Boolean IsCancelled = false;
         
-
-
         public RestAdminViewOrders(int AdminId, int RestaurantId, int OrderNo)
         {
             this.AdminId = AdminId;
@@ -45,30 +43,25 @@ namespace cs4227.UI
         private void RestAdminViewOrders_Load(object sender, EventArgs e)
         {
             OrderNumberLabel.Text = "Viewing Order No: " + OrderNo;
-
-            List<Order> orders = DatabaseHandler.GetRestaurantOrder(OrderNo, RestaurantId);
-            foreach (Order order in orders)
+            Order order = DatabaseHandler.GetOrder(OrderNo);
+            ListViewItem row = new ListViewItem("" + order.Id);
+            row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetUser(order.UserId).Username));
+            for (int i = 0; i < 8; i++)
             {
-                ListViewItem row = new ListViewItem("" + order.Id);
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + DatabaseHandler.GetUser(order.UserId).Username));
-                for (int i = 0; i < 8; i++)
-                {
-                    if (i < order.FoodItems.Count)
-                        row.SubItems.Add(new ListViewItem.ListViewSubItem(row, DatabaseHandler.GetFoodItem(order.FoodItems[i].Id).Name));
-                    else
-                        row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
-                }
-                string cost = order.Cost.ToString();
-                if (cost.Length == 1 || cost.Length == 2)
-                {
-                    cost += ".00";
-                }
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));
-                Order.Items.Add(row);
-
+                if (i < order.FoodItems.Count)
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, DatabaseHandler.GetFoodItem(order.FoodItems[i].Id).Name));
+                else
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
             }
+            string cost = order.Cost.ToString();
+            if (cost.Length == 1 || cost.Length == 2)
+            {
+                cost += ".00";
+            }
+            row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
+            row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
+            row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));
+            Order.Items.Add(row);
         }
 
         private void BackButton_Click(object sender, EventArgs e)

@@ -28,7 +28,7 @@ namespace cs4227.UI
 
         private void RestAdminManageOrders_Load(object sender, EventArgs e)
         {
-            List<Order> orders = DatabaseHandler.GetRestaurantOrders(RestaurantId);
+            List<Order> orders = DatabaseHandler.GetOrders(RestaurantId);
             foreach (Order order in orders)
             {
                 if (order.RestaurantId == RestaurantId)

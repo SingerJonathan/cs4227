@@ -538,14 +538,14 @@ namespace cs4227.UI
             {
                 AbstractUser previousOwner = DatabaseHandler.GetUser(DatabaseHandler.GetRestaurant(RestaurantId).OwnerId);
 
-                int ownerId = DatabaseHandler.GetUser(RestaurantOwnerUsername).Id;
+                int ownerId = DatabaseHandler.GetUser(0, RestaurantOwnerUsername).Id;
                 Restaurant.Restaurant restaurant = new Restaurant.Restaurant(RestaurantId, RestaurantName, RestaurantAddress, ownerId, RestaurantPhoneNumber, RestaurantEmail, RestaurantOpeningHours, RestaurantClosingHours, RestaurantDaysOpen, RestaurantType, Double.Parse(RestaurantDeliveryCharge), false);
                 if (newRestaurant)
                     DatabaseHandler.InsertRestaurant(restaurant);
                 else
                     DatabaseHandler.UpdateRestaurant(restaurant);
 
-                int newRestaurantId = DatabaseHandler.GetRestaurant(RestaurantName).Id;
+                int newRestaurantId = DatabaseHandler.GetRestaurant(0, RestaurantName).Id;
                 AbstractUser restaurantAdmin = DatabaseHandler.GetUser(ownerId);
                 restaurantAdmin.RestaurantId = newRestaurantId;
                 DatabaseHandler.UpdateUser(restaurantAdmin);

@@ -36,7 +36,7 @@ namespace cs4227.UI
         private void RestAdminViewMenu_Load(object sender, EventArgs e)
         {
             PriceTextbox.Text = Price;
-            List<FoodItem> FoodItems = DatabaseHandler.GetRestaurantFoodItems(RestaurantId);
+            List<FoodItem> FoodItems = DatabaseHandler.GetFoodItems(RestaurantId);
             foreach (FoodItem Food in FoodItems)
             {
                 ListViewItem row = new ListViewItem("" + Food.Id);

@@ -14,21 +14,14 @@ namespace cs4227.Database
         
         public static SqlConnection GetLocalDBConnection()
         {
-            try
-            {
-                string outputFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string dbFileName = Path.Combine(outputFolder, DB_NAME + ".mdf");
-                string logFileName = Path.Combine(outputFolder, String.Format("{0}_log.ldf", DB_NAME));
+            string outputFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string dbFileName = Path.Combine(outputFolder, DB_NAME + ".mdf");
+            string logFileName = Path.Combine(outputFolder, String.Format("{0}_log.ldf", DB_NAME));
 
-                string connectionString = String.Format(@"Data Source=(LocalDB)\v11.0;AttachDBFileName={1};Initial Catalog={0};Integrated Security=True;", DB_NAME, dbFileName);
-                SqlConnection connection = new SqlConnection(connectionString);
-                connection.Open();
-                return connection;
-            }
-            catch
-            {
-                throw;
-            }
+            string connectionString = String.Format(@"Data Source=(LocalDB)\v11.0;AttachDBFileName={1};Initial Catalog={0};Integrated Security=True;", DB_NAME, dbFileName);
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            return connection;
         }
         
         #region INSERT
@@ -187,29 +180,19 @@ namespace cs4227.Database
             return order;
         }
 
-        public static Restaurant.Restaurant GetRestaurant(int id)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Restaurants] WHERE [Id] = " + id + " AND [Deleted] = 0";
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            Restaurant.Restaurant restaurant = new Restaurant.Restaurant();
-            if (reader.Read())
-                restaurant = new Restaurant.Restaurant(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), Convert.ToDouble(reader[10]), reader.GetBoolean(11));
-            connection.Close();
-            return restaurant;
-        }
-
-        public static Restaurant.Restaurant GetRestaurant(string name)
+        public static Restaurant.Restaurant GetRestaurant(int id, string name = "")
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
             string restaurantName = name;
-            if (restaurantName.Contains("'"))
-                restaurantName = restaurantName.Replace("'", "''");
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Restaurants] WHERE [Name] = '" + restaurantName + "' AND [Deleted] = 0";
+            if (!name.Equals(""))
+            {
+                if (restaurantName.Contains("'"))
+                    restaurantName = restaurantName.Replace("'", "''");
+                command.CommandText = "SELECT TOP 1 * FROM [dbo].[Restaurants] WHERE [Name] = '" + restaurantName + "' AND [Deleted] = 0";
+            }
+            else
+                command.CommandText = "SELECT * FROM [dbo].[Restaurants] WHERE [Id] = " + id + " AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             Restaurant.Restaurant restaurant = new Restaurant.Restaurant();
@@ -235,36 +218,25 @@ namespace cs4227.Database
             return foodItem;
         }
 
-        public static AbstractUser GetUser(int id)
+        public static AbstractUser GetUser(int id, string username = "", string email = "", int restaurantId = 0, string restaurantName = "")
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [Id] = " + id + " AND [Deleted] = 0";
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            AbstractUser user = new User.User();
-            if (reader.Read())
+            string restaurant = restaurantName;
+            if (!username.Equals(""))
+                command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [dbo].[Users].[Username] = '" + username + "' AND [Deleted] = 0";
+            else if (!email.Equals(""))
+                command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [Email] = '" + email + "' AND [Deleted] = 0";
+            else if (restaurantId != 0)
+                command.CommandText = "SELECT * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Restaurants].[Id] = [dbo].[Users].[RestaurantId] WHERE [dbo].[Restaurants].[Id] = " + restaurantId + " AND [dbo].[Users].[Deleted] = 0";
+            else if (!restaurantName.Equals(""))
             {
-                string userType = "User";
-                if (reader.GetBoolean(8))
-                    userType = "RestAdmin";
-                else if (reader.GetBoolean(9))
-                    userType = "SysAdmin";
-                int restaurantId = 0;
-                if (!reader.IsDBNull(7))
-                    restaurantId = reader.GetInt32(7);
-                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
+                if (restaurant.Contains("'"))
+                    restaurant = restaurant.Replace("'", "''");
+                command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantId] = [dbo].[Restaurants].[Id] WHERE [dbo].[Restaurants].[Name] = '" + restaurant + "' AND [dbo].[Users].[Deleted] = 0";
             }
-            connection.Close();
-            return user;
-        }
-
-        public static AbstractUser GetAdmin(int RestaurantId)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Restaurants].[Id] = [dbo].[Users].[RestaurantId] WHERE [dbo].[Restaurants].[Id] = " + RestaurantId + " AND [dbo].[Users].[Deleted] = 0";
+            else
+                command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [Id] = " + id + " AND [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             AbstractUser user = new User.User();
@@ -275,114 +247,11 @@ namespace cs4227.Database
                     userType = "RestAdmin";
                 else if (reader.GetBoolean(9))
                     userType = "SysAdmin";
-                int restaurantId = 0;
+                int restId = 0;
                 if (!reader.IsDBNull(7))
-                    restaurantId = reader.GetInt32(7);
+                    restId = reader.GetInt32(7);
                 user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
-            }
-            connection.Close();
-            return user;
-        }
-
-        public static AbstractUser GetUser(string username)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [dbo].[Users].[Username] = '" + username + "' AND [Deleted] = 0";
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            AbstractUser user = new User.User();
-            if (reader.Read())
-            {
-                string userType = "User";
-                if (reader.GetBoolean(8))
-                    userType = "RestAdmin";
-                else if (reader.GetBoolean(9))
-                    userType = "SysAdmin";
-                int restaurantId = 0;
-                if (!reader.IsDBNull(7))
-                    restaurantId = reader.GetInt32(7);
-                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
-            }
-            connection.Close();
-            return user;
-        }
-
-        public static AbstractUser GetUserEmail(string email)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] WHERE [Email] = '" + email + "' AND [Deleted] = 0";
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            AbstractUser user = new User.User();
-            if (reader.Read())
-            {
-                string userType = "User";
-                if (reader.GetBoolean(8))
-                    userType = "RestAdmin";
-                else if (reader.GetBoolean(9))
-                    userType = "SysAdmin";
-                int restaurantId = 0;
-                if (!reader.IsDBNull(7))
-                    restaurantId = reader.GetInt32(7);
-                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
-            }
-            connection.Close();
-            return user;
-        }
-
-        public static AbstractUser CheckAdminExists(string restaurantname)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            string restaurant = restaurantname;
-            if (restaurant.Contains("'"))
-                restaurant = restaurant.Replace("'", "''");
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantId] = [dbo].[Restaurants].[Id] WHERE [dbo].[Restaurants].[Name] = '" + restaurant + "' AND [dbo].[Users].[Deleted] = 0";
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            AbstractUser user = new User.User();
-            if (reader.Read())
-            {
-                string userType = "User";
-                if (reader.GetBoolean(8))
-                    userType = "RestAdmin";
-                else if (reader.GetBoolean(9))
-                    userType = "SysAdmin";
-                int restaurantId = 0;
-                if (!reader.IsDBNull(7))
-                    restaurantId = reader.GetInt32(7);
-                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
-            }
-            connection.Close();
-            return user;
-        }
-
-        public static AbstractUser CheckIfAdmin(string username)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT TOP 1 * FROM [dbo].[Users] JOIN [dbo].[Restaurants] ON [dbo].[Users].[RestaurantAdmin] = 1 WHERE [dbo].[Users].[Username] = '" + username + "' AND [dbo].[Users].[Deleted] = 0";
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            AbstractUser user = new User.User();
-            if (reader.Read())
-            {
-                string userType = "User";
-                if (reader.GetBoolean(8))
-                    userType = "RestAdmin";
-                else if (reader.GetBoolean(9))
-                    userType = "SysAdmin";
-                int restaurantId = 0;
-                if (!reader.IsDBNull(7))
-                    restaurantId = reader.GetInt32(7);
-                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
+                    reader.GetString(5), reader.GetInt32(6), userType, restId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
             }
             connection.Close();
             return user;
@@ -405,11 +274,16 @@ namespace cs4227.Database
         #endregion
         #region SELECT / GET ALL
 
-        public static List<Order> GetOrders()
+        public static List<Order> GetOrders(int userId = 0, int restaurantId = 0)
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Orders]";
+            if (userId > 0)
+                command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [User] = " + userId;
+            else if (restaurantId > 0)
+                command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Restaurant] = " + restaurantId;
+            else
+                command.CommandText = "SELECT * FROM [dbo].[Orders]";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             List<Order> orders = new List<Order>();
@@ -426,90 +300,6 @@ namespace cs4227.Database
                 {
                     if (!reader.IsDBNull(3+i))
                     order.Add(GetFoodItem((int)reader["Item" + i]));
-                }
-                orders.Add(order);
-            }
-            connection.Close();
-            return orders;
-        }
-
-        public static List<Order> GetUserOrders(int id)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [User] = " + id;
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            List<Order> orders = new List<Order>();
-            while (reader.Read())
-            {
-                Order order = new Order();
-                order.Id = (int)reader["Id"];
-                order.UserId = (int)reader["User"];
-                order.RestaurantId = (int)reader["Restaurant"];
-                order.Address = (string)reader["Address"];
-                order.Cost = Convert.ToDouble(reader["Cost"]);
-                order.Cancelled = (bool)reader["Cancelled"];
-                for (int i = 0; i < 8; i++)
-                {
-                    if (!reader.IsDBNull(3 + i))
-                        order.Add(GetFoodItem((int)reader["Item" + i]));
-                }
-                orders.Add(order);
-            }
-            connection.Close();
-            return orders;
-        }
-
-        public static List<Order> GetRestaurantOrder(int OrderId, int RestaurantId)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Id] = " + OrderId + " AND [Restaurant] = " + RestaurantId;
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            List<Order> orders = new List<Order>();
-            while (reader.Read())
-            {
-                Order order = new Order();
-                order.Id = (int)reader["Id"];
-                order.UserId = (int)reader["User"];
-                order.RestaurantId = (int)reader["Restaurant"];
-                order.Address = (string)reader["Address"];
-                order.Cost = Convert.ToDouble(reader["Cost"]);
-                order.Cancelled = (bool)reader["Cancelled"];
-                for (int i = 0; i < 8; i++)
-                {
-                    if (!reader.IsDBNull(3 + i))
-                        order.Add(GetFoodItem((int)reader["Item" + i]));
-                }
-                orders.Add(order);
-            }
-            connection.Close();
-            return orders;
-        }
-
-        public static List<Order> GetRestaurantOrders(int RestaurantId)
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE [Restaurant] = " + RestaurantId;
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            List<Order> orders = new List<Order>();
-            while (reader.Read())
-            {
-                Order order = new Order();
-                order.Id = (int)reader["Id"];
-                order.UserId = (int)reader["User"];
-                order.RestaurantId = (int)reader["Restaurant"];
-                order.Address = (string)reader["Address"];
-                order.Cost = Convert.ToDouble(reader["Cost"]);
-                order.Cancelled = (bool)reader["Cancelled"];
-                for (int i = 0; i < 8; i++)
-                {
-                    if (!reader.IsDBNull(3 + i))
-                        order.Add(GetFoodItem((int)reader["Item" + i]));
                 }
                 orders.Add(order);
             }
@@ -535,38 +325,14 @@ namespace cs4227.Database
             return restaurants;
         }
 
-        public static List<AbstractUser> GetAdmins()
+        public static List<FoodItem> GetFoodItems(int restaurantId = 0)
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [RestaurantAdmin] = 1 AND [Deleted] = 0";
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            List<AbstractUser> users = new List<AbstractUser>();
-            while (reader.Read())
-            {
-                AbstractUser user = new User.User();
-                string userType = "User";
-                if (reader.GetBoolean(8))
-                    userType = "RestAdmin";
-                else if (reader.GetBoolean(9))
-                    userType = "SysAdmin";
-                int restaurantId = 0;
-                if (!reader.IsDBNull(7))
-                    restaurantId = reader.GetInt32(7);
-                user = new UserFactory().GetUser(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetInt32(6), userType, restaurantId, reader.GetBoolean(8), reader.GetBoolean(9), reader.GetBoolean(10));
-                users.Add(user);
-            }
-            connection.Close();
-            return users;
-        }
-
-        public static List<FoodItem> GetFoodItems()
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Deleted] = 0";
+            if (restaurantId > 0)
+                command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Deleted] <> 'true' AND [Restaurant] = " + restaurantId;
+            else
+                command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             List<FoodItem> foodItems = new List<FoodItem>();
@@ -580,29 +346,14 @@ namespace cs4227.Database
             return foodItems;
         }
 
-        public static List<FoodItem> GetRestaurantFoodItems(int RestId)
+        public static List<AbstractUser> GetUsers(bool restaurantAdmins = false)
         {
             SqlConnection connection = GetLocalDBConnection();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Items] WHERE [Deleted] <> 'true' AND [Restaurant] = " + RestId;
-            command.Connection = connection;
-            SqlDataReader reader = command.ExecuteReader();
-            List<FoodItem> foodItems = new List<FoodItem>();
-            while (reader.Read())
-            {
-                FoodItem foodItem = new FoodItem(reader.GetInt32(0), reader.GetString(1), Convert.ToDouble(reader[2]), reader.GetInt32(3), Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[1],
-                    Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[2], Convert.ToDouble(reader[4])*UI.StaticAccessor.Discounts[3], reader.GetBoolean(5));
-                foodItems.Add(foodItem);
-            }
-            connection.Close();
-            return foodItems;
-        }
-
-        public static List<AbstractUser> GetUsers()
-        {
-            SqlConnection connection = GetLocalDBConnection();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [Deleted] = 0";
+            if (restaurantAdmins)
+                command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [RestaurantAdmin] = 1 AND [Deleted] = 0";
+            else
+                command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [Deleted] = 0";
             command.Connection = connection;
             SqlDataReader reader = command.ExecuteReader();
             List<AbstractUser> users = new List<AbstractUser>();

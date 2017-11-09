@@ -43,7 +43,7 @@ namespace cs4227.UI
                 YourOrder.Columns[0].Width += 170;
             }
 
-            List<FoodItem> FoodItems = DatabaseHandler.GetRestaurantFoodItems(RestaurantId);
+            List<FoodItem> FoodItems = DatabaseHandler.GetFoodItems(RestaurantId);
             foreach (FoodItem Food in FoodItems)
             {
                 ListViewItem row = new ListViewItem(Food.Name);

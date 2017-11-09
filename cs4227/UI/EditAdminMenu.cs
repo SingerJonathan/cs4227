@@ -64,7 +64,7 @@ namespace cs4227.UI
 
             if (!newAdmin)
             {
-                AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
+                AbstractUser Admin = DatabaseHandler.GetUser(0, AdminUsername);
                 Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(Admin.RestaurantId);
                 AdminEmail = Admin.Email;
                 AdminFirstName = Admin.FirstName;
@@ -256,7 +256,7 @@ namespace cs4227.UI
             else
             {
                 Boolean UsernameExists = false;
-                AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
+                AbstractUser Admin = DatabaseHandler.GetUser(0, AdminUsername);
 
                 if (Admin.Username == null)
                 {
@@ -342,8 +342,8 @@ namespace cs4227.UI
                 Boolean UsernameExists = false;
                 Boolean EmailExists = false;
                 //Boolean RestaurantExists = false;
-                AbstractUser Admin = DatabaseHandler.GetUser(AdminUsername);
-                AbstractUser Admin2 = DatabaseHandler.GetUserEmail(AdminEmail);
+                AbstractUser Admin = DatabaseHandler.GetUser(0, AdminUsername);
+                AbstractUser Admin2 = DatabaseHandler.GetUser(0, "", AdminEmail);
                 //Restaurant.Restaurant Rest = DatabaseHandler.GetRestaurant(AdminRestaurant);
 
                 if (newAdmin)
@@ -380,9 +380,10 @@ namespace cs4227.UI
                 if (!UsernameExists && !EmailExists/* && RestaurantExists*/)
                 {
                     //check if admin already exists
-                    AbstractUser RestaurantAdminExists = DatabaseHandler.CheckAdminExists(AdminRestaurant);
-                    AbstractUser IsCurrentAdmin = DatabaseHandler.CheckIfAdmin(AdminUsername);
-                    
+                    AbstractUser RestaurantAdminExists = DatabaseHandler.GetUser(0, "", "", 0, AdminRestaurant);
+                    //AbstractUser IsCurrentAdmin = DatabaseHandler.CheckIfAdmin(AdminUsername);
+                    AbstractUser CurrentAdmin = DatabaseHandler.GetUser(0, AdminUsername);
+
                     //Hash password input so the raw password isn't stored in the database
                     string hashPassword = StaticAccessor.HashString(AdminPassword);
 
@@ -390,8 +391,8 @@ namespace cs4227.UI
                     {
                         if (newAdmin)
                         {
-                            int restaurantId = DatabaseHandler.GetRestaurant(AdminRestaurant).Id;
-                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, hashPassword, AdminFirstName, AdminLastName, AdminEmail, 0, "RestAdmin", restaurantId, true);
+                            int restaurantId = DatabaseHandler.GetRestaurant(0, AdminRestaurant).Id;
+                            AbstractUser user = new UserFactory().GetUser(CurrentAdmin.Id, AdminUsername, hashPassword, AdminFirstName, AdminLastName, AdminEmail, 0, "RestAdmin", restaurantId, true);
                             DatabaseHandler.InsertUser(user);
                             MessageBox.Show("New Admin Created");
 
@@ -402,10 +403,10 @@ namespace cs4227.UI
                     }
                     else
                     {
-                        if (IsCurrentAdmin.Username != null) //admin of that restaurant
+                        if (CurrentAdmin.RestaurantAdmin) //admin of that restaurant
                         {
-                            int restaurantId = DatabaseHandler.GetRestaurant(AdminRestaurant).Id;
-                            AbstractUser user = new UserFactory().GetUser(IsCurrentAdmin.Id, AdminUsername, hashPassword, AdminFirstName, AdminLastName, AdminEmail, 0, "RestAdmin", restaurantId, true);
+                            int restaurantId = DatabaseHandler.GetRestaurant(0, AdminRestaurant).Id;
+                            AbstractUser user = new UserFactory().GetUser(CurrentAdmin.Id, AdminUsername, hashPassword, AdminFirstName, AdminLastName, AdminEmail, 0, "RestAdmin", restaurantId, true);
                             DatabaseHandler.UpdateUser(user);
                             MessageBox.Show("Admin Details Updated");
 
@@ -476,7 +477,7 @@ namespace cs4227.UI
         {
             if(sysAdmin)
             {
-                AbstractUser admin = DatabaseHandler.GetUser(AdminUsername);
+                AbstractUser admin = DatabaseHandler.GetUser(0, AdminUsername);
                 if (admin.RestaurantId <= 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete " + AdminUsername + "?", "Delete Admin", MessageBoxButtons.YesNo);
