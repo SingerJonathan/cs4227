@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace cs4227.User
+﻿namespace cs4227.User
 {
     class UserFactory
     {
@@ -15,7 +13,7 @@ namespace cs4227.User
                 loginAPI = new SysAdmin();
             else if (userType.Equals("RestAdmin"))
                 loginAPI = new RestAdmin();
-
+            
             return new User(id, username, password, firstName, lastName, email, membership, loginAPI, restaurantId, restaurantAdmin, systemAdmin, deleted);
         }
     }

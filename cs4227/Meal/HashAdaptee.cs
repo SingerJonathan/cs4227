@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace cs4227.Meal
@@ -16,6 +17,7 @@ namespace cs4227.Meal
             //Convert each byte to 2 hexadecimal characters
             foreach (byte b in hash)
                 result += $"{b:x2}";
+            Console.WriteLine("Adaptee implementation called");
             return result;
         }
     }
