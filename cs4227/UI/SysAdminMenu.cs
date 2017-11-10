@@ -34,8 +34,8 @@ namespace cs4227.UI
         {
             String date = DateTime.Now.ToString("dd/MM/yyyy");
             String time = DateTime.Now.ToString("h:mm:ss tt");
-            DisplayDateLabel.Text = "Date: " + date;
-            DisplayTimeLabel.Text = "Current Time: " + time;
+            DisplayDateLabel.Text = @"Date: " + date;
+            DisplayTimeLabel.Text = @"Current Time: " + time;
         }
 
         private void RestaurantsButton_Click(object sender, EventArgs e)

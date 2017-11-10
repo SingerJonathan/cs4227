@@ -9,7 +9,7 @@ namespace cs4227.User
         public ProxyAuthenticator()
         {
             _realAuthenticator = new RealAuthenticator();
-            Console.WriteLine("New RealAuthenticator assigned to ProxyAuthenticator");
+            Console.WriteLine(@"New RealAuthenticator assigned to ProxyAuthenticator");
         }
 
         public void SendAuthenticationCode(string email)

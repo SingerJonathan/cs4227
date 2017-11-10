@@ -41,7 +41,7 @@ namespace cs4227.UI
         private void Form1_Load(object sender, EventArgs e)
         {
             Restaurant.Restaurant Rest = StaticAccessor.DB.GetRestaurant(RestaurantId);
-            RestaurantNameLabel.Text = "Restaurant: " + Rest.Name;
+            RestaurantNameLabel.Text = @"Restaurant: " + Rest.Name;
         }
 
         private void EditRestaurantButton_Click(object sender, EventArgs e)

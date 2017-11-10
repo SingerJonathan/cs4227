@@ -16,7 +16,7 @@ namespace cs4227.Database
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine($"({result} row(s) affected)");
+            Console.WriteLine($@"({result} row(s) affected)");
         }
 
         public static void UpdateFoodItem(FoodItem item)
@@ -28,7 +28,7 @@ namespace cs4227.Database
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine($"({result} row(s) affected)");
+            Console.WriteLine($@"({result} row(s) affected)");
         }
 
         public static FoodItem GetFoodItem(int id)

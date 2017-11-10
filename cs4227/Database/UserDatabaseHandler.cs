@@ -20,7 +20,7 @@ namespace cs4227.Database
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine($"({result} row(s) affected)");
+            Console.WriteLine($@"({result} row(s) affected)");
         }
 
         public static void UpdateUser(AbstractUser user)
@@ -37,7 +37,7 @@ namespace cs4227.Database
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine($"({result} row(s) affected)");
+            Console.WriteLine($@"({result} row(s) affected)");
         }
 
         public static AbstractUser GetUser(int id, string username = "", string email = "", int restaurantId = 0, string restaurantName = "")

@@ -49,7 +49,7 @@ namespace cs4227.UI
         private void LogOutButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new LoginMenuV2();
+            var loginMenuV2 = new LoginMenuV2();
         }
     }
 }

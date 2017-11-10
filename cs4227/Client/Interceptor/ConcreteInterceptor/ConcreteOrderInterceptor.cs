@@ -13,7 +13,7 @@ namespace cs4227.Interceptor.ConcreteInterceptor
     {
         public void OrderLog()
         {
-            Console.WriteLine("Check 1");
+            Console.WriteLine(@"Check 1");
             ContextObject OrderDetails = new ContextObject();
             Order order = OrderDetails.OrderContext();
             string FileName = "orders.txt";
@@ -30,12 +30,12 @@ namespace cs4227.Interceptor.ConcreteInterceptor
                 else
                 {
                     TextWriter tw = new StreamWriter(FileName, true);
-                    Console.WriteLine("Check 4");
+                    Console.WriteLine(@"Check 4");
                     tw.WriteLine(order.Id + ", Restaurant ID: " + order.RestaurantId + ", User ID: " + order.UserId + ", " + OrderTime);
-                    Console.WriteLine("Check 5");
+                    Console.WriteLine(@"Check 5");
                     tw.Close();
                 }
-                Console.WriteLine("Interceptor for logging orders invoked");
+                Console.WriteLine(@"Interceptor for logging orders invoked");
             }
             catch (IOException e) { }
         }

@@ -34,7 +34,7 @@ namespace cs4227.HashAdapter
                 //Convert each byte to 2 hexadecimal characters
                 foreach (byte b in hashPlusSalt)
                     result += $"{b:x2}";
-                Console.WriteLine("Adapter implementation called");
+                Console.WriteLine(@"Adapter implementation called");
                 return result;
             };
         }

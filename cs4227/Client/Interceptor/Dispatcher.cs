@@ -9,16 +9,16 @@ namespace cs4227.Interceptor
 {
     class Dispatcher
     {
-        List<Interceptor> list = new List<Interceptor>();
+        private readonly List<Interceptor> _list = new List<Interceptor>();
 
         public void RegisterInterceptor(Interceptor interceptor)
         {
-            list.Add(interceptor);
+            _list.Add(interceptor);
         }
 
         public void RemoveInterceptor(Interceptor interceptor)
         {
-            list.Remove(interceptor);
+            _list.Remove(interceptor);
         }
 
         public void DispatchLoginInterceptor(Interceptor interceptor, LoginMenuV2 reference)

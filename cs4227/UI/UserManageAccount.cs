@@ -59,9 +59,9 @@ namespace cs4227.UI
                 DeleteAccountButton.Enabled = false;
                 ErrorMessageLabel.Visible = false;
                 DeleteAccountButton.Hide();
-                this.Text = "User Menu: Create Account";
-                SaveChangesButton.Text = "Create Account";
-                BackButton.Text = "Cancel";
+                this.Text = @"User Menu: Create Account";
+                SaveChangesButton.Text = @"Create Account";
+                BackButton.Text = @"Cancel";
             }
             MembershipComboBox.SelectedIndex = Membership;
         }
@@ -105,13 +105,13 @@ namespace cs4227.UI
 
             if (!CorrectPasswordFormat)
             {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Text = @"Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                UserPasswordLabel.Text = "Password: ERROR";
+                UserPasswordLabel.Text = @"Password: ERROR";
             }
             else
             {
-                UserPasswordLabel.Text = "Password:";
+                UserPasswordLabel.Text = @"Password:";
                 ErrorMessage = "";
                 ErrorMessageLabel.Visible = false;
             }
@@ -146,9 +146,9 @@ namespace cs4227.UI
 
             if (!CorrectEmailFormat)
             {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Text = @"Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                UserEmailLabel.Text = "Email: ERROR";
+                UserEmailLabel.Text = @"Email: ERROR";
             }
             else
             {
@@ -164,9 +164,9 @@ namespace cs4227.UI
                 }
                 else
                 {
-                    ErrorMessageLabel.Text = "Error Message: Email already exists. Try Again!";
+                    ErrorMessageLabel.Text = @"Error Message: Email already exists. Try Again!";
                     ErrorMessageLabel.Visible = true;
-                    UserEmailLabel.Text = "Email: ERROR";
+                    UserEmailLabel.Text = @"Email: ERROR";
                     CorrectEmailFormat = false;
                 }
             }
@@ -199,9 +199,9 @@ namespace cs4227.UI
 
             if (!CorrectNameFormat)
             {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Text = @"Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                UserFirstNameLabel.Text = "First Name: ERROR";
+                UserFirstNameLabel.Text = @"First Name: ERROR";
             }
             else
             {
@@ -238,13 +238,13 @@ namespace cs4227.UI
 
             if (!CorrectNameFormat)
             {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Text = @"Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                UserLastNameLabel.Text = "Last Name: ERROR";
+                UserLastNameLabel.Text = @"Last Name: ERROR";
             }
             else
             {
-                UserLastNameLabel.Text = "Last Name:";
+                UserLastNameLabel.Text = @"Last Name:";
                 ErrorMessage = "";
                 ErrorMessageLabel.Visible = false;
             }
@@ -279,9 +279,9 @@ namespace cs4227.UI
 
             if (!CorrectUsernameFormat)
             {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Text = @"Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                UserUsernameLabel.Text = "Username: ERROR";
+                UserUsernameLabel.Text = @"Username: ERROR";
             }
             else
             {
@@ -292,15 +292,15 @@ namespace cs4227.UI
 
                     if (!UsernameExists)
                     {
-                        UserUsernameLabel.Text = "Username:";
+                        UserUsernameLabel.Text = @"Username:";
                         ErrorMessage = "";
                         ErrorMessageLabel.Visible = false;
                     }
                     else
                     {
-                        ErrorMessageLabel.Text = "Error Message: Username already exists. Try Again!";
+                        ErrorMessageLabel.Text = @"Error Message: Username already exists. Try Again!";
                         ErrorMessageLabel.Visible = true;
-                        UserUsernameLabel.Text = "Username: ERROR";
+                        UserUsernameLabel.Text = @"Username: ERROR";
                         CorrectUsernameFormat = false;
                     }
                 }
@@ -320,7 +320,7 @@ namespace cs4227.UI
             {
                 AbstractUser user = new UserFactory().GetUser(0, Username, hashPassword, FirstName, LastName, Email, Membership, "User");
                 StaticAccessor.DB.InsertUser(user);
-                MessageBox.Show("Account Created");
+                MessageBox.Show(@"Account Created");
                 this.Hide();
                 new LoginMenuV2();
             }
@@ -334,7 +334,7 @@ namespace cs4227.UI
                 user.Email = Email;
                 user.Membership = Membership;
                 StaticAccessor.DB.UpdateUser(user);
-                MessageBox.Show("Changes Saved");
+                MessageBox.Show(@"Changes Saved");
                 this.Hide();
                 UserMainMenu UMM = new UserMainMenu(UserId);
                 UMM.ShowDialog();
@@ -343,14 +343,14 @@ namespace cs4227.UI
 
         private void DeleteAccountButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show(Username + ", are you sure you want to delete your account?", "Delete Account", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show(Username + @", are you sure you want to delete your account?", @"Delete Account", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 AbstractUser user = StaticAccessor.DB.GetUser(UserId);
                 user.Deleted = true;
                 StaticAccessor.DB.UpdateUser(user);
                 
-                MessageBox.Show("Account Deleted \nReturning to login screen");
+                MessageBox.Show(@"Account Deleted Returning to login screen");
                 this.Hide();
                 new LoginMenuV2();
             }

@@ -20,7 +20,7 @@ namespace cs4227.Database
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine($"({result} row(s) affected)");
+            Console.WriteLine($@"({result} row(s) affected)");
         }
 
         public static void UpdateRestaurant(Restaurant.Restaurant restaurant)
@@ -37,7 +37,7 @@ namespace cs4227.Database
             command.Connection = connection;
             int result = command.ExecuteNonQuery();
             connection.Close();
-            Console.WriteLine($"({result} row(s) affected)");
+            Console.WriteLine($@"({result} row(s) affected)");
         }
 
         public static Restaurant.Restaurant GetRestaurant(int id, string name = "")

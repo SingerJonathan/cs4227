@@ -81,7 +81,7 @@ namespace cs4227.UI
                 Mementos.Add(Order.CreateMemento());
                 TotalCostLabel.Text = ""+ StaticAccessor.DoubleToMoneyString(Order.Cost);
                 if (YourOrder.Items.Count >= 8)
-                    MessageBox.Show("You've reached the item limit.");
+                    MessageBox.Show(@"You've reached the item limit.");
             }
         }
 

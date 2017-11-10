@@ -58,14 +58,14 @@ namespace cs4227.UI
 
             if (!CorrectAddressFormat)
             {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Text = @"Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                AddressLabel.Text = "Address: ERROR";
+                AddressLabel.Text = @"Address: ERROR";
             }
             else
             {
                 ErrorMessageLabel.Visible = false;
-                AddressLabel.Text = "Address:";
+                AddressLabel.Text = @"Address:";
             }
         }
 
@@ -121,9 +121,9 @@ namespace cs4227.UI
             }
 
             double deliveryCharge = StaticAccessor.DB.GetRestaurant(RestaurantId).Delivery;
-            OrderPriceLabel.Text = "Price: " + StaticAccessor.DoubleToMoneyString(Order.Cost-deliveryCharge);
-            DeliveryChargeLabel.Text = "Delivery: " + StaticAccessor.DoubleToMoneyString(deliveryCharge);
-            PriceLabel.Text = "Total: " + StaticAccessor.DoubleToMoneyString(Order.Cost);
+            OrderPriceLabel.Text = @"Price: " + StaticAccessor.DoubleToMoneyString(Order.Cost-deliveryCharge);
+            DeliveryChargeLabel.Text = @"Delivery: " + StaticAccessor.DoubleToMoneyString(deliveryCharge);
+            PriceLabel.Text = @"Total: " + StaticAccessor.DoubleToMoneyString(Order.Cost);
             ErrorMessageLabel.Visible = false;
         }
     }

@@ -57,15 +57,15 @@ namespace cs4227.UI
                 }
                 else
                 {
-                    MessageBox.Show("Error: Restaurant Not Found. \nSelect one from the list or Try Search Again.");
-                    EnterRestaurantName.Text = "Enter Restaurant Name: ERROR";
+                    MessageBox.Show(@"Error: Restaurant Not Found. Select one from the list or Try Search Again.");
+                    EnterRestaurantName.Text = @"Enter Restaurant Name: ERROR";
                 }
             }
             else
             {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Text = @"Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                EnterRestaurantName.Text = "Enter Restaurant Name: ERROR";
+                EnterRestaurantName.Text = @"Enter Restaurant Name: ERROR";
             }
         }
 
@@ -114,9 +114,9 @@ namespace cs4227.UI
 
             if (!CorrectNameFormat)
             {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Text = @"Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                EnterRestaurantName.Text = "Enter Restaurant Name: ERROR";
+                EnterRestaurantName.Text = @"Enter Restaurant Name: ERROR";
             }
         }
     }

@@ -20,7 +20,7 @@ namespace cs4227.Meal
         {
             int orderId = StaticAccessor.DB.GetNewestOrderId() + 1;
             StaticAccessor.DB.InsertOrder(order);
-            Console.WriteLine("Order "+ orderId + " placed");
+            Console.WriteLine(@"Order "+ orderId + @" placed");
             Interceptor.Interceptor interceptor = new ConcreteOrderInterceptor();
             Dispatcher dispatcher = new Dispatcher();
             dispatcher.DispatchOrderInterceptor(interceptor);

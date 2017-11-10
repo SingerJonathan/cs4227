@@ -18,9 +18,9 @@ namespace cs4227.Meal
             this.cancelled = cancelled;
             this.foodItems = new List<FoodItem>(foodItems);
 
-            Console.Write("Memento added: ");
+            Console.Write(@"Memento added: ");
             for (int i = 0; i < foodItems.Count; i++)
-                Console.Write("{0}, ", foodItems[i].Name);
+                Console.Write(@"{0}, ", foodItems[i].Name);
             Console.WriteLine();
         }
     }

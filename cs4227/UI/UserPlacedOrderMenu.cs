@@ -34,10 +34,10 @@ namespace cs4227.UI
             TotalCost = order.Cost + restaurant.Delivery;
 
             //getOrderid and Cost
-            OrderIdLabel.Text = "Order ID: " + OrderId;
-            TotalCostLabel.Text = "Total Cost: " + StaticAccessor.DoubleToMoneyString(TotalCost);
+            OrderIdLabel.Text = @"Order ID: " + OrderId;
+            TotalCostLabel.Text = @"Total Cost: " + StaticAccessor.DoubleToMoneyString(TotalCost);
             currentTime = DateTime.Now.ToString("h:mm");
-            TimeLabel.Text = "Time: " + currentTime;
+            TimeLabel.Text = @"Time: " + currentTime;
             Random num = new Random();
             int mins = num.Next(40, 100);
             int hours = 0;
@@ -47,7 +47,7 @@ namespace cs4227.UI
                 mins = mins - 60;
             }
             EDTime = hours + " Hours, " + mins + " Minutes";
-            EDTLabel.Text = "Estimated Delivery Time: " + EDTime; 
+            EDTLabel.Text = @"Estimated Delivery Time: " + EDTime; 
         }
 
         private void BackButton_Click(object sender, EventArgs e)

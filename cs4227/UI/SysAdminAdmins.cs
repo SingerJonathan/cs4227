@@ -59,9 +59,9 @@ namespace cs4227.UI
 
             if (!CorrectNameFormat)
             {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Text = @"Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                AdminUsernameLabel.Text = "Username: ERROR";
+                AdminUsernameLabel.Text = @"Username: ERROR";
             }
         }
 
@@ -84,7 +84,7 @@ namespace cs4227.UI
 
                 if (!UsernameExists)
                 {
-                    AdminUsernameLabel.Text = "Username:";
+                    AdminUsernameLabel.Text = @"Username:";
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
                     this.Hide();

@@ -61,9 +61,9 @@ namespace cs4227.UI
 
             if (!CorrectNameFormat)
             {
-                ErrorMessageLabel.Text = "Error Message: " + ErrorMessage;
+                ErrorMessageLabel.Text = @"Error Message: " + ErrorMessage;
                 ErrorMessageLabel.Visible = true;
-                RestaurantNameLabel.Text = "Enter Restaurant Name: ERROR";
+                RestaurantNameLabel.Text = @"Enter Restaurant Name: ERROR";
             }
             else
             {
@@ -73,14 +73,14 @@ namespace cs4227.UI
 
                 if (RestaurantExists)
                 {
-                    ErrorMessageLabel.Text = "Error Message: Restaurant does not exist";
+                    ErrorMessageLabel.Text = @"Error Message: Restaurant does not exist";
                     ErrorMessageLabel.Visible = true;
-                    RestaurantNameLabel.Text = "Enter Restaurant Name: ERROR";
+                    RestaurantNameLabel.Text = @"Enter Restaurant Name: ERROR";
                     CorrectNameFormat = false;
                 }
                 else
                 {
-                    RestaurantNameLabel.Text = "Enter Restaurant Name:";
+                    RestaurantNameLabel.Text = @"Enter Restaurant Name:";
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
                     CorrectNameFormat = true;

@@ -17,7 +17,7 @@ namespace cs4227.Meal
         {
             order.Cancelled = true;
             StaticAccessor.DB.UpdateOrder(order);
-            Console.WriteLine("Order " + order.Id + " cancelled");
+            Console.WriteLine(@"Order " + order.Id + @" cancelled");
         }
     }
 }

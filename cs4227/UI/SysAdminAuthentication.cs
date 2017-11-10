@@ -28,13 +28,13 @@ namespace cs4227.UI
                 _user.login();
             }
             else
-                MessageBox.Show("Invalid authentication code.", "Authentication Failure");
+                MessageBox.Show(@"Invalid authentication code.", @"Authentication Failure");
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
             Hide();
-            new LoginMenuV2();
+            var loginMenuV2 = new LoginMenuV2();
         }
 
         private void TwoStepCodeTextBox_TextChanged(object sender, EventArgs e)

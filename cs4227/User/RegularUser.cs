@@ -10,7 +10,7 @@ namespace cs4227.User
 
         public void login(string username, string password)
         {
-            Console.WriteLine("User " + username + " logged in.");
+            Console.WriteLine(@"User " + username + @" logged in.");
             AbstractUser User = StaticAccessor.DB.GetUser(0, username);
             UserId = User.Id;
             UserMainMenu UM = new UserMainMenu(UserId);
