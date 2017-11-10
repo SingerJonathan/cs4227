@@ -5,10 +5,10 @@ using cs4227.Meal;
 
 namespace cs4227.HashAdapter
 {
-    class HashAdapter : HashAdaptee
+    internal class HashAdapter : HashAdaptee
     {
+        private static readonly string salt = "936DefinitelyNotACulinaryIngredient428";
         public Func<string, string> RequestDelegate;
-        private static string salt = "936DefinitelyNotACulinaryIngredient428";
 
         // Set the delegate to the new standard
         // Adapter-Adaptee
@@ -16,23 +16,23 @@ namespace cs4227.HashAdapter
         {
             RequestDelegate = delegate(string input)
             {
-                string result = "";
+                var result = "";
                 //Convert input and salt into bytes
-                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-                byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
+                var inputBytes = Encoding.UTF8.GetBytes(input);
+                var saltBytes = Encoding.UTF8.GetBytes(salt);
                 //Add salt to input
-                byte[] mergedBytes = new byte[inputBytes.Length + saltBytes.Length];
+                var mergedBytes = new byte[inputBytes.Length + saltBytes.Length];
                 Buffer.BlockCopy(inputBytes, 0, mergedBytes, 0, inputBytes.Length);
                 Buffer.BlockCopy(saltBytes, 0, mergedBytes, inputBytes.Length, saltBytes.Length);
                 //Generate hash
                 HashAlgorithm hashAlgorithm = new SHA256Managed();
-                byte[] hash = hashAlgorithm.ComputeHash(mergedBytes);
+                var hash = hashAlgorithm.ComputeHash(mergedBytes);
                 //Add salt to the hash
-                byte[] hashPlusSalt = new byte[hash.Length + saltBytes.Length];
+                var hashPlusSalt = new byte[hash.Length + saltBytes.Length];
                 Buffer.BlockCopy(hash, 0, hashPlusSalt, 0, hash.Length);
                 Buffer.BlockCopy(saltBytes, 0, hashPlusSalt, hash.Length, saltBytes.Length);
                 //Convert each byte to 2 hexadecimal characters
-                foreach (byte b in hashPlusSalt)
+                foreach (var b in hashPlusSalt)
                     result += $"{b:x2}";
                 Console.WriteLine(@"Adapter implementation called");
                 return result;

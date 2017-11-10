@@ -6,10 +6,10 @@ namespace cs4227.Meal
 {
     public class Memento
     {
-        public readonly int id;
-        public readonly int userId;
         public readonly bool cancelled;
         public readonly List<FoodItem> foodItems;
+        public readonly int id;
+        public readonly int userId;
 
         public Memento(int id, int userId, bool cancelled, List<FoodItem> foodItems)
         {
@@ -19,7 +19,7 @@ namespace cs4227.Meal
             this.foodItems = new List<FoodItem>(foodItems);
 
             Console.Write(@"Memento added: ");
-            for (int i = 0; i < foodItems.Count; i++)
+            for (var i = 0; i < foodItems.Count; i++)
                 Console.Write(@"{0}, ", foodItems[i].Name);
             Console.WriteLine();
         }

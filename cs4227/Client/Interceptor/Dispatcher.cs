@@ -1,13 +1,9 @@
-﻿using cs4227.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using cs4227.UI;
 
 namespace cs4227.Interceptor
 {
-    class Dispatcher
+    internal class Dispatcher
     {
         private readonly List<Interceptor> _list = new List<Interceptor>();
 

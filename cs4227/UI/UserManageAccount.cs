@@ -1,36 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Net.Mail;
-using cs4227.Database;
+using System.Windows.Forms;
 using cs4227.User;
 
 namespace cs4227.UI
 {
     public partial class UserManageAccount : Form
     {
-        private int UserId = 0;
-        private string Username = "";
-        private string Password = "";
+        private bool CorrectEmailFormat;
+        private bool CorrectNameFormat;
+        private bool CorrectPasswordFormat;
+        private bool CorrectUsernameFormat;
         private string Email = "";
+        private string ErrorMessage = "";
         private string FirstName = "";
         private string LastName = "";
-        private int Membership = 0;
-        private string ErrorMessage = "";
-        private Boolean CorrectEmailFormat = false;
-        private Boolean CorrectNameFormat = false;
-        private Boolean CorrectUsernameFormat = false;
-        private Boolean CorrectPasswordFormat = false;
-        private Boolean newAccount = false;
+        private int Membership;
+        private readonly bool newAccount;
+        private string Password = "";
         private int ShowPassword = 1;
+        private readonly int UserId;
+        private string Username = "";
 
-        public UserManageAccount(int UserId, Boolean newAccount)
+        public UserManageAccount(int UserId, bool newAccount)
         {
             this.newAccount = newAccount;
             this.UserId = UserId;
@@ -41,7 +34,7 @@ namespace cs4227.UI
         {
             if (!newAccount)
             {
-                AbstractUser User = StaticAccessor.DB.GetUser(UserId);
+                var User = StaticAccessor.DB.GetUser(UserId);
                 Email = User.Email;
                 FirstName = User.FirstName;
                 LastName = User.LastName;
@@ -59,7 +52,7 @@ namespace cs4227.UI
                 DeleteAccountButton.Enabled = false;
                 ErrorMessageLabel.Visible = false;
                 DeleteAccountButton.Hide();
-                this.Text = @"User Menu: Create Account";
+                Text = @"User Menu: Create Account";
                 SaveChangesButton.Text = @"Create Account";
                 BackButton.Text = @"Cancel";
             }
@@ -68,7 +61,7 @@ namespace cs4227.UI
 
         private void UserPasswordTextbox_TextChanged(object sender, EventArgs e)
         {
-            Password = UserPasswordTextbox.Text.ToString();
+            Password = UserPasswordTextbox.Text;
 
             if (Password.Length > 4)
             {
@@ -119,18 +112,17 @@ namespace cs4227.UI
 
         private void UserEmailTextbox_TextChanged(object sender, EventArgs e)
         {
-            Email = UserEmailTextbox.Text.ToString();
+            Email = UserEmailTextbox.Text;
 
             if (Email.Length > 0)
             {
                 try
                 {
-                    MailAddress m = new MailAddress(Email);
+                    var m = new MailAddress(Email);
                     CorrectEmailFormat = true;
                 }
                 catch (FormatException)
                 {
-
                 }
                 if (!CorrectEmailFormat)
                 {
@@ -152,7 +144,7 @@ namespace cs4227.UI
             }
             else
             {
-                Boolean EmailExists = false;
+                var EmailExists = false;
                 //Add code to check if email already exists
 
                 if (!EmailExists)
@@ -174,7 +166,7 @@ namespace cs4227.UI
 
         private void UserFirstNameTextbox_TextChanged(object sender, EventArgs e)
         {
-            FirstName = UserFirstNameTextbox.Text.ToString();
+            FirstName = UserFirstNameTextbox.Text;
 
             if (FirstName.Length > 0)
             {
@@ -213,7 +205,7 @@ namespace cs4227.UI
 
         private void UserLastNameTextbox_TextChanged(object sender, EventArgs e)
         {
-            LastName = UserLastNameTextbox.Text.ToString();
+            LastName = UserLastNameTextbox.Text;
 
             if (LastName.Length > 0)
             {
@@ -252,11 +244,9 @@ namespace cs4227.UI
 
         private void UserUsernameTextbox_TextChanged(object sender, EventArgs e)
         {
-            if(!newAccount)
-            {
+            if (!newAccount)
                 UserUsernameTextbox.Text = Username;
-            }
-            Username = UserUsernameTextbox.Text.ToString();
+            Username = UserUsernameTextbox.Text;
 
 
             if (Username.Length > 0)
@@ -287,7 +277,7 @@ namespace cs4227.UI
             {
                 if (newAccount)
                 {
-                    Boolean UsernameExists = false;
+                    var UsernameExists = false;
                     //Add code to check if username exists already
 
                     if (!UsernameExists)
@@ -314,19 +304,20 @@ namespace cs4227.UI
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
             //Hash password input so the raw password isn't stored in the database
-            string hashPassword = StaticAccessor.HashString(Password);
+            var hashPassword = StaticAccessor.HashString(Password);
 
             if (newAccount)
             {
-                AbstractUser user = new UserFactory().GetUser(0, Username, hashPassword, FirstName, LastName, Email, Membership, "User");
+                var user = new UserFactory().GetUser(0, Username, hashPassword, FirstName, LastName, Email, Membership,
+                    "User");
                 StaticAccessor.DB.InsertUser(user);
                 MessageBox.Show(@"Account Created");
-                this.Hide();
+                Hide();
                 new LoginMenuV2();
             }
             else
             {
-                AbstractUser user = StaticAccessor.DB.GetUser(UserId);
+                var user = StaticAccessor.DB.GetUser(UserId);
                 user.FirstName = FirstName;
                 user.LastName = LastName;
                 user.Username = Username;
@@ -335,23 +326,24 @@ namespace cs4227.UI
                 user.Membership = Membership;
                 StaticAccessor.DB.UpdateUser(user);
                 MessageBox.Show(@"Changes Saved");
-                this.Hide();
-                UserMainMenu UMM = new UserMainMenu(UserId);
+                Hide();
+                var UMM = new UserMainMenu(UserId);
                 UMM.ShowDialog();
             }
         }
 
         private void DeleteAccountButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show(Username + @", are you sure you want to delete your account?", @"Delete Account", MessageBoxButtons.YesNo);
+            var dialogResult = MessageBox.Show(Username + @", are you sure you want to delete your account?",
+                @"Delete Account", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                AbstractUser user = StaticAccessor.DB.GetUser(UserId);
+                var user = StaticAccessor.DB.GetUser(UserId);
                 user.Deleted = true;
                 StaticAccessor.DB.UpdateUser(user);
-                
+
                 MessageBox.Show(@"Account Deleted Returning to login screen");
-                this.Hide();
+                Hide();
                 new LoginMenuV2();
             }
             else if (dialogResult == DialogResult.No)
@@ -363,13 +355,13 @@ namespace cs4227.UI
         {
             if (newAccount)
             {
-                this.Hide();
+                Hide();
                 new LoginMenuV2();
             }
             else
             {
-                this.Hide();
-                UserMainMenu UMM = new UserMainMenu(UserId);
+                Hide();
+                var UMM = new UserMainMenu(UserId);
                 UMM.ShowDialog();
             }
         }

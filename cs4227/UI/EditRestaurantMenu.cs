@@ -1,57 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Net.Mail;
-using cs4227.Database;
-using cs4227.Restaurant;
-using cs4227.User;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace cs4227.UI
 {
     public partial class EditRestaurantMenu : Form
     {
-        private int RestaurantId = 0;
-        private int AdminId = 0;
-        private string RestaurantName = "";
+        private readonly int AdminId;
+        private bool CorrectAddressFormat;
+        private bool CorrectClosingHoursFormat;
+        private bool CorrectDaysOpenFormat;
+        private bool CorrectDeliveryChargeFormat;
+        private bool CorrectEmailFormat;
+        private bool CorrectNameFormat;
+        private bool CorrectOpeningHoursFormat;
+        private bool CorrectOwnerFormat;
+        private bool CorrectOwnerUsernameFormat;
+        private bool CorrectPhoneNumberFormat;
+        private bool CorrectTypeFormat;
+        private string ErrorMessage = "";
+        private readonly bool newRestaurant;
         private string RestaurantAddress = "";
-        private string RestaurantOwner = "";
-        private string RestaurantPhoneNumber = "";
-        private string RestaurantEmail = "";
-        private string RestaurantOwnerUsername = "";
-        private string RestaurantOpeningHours = "";
         private string RestaurantClosingHours = "";
         private string RestaurantDaysOpen = "";
-        private string RestaurantType = "";
         private string RestaurantDeliveryCharge = "";
-        private string ErrorMessage = "";
-        private Boolean CorrectNameFormat = false;
-        private Boolean CorrectAddressFormat = false;
-        private Boolean CorrectOwnerFormat = false;
-        private Boolean CorrectPhoneNumberFormat = false;
-        private Boolean CorrectEmailFormat = false;
-        private Boolean CorrectOwnerUsernameFormat = false;
-        private Boolean CorrectOpeningHoursFormat = false;
-        private Boolean CorrectClosingHoursFormat = false;
-        private Boolean CorrectDaysOpenFormat = false;
-        private Boolean CorrectTypeFormat = false;
-        private Boolean CorrectDeliveryChargeFormat = false;
-        private Boolean newRestaurant = false;
-        private Boolean sysAdmin = false;
+        private string RestaurantEmail = "";
+        private readonly int RestaurantId;
+        private string RestaurantName = "";
+        private string RestaurantOpeningHours = "";
+        private string RestaurantOwner = "";
+        private string RestaurantOwnerUsername = "";
+        private string RestaurantPhoneNumber = "";
+        private string RestaurantType = "";
+        private readonly bool sysAdmin;
 
-        public EditRestaurantMenu(int AdminId, int RestaurantId, Boolean newRestaurant, Boolean sysAdmin, string restaurantName = "")
+        public EditRestaurantMenu(int AdminId, int RestaurantId, bool newRestaurant, bool sysAdmin,
+            string restaurantName = "")
         {
             this.AdminId = AdminId;
             this.RestaurantId = RestaurantId;
 
-            Restaurant.Restaurant Rest = StaticAccessor.DB.GetRestaurant(RestaurantId);
-            AbstractUser owner = StaticAccessor.DB.GetUser(Rest.OwnerId);
+            var Rest = StaticAccessor.DB.GetRestaurant(RestaurantId);
+            var owner = StaticAccessor.DB.GetUser(Rest.OwnerId);
 
             if (newRestaurant)
                 RestaurantName = restaurantName;
@@ -86,27 +78,27 @@ namespace cs4227.UI
             RestaurantOpeningHoursTextbox.Text = RestaurantOpeningHours;
             RestaurantClosingHoursTextbox.Text = RestaurantClosingHours;
             RestaurantDaysOpenTextbox.Text = RestaurantDaysOpen;
-            
-            RestaurantDeliveryChargeTextbox.Text = StaticAccessor.DoubleToMoneyString(Convert.ToDouble(RestaurantDeliveryCharge));
+
+            RestaurantDeliveryChargeTextbox.Text =
+                StaticAccessor.DoubleToMoneyString(Convert.ToDouble(RestaurantDeliveryCharge));
 
             if (sysAdmin)
             {
-                this.Text = "SysAdmin Menu: Edit Restaurant";
+                Text = "SysAdmin Menu: Edit Restaurant";
             }
             else
             {
                 DeleteRestaurantButton.Enabled = false;
                 DeleteRestaurantButton.Visible = false;
-                this.Text = "Admin Menu: Edit Restaurant";
+                Text = "Admin Menu: Edit Restaurant";
             }
-
         }
 
         private void RestaurantNameTextbox_TextChanged(object sender, EventArgs e)
         {
             if (sysAdmin)
             {
-                RestaurantName = RestaurantNameTextbox.Text.ToString();
+                RestaurantName = RestaurantNameTextbox.Text;
             }
             else
             {
@@ -117,7 +109,6 @@ namespace cs4227.UI
 
             if (RestaurantName.Length > 0)
             {
-
                 if (RestaurantName.Any(char.IsSymbol))
                 {
                     ErrorMessage = "Can't use Symbols in a Restaurant's Name";
@@ -142,7 +133,7 @@ namespace cs4227.UI
             }
             else
             {
-                Boolean RestaurantExists = false;
+                var RestaurantExists = false;
 
                 //Add code to check if the restaurant exists
 
@@ -165,12 +156,11 @@ namespace cs4227.UI
 
         private void RestaurantAddressTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantAddress = RestaurantAddressTextbox.Text.ToString();
+            RestaurantAddress = RestaurantAddressTextbox.Text;
 
             if (RestaurantAddress.Length > 0)
             {
-
-                if (RestaurantAddress.Any(char.IsSymbol) || RestaurantAddress.Any(char.IsPunctuation)) 
+                if (RestaurantAddress.Any(char.IsSymbol) || RestaurantAddress.Any(char.IsPunctuation))
                 {
                     ErrorMessage = "Can't use Symbols in a Restaurant's Address";
                     CorrectAddressFormat = false;
@@ -194,7 +184,7 @@ namespace cs4227.UI
             }
             else
             {
-                Boolean RestaurantExists = false;
+                var RestaurantExists = false;
 
                 //Add code to check if the address already exists
 
@@ -217,7 +207,7 @@ namespace cs4227.UI
 
         private void RestaurantOwnerTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantOwner = RestaurantOwnerTextbox.Text.ToString();
+            RestaurantOwner = RestaurantOwnerTextbox.Text;
 
             if (RestaurantOwner.Length > 0)
             {
@@ -256,10 +246,9 @@ namespace cs4227.UI
 
         private void RestaurantPhoneNumberTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantPhoneNumber = RestaurantPhoneNumberTextbox.Text.ToString();
+            RestaurantPhoneNumber = RestaurantPhoneNumberTextbox.Text;
 
             if (RestaurantPhoneNumber.Length > 0)
-            {
                 if (!RestaurantPhoneNumber.All(char.IsDigit))
                 {
                     ErrorMessage = "Enter Numbers Only";
@@ -269,11 +258,8 @@ namespace cs4227.UI
                 {
                     CorrectPhoneNumberFormat = true;
                 }
-            }
             else
-            {
                 CorrectPhoneNumberFormat = false;
-            }
 
             if (!CorrectPhoneNumberFormat)
             {
@@ -291,18 +277,17 @@ namespace cs4227.UI
 
         private void RestaurantEmailTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantEmail = RestaurantEmailTextbox.Text.ToString();
+            RestaurantEmail = RestaurantEmailTextbox.Text;
 
             if (RestaurantEmail.Length > 0)
             {
                 try
                 {
-                    MailAddress m = new MailAddress(RestaurantEmail);
+                    var m = new MailAddress(RestaurantEmail);
                     CorrectEmailFormat = true;
                 }
                 catch (FormatException)
                 {
-
                 }
                 if (!CorrectEmailFormat)
                 {
@@ -324,7 +309,7 @@ namespace cs4227.UI
             }
             else
             {
-                Boolean EmailExists = false;
+                var EmailExists = false;
                 //Add code to check if email already exists
 
                 if (!EmailExists)
@@ -346,10 +331,9 @@ namespace cs4227.UI
 
         private void RestaurantOpeningHoursTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantOpeningHours = RestaurantOpeningHoursTextbox.Text.ToString();
+            RestaurantOpeningHours = RestaurantOpeningHoursTextbox.Text;
 
             if (RestaurantOpeningHours.Length > 0)
-            {
                 if (!Regex.IsMatch(RestaurantOpeningHours, @"^(?:0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"))
                 {
                     ErrorMessage = "Enter Numbers Only \nFormat: 9:00 => 9am | 22:00 => 10pm";
@@ -359,11 +343,8 @@ namespace cs4227.UI
                 {
                     CorrectOpeningHoursFormat = true;
                 }
-            }
             else
-            {
                 CorrectOpeningHoursFormat = false;
-            }
 
             if (!CorrectOpeningHoursFormat)
             {
@@ -381,10 +362,9 @@ namespace cs4227.UI
 
         private void RestaurantClosingHoursTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantClosingHours = RestaurantClosingHoursTextbox.Text.ToString();
+            RestaurantClosingHours = RestaurantClosingHoursTextbox.Text;
 
             if (RestaurantClosingHours.Length > 0)
-            {
                 if (!Regex.IsMatch(RestaurantClosingHours, @"^(?:0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"))
                 {
                     ErrorMessage = "Enter Numbers Only \nFormat: 9:00 => 9am | 22:00 => 10pm";
@@ -394,11 +374,8 @@ namespace cs4227.UI
                 {
                     CorrectClosingHoursFormat = true;
                 }
-            }
             else
-            {
                 CorrectClosingHoursFormat = false;
-            }
 
             if (!CorrectClosingHoursFormat)
             {
@@ -416,7 +393,7 @@ namespace cs4227.UI
 
         private void RestaurantDaysOpenTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantDaysOpen = RestaurantDaysOpenTextbox.Text.ToString();
+            RestaurantDaysOpen = RestaurantDaysOpenTextbox.Text;
 
             if (RestaurantDaysOpen.Length > 0)
             {
@@ -455,7 +432,7 @@ namespace cs4227.UI
 
         private void RestaurantTypeTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantType = RestaurantTypeTextbox.Text.ToString();
+            RestaurantType = RestaurantTypeTextbox.Text;
 
             if (RestaurantType.Length > 0)
             {
@@ -494,10 +471,9 @@ namespace cs4227.UI
 
         private void RestaurantDeliveryChargeTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantDeliveryCharge = RestaurantDeliveryChargeTextbox.Text.ToString();
+            RestaurantDeliveryCharge = RestaurantDeliveryChargeTextbox.Text;
 
             if (RestaurantDeliveryCharge.Length > 0)
-            {
                 if (!Regex.IsMatch(RestaurantDeliveryCharge, @"^[0-9]*(\.[0-9]{1,2})?$"))
                 {
                     ErrorMessage = "Enter Numbers Only \nFormat: 2.00";
@@ -506,17 +482,12 @@ namespace cs4227.UI
                 else
                 {
                     if (RestaurantDeliveryCharge.Length == 1 || RestaurantDeliveryCharge.Length == 2)
-                    {
                         RestaurantDeliveryCharge += ".00";
-                    }
                     RestaurantDeliveryChargeTextbox.Text = RestaurantDeliveryCharge;
                     CorrectDeliveryChargeFormat = true;
                 }
-            }
             else
-            {
                 CorrectDeliveryChargeFormat = false;
-            }
 
             if (!CorrectDeliveryChargeFormat)
             {
@@ -534,19 +505,23 @@ namespace cs4227.UI
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            if(CorrectNameFormat && CorrectAddressFormat && CorrectOwnerFormat && CorrectPhoneNumberFormat && CorrectEmailFormat && CorrectOpeningHoursFormat && CorrectClosingHoursFormat && CorrectDaysOpenFormat && CorrectTypeFormat && CorrectDeliveryChargeFormat && CorrectOwnerUsernameFormat)
+            if (CorrectNameFormat && CorrectAddressFormat && CorrectOwnerFormat && CorrectPhoneNumberFormat &&
+                CorrectEmailFormat && CorrectOpeningHoursFormat && CorrectClosingHoursFormat && CorrectDaysOpenFormat &&
+                CorrectTypeFormat && CorrectDeliveryChargeFormat && CorrectOwnerUsernameFormat)
             {
-                AbstractUser previousOwner = StaticAccessor.DB.GetUser(StaticAccessor.DB.GetRestaurant(RestaurantId).OwnerId);
+                var previousOwner = StaticAccessor.DB.GetUser(StaticAccessor.DB.GetRestaurant(RestaurantId).OwnerId);
 
-                int ownerId = StaticAccessor.DB.GetUser(0, RestaurantOwnerUsername).Id;
-                Restaurant.Restaurant restaurant = new Restaurant.Restaurant(RestaurantId, RestaurantName, RestaurantAddress, ownerId, RestaurantPhoneNumber, RestaurantEmail, RestaurantOpeningHours, RestaurantClosingHours, RestaurantDaysOpen, RestaurantType, Double.Parse(RestaurantDeliveryCharge), false);
+                var ownerId = StaticAccessor.DB.GetUser(0, RestaurantOwnerUsername).Id;
+                var restaurant = new Restaurant.Restaurant(RestaurantId, RestaurantName, RestaurantAddress, ownerId,
+                    RestaurantPhoneNumber, RestaurantEmail, RestaurantOpeningHours, RestaurantClosingHours,
+                    RestaurantDaysOpen, RestaurantType, double.Parse(RestaurantDeliveryCharge), false);
                 if (newRestaurant)
                     StaticAccessor.DB.InsertRestaurant(restaurant);
                 else
                     StaticAccessor.DB.UpdateRestaurant(restaurant);
 
-                int newRestaurantId = StaticAccessor.DB.GetRestaurant(0, RestaurantName).Id;
-                AbstractUser restaurantAdmin = StaticAccessor.DB.GetUser(ownerId);
+                var newRestaurantId = StaticAccessor.DB.GetRestaurant(0, RestaurantName).Id;
+                var restaurantAdmin = StaticAccessor.DB.GetUser(ownerId);
                 restaurantAdmin.RestaurantId = newRestaurantId;
                 StaticAccessor.DB.UpdateUser(restaurantAdmin);
 
@@ -558,14 +533,14 @@ namespace cs4227.UI
 
                 if (sysAdmin)
                 {
-                    this.Hide();
-                    SysViewRestaraunt SVR = new SysViewRestaraunt(AdminId, RestaurantId);
+                    Hide();
+                    var SVR = new SysViewRestaraunt(AdminId, RestaurantId);
                     SVR.ShowDialog();
                 }
                 else
                 {
-                    this.Hide();
-                    RestAdminMainMenu RM = new RestAdminMainMenu(AdminId, RestaurantId);
+                    Hide();
+                    var RM = new RestAdminMainMenu(AdminId, RestaurantId);
                     RM.ShowDialog();
                 }
             }
@@ -582,34 +557,34 @@ namespace cs4227.UI
             {
                 if (newRestaurant)
                 {
-                    this.Hide();
-                    SysAdminRestaurantsMenu SRM = new SysAdminRestaurantsMenu(AdminId);
+                    Hide();
+                    var SRM = new SysAdminRestaurantsMenu(AdminId);
                     SRM.ShowDialog();
                 }
                 else
                 {
-                    this.Hide();
-                    SysViewRestaraunt SVR = new SysViewRestaraunt(AdminId, RestaurantId);
+                    Hide();
+                    var SVR = new SysViewRestaraunt(AdminId, RestaurantId);
                     SVR.ShowDialog();
                 }
             }
             else
             {
-                this.Hide();
-                RestAdminMainMenu RM = new RestAdminMainMenu(AdminId, RestaurantId);
+                Hide();
+                var RM = new RestAdminMainMenu(AdminId, RestaurantId);
                 RM.ShowDialog();
             }
         }
 
         private void OwnerUsernameTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantOwnerUsername = RestaurantOwnerUsernameTextbox.Text.ToString();
+            RestaurantOwnerUsername = RestaurantOwnerUsernameTextbox.Text;
 
             if (RestaurantOwnerUsername.Length > 0)
             {
-                Boolean OwnerUsernameExists = false;
-                List<AbstractUser> users = StaticAccessor.DB.GetUsers();
-                foreach (AbstractUser user in users)
+                var OwnerUsernameExists = false;
+                var users = StaticAccessor.DB.GetUsers();
+                foreach (var user in users)
                     if (user.Username == RestaurantOwnerUsername)
                         OwnerUsernameExists = true;
 
@@ -644,19 +619,20 @@ namespace cs4227.UI
 
         private void DeleteRestaurantButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete "+RestaurantName+"?", "Delete Restaurant", MessageBoxButtons.YesNo);
+            var dialogResult = MessageBox.Show("Are you sure you want to delete " + RestaurantName + "?",
+                "Delete Restaurant", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Restaurant.Restaurant restaurant = StaticAccessor.DB.GetRestaurant(RestaurantId);
+                var restaurant = StaticAccessor.DB.GetRestaurant(RestaurantId);
                 restaurant.Deleted = true;
                 StaticAccessor.DB.UpdateRestaurant(restaurant);
 
-                AbstractUser restaurantOwner = StaticAccessor.DB.GetUser(restaurant.OwnerId);
+                var restaurantOwner = StaticAccessor.DB.GetUser(restaurant.OwnerId);
                 restaurantOwner.RestaurantId = 0;
                 StaticAccessor.DB.UpdateUser(restaurantOwner);
 
-                this.Hide();
-                SysAdminRestaurantsMenu SARM = new SysAdminRestaurantsMenu(AdminId);
+                Hide();
+                var SARM = new SysAdminRestaurantsMenu(AdminId);
                 SARM.ShowDialog();
             }
             else if (dialogResult == DialogResult.No)

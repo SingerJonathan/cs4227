@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using cs4227.Restaurant;
-using cs4227.Database;
 
 namespace cs4227.UI
 {
     public partial class SysAdminRestaurantsMenu : Form
     {
-        private int RestaurantId = 0;
-        private int UserId = 0;
-        private string RestaurantName = "";
+        private bool CorrectNameFormat;
         private string ErrorMessage = "";
-        private Boolean CorrectNameFormat = false;
+        private int RestaurantId;
+        private string RestaurantName = "";
+        private readonly int UserId;
 
         public SysAdminRestaurantsMenu(int UserId)
         {
@@ -28,21 +20,19 @@ namespace cs4227.UI
 
         private void ListOfRestaurants_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RestaurantName = ListOfRestaurants.SelectedItems[0].Text.ToString();
-            RestaurantId = Int32.Parse(ListOfRestaurants.SelectedItems[0].SubItems[1].Text);
-            this.Hide();
-            SysViewRestaraunt SVR = new SysViewRestaraunt(UserId, RestaurantId);
+            RestaurantName = ListOfRestaurants.SelectedItems[0].Text;
+            RestaurantId = int.Parse(ListOfRestaurants.SelectedItems[0].SubItems[1].Text);
+            Hide();
+            var SVR = new SysViewRestaraunt(UserId, RestaurantId);
             SVR.ShowDialog();
-
         }
 
         private void RestaurantNameTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantName = RestaurantNameTextbox.Text.ToString();
+            RestaurantName = RestaurantNameTextbox.Text;
 
             if (RestaurantName.Length > 0)
             {
-
                 if (RestaurantName.Any(char.IsSymbol))
                 {
                     ErrorMessage = "Can't use Symbols\n in a Restaurant's Name";
@@ -67,7 +57,7 @@ namespace cs4227.UI
             }
             else
             {
-                Boolean RestaurantExists = false;
+                var RestaurantExists = false;
 
                 //Add code to check if the restaurant exists
 
@@ -93,26 +83,26 @@ namespace cs4227.UI
             if (CorrectNameFormat)
             {
                 //add code to add correct Restaurantid ---list.length()+1 etc...
-                
-                this.Hide();
-                EditRestaurantMenu ERM = new EditRestaurantMenu(UserId, RestaurantId, true, true, RestaurantNameTextbox.Text);
+
+                Hide();
+                var ERM = new EditRestaurantMenu(UserId, RestaurantId, true, true, RestaurantNameTextbox.Text);
                 ERM.ShowDialog();
             }
         }
 
         private void BackToMainMenuButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            SysAdminMenu SAM = new SysAdminMenu(UserId);
+            Hide();
+            var SAM = new SysAdminMenu(UserId);
             SAM.ShowDialog();
         }
 
         private void SysAdminRestaurantsMenu_Load(object sender, EventArgs e)
         {
-            List<Restaurant.Restaurant> restaurants = StaticAccessor.DB.GetRestaurants();
-            foreach (Restaurant.Restaurant restaurant in restaurants)
+            var restaurants = StaticAccessor.DB.GetRestaurants();
+            foreach (var restaurant in restaurants)
             {
-                ListViewItem restaurantItem = new ListViewItem(restaurant.Name);
+                var restaurantItem = new ListViewItem(restaurant.Name);
                 restaurantItem.SubItems.Add(new ListViewItem.ListViewSubItem(restaurantItem, "" + restaurant.Id));
                 ListOfRestaurants.Items.Add(restaurantItem);
             }

@@ -1,23 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using cs4227.Database;
-using cs4227.Restaurant;
 
 namespace cs4227.UI
 {
     public partial class RestAdminViewOrders : Form
     {
-        private int AdminId = 0;
-        private int RestaurantId = 0;
-        private int OrderNo = 0;
-        private string Username = "";
+        private readonly int AdminId;
+        private double Cost = 0.0;
+        private string DeliveryAddress = "";
+        private bool IsCancelled = false;
         private string Item00 = "";
         private string Item01 = "";
         private string Item02 = "";
@@ -28,10 +19,10 @@ namespace cs4227.UI
         private string Item07 = "";
         private string Item08 = "";
         private string Item09 = "";
-        private double Cost = 0.0;
-        private string DeliveryAddress = "";
-        private Boolean IsCancelled = false;
-        
+        private readonly int OrderNo;
+        private readonly int RestaurantId;
+        private string Username = "";
+
         public RestAdminViewOrders(int AdminId, int RestaurantId, int OrderNo)
         {
             this.AdminId = AdminId;
@@ -43,21 +34,19 @@ namespace cs4227.UI
         private void RestAdminViewOrders_Load(object sender, EventArgs e)
         {
             OrderNumberLabel.Text = "Viewing Order No: " + OrderNo;
-            Order order = StaticAccessor.DB.GetOrder(OrderNo);
-            ListViewItem row = new ListViewItem("" + order.Id);
-            row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DB.GetUser(order.UserId).Username));
-            for (int i = 0; i < 8; i++)
-            {
+            var order = StaticAccessor.DB.GetOrder(OrderNo);
+            var row = new ListViewItem("" + order.Id);
+            row.SubItems.Add(
+                new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DB.GetUser(order.UserId).Username));
+            for (var i = 0; i < 8; i++)
                 if (i < order.FoodItems.Count)
-                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row, StaticAccessor.DB.GetFoodItem(order.FoodItems[i].Id).Name));
+                    row.SubItems.Add(new ListViewItem.ListViewSubItem(row,
+                        StaticAccessor.DB.GetFoodItem(order.FoodItems[i].Id).Name));
                 else
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
-            }
-            string cost = order.Cost.ToString();
+            var cost = order.Cost.ToString();
             if (cost.Length == 1 || cost.Length == 2)
-            {
                 cost += ".00";
-            }
             row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
             row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
             row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));
@@ -66,8 +55,8 @@ namespace cs4227.UI
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            RestAdminManageOrders RAMO = new RestAdminManageOrders(AdminId, RestaurantId);
+            Hide();
+            var RAMO = new RestAdminManageOrders(AdminId, RestaurantId);
             RAMO.ShowDialog();
         }
     }

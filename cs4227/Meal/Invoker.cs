@@ -1,14 +1,12 @@
-﻿using System;
-
-namespace cs4227.Meal
+﻿namespace cs4227.Meal
 {
-    class Invoker
+    internal class Invoker
     {
         private Command command;
 
         public Command Command
         {
-            set { command = value; }
+            set => command = value;
         }
 
         public void Invoke()

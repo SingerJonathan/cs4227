@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using cs4227.Database;
-using cs4227.User;
 
 namespace cs4227.UI
 {
     public partial class SysAdminAdminsMenu : Form
     {
         private string AdminUsername = "";
-        private int RestaurantId = 0;
-        private int UserId = 0;
+        private bool CorrectNameFormat;
         private string ErrorMessage = "";
-        private Boolean CorrectNameFormat = false;
+        private int RestaurantId;
+        private readonly int UserId;
 
         public SysAdminAdminsMenu(int UserId)
         {
@@ -28,16 +20,16 @@ namespace cs4227.UI
 
         private void AdminsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AdminUsername = AdminsList.SelectedItems[0].Text.ToString();
-            RestaurantId = Int32.Parse(AdminsList.SelectedItems[0].SubItems[2].Text);
-            this.Hide();
-            EditAdminMenu EAM = new EditAdminMenu(UserId, AdminUsername, RestaurantId, true, false);
+            AdminUsername = AdminsList.SelectedItems[0].Text;
+            RestaurantId = int.Parse(AdminsList.SelectedItems[0].SubItems[2].Text);
+            Hide();
+            var EAM = new EditAdminMenu(UserId, AdminUsername, RestaurantId, true, false);
             EAM.ShowDialog();
         }
 
         private void AdminUsernameTextbox_TextChanged(object sender, EventArgs e)
         {
-            AdminUsername = AdminUsernameTextbox.Text.ToString();
+            AdminUsername = AdminUsernameTextbox.Text;
 
             if (AdminUsername.Length > 0)
             {
@@ -69,17 +61,13 @@ namespace cs4227.UI
         {
             if (CorrectNameFormat)
             {
-                Boolean UsernameExists = false;
-                AbstractUser Admin = StaticAccessor.DB.GetUser(0, AdminUsername);
+                var UsernameExists = false;
+                var Admin = StaticAccessor.DB.GetUser(0, AdminUsername);
 
                 if (Admin.Username == null)
-                {
                     UsernameExists = false;
-                }
                 else
-                {
                     UsernameExists = true;
-                }
 
 
                 if (!UsernameExists)
@@ -87,8 +75,8 @@ namespace cs4227.UI
                     AdminUsernameLabel.Text = @"Username:";
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
-                    this.Hide();
-                    EditAdminMenu EAM = new EditAdminMenu(UserId, AdminUsername, RestaurantId, true, true);
+                    Hide();
+                    var EAM = new EditAdminMenu(UserId, AdminUsername, RestaurantId, true, true);
                     EAM.ShowDialog();
                 }
                 else
@@ -108,19 +96,19 @@ namespace cs4227.UI
 
         private void BackToMainMenuButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            SysAdminMenu SAM = new SysAdminMenu(UserId);
+            Hide();
+            var SAM = new SysAdminMenu(UserId);
             SAM.ShowDialog();
         }
 
         private void SysAdminAdminsMenu_Load(object sender, EventArgs e)
         {
             ErrorMessageLabel.Visible = false;
-            List<AbstractUser> Admins = StaticAccessor.DB.GetUsers(true);
-            foreach (AbstractUser Admin in Admins)
+            var Admins = StaticAccessor.DB.GetUsers(true);
+            foreach (var Admin in Admins)
             {
-                ListViewItem AdminItem = new ListViewItem(Admin.Username);
-                Restaurant.Restaurant Rest = StaticAccessor.DB.GetRestaurant(Admin.RestaurantId);
+                var AdminItem = new ListViewItem(Admin.Username);
+                var Rest = StaticAccessor.DB.GetRestaurant(Admin.RestaurantId);
                 AdminItem.SubItems.Add(new ListViewItem.ListViewSubItem(AdminItem, "" + Rest.Name));
                 AdminItem.SubItems.Add(new ListViewItem.ListViewSubItem(AdminItem, "" + Admin.Id));
                 AdminsList.Items.Add(AdminItem);

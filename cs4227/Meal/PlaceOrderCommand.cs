@@ -1,15 +1,14 @@
 ﻿using System;
-using cs4227.Restaurant;
-using cs4227.Database;
 using cs4227.Interceptor;
 using cs4227.Interceptor.ConcreteInterceptor;
+using cs4227.Restaurant;
 using cs4227.UI;
 
 namespace cs4227.Meal
 {
-    class PlaceOrderCommand : Command
+    internal class PlaceOrderCommand : Command
     {
-        private Order order;
+        private readonly Order order;
 
         public PlaceOrderCommand(Order order)
         {
@@ -18,11 +17,11 @@ namespace cs4227.Meal
 
         void Command.Execute()
         {
-            int orderId = StaticAccessor.DB.GetNewestOrderId() + 1;
+            var orderId = StaticAccessor.DB.GetNewestOrderId() + 1;
             StaticAccessor.DB.InsertOrder(order);
-            Console.WriteLine(@"Order "+ orderId + @" placed");
+            Console.WriteLine(@"Order " + orderId + @" placed");
             Interceptor.Interceptor interceptor = new ConcreteOrderInterceptor();
-            Dispatcher dispatcher = new Dispatcher();
+            var dispatcher = new Dispatcher();
             dispatcher.DispatchOrderInterceptor(interceptor);
         }
     }

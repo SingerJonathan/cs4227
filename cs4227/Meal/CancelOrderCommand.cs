@@ -4,9 +4,9 @@ using cs4227.UI;
 
 namespace cs4227.Meal
 {
-    class CancelOrderCommand : Command
+    internal class CancelOrderCommand : Command
     {
-        private Order order;
+        private readonly Order order;
 
         public CancelOrderCommand(Order order)
         {

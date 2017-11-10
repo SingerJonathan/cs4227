@@ -2,7 +2,7 @@
 
 namespace cs4227.Client
 {
-    class Client
+    internal class Client
     {
         public static void Main()
         {

@@ -4,7 +4,7 @@ using cs4227.User;
 
 namespace cs4227.Database
 {
-    interface IDatabaseHandler
+    internal interface IDatabaseHandler
     {
         void InsertOrder(Order order);
         void InsertRestaurant(Restaurant.Restaurant restaurant);
@@ -17,7 +17,10 @@ namespace cs4227.Database
         Order GetOrder(int id);
         Restaurant.Restaurant GetRestaurant(int id, string name = "");
         FoodItem GetFoodItem(int id);
-        AbstractUser GetUser(int id, string username = "", string email = "", int restaurantId = 0, string restaurantName = "");
+
+        AbstractUser GetUser(int id, string username = "", string email = "", int restaurantId = 0,
+            string restaurantName = "");
+
         int GetNewestOrderId();
         List<Order> GetOrders(int userId = 0, int restaurantId = 0);
         List<Restaurant.Restaurant> GetRestaurants();

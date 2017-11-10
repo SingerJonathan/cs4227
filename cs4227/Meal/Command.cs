@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace cs4227.Meal
+﻿namespace cs4227.Meal
 {
-    interface Command
+    internal interface Command
     {
         void Execute();
     }

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
-using cs4227.Database;
 using cs4227.User;
 
 namespace cs4227.UI
 {
     public partial class SysAdminAuthentication : Form
     {
-        private readonly AbstractUser _user;
         private readonly ProxyAuthenticator _proxy;
+        private readonly AbstractUser _user;
 
         public SysAdminAuthentication(int userId)
         {
@@ -28,7 +27,9 @@ namespace cs4227.UI
                 _user.login();
             }
             else
+            {
                 MessageBox.Show(@"Invalid authentication code.", @"Authentication Failure");
+            }
         }
 
         private void BackButton_Click(object sender, EventArgs e)

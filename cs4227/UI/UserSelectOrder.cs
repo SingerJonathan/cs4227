@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using cs4227.Database;
-using cs4227.Restaurant;
 using cs4227.Meal;
+using cs4227.Restaurant;
 
 namespace cs4227.UI
 {
     public partial class UserOrderMenu : Form
     {
-        private int UserId = 0;
-        private int RestaurantId = 0;
-        private List<Memento> Mementos;
-        private Order Order;
+        private readonly List<Memento> Mementos;
+        private readonly Order Order;
+        private readonly int RestaurantId;
+        private readonly int UserId;
 
         public UserOrderMenu(int UserId, int RestaurantId, Order Order, List<Memento> Mementos)
         {
@@ -34,7 +27,7 @@ namespace cs4227.UI
             Order.UserId = UserId;
             Order.RestaurantId = RestaurantId;
 
-            int membership = StaticAccessor.DB.GetUser(UserId).Membership;
+            var membership = StaticAccessor.DB.GetUser(UserId).Membership;
             if (membership == 0)
             {
                 RestaurantMenu.Columns.RemoveAt(2);
@@ -43,29 +36,29 @@ namespace cs4227.UI
                 YourOrder.Columns[0].Width += 170;
             }
 
-            List<FoodItem> FoodItems = StaticAccessor.DB.GetFoodItems(RestaurantId);
-            foreach (FoodItem Food in FoodItems)
+            var FoodItems = StaticAccessor.DB.GetFoodItems(RestaurantId);
+            foreach (var Food in FoodItems)
             {
-                ListViewItem row = new ListViewItem(Food.Name);
-                string cost = StaticAccessor.DoubleToMoneyString(Food.Cost);
-                string discountedCost = StaticAccessor.DoubleToMoneyString(Food.Cost - Food.Discounts[membership]);
+                var row = new ListViewItem(Food.Name);
+                var cost = StaticAccessor.DoubleToMoneyString(Food.Cost);
+                var discountedCost = StaticAccessor.DoubleToMoneyString(Food.Cost - Food.Discounts[membership]);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, discountedCost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 RestaurantMenu.Items.Add(row);
             }
-            
-            foreach (FoodItem Food in Order.FoodItems)
+
+            foreach (var Food in Order.FoodItems)
             {
-                ListViewItem row = new ListViewItem(Food.Name);
-                string cost = StaticAccessor.DoubleToMoneyString(Food.Cost);
-                string discountedCost = StaticAccessor.DoubleToMoneyString(Food.Cost - Food.Discounts[membership]);
+                var row = new ListViewItem(Food.Name);
+                var cost = StaticAccessor.DoubleToMoneyString(Food.Cost);
+                var discountedCost = StaticAccessor.DoubleToMoneyString(Food.Cost - Food.Discounts[membership]);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, discountedCost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Id));
                 YourOrder.Items.Add(row);
             }
-            double delivery = StaticAccessor.DB.GetRestaurant(RestaurantId).Delivery;
+            var delivery = StaticAccessor.DB.GetRestaurant(RestaurantId).Delivery;
             TotalCostLabel.Text = "" + StaticAccessor.DoubleToMoneyString(Order.Cost - delivery);
         }
 
@@ -73,13 +66,13 @@ namespace cs4227.UI
         {
             if (YourOrder.Items.Count < 8 && RestaurantMenu.SelectedItems.Count > 0)
             {
-                ListViewItem selectedRow = RestaurantMenu.SelectedItems[0];
-                YourOrder.Items.Add((ListViewItem)selectedRow.Clone());
+                var selectedRow = RestaurantMenu.SelectedItems[0];
+                YourOrder.Items.Add((ListViewItem) selectedRow.Clone());
                 selectedRow.Selected = false;
                 //order.Cost += Convert.ToDouble(selectedRow.SubItems[1].Text);
                 Order.Add(StaticAccessor.DB.GetFoodItem(Convert.ToInt32(selectedRow.SubItems[3].Text)));
                 Mementos.Add(Order.CreateMemento());
-                TotalCostLabel.Text = ""+ StaticAccessor.DoubleToMoneyString(Order.Cost);
+                TotalCostLabel.Text = "" + StaticAccessor.DoubleToMoneyString(Order.Cost);
                 if (YourOrder.Items.Count >= 8)
                     MessageBox.Show(@"You've reached the item limit.");
             }
@@ -114,15 +107,15 @@ namespace cs4227.UI
 
         private void button1_Click(object sender, EventArgs e) //back
         {
-            this.Hide();
-            UserRestarauntSearch URS = new UserRestarauntSearch(UserId);
+            Hide();
+            var URS = new UserRestarauntSearch(UserId);
             URS.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e) //checkout
         {
-            this.Hide();
-            UserCheckout UC = new UserCheckout(UserId, RestaurantId, Order, Mementos);
+            Hide();
+            var UC = new UserCheckout(UserId, RestaurantId, Order, Mementos);
             UC.ShowDialog();
         }
     }

@@ -6,7 +6,7 @@ namespace cs4227.Meal
     {
         public string ReverseString(string input)
         {
-            char[] charArray = input.ToCharArray();
+            var charArray = input.ToCharArray();
             Array.Reverse(charArray);
             Console.WriteLine(@"Target implementation called");
             return new string(charArray);

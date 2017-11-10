@@ -1,28 +1,15 @@
-﻿using cs4227.Restaurant;
-using cs4227.User;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
+using cs4227.Restaurant;
+using cs4227.User;
 
 namespace cs4227.Database
 {
-    class DatabaseHandler : IDatabaseHandler
+    internal class DatabaseHandler : IDatabaseHandler
     {
         private const string DbName = "Database";
-
-        public static SqlConnection GetLocalDbConnection()
-        {
-            string outputFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string dbFileName = Path.Combine(outputFolder, $"{DbName}.mdf");
-            string logFileName = Path.Combine(outputFolder, $"{DbName}_log.ldf");
-
-            string connectionString = String.Format(@"Data Source=(LocalDB)\v11.0;AttachDBFileName={1};Initial Catalog={0};Integrated Security=True;", DbName, dbFileName);
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            return connection;
-        }
 
         public void InsertOrder(Order order)
         {
@@ -79,7 +66,8 @@ namespace cs4227.Database
             return FoodItemDatabaseHandler.GetFoodItem(id);
         }
 
-        public AbstractUser GetUser(int id, string username = "", string email = "", int restaurantId = 0, string restaurantName = "")
+        public AbstractUser GetUser(int id, string username = "", string email = "", int restaurantId = 0,
+            string restaurantName = "")
         {
             return UserDatabaseHandler.GetUser(id, username, email, restaurantId, restaurantName);
         }
@@ -107,6 +95,21 @@ namespace cs4227.Database
         public List<AbstractUser> GetUsers(bool restaurantAdmins = false)
         {
             return UserDatabaseHandler.GetUsers(restaurantAdmins);
+        }
+
+        public static SqlConnection GetLocalDbConnection()
+        {
+            var outputFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var dbFileName = Path.Combine(outputFolder, $"{DbName}.mdf");
+            var logFileName = Path.Combine(outputFolder, $"{DbName}_log.ldf");
+
+            var connectionString =
+                string.Format(
+                    @"Data Source=(LocalDB)\v11.0;AttachDBFileName={1};Initial Catalog={0};Integrated Security=True;",
+                    DbName, dbFileName);
+            var connection = new SqlConnection(connectionString);
+            connection.Open();
+            return connection;
         }
     }
 }

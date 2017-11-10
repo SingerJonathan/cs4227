@@ -1,30 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
-using cs4227.Database;
-using cs4227.Restaurant;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using cs4227.Restaurant;
 
 namespace cs4227.UI
 {
     public partial class RestAdminViewMenu : Form
     {
-        private int RestaurantId = 0;
-        private int AdminId = 0;
-        private int MenuItemId = 0;
+        private readonly int AdminId;
+        private string Bronze = "0.00";
+        private double BronzeDiscountValue;
+        private bool CorrectBronzeFormat;
+        private bool CorrectNameFormat;
+        private bool CorrectPriceFormat;
+        private string ErrorMessage = "";
+        private string Gold = "0.00";
+        private double GoldDiscountValue;
+        private int MenuItemId;
         private string MenuItemName = "";
         private string Price = "0.00";
-        private string Bronze = "0.00";
+        private readonly int RestaurantId;
         private string Silver = "0.00";
-        private string Gold = "0.00";
-        private double BronzeDiscountValue = 0.00;
-        private double SilverDiscountValue = 0.00;
-        private double GoldDiscountValue = 0.00;
-        private string ErrorMessage = "";
-        private Boolean CorrectNameFormat = false;
-        private Boolean CorrectPriceFormat = false;
-        private Boolean CorrectBronzeFormat = false;
+        private double SilverDiscountValue;
 
         public RestAdminViewMenu(int AdminId, int RestaurantId)
         {
@@ -36,17 +34,18 @@ namespace cs4227.UI
         private void RestAdminViewMenu_Load(object sender, EventArgs e)
         {
             PriceTextbox.Text = Price;
-            List<FoodItem> FoodItems = StaticAccessor.DB.GetFoodItems(RestaurantId);
-            foreach (FoodItem Food in FoodItems)
+            var FoodItems = StaticAccessor.DB.GetFoodItems(RestaurantId);
+            foreach (var Food in FoodItems)
             {
-                ListViewItem row = new ListViewItem("" + Food.Id);
+                var row = new ListViewItem("" + Food.Id);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + Food.Name));
-                row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DoubleToMoneyString(Food.Cost)));
-                string bronze = StaticAccessor.DoubleToMoneyString(Math.Round(Food.Discounts[1], 2));
+                row.SubItems.Add(
+                    new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DoubleToMoneyString(Food.Cost)));
+                var bronze = StaticAccessor.DoubleToMoneyString(Math.Round(Food.Discounts[1], 2));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + bronze));
-                string silver = StaticAccessor.DoubleToMoneyString(Math.Round(Food.Discounts[2], 2));
+                var silver = StaticAccessor.DoubleToMoneyString(Math.Round(Food.Discounts[2], 2));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + silver));
-                string gold = StaticAccessor.DoubleToMoneyString(Math.Round(Food.Discounts[3], 2));
+                var gold = StaticAccessor.DoubleToMoneyString(Math.Round(Food.Discounts[3], 2));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + gold));
                 RestaurantMenuList.Items.Add(row);
             }
@@ -54,7 +53,7 @@ namespace cs4227.UI
 
         private void NameTextbox_TextChanged(object sender, EventArgs e)
         {
-            MenuItemName = NameTextbox.Text.ToString();
+            MenuItemName = NameTextbox.Text;
 
             if (MenuItemName.Length > 0)
             {
@@ -89,16 +88,14 @@ namespace cs4227.UI
 
         private void PriceTextbox_TextChanged(object sender, EventArgs e)
         {
-            Price = PriceTextbox.Text.ToString();
-            Regex r = new Regex(@"^[0-9]*(\.[0-9]{1,2})?$");
+            Price = PriceTextbox.Text;
+            var r = new Regex(@"^[0-9]*(\.[0-9]{1,2})?$");
             if (Price.Length > 0)
             {
                 if (r.Match(Price).Success)
                 {
                     if (Price.Length == 1 || Price.Length == 2)
-                    {
                         Price += ".00";
-                    }
                     PriceTextbox.Text = Price;
                     CorrectPriceFormat = true;
                 }
@@ -143,18 +140,18 @@ namespace cs4227.UI
             {
                 //check if item exists already
                 ErrorMessageLabel.Visible = false;
-                Boolean Exists = false;
+                var Exists = false;
                 if (!Exists)
                 {
                     //add to db
-                    double NewPrice = Convert.ToDouble(Price);
-                    FoodItem NewItem = new FoodItem(MenuItemId, MenuItemName, NewPrice, RestaurantId, BronzeDiscountValue, SilverDiscountValue, GoldDiscountValue, false);
+                    var NewPrice = Convert.ToDouble(Price);
+                    var NewItem = new FoodItem(MenuItemId, MenuItemName, NewPrice, RestaurantId, BronzeDiscountValue,
+                        SilverDiscountValue, GoldDiscountValue, false);
                     StaticAccessor.DB.InsertFoodItem(NewItem);
                     MessageBox.Show("Item:" + MenuItemName + " Added");
-                    this.Hide();
-                    RestAdminViewMenu RAVM = new RestAdminViewMenu(AdminId,RestaurantId);
+                    Hide();
+                    var RAVM = new RestAdminViewMenu(AdminId, RestaurantId);
                     RAVM.ShowDialog();
-
                 }
                 else
                 {
@@ -171,8 +168,8 @@ namespace cs4227.UI
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            RestAdminMainMenu RAM = new RestAdminMainMenu(AdminId, RestaurantId);
+            Hide();
+            var RAM = new RestAdminMainMenu(AdminId, RestaurantId);
             RAM.ShowDialog();
         }
 
@@ -180,11 +177,10 @@ namespace cs4227.UI
         {
             if (RestaurantMenuList.SelectedItems.Count == 0)
             {
-                return;
             }
             else
             {
-                MenuItemId = Int32.Parse(RestaurantMenuList.SelectedItems[0].Text);
+                MenuItemId = int.Parse(RestaurantMenuList.SelectedItems[0].Text);
                 MenuItemName = RestaurantMenuList.SelectedItems[0].SubItems[1].Text;
                 Price = RestaurantMenuList.SelectedItems[0].SubItems[2].Text;
                 Price = string.Format("{0:#.00}", Convert.ToDecimal(Price));
@@ -199,12 +195,13 @@ namespace cs4227.UI
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             //remove item from db
-            double NewPrice = Convert.ToDouble(Price);
-            FoodItem ItemToDelete = new FoodItem(MenuItemId, MenuItemName, NewPrice, RestaurantId, BronzeDiscountValue, SilverDiscountValue, GoldDiscountValue, true);
+            var NewPrice = Convert.ToDouble(Price);
+            var ItemToDelete = new FoodItem(MenuItemId, MenuItemName, NewPrice, RestaurantId, BronzeDiscountValue,
+                SilverDiscountValue, GoldDiscountValue, true);
             StaticAccessor.DB.UpdateFoodItem(ItemToDelete);
             MessageBox.Show("Item: " + MenuItemName + " Removed");
-            this.Hide();
-            RestAdminViewMenu RAVM = new RestAdminViewMenu(AdminId, RestaurantId);
+            Hide();
+            var RAVM = new RestAdminViewMenu(AdminId, RestaurantId);
             RAVM.ShowDialog();
         }
 
@@ -221,12 +218,13 @@ namespace cs4227.UI
             if (CorrectNameFormat && CorrectPriceFormat && CorrectBronzeFormat)
             {
                 ErrorMessageLabel.Visible = false;
-                double NewPrice = Convert.ToDouble(Price);
-                FoodItem NewItem = new FoodItem(MenuItemId, MenuItemName, NewPrice, RestaurantId, BronzeDiscountValue, SilverDiscountValue, GoldDiscountValue, false);
+                var NewPrice = Convert.ToDouble(Price);
+                var NewItem = new FoodItem(MenuItemId, MenuItemName, NewPrice, RestaurantId, BronzeDiscountValue,
+                    SilverDiscountValue, GoldDiscountValue, false);
                 StaticAccessor.DB.UpdateFoodItem(NewItem);
                 MessageBox.Show("Item: " + MenuItemName + " edited");
-                this.Hide();
-                RestAdminViewMenu RAVM = new RestAdminViewMenu(AdminId, RestaurantId);
+                Hide();
+                var RAVM = new RestAdminViewMenu(AdminId, RestaurantId);
                 RAVM.ShowDialog();
             }
             else
@@ -239,15 +237,13 @@ namespace cs4227.UI
         private void BronzeDiscountTextbox_TextChanged(object sender, EventArgs e)
         {
             Bronze = BronzeDiscountTextbox.Text;
-            Regex r = new Regex(@"^[0-9]*(\.[0-9]{1,2})?$");
+            var r = new Regex(@"^[0-9]*(\.[0-9]{1,2})?$");
             if (Bronze.Length > 0)
             {
                 if (r.Match(Bronze).Success)
                 {
                     if (Bronze.Length == 1 || Bronze.Length == 2)
-                    {
                         Bronze += ".00";
-                    }
                     BronzeDiscountTextbox.Text = Bronze;
                     CorrectBronzeFormat = true;
                 }
@@ -277,14 +273,12 @@ namespace cs4227.UI
                 BronzeDiscountLabel.Text = "Bronze Discount:";
                 BronzeDiscountValue = Math.Round(Convert.ToDouble(Bronze), 2);
                 SilverDiscountValue = Math.Round(BronzeDiscountValue * 1.30, 2);
-                SilverDiscountLabel.Text = "Silver Discount: " + SilverDiscountValue.ToString();
+                SilverDiscountLabel.Text = "Silver Discount: " + SilverDiscountValue;
                 if (BronzeDiscountValue == 0.0)
-                {
                     SilverDiscountLabel.Text = "Silver Discount: 0.00";
-                }
                 Silver = SilverDiscountValue.ToString();
                 GoldDiscountValue = Math.Round(BronzeDiscountValue * 1.60, 2);
-                GoldDiscountLabel.Text = "Gold Discount: " + GoldDiscountValue.ToString();
+                GoldDiscountLabel.Text = "Gold Discount: " + GoldDiscountValue;
                 Gold = GoldDiscountValue.ToString();
                 if (BronzeDiscountValue == 0.0)
                 {

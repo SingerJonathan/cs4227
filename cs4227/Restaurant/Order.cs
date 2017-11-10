@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using cs4227.Database;
+﻿using System.Collections.Generic;
 using cs4227.Meal;
 using cs4227.UI;
 
@@ -8,96 +6,74 @@ namespace cs4227.Restaurant
 {
     public class Order
     {
-        private int id;
-        private int userId;
-        private int restaurantId;
         private double cost;
-        private string address;
-        private bool cancelled;
-        private List<FoodItem> foodItems;
 
-        public int Id
+        public Order()
         {
-            get { return id; }
-            set { id = value; }
+            Cancelled = false;
+            FoodItems = new List<FoodItem>();
         }
-        public int UserId
+
+        public Order(int id, int userId, int restaurantId, List<FoodItem> foodItems, string address, double cost,
+            bool cancelled = false)
         {
-            get { return userId; }
-            set { userId = value; }
+            Id = id;
+            UserId = userId;
+            RestaurantId = restaurantId;
+            Cancelled = cancelled;
+            FoodItems = new List<FoodItem>(foodItems);
+            Address = address;
+            this.cost = cost;
         }
-        public int RestaurantId
-        {
-            get { return restaurantId; }
-            set { restaurantId = value; }
-        }
+
+        public int Id { get; set; }
+
+        public int UserId { get; set; }
+
+        public int RestaurantId { get; set; }
+
         public double Cost
         {
             //get { return cost; }
             get
             {
-                double cost = 0.00;
-                int membership = StaticAccessor.DB.GetUser(userId).Membership;
-                foreach (FoodItem item in foodItems)
+                var cost = 0.00;
+                var membership = StaticAccessor.DB.GetUser(UserId).Membership;
+                foreach (var item in FoodItems)
                     cost += item.Cost - item.Discounts[membership];
-                cost += StaticAccessor.DB.GetRestaurant(restaurantId).Delivery;
+                cost += StaticAccessor.DB.GetRestaurant(RestaurantId).Delivery;
                 return cost;
             }
-            set { cost = value; }
-        }
-        public string Address
-        {
-            get { return address; }
-            set { address = value; }
-        }
-        public bool Cancelled
-        {
-            get { return cancelled; }
-            set { cancelled = value; }
-        }
-        public List<FoodItem> FoodItems
-        {
-            get { return foodItems; }
+            set => cost = value;
         }
 
-        public Order()
-        {
-            cancelled = false;
-            foodItems = new List<FoodItem>();
-        }
+        public string Address { get; set; }
 
-        public Order(int id, int userId, int restaurantId, List<FoodItem> foodItems, string address, double cost, bool cancelled = false)
-        {
-            this.id = id;
-            this.userId = userId;
-            this.restaurantId = restaurantId;
-            this.cancelled = cancelled;
-            this.foodItems = new List<FoodItem>(foodItems);
-            this.address = address;
-            this.cost = cost;
-        }
+        public bool Cancelled { get; set; }
+
+        public List<FoodItem> FoodItems { get; private set; }
 
         public void Add(FoodItem foodItem)
         {
-            foodItems.Add(foodItem);
+            FoodItems.Add(foodItem);
         }
 
         public void Remove(FoodItem foodItem)
         {
-            foodItems.Remove(foodItem);
+            FoodItems.Remove(foodItem);
         }
 
         public Memento CreateMemento()
         {
-            return new Memento(id, userId, cancelled, foodItems);
+            return new Memento(Id, UserId, Cancelled, FoodItems);
         }
 
         public void SetMemento(Memento memento)
         {
-            id = memento.id;
-            userId = memento.userId;
-            cancelled = memento.cancelled;
-            foodItems = new List<FoodItem>(memento.foodItems);
+            Id = memento.id;
+            UserId = memento.userId;
+            Cancelled = memento.cancelled;
+            FoodItems = new List<FoodItem>(memento.foodItems);
         }
     }
 }
