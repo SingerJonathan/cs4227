@@ -19,7 +19,7 @@ namespace cs4227.UI
 
         private void RestAdminManageOrders_Load(object sender, EventArgs e)
         {
-            var orders = StaticAccessor.DB.GetOrders(RestaurantId);
+            var orders = StaticAccessor.DB.GetOrders(0, RestaurantId);
             foreach (var order in orders)
                 if (order.RestaurantId == RestaurantId)
                 {

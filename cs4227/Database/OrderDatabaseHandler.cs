@@ -37,8 +37,8 @@ namespace cs4227.Database
                     command.CommandText += $"[Item{index}] = {order.FoodItems[index].Id}, ";
                 else
                     command.CommandText += $"[Item{index}] = NULL, ";
-            command.CommandText += string.Format("[Cancelled] = {0}, [Address] = '{1}', [Cost] = {2} WHERE [Id] = ",
-                order.Cancelled ? 1 : 0, order.Address, order.Cost);
+            command.CommandText += string.Format("[Cancelled] = {0}, [Address] = '{1}', [Cost] = {2} WHERE [Id] = {3}",
+                order.Cancelled ? 1 : 0, order.Address, order.Cost, order.Id);
             command.Connection = connection;
             var result = command.ExecuteNonQuery();
             connection.Close();
