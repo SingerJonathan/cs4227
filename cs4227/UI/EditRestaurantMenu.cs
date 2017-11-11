@@ -256,6 +256,7 @@ namespace cs4227.UI
             {
                 try
                 {
+                    MailAddress m = new MailAddress(RestaurantEmail);
                     CorrectEmailFormat = true;
                 }
                 catch (FormatException)

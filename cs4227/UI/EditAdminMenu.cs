@@ -162,6 +162,7 @@ namespace cs4227.UI
             {
                 try
                 {
+                    var m = new MailAddress(AdminEmail);
                     CorrectEmailFormat = true;
                 }
                 catch (FormatException)

@@ -44,7 +44,6 @@ namespace cs4227.UI
                 UserEmailTextbox.Text = Email;
                 UserFirstNameTextbox.Text = FirstName;
                 UserLastNameTextbox.Text = LastName;
-                //UserPasswordTextbox.Text = Password;
                 UserUsernameTextbox.Text = Username;
             }
             else
@@ -118,6 +117,7 @@ namespace cs4227.UI
             {
                 try
                 {
+                    MailAddress m = new MailAddress(Email);
                     CorrectEmailFormat = true;
                 }
                 catch (FormatException)
