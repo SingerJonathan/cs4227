@@ -47,12 +47,6 @@ namespace cs4227.UI
             UMM.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Hide();
-            var UOM = new UserOrderMenu(UserId, RestaurantId, new Order(), new List<Memento>());
-            UOM.ShowDialog();
-        }
 
         private void Orders_SelectedIndexChanged(object sender, EventArgs e)
         {

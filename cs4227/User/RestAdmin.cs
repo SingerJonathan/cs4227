@@ -13,7 +13,6 @@ namespace cs4227.User
             Console.WriteLine(@"Restaurant Admin " + username + @" logged in.");
             var RestAdmin = StaticAccessor.DB.GetUser(0, username);
             RestaurantId = RestAdmin.RestaurantId;
-            var Rest = StaticAccessor.DB.GetRestaurant(RestaurantId);
 
             var RM = new RestAdminMainMenu(UserId, RestaurantId);
             RM.ShowDialog();

@@ -37,9 +37,5 @@ namespace cs4227.UI
                     listView.Items.Add(row);
                 }
         }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

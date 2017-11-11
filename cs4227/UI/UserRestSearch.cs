@@ -30,12 +30,11 @@ namespace cs4227.UI
 
         private void button1_Click(object sender, EventArgs e) //Menu
         {
+            var Restaurantfound = false;
             if (CorrectNameFormat)
             {
-                var Restaurantfound = false;
                 var Rest = StaticAccessor.DB.GetRestaurant(0, RestaurantName);
-                if (Rest == null)
-                    Restaurantfound = false;
+                if (Rest == null){}
                 else
                     Restaurantfound = true;
 

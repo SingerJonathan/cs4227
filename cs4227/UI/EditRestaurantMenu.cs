@@ -133,24 +133,11 @@ namespace cs4227.UI
             }
             else
             {
-                var RestaurantExists = false;
 
-                //Add code to check if the restaurant exists
-
-                if (RestaurantExists)
-                {
-                    ErrorMessageLabel.Text = "Error Message: Restaurant does not exist";
-                    ErrorMessageLabel.Visible = true;
-                    RestaurantNameLabel.Text = "Name: ERROR";
-                    CorrectNameFormat = false;
-                }
-                else
-                {
                     RestaurantNameLabel.Text = "Name:";
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
                     CorrectNameFormat = true;
-                }
             }
         }
 
@@ -186,22 +173,10 @@ namespace cs4227.UI
             {
                 var RestaurantExists = false;
 
-                //Add code to check if the address already exists
-
-                if (RestaurantExists)
-                {
-                    ErrorMessageLabel.Text = "Error Message: Address Exists Already";
-                    ErrorMessageLabel.Visible = true;
-                    RestaurantAddressLabel.Text = "Address: ERROR";
-                    CorrectAddressFormat = false;
-                }
-                else
-                {
                     RestaurantAddressLabel.Text = "Address:";
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
                     CorrectAddressFormat = true;
-                }
             }
         }
 
@@ -283,7 +258,6 @@ namespace cs4227.UI
             {
                 try
                 {
-                    var m = new MailAddress(RestaurantEmail);
                     CorrectEmailFormat = true;
                 }
                 catch (FormatException)
@@ -309,23 +283,10 @@ namespace cs4227.UI
             }
             else
             {
-                var EmailExists = false;
-                //Add code to check if email already exists
-
-                if (!EmailExists)
-                {
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
                     RestaurantEmailLabel.Text = "Email:";
                     CorrectEmailFormat = true;
-                }
-                else
-                {
-                    ErrorMessageLabel.Text = "Error Message: Email already exists. Try Again!";
-                    ErrorMessageLabel.Visible = true;
-                    RestaurantEmailLabel.Text = "Email: ERROR";
-                    CorrectEmailFormat = false;
-                }
             }
         }
 

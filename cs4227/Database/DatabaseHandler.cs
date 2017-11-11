@@ -101,8 +101,6 @@ namespace cs4227.Database
         {
             var outputFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var dbFileName = Path.Combine(outputFolder, $"{DbName}.mdf");
-            var logFileName = Path.Combine(outputFolder, $"{DbName}_log.ldf");
-
             var connectionString =
                 string.Format(
                     @"Data Source=(LocalDB)\v11.0;AttachDBFileName={1};Initial Catalog={0};Integrated Security=True;",

@@ -118,7 +118,6 @@ namespace cs4227.UI
             {
                 try
                 {
-                    var m = new MailAddress(Email);
                     CorrectEmailFormat = true;
                 }
                 catch (FormatException)
@@ -144,23 +143,10 @@ namespace cs4227.UI
             }
             else
             {
-                var EmailExists = false;
-                //Add code to check if email already exists
-
-                if (!EmailExists)
-                {
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
                     UserEmailLabel.Text = "Email:";
                     CorrectEmailFormat = true;
-                }
-                else
-                {
-                    ErrorMessageLabel.Text = @"Error Message: Email already exists. Try Again!";
-                    ErrorMessageLabel.Visible = true;
-                    UserEmailLabel.Text = @"Email: ERROR";
-                    CorrectEmailFormat = false;
-                }
             }
         }
 
@@ -277,22 +263,10 @@ namespace cs4227.UI
             {
                 if (newAccount)
                 {
-                    var UsernameExists = false;
-                    //Add code to check if username exists already
 
-                    if (!UsernameExists)
-                    {
                         UserUsernameLabel.Text = @"Username:";
                         ErrorMessage = "";
                         ErrorMessageLabel.Visible = false;
-                    }
-                    else
-                    {
-                        ErrorMessageLabel.Text = @"Error Message: Username already exists. Try Again!";
-                        ErrorMessageLabel.Visible = true;
-                        UserUsernameLabel.Text = @"Username: ERROR";
-                        CorrectUsernameFormat = false;
-                    }
                 }
                 else
                 {
@@ -318,12 +292,12 @@ namespace cs4227.UI
             else
             {
                 var user = StaticAccessor.DB.GetUser(UserId);
-                user.FirstName = FirstName;
-                user.LastName = LastName;
-                user.Username = Username;
-                user.Password = hashPassword;
-                user.Email = Email;
-                user.Membership = Membership;
+                FirstName = user.FirstName;
+                LastName = user.LastName;
+                Username = user.Username;
+                Password = user.Password;
+                Email = user.Email;
+                Membership = user.Membership;
                 StaticAccessor.DB.UpdateUser(user);
                 MessageBox.Show(@"Changes Saved");
                 Hide();

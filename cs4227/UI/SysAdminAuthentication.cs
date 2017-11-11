@@ -35,7 +35,6 @@ namespace cs4227.UI
         private void BackButton_Click(object sender, EventArgs e)
         {
             Hide();
-            var loginMenuV2 = new LoginMenuV2();
         }
 
         private void TwoStepCodeTextBox_TextChanged(object sender, EventArgs e)

@@ -162,7 +162,6 @@ namespace cs4227.UI
             {
                 try
                 {
-                    var m = new MailAddress(AdminEmail);
                     CorrectEmailFormat = true;
                 }
                 catch (FormatException)
@@ -188,28 +187,17 @@ namespace cs4227.UI
             }
             else
             {
-                var EmailExists = false;
                 //Add code to check if email already exists
-
-                if (!EmailExists)
-                {
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
                     AdminEmailLabel.Text = "Email:";
                     CorrectEmailFormat = true;
-                }
-                else
-                {
-                    ErrorMessageLabel.Text = "Error Message: Email already exists. Try Again!";
-                    ErrorMessageLabel.Visible = true;
-                    AdminEmailLabel.Text = "Email: ERROR";
-                    CorrectEmailFormat = false;
-                }
             }
         }
 
         private void AdminUsernameTextbox_TextChanged(object sender, EventArgs e)
         {
+            var UsernameExists = false;
             if (newAdmin)
                 AdminUsername = AdminUsernameTextbox.Text;
             else
@@ -241,11 +229,10 @@ namespace cs4227.UI
             }
             else
             {
-                var UsernameExists = false;
+
                 var Admin = StaticAccessor.DB.GetUser(0, AdminUsername);
 
-                if (Admin.Username == null)
-                    UsernameExists = false;
+                if (Admin.Username == null){}
                 else
                     UsernameExists = true;
 
@@ -331,19 +318,13 @@ namespace cs4227.UI
 
                 if (newAdmin)
                 {
-                    if (Admin.Username == null)
-                    {
-                        UsernameExists = false;
-                    }
+                    if (Admin.Username == null){}
                     else
                     {
                         UsernameExists = true;
                         ErrorMessage = "Error: Username Already Exists.";
                     }
-                    if (Admin2.Username == null)
-                    {
-                        EmailExists = false;
-                    }
+                    if (Admin2.Username == null){}
                     else
                     {
                         EmailExists = true;

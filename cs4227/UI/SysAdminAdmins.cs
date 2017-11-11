@@ -64,8 +64,7 @@ namespace cs4227.UI
                 var UsernameExists = false;
                 var Admin = StaticAccessor.DB.GetUser(0, AdminUsername);
 
-                if (Admin.Username == null)
-                    UsernameExists = false;
+                if (Admin.Username == null) {}
                 else
                     UsernameExists = true;
 

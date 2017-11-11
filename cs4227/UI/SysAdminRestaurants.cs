@@ -57,24 +57,10 @@ namespace cs4227.UI
             }
             else
             {
-                var RestaurantExists = false;
-
-                //Add code to check if the restaurant exists
-
-                if (RestaurantExists)
-                {
-                    ErrorMessageLabel.Text = @"Error Message: Restaurant does not exist";
-                    ErrorMessageLabel.Visible = true;
-                    RestaurantNameLabel.Text = @"Enter Restaurant Name: ERROR";
-                    CorrectNameFormat = false;
-                }
-                else
-                {
                     RestaurantNameLabel.Text = @"Enter Restaurant Name:";
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
                     CorrectNameFormat = true;
-                }
             }
         }
 

@@ -140,9 +140,6 @@ namespace cs4227.UI
             {
                 //check if item exists already
                 ErrorMessageLabel.Visible = false;
-                var Exists = false;
-                if (!Exists)
-                {
                     //add to db
                     var NewPrice = Convert.ToDouble(Price);
                     var NewItem = new FoodItem(MenuItemId, MenuItemName, NewPrice, RestaurantId, BronzeDiscountValue,
@@ -152,12 +149,6 @@ namespace cs4227.UI
                     Hide();
                     var RAVM = new RestAdminViewMenu(AdminId, RestaurantId);
                     RAVM.ShowDialog();
-                }
-                else
-                {
-                    ErrorMessage = "Item Already Exists";
-                    CorrectNameFormat = false;
-                }
             }
             else
             {
