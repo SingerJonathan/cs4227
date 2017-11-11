@@ -4,7 +4,7 @@ using cs4227.Meal;
 
 namespace cs4227.UI
 {
-    internal class StaticAccessor
+    public class StaticAccessor
     {
         public static IDatabaseHandler DB { get; set; } = new DatabaseHandler();
         public static string AppName { get; set; }

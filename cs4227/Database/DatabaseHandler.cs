@@ -7,7 +7,7 @@ using cs4227.User;
 
 namespace cs4227.Database
 {
-    internal class DatabaseHandler : IDatabaseHandler
+    public class DatabaseHandler : IDatabaseHandler
     {
         private const string DbName = "Database";
 

@@ -4,7 +4,7 @@ using cs4227.User;
 
 namespace cs4227.Database
 {
-    internal interface IDatabaseHandler
+    public interface IDatabaseHandler
     {
         void InsertOrder(Order order);
         void InsertRestaurant(Restaurant.Restaurant restaurant);

@@ -1,6 +1,6 @@
 ﻿namespace cs4227.Restaurant
 {
-    internal class Restaurant
+    public class Restaurant
     {
         public Restaurant()
         {
