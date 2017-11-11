@@ -5,7 +5,7 @@ using cs4227.Restaurant;
 
 namespace cs4227.Database
 {
-    internal class OrderDatabaseHandler
+    public class OrderDatabaseHandler
     {
         public static void InsertOrder(Order order)
         {

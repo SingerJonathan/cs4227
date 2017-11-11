@@ -48,6 +48,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\OrderDatabaseHandlerTests.cs" />
+    <Compile Include="Restaurant\OrderTests.cs" />
     <Compile Include="UI\StaticAccessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
