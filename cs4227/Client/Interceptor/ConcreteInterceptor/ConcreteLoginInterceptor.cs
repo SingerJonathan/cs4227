@@ -32,6 +32,7 @@ namespace cs4227.Interceptor.ConcreteInterceptor
             }
             catch (IOException e)
             {
+                throw e;
             }
         }
 

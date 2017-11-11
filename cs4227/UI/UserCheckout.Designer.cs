@@ -38,10 +38,10 @@
             this.YourOrderLabel = new System.Windows.Forms.Label();
             this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.AddressLabel = new System.Windows.Forms.Label();
-            this.CancelButton = new System.Windows.Forms.Button();
             this.DeliveryChargeLabel = new System.Windows.Forms.Label();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
             this.OrderPriceLabel = new System.Windows.Forms.Label();
+            this.CancelOrderButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // YourOrder
@@ -136,17 +136,6 @@
             this.AddressLabel.TabIndex = 7;
             this.AddressLabel.Text = "Enter Address for Delivery:";
             // 
-            // CancelButton
-            // 
-            this.CancelButton.BackColor = System.Drawing.Color.Silver;
-            this.CancelButton.Location = new System.Drawing.Point(626, 566);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(300, 80);
-            this.CancelButton.TabIndex = 5;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = false;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
             // DeliveryChargeLabel
             // 
             this.DeliveryChargeLabel.AutoSize = true;
@@ -176,16 +165,27 @@
             this.OrderPriceLabel.TabIndex = 11;
             this.OrderPriceLabel.Text = "Price:";
             // 
+            // CancelOrderButton
+            // 
+            this.CancelOrderButton.BackColor = System.Drawing.Color.Silver;
+            this.CancelOrderButton.Location = new System.Drawing.Point(626, 565);
+            this.CancelOrderButton.Name = "CancelOrderButton";
+            this.CancelOrderButton.Size = new System.Drawing.Size(300, 80);
+            this.CancelOrderButton.TabIndex = 12;
+            this.CancelOrderButton.Text = "Cancel";
+            this.CancelOrderButton.UseVisualStyleBackColor = false;
+            this.CancelOrderButton.Click += new System.EventHandler(this.CancelOrderButton_Click);
+            // 
             // UserCheckout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.CancelOrderButton);
             this.Controls.Add(this.OrderPriceLabel);
             this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.DeliveryChargeLabel);
-            this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddressLabel);
             this.Controls.Add(this.AddressTextBox);
             this.Controls.Add(this.YourOrderLabel);
@@ -212,12 +212,12 @@
         private System.Windows.Forms.Label YourOrderLabel;
         private System.Windows.Forms.TextBox AddressTextBox;
         private System.Windows.Forms.Label AddressLabel;
-        private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Label DeliveryChargeLabel;
         private System.Windows.Forms.Label ErrorMessageLabel;
         private System.Windows.Forms.ColumnHeader OrderItemName;
         private System.Windows.Forms.ColumnHeader OrderItemPrice;
         private System.Windows.Forms.Label OrderPriceLabel;
         private System.Windows.Forms.ColumnHeader OrderItemDiscountedPrice;
+        private System.Windows.Forms.Button CancelOrderButton;
     }
 }

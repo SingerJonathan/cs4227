@@ -8,7 +8,6 @@ namespace cs4227.UI
 {
     public partial class UserOrderHistory : Form
     {
-        private readonly int RestaurantId = 0;
         private readonly int UserId;
 
         public UserOrderHistory(int UserId)

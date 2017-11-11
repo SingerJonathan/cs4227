@@ -6,22 +6,8 @@ namespace cs4227.UI
     public partial class RestAdminViewOrders : Form
     {
         private readonly int AdminId;
-        private double Cost = 0.0;
-        private string DeliveryAddress = "";
-        private bool IsCancelled = false;
-        private string Item00 = "";
-        private string Item01 = "";
-        private string Item02 = "";
-        private string Item03 = "";
-        private string Item04 = "";
-        private string Item05 = "";
-        private string Item06 = "";
-        private string Item07 = "";
-        private string Item08 = "";
-        private string Item09 = "";
         private readonly int OrderNo;
         private readonly int RestaurantId;
-        private string Username = "";
 
         public RestAdminViewOrders(int AdminId, int RestaurantId, int OrderNo)
         {

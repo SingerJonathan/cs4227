@@ -86,13 +86,6 @@ namespace cs4227.UI
             }
         }
 
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            Hide();
-            var UMM = new UserMainMenu(UserId);
-            UMM.ShowDialog();
-        }
-
         private void UserCheckout_Load(object sender, EventArgs e)
         {
             var membership = StaticAccessor.DB.GetUser(UserId).Membership;
@@ -118,6 +111,13 @@ namespace cs4227.UI
             DeliveryChargeLabel.Text = @"Delivery: " + StaticAccessor.DoubleToMoneyString(deliveryCharge);
             PriceLabel.Text = @"Total: " + StaticAccessor.DoubleToMoneyString(Order.Cost);
             ErrorMessageLabel.Visible = false;
+        }
+
+        private void CancelOrderButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var URS = new UserRestarauntSearch(UserId);
+            URS.ShowDialog();
         }
     }
 }

@@ -171,8 +171,6 @@ namespace cs4227.UI
             }
             else
             {
-                var RestaurantExists = false;
-
                     RestaurantAddressLabel.Text = "Address:";
                     ErrorMessage = "";
                     ErrorMessageLabel.Visible = false;
