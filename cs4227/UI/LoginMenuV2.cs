@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using cs4227.Interceptor;
-using cs4227.Interceptor.ConcreteInterceptor;
+using cs4227.Client.ConcreteInterceptor;
+using cs4227.Meal;
 
 namespace cs4227.UI
 {
@@ -64,7 +64,7 @@ namespace cs4227.UI
                 UserFound = true;
             if (UserFound)
             {
-                Interceptor.Interceptor interceptor = new ConcreteLoginInterceptor();
+                Interceptor interceptor = new ConcreteLoginInterceptor();
                 var dispatcher = new Dispatcher();
                 dispatcher.RegisterInterceptor(interceptor);
                 if (User.SystemAdmin)

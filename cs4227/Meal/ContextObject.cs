@@ -1,7 +1,7 @@
 ﻿using cs4227.Restaurant;
 using cs4227.UI;
 
-namespace cs4227.Interceptor
+namespace cs4227.Client
 {
     internal class ContextObject
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using cs4227.UI;
 
-namespace cs4227.Interceptor
+namespace cs4227.Meal
 {
     internal class Dispatcher
     {

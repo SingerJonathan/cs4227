@@ -1,6 +1,7 @@
 ﻿using System;
 using cs4227.Database;
 using cs4227.Meal;
+using cs4227.Client.HashAdapter;
 
 namespace cs4227.UI
 {
@@ -27,11 +28,11 @@ namespace cs4227.UI
 
         public static string HashString(string input)
         {
-            var adapter = new HashAdapter.HashAdapter(new HashAdaptee());
+            var adapter = new HashAdapter(new HashAdaptee());
             var result = adapter.RequestDelegate(input);
             if (!result.Equals(""))
                 return result;
-            var adapter2 = new HashAdapter.HashAdapter(new HashTarget());
+            var adapter2 = new HashAdapter(new HashTarget());
             return adapter2.RequestDelegate(input);
         }
     }

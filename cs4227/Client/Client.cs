@@ -1,6 +1,6 @@
 ﻿using cs4227.UI;
 
-namespace cs4227.Client
+namespace cs4227.Client.Client
 {
     internal class Client
     {

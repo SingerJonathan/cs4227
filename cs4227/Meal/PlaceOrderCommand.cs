@@ -1,8 +1,7 @@
 ﻿using System;
-using cs4227.Interceptor;
-using cs4227.Interceptor.ConcreteInterceptor;
 using cs4227.Restaurant;
 using cs4227.UI;
+using cs4227.Client.ConcreteInterceptor;
 
 namespace cs4227.Meal
 {
@@ -20,7 +19,7 @@ namespace cs4227.Meal
             var orderId = StaticAccessor.DB.GetNewestOrderId() + 1;
             StaticAccessor.DB.InsertOrder(order);
             Console.WriteLine(@"Order " + orderId + @" placed");
-            Interceptor.Interceptor interceptor = new ConcreteOrderInterceptor();
+            Interceptor interceptor = new ConcreteOrderInterceptor();
             var dispatcher = new Dispatcher();
             dispatcher.DispatchOrderInterceptor(interceptor);
         }
