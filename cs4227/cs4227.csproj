@@ -224,11 +224,11 @@
   <ItemGroup>
     <Compile Include="Client\Client.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />
-    <Compile Include="Client\Interceptor\ConcreteInterceptor\ConcreteLoginInterceptor.cs" />
-    <Compile Include="Client\Interceptor\ConcreteInterceptor\ConcreteOrderInterceptor.cs" />
-    <Compile Include="Client\Interceptor\ContextObject.cs" />
-    <Compile Include="Client\Interceptor\Dispatcher.cs" />
-    <Compile Include="Client\Interceptor\Interceptor.cs" />
+    <Compile Include="Client\ConcreteLoginInterceptor.cs" />
+    <Compile Include="Client\ConcreteOrderInterceptor.cs" />
+    <Compile Include="Meal\ContextObject.cs" />
+    <Compile Include="Meal\Dispatcher.cs" />
+    <Compile Include="Meal\Interceptor.cs" />
     <Compile Include="Database\FoodItemDatabaseHandler.cs" />
     <Compile Include="Database\IDatabaseHandler.cs" />
     <Compile Include="Database\OrderDatabaseHandler.cs" />
@@ -237,7 +237,7 @@
     <Compile Include="Meal\CancelOrderCommand.cs" />
     <Compile Include="Meal\Command.cs" />
     <Compile Include="Meal\HashAdaptee.cs" />
-    <Compile Include="Client\HashAdapter\HashAdapter.cs" />
+    <Compile Include="Client\HashAdapter.cs" />
     <Compile Include="Meal\HashTarget.cs" />
     <Compile Include="Meal\IHashAdaptee.cs" />
     <Compile Include="Meal\IHashTarget.cs" />
