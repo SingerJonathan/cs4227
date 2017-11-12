@@ -44,6 +44,16 @@ namespace cs4227.UI
             AdminUsernameTextbox.Text = AdminUsername;
             CorrectUsernameFormat = true;
             ErrorMessageLabel.Visible = false;
+            if (sysAdmin)
+            {
+                AdminPasswordTextbox.Visible = false;
+                AdminPasswordTextbox.Enabled = false;
+                CorrectPasswordFormat = true;
+                AdminPasswordLabel.Visible = false;
+                ShowPasswordCheckBox.Visible = false;
+                ShowPasswordCheckBox.Enabled = false;
+            }
+
             if (sysAdmin && !newAdmin)
             {
                 Text = "SysAdmin Menu: Edit Admin";
@@ -332,17 +342,8 @@ namespace cs4227.UI
                         ErrorMessage = "Error: Email Already Exists.";
                     }
                 }
-                /*if (Rest == null)
-                {
-                    RestaurantExists = false;
-                    ErrorMessage = "Restaurant Doesn't Exist";
-                }
-                else
-                {
-                    RestaurantExists = true;
-                }*/
 
-                if (!UsernameExists && !EmailExists /* && RestaurantExists*/)
+                if (!UsernameExists && !EmailExists)
                 {
                     //check if admin already exists
                     var RestaurantAdminExists = StaticAccessor.DB.GetUser(0, "", "", 0, AdminRestaurant);
@@ -350,7 +351,11 @@ namespace cs4227.UI
                     var CurrentAdmin = StaticAccessor.DB.GetUser(0, AdminUsername);
 
                     //Hash password input so the raw password isn't stored in the database
-                    var hashPassword = StaticAccessor.HashString(AdminPassword);
+                    string hashPassword;
+                    if (sysAdmin)
+                        hashPassword = StaticAccessor.DB.GetUser(CurrentAdmin.Id).Password;
+                    else
+                        hashPassword = StaticAccessor.HashString(AdminPassword);
 
                     if (RestaurantAdminExists.Username == null)
                     {
