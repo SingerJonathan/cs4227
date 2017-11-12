@@ -41,6 +41,7 @@ namespace cs4227.UI
         private void LogOutButton_Click(object sender, EventArgs e)
         {
             Hide();
+            var LM = new LoginMenuV2();
         }
     }
 }

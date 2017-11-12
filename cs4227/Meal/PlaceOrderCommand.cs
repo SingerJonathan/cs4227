@@ -1,7 +1,7 @@
 ﻿using System;
 using cs4227.Restaurant;
 using cs4227.UI;
-using cs4227.Client.ConcreteInterceptor;
+using cs4227.Client;
 
 namespace cs4227.Meal
 {

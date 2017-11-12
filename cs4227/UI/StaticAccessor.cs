@@ -1,7 +1,7 @@
 ﻿using System;
 using cs4227.Database;
 using cs4227.Meal;
-using cs4227.Client.HashAdapter;
+using cs4227.Client;
 
 namespace cs4227.UI
 {

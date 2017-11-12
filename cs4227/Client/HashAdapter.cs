@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using cs4227.Meal;
 
-namespace cs4227.Client.HashAdapter
+namespace cs4227.Client
 {
     internal class HashAdapter : HashAdaptee
     {

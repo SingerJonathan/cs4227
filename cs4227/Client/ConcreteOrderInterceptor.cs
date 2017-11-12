@@ -3,7 +3,7 @@ using System.IO;
 using cs4227.UI;
 using cs4227.Meal;
 
-namespace cs4227.Client.ConcreteInterceptor
+namespace cs4227.Client
 {
     internal class ConcreteOrderInterceptor : Interceptor
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using cs4227.Client.ConcreteInterceptor;
+using cs4227.Client;
 using cs4227.Meal;
 
 namespace cs4227.UI
