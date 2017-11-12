@@ -44,21 +44,17 @@ namespace cs4227.UI
             AdminUsernameTextbox.Text = AdminUsername;
             CorrectUsernameFormat = true;
             ErrorMessageLabel.Visible = false;
-            if (sysAdmin)
+          if (sysAdmin && !newAdmin)
             {
+                Text = "SysAdmin Menu: Edit Admin";
+                DeleteAdminButton.Show();
+                DeleteAdminButton.Enabled = true;
                 AdminPasswordTextbox.Visible = false;
                 AdminPasswordTextbox.Enabled = false;
                 CorrectPasswordFormat = true;
                 AdminPasswordLabel.Visible = false;
                 ShowPasswordCheckBox.Visible = false;
                 ShowPasswordCheckBox.Enabled = false;
-            }
-
-            if (sysAdmin && !newAdmin)
-            {
-                Text = "SysAdmin Menu: Edit Admin";
-                DeleteAdminButton.Show();
-                DeleteAdminButton.Enabled = true;
             }
             if (!sysAdmin && !newAdmin)
             {

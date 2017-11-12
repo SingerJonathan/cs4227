@@ -465,6 +465,17 @@ namespace cs4227.UI
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
+            var AdminInUse = StaticAccessor.DB.GetUser(0, RestaurantOwnerUsername);
+            if (AdminInUse.RestaurantId != 0)
+            {
+                CorrectOwnerFormat = false;
+                OwnerUsernameLabel.Text = "Owner Username: Error: Admin already in use.";
+            }
+            else
+            {
+                CorrectOwnerFormat = true;
+            }
+
             if (CorrectNameFormat && CorrectAddressFormat && CorrectOwnerFormat && CorrectPhoneNumberFormat &&
                 CorrectEmailFormat && CorrectOpeningHoursFormat && CorrectClosingHoursFormat && CorrectDaysOpenFormat &&
                 CorrectTypeFormat && CorrectDeliveryChargeFormat && CorrectOwnerUsernameFormat)
@@ -538,7 +549,10 @@ namespace cs4227.UI
 
         private void OwnerUsernameTextbox_TextChanged(object sender, EventArgs e)
         {
-            RestaurantOwnerUsername = RestaurantOwnerUsernameTextbox.Text;
+            if (sysAdmin)
+                RestaurantOwnerUsername = RestaurantOwnerUsernameTextbox.Text;
+            else
+                RestaurantOwnerUsernameTextbox.Text = RestaurantOwnerUsername;
 
             if (RestaurantOwnerUsername.Length > 0)
             {
