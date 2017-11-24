@@ -63,7 +63,7 @@ namespace cs4227.Database
                 order.Cancelled = (bool) reader["Cancelled"];
                 for (var i = 0; i < 8; i++)
                     if (!reader.IsDBNull(3 + i))
-                        order.Add(FoodItemDatabaseHandler.GetFoodItem((int) reader["Item" + i]));
+                        order.Add(FoodItemDatabaseHandler.GetFoodItem((int) reader["Item" + i], true));
             }
             connection.Close();
             return order;

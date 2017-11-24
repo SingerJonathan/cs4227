@@ -33,11 +33,14 @@ namespace cs4227.Database
             Console.WriteLine($@"({result} row(s) affected)");
         }
 
-        public static FoodItem GetFoodItem(int id)
+        public static FoodItem GetFoodItem(int id, bool includeDeleted = false)
         {
             var connection = DatabaseHandler.GetLocalDbConnection();
             var command = new SqlCommand();
-            command.CommandText = $"SELECT * FROM [dbo].[Items] WHERE [Id] = {id} AND [Deleted] = 0";
+            if (includeDeleted)
+                command.CommandText = $"SELECT * FROM [dbo].[Items] WHERE [Id] = {id}";
+            else
+                command.CommandText = $"SELECT * FROM [dbo].[Items] WHERE [Id] = {id} AND [Deleted] = 0";
             command.Connection = connection;
             var reader = command.ExecuteReader();
             var foodItem = new FoodItem();
