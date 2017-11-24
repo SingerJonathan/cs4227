@@ -292,12 +292,12 @@ namespace cs4227.UI
             else
             {
                 var user = StaticAccessor.DB.GetUser(UserId);
-                FirstName = user.FirstName;
-                LastName = user.LastName;
-                Username = user.Username;
-                Password = user.Password;
-                Email = user.Email;
-                Membership = user.Membership;
+                user.FirstName = FirstName;
+                user.LastName = LastName;
+                user.Username = Username;
+                user.Password = hashPassword;
+                user.Email = Email;
+                user.Membership = Membership;
                 StaticAccessor.DB.UpdateUser(user);
                 MessageBox.Show(@"Changes Saved");
                 Hide();
