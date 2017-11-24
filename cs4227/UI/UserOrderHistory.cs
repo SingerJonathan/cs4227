@@ -30,8 +30,7 @@ namespace cs4227.UI
                             StaticAccessor.DB.GetFoodItem(order.FoodItems[i].Id).Name));
                     else
                         row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
-                var cost = StaticAccessor.DoubleToMoneyString(
-                    order.Cost - StaticAccessor.DB.GetRestaurant(order.RestaurantId).Delivery);
+                var cost = StaticAccessor.DoubleToMoneyString(order.Cost);
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + cost));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + order.Address));
                 row.SubItems.Add(new ListViewItem.ListViewSubItem(row, "" + (order.Cancelled ? "Yes" : "No")));
