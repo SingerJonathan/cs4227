@@ -277,32 +277,42 @@ namespace cs4227.UI
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            //Hash password input so the raw password isn't stored in the database
-            var hashPassword = StaticAccessor.HashString(Password);
-
-            if (newAccount)
+            if (CorrectEmailFormat && CorrectNameFormat && CorrectUsernameFormat &&
+                CorrectPasswordFormat /* && CorrectRestaurantFormat*/)
             {
-                var user = new UserFactory().GetUser(0, Username, hashPassword, FirstName, LastName, Email, Membership,
-                    "User");
-                StaticAccessor.DB.InsertUser(user);
-                MessageBox.Show(@"Account Created");
-                Hide();
-                new LoginMenuV2();
+                //Hash password input so the raw password isn't stored in the database
+                var hashPassword = StaticAccessor.HashString(Password);
+
+                if (newAccount)
+                {
+                    var user = new UserFactory().GetUser(0, Username, hashPassword, FirstName, LastName, Email,
+                        Membership,
+                        "User");
+                    StaticAccessor.DB.InsertUser(user);
+                    MessageBox.Show(@"Account Created");
+                    Hide();
+                    new LoginMenuV2();
+                }
+                else
+                {
+                    var user = StaticAccessor.DB.GetUser(UserId);
+                    user.FirstName = FirstName;
+                    user.LastName = LastName;
+                    user.Username = Username;
+                    user.Password = hashPassword;
+                    user.Email = Email;
+                    user.Membership = Membership;
+                    StaticAccessor.DB.UpdateUser(user);
+                    MessageBox.Show(@"Changes Saved");
+                    Hide();
+                    var UMM = new UserMainMenu(UserId);
+                    UMM.ShowDialog();
+                }
             }
             else
             {
-                var user = StaticAccessor.DB.GetUser(UserId);
-                user.FirstName = FirstName;
-                user.LastName = LastName;
-                user.Username = Username;
-                user.Password = hashPassword;
-                user.Email = Email;
-                user.Membership = Membership;
-                StaticAccessor.DB.UpdateUser(user);
-                MessageBox.Show(@"Changes Saved");
-                Hide();
-                var UMM = new UserMainMenu(UserId);
-                UMM.ShowDialog();
+                ErrorMessageLabel.Text = "Error Message: Please Fix Any Issues with your details";
+                ErrorMessageLabel.Visible = true;
             }
         }
 
