@@ -75,9 +75,19 @@ namespace cs4227.UI
                 }
                 else
                 {
-                    dispatcher.DispatchLoginInterceptor(interceptor, this);
-                    Hide();
-                    User.login();
+                    if (User.RestaurantAdmin && User.RestaurantId == 0)
+                    {
+                        MessageBox.Show("Login Failed");
+                        ErrorMessageLabel.Text = "Error Message: Admin not assigned to a restaurant";
+                        ErrorMessageLabel.Visible = true;
+                        PasswordTextbox.Text = "";
+                    }
+                    else
+                    {
+                        dispatcher.DispatchLoginInterceptor(interceptor, this);
+                        Hide();
+                        User.login();
+                    }
                 }
             }
             else

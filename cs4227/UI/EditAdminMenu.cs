@@ -348,7 +348,7 @@ namespace cs4227.UI
 
                     //Hash password input so the raw password isn't stored in the database
                     string hashPassword;
-                    if (sysAdmin)
+                    if (sysAdmin && !newAdmin)
                         hashPassword = StaticAccessor.DB.GetUser(CurrentAdmin.Id).Password;
                     else
                         hashPassword = StaticAccessor.HashString(AdminPassword);
