@@ -16,7 +16,7 @@ namespace cs4227.Database
         void UpdateUser(AbstractUser user);
         Order GetOrder(int id);
         Restaurant.Restaurant GetRestaurant(int id, string name = "");
-        FoodItem GetFoodItem(int id);
+        FoodItem GetFoodItem(int id, bool includeDeleted = false);
 
         AbstractUser GetUser(int id, string username = "", string email = "", int restaurantId = 0,
             string restaurantName = "");

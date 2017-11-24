@@ -27,7 +27,7 @@ namespace cs4227.UI
             for (var i = 0; i < 8; i++)
                 if (i < order.FoodItems.Count)
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row,
-                        StaticAccessor.DB.GetFoodItem(order.FoodItems[i].Id).Name));
+                        StaticAccessor.DB.GetFoodItem(order.FoodItems[i].Id, true).Name));
                 else
                     row.SubItems.Add(new ListViewItem.ListViewSubItem(row, ""));
             var cost = order.Cost.ToString();

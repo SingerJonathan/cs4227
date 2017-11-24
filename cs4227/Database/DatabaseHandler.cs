@@ -61,9 +61,9 @@ namespace cs4227.Database
             return RestaurantDatabaseHandler.GetRestaurant(id, name);
         }
 
-        public FoodItem GetFoodItem(int id)
+        public FoodItem GetFoodItem(int id, bool includeDeleted = false)
         {
-            return FoodItemDatabaseHandler.GetFoodItem(id);
+            return FoodItemDatabaseHandler.GetFoodItem(id, includeDeleted);
         }
 
         public AbstractUser GetUser(int id, string username = "", string email = "", int restaurantId = 0,
