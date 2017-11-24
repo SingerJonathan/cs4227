@@ -45,11 +45,14 @@ namespace cs4227.Database
             Console.WriteLine($@"({result} row(s) affected)");
         }
 
-        public static Order GetOrder(int id)
+        public static Order GetOrder(int id, bool includeCancelled = false)
         {
             var connection = DatabaseHandler.GetLocalDbConnection();
             var command = new SqlCommand();
-            command.CommandText = $"SELECT * FROM [dbo].[Orders] WHERE [Id] = {id} AND [Cancelled] = 0";
+            if (includeCancelled)
+                command.CommandText = $"SELECT * FROM [dbo].[Orders] WHERE [Id] = {id}";
+            else
+                command.CommandText = $"SELECT * FROM [dbo].[Orders] WHERE [Id] = {id} AND [Cancelled] = 0";
             command.Connection = connection;
             var reader = command.ExecuteReader();
             var order = new Order();

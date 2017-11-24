@@ -14,7 +14,7 @@ namespace cs4227.Database
         void UpdateRestaurant(Restaurant.Restaurant restaurant);
         void UpdateFoodItem(FoodItem item);
         void UpdateUser(AbstractUser user);
-        Order GetOrder(int id);
+        Order GetOrder(int id, bool includeCancelled = false);
         Restaurant.Restaurant GetRestaurant(int id, string name = "");
         FoodItem GetFoodItem(int id, bool includeDeleted = false);
 

@@ -51,9 +51,9 @@ namespace cs4227.Database
             UserDatabaseHandler.UpdateUser(user);
         }
 
-        public Order GetOrder(int id)
+        public Order GetOrder(int id, bool includeCancelled = false)
         {
-            return OrderDatabaseHandler.GetOrder(id);
+            return OrderDatabaseHandler.GetOrder(id, includeCancelled);
         }
 
         public Restaurant.Restaurant GetRestaurant(int id, string name = "")

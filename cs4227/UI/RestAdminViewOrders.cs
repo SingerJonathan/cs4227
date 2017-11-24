@@ -20,7 +20,7 @@ namespace cs4227.UI
         private void RestAdminViewOrders_Load(object sender, EventArgs e)
         {
             OrderNumberLabel.Text = "Viewing Order No: " + OrderNo;
-            var order = StaticAccessor.DB.GetOrder(OrderNo);
+            var order = StaticAccessor.DB.GetOrder(OrderNo, true);
             var row = new ListViewItem("" + order.Id);
             row.SubItems.Add(
                 new ListViewItem.ListViewSubItem(row, "" + StaticAccessor.DB.GetUser(order.UserId).Username));
